@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+const {
+  title = 'SEEN IN KOREA — Korea, verified',
+  description = 'K-culture trends, real stories from foreigners in Korea, Korean products, and practical help.',
+  image,
+  canonical
+} = Astro.props;
+const currentUrl = canonical || new URL(Astro.url.pathname, Astro.site || Astro.url.origin).toString();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href={currentUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={currentUrl} />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="/">SEEN IN <span>KOREA</span></a>
+        <nav class="desktop-nav">
+          <a href="/category/trending">TRENDING</a>
+          <a href="/category/seen-on">SEEN ON</a>
+          <a href="/real-korea">REAL KOREA</a>
+          <a href="/shop-korea">SHOP KOREA</a>
+        </nav>
+        <a class="help-btn" href="/korea-help">KOREA HELP →</a>
+      </div>
+    </header>
+    <slot />
+    <footer>
+      <div class="wrap footer-grid">
+        <div><div class="footer-brand">SEEN IN KOREA</div><div class="byline">by WON GLOBAL</div></div>
+        <div class="footer-copy">K-culture, real-life Korea and product discovery — built as a media → data → commerce → export system.</div>
+      </div>
+    </footer>
+  </body>
+</html>

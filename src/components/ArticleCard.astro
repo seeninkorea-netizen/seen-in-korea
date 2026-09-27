@@ -1,0 +1,13 @@
+---
+import type { Article } from '../lib/types';
+import { readableDate } from '../lib/format';
+const { article, compact = false } = Astro.props as { article: Article; compact?: boolean };
+---
+<a class:list={['article-card', compact && 'compact']} href={`/articles/${article.slug}`}>
+  {article.heroImageUrl ? <img src={article.heroImageUrl} alt={article.heroAlt || article.title} loading="lazy" /> : <div class="card-placeholder"><span>{article.eyebrow || article.category}</span></div>}
+  <div class="article-card-body">
+    <div class="meta"><span>{article.category}</span><span>{readableDate(article.publishedAt)}</span></div>
+    <h3>{article.title}</h3>
+    <p>{article.dek}</p>
+  </div>
+</a>

@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getArticlesByCategory } from '../../lib/content';
+import { slugCategoryMap } from '../../lib/format';
+const { slug } = Astro.params;
+const category = slug ? slugCategoryMap[slug] : undefined;
+if (!category) return Astro.redirect('/404');
+const articles = await getArticlesByCategory(category);
+---
+<BaseLayout title={`${category} — Seen in Korea`} description={`${category} stories from Seen in Korea.`}>
+  <main><section class="listing-hero"><div class="wrap"><div class="eyebrow">SEEN IN KOREA</div><h1>{category.toUpperCase()}</h1><p>{category === 'Trending' ? 'Fast-moving Korea stories with a reason to care.' : category === 'Seen On' ? 'Celebrity attention, evidence checks and product intelligence.' : 'Reporting and analysis from Seen in Korea.'}</p></div></section>
+  <section><div class="wrap listing-grid">{articles.length ? articles.map(article => <ArticleCard article={article} />) : <p>No published stories yet.</p>}</div></section></main>
+</BaseLayout>

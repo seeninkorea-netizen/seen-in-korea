@@ -1,0 +1,33 @@
+{
+  "name": "seen-in-korea-platform-v1",
+  "version": "1.4.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy",
+    "check": "astro check",
+    "seed": "node scripts/seed.mjs",
+    "sanity:schema": "sanity schemas deploy",
+    "draft:push": "node scripts/push-draft.mjs"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "latest",
+    "@astrojs/react": "latest",
+    "@portabletext/react": "latest",
+    "@sanity/astro": "latest",
+    "@sanity/client": "latest",
+    "astro": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "sanity": "latest",
+    "styled-components": "latest"
+  },
+  "devDependencies": {
+    "@astrojs/check": "latest",
+    "typescript": "latest",
+    "wrangler": "latest"
+  }
+}

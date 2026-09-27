@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getProducts } from '../lib/content';
+const products = await getProducts(60);
+---
+<BaseLayout title="Shop Korea — Seen in Korea" description="Verified Korean product discovery, pricing and retailer intelligence.">
+  <main><section class="listing-hero"><div class="wrap"><div class="eyebrow">PRODUCT INTELLIGENCE</div><h1>SHOP KOREA</h1><p>Discover first. Verify second. Compare price third. Buy only when the numbers make sense.</p></div></section>
+  <section><div class="wrap shop-grid">{products.map(product => <article class="shop-card"><div class="product-art">{product.imageUrl ? <img src={product.imageUrl} alt={`${product.brand} ${product.name}`} /> : '◒'}</div><div class="meta"><span>{product.brand}</span><span>{product.category || 'K-Product'}</span></div><h3>{product.name}</h3><p>{product.summary}</p>{product.celebrity && <p><strong>Related:</strong> {product.celebrity} · {product.verification}</p>}<div class="price-pair"><span>KR {product.koreaPrice || '—'}</span><span>GLOBAL {product.globalPrice || '—'}</span></div><div class="verify">{product.exportCandidate ? 'Won Global candidate' : 'Affiliate / intelligence test'}</div></article>)}</div></section></main>
+</BaseLayout>
