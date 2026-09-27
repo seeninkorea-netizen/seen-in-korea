@@ -13,8 +13,15 @@ const newestFirst = (a, b) => new Date(b.publishedAt).getTime() - new Date(a.pub
 const editorialSort = (a, b) => priority(a) - priority(b) || newestFirst(a, b);
 
 const homepageArticles = articles.filter(a => a.homepagePlacement !== 'none' && isHomepageActive(a));
-const coverCandidates = homepageArticles.filter(a => a.homepagePlacement === 'cover').sort(editorialSort);
-const lead = coverCandidates[0] || homepageArticles.slice().sort(newestFirst)[0];
+const coverCandidates = homepageArticles
+  .filter(a => a.homepagePlacement === 'cover')
+  .sort(editorialSort);
+
+const deskFallback = homepageArticles
+  .filter(a => a.homepagePlacement === 'desk')
+  .sort(newestFirst)[0];
+
+const lead = coverCandidates[0] || deskFallback || null;
 
 const liveDesk = homepageArticles
   .filter(a => a._id !== lead?._id && a.homepagePlacement === 'liveDesk')
