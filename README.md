@@ -126,5 +126,6 @@ Articles now include CMS fields for **Today’s Cover**, **Live Desk**, **From O
 
 
 ## v1.4 — AI Draft Inbox
+Deployment initialized.
 
 An authenticated server endpoint can now place externally generated article drafts into Sanity without publishing them. Open `/admin` → **AI Draft Inbox** to review them. The endpoint forces draft-only status, does not feature stories on the homepage, and keeps AI verification suggestions separate from the editor-controlled verification field. See `AI_DRAFT_PIPELINE.md`.
