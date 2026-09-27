@@ -19,14 +19,11 @@ export default defineConfig({
               .title('AI Draft Inbox')
               .child(
                 S.documentList()
-                  .title('AI Draft Inbox')
-                  .schemaType('article')
-                  .filter(
-                    '_type == "article" && _id in path("drafts.**") && draftOrigin == "ai"'
-                  )
-                  .defaultOrdering([
-                    { field: 'draftGeneratedAt', direction: 'desc' },
-                  ])
+  .title('AI Draft Inbox')
+  .schemaType('article')
+  .apiVersion('2026-09-01')
+  .filter('_type == "article" && draftOrigin == "ai" && _originalId match "drafts.*"')
+  .defaultOrdering([{ field: 'draftGeneratedAt', direction: 'desc' }])
               ),
             S.divider(),
             ...S.documentTypeListItems(),
