@@ -80,8 +80,8 @@ export const GET: APIRoute = async () => {
     service: 'seen-in-korea-draft-intake',
     configured: {
       sanityProject: Boolean(projectId),
-      writeToken: Boolean(runtimeEnv.SANITY_API_WRITE_TOKEN),
-      intakeSecret: Boolean(runtimeEnv.DRAFT_INGEST_SECRET)
+      writeToken: Boolean(runtimeEnv.SANITY_API_TOKEN),
+      intakeSecret: Boolean(runtimeEnv.AI_DRAFT_SECRET)
     },
     behavior: 'Creates Sanity drafts only. It never publishes.'
   });
@@ -89,11 +89,11 @@ export const GET: APIRoute = async () => {
 
 export const POST: APIRoute = async ({ request }) => {
   const suppliedSecret = request.headers.get('x-draft-secret');
-  if (!runtimeEnv.DRAFT_INGEST_SECRET || suppliedSecret !== runtimeEnv.DRAFT_INGEST_SECRET) {
+  if (!runtimeEnv.AI_DRAFT_SECRET || suppliedSecret !== runtimeEnv.AI_DRAFT_SECRET) {
     return json({ ok: false, error: 'Unauthorized' }, 401);
   }
 
-  if (!projectId || !runtimeEnv.SANITY_API_WRITE_TOKEN) {
+  if (!projectId || !runtimeEnv.SANITY_API_TOKEN) {
     return json({ ok: false, error: 'Draft intake is not configured on the server.' }, 503);
   }
 
@@ -134,7 +134,7 @@ export const POST: APIRoute = async ({ request }) => {
     dataset,
     apiVersion: '2026-07-01',
     useCdn: false,
-    token: runtimeEnv.SANITY_API_WRITE_TOKEN
+    token: runtimeEnv.SANITY_API_TOKEN
   });
 
   const document = {
