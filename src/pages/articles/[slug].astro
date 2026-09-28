@@ -15,7 +15,15 @@ const jsonLd = {
   ...(article.heroImageUrl ? { image: [article.heroImageUrl] } : {})
 };
 ---
-<BaseLayout title={`${article.title} — Seen in Korea`} description={article.dek} image={article.heroImageUrl} canonical={articleUrl}>
+<BaseLayout
+  title={`${article.title} — SEEN IN KOREA`}
+  description={article.dek}
+  image={article.heroImageUrl}
+  canonical={articleUrl}
+  ogType="article"
+  publishedTime={article.publishedAt}
+  author={article.author || 'Seen in Korea Desk'}
+>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
   <main>
     <section class="article-hero"><div class="article-wrap"><div class="eyebrow">{article.eyebrow || article.category}</div><h1 class="article-title">{article.title}</h1><div class="article-dek">{article.dek}</div><div class="article-meta">{readableDate(article.publishedAt)} · {article.author || 'Seen in Korea Desk'}{article.verification && article.verification !== 'Not applicable' ? ` · ${article.verification}` : ''}</div>{article.heroImageUrl && <img class="article-hero-image" src={article.heroImageUrl} alt={article.heroAlt || article.title} />}</div></section>
