@@ -15,7 +15,15 @@ const client = enabled ? createClient({
 }) : null;
 
 const articleProjection = `{
-  _id, title, "slug": slug.current, dek, category, eyebrow, publishedAt, author,
+    _id,
+  title,
+  "slug": slug.current,
+  dek,
+  category,
+  eyebrow,
+  publishedAt,
+  "updatedAt": _updatedAt,
+  author,
   homepagePlacement, homePriority, homepageUntil, deskLabel, deskTimeLabel, deskNote,
   verification, "heroImageUrl": heroImage.asset->url, heroAlt, body,
   sources[]{label,url},
