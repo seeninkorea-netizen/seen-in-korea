@@ -14,7 +14,11 @@ const jsonLd = {
   '@context': 'https://schema.org', '@type': 'NewsArticle', headline: article.title,
   datePublished: article.publishedAt,
 dateModified: article.updatedAt || article.publishedAt,
-author: { '@type': 'Organization', name: article.author || 'Seen in Korea Desk' },
+author: {
+  '@type': 'Organization',
+  name: article.author || 'Seen in Korea Desk',
+  url: siteUrl
+},
   publisher: {
   '@type': 'Organization',
   '@id': `${siteUrl}#organization`,
