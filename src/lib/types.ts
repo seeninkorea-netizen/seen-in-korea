@@ -9,6 +9,7 @@ export type Article = {
   category: string;
   eyebrow?: string;
   publishedAt: string;
+  updatedAt?: string;
   author?: string;
   homepagePlacement?: 'cover' | 'liveDesk' | 'standard' | 'none';
   homePriority?: number;
