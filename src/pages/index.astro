@@ -18,7 +18,7 @@ const coverCandidates = homepageArticles
   .sort(editorialSort);
 
 const deskFallback = homepageArticles
-  .filter(a => a.homepagePlacement === 'desk')
+  .filter(a => a.homepagePlacement === 'standard')
   .sort(newestFirst)[0];
 
 const lead = coverCandidates[0] || deskFallback || null;
@@ -28,11 +28,10 @@ const liveDesk = homepageArticles
   .sort(editorialSort)
   .slice(0, 6);
 
-const liveDeskIds = new Set(liveDesk.map(a => a._id));
 const rest = homepageArticles
-  .filter(a => a._id !== lead?._id && !liveDeskIds.has(a._id) && a.homepagePlacement !== 'cover')
+  .filter(a => a._id !== lead?._id && a.homepagePlacement === 'standard')
   .sort(editorialSort)
-  .slice(0, 4);
+  .slice(0, 6);
 
 const seoulDate = new Intl.DateTimeFormat('en-US', {
   timeZone: 'Asia/Seoul', month: 'short', day: 'numeric'
@@ -65,7 +64,7 @@ const seoulDate = new Intl.DateTimeFormat('en-US', {
       </div>
     </section>
 
-    <div class="signal-bar"><div class="wrap signal-inner"><b>SEOUL DESK</b><span>Culture</span><span>Beauty</span><span>Entertainment</span><span>Real Korea</span><span>Products</span><span>Practical Help</span></div></div>
+    <div class="signal-bar"><div class="wrap signal-inner"><a class="signal-active" href="/desk/seoul">SEOUL DESK</a><a href="/desk/culture">Culture</a><a href="/desk/beauty">Beauty</a><a href="/desk/entertainment">Entertainment</a><a href="/real-korea">Real Korea</a><a href="/shop-korea">Products</a><a href="/korea-help">Practical Help</a></div></div>
 
     <section class="desk-section">
       <div class="wrap">
@@ -82,7 +81,7 @@ const seoulDate = new Intl.DateTimeFormat('en-US', {
           </a>) : <div class="desk-empty">No Live Desk stories are pinned right now. Publish an article with <b>Homepage placement → Live Desk</b> to place it here.</div>}
         </div>
         <div class="desk-secondary">
-          <div class="secondary-label">FROM OUR DESK</div>
+          <div class="secondary-head"><div class="secondary-label">FROM OUR DESK</div><a href="/articles">VIEW ALL STORIES →</a></div>
           <div class="secondary-grid">{rest.map(article => <ArticleCard article={article} compact />)}</div>
         </div>
       </div>

@@ -1,9 +1,35 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getInterviews } from '../lib/content';
-const interviews = await getInterviews(50);
+import ArticleCard from '../components/ArticleCard.astro';
+import { getArticlesBySection, getInterviews } from '../lib/content';
+
+const [articles, interviews] = await Promise.all([
+  getArticlesBySection('real-korea'),
+  getInterviews(50)
+]);
 ---
-<BaseLayout title="Real Korea — Seen in Korea" description="Published stories and insight from foreigners living in Korea.">
-  <main><section class="listing-hero"><div class="wrap"><div class="eyebrow">100 VOICES: KOREA</div><h1>REAL KOREA</h1><p>Published experiences from people living in Korea. Raw private interview data stays outside the public content dataset.</p></div></section>
-  <section><div class="wrap"><div class="grid-3">{interviews.map(item => <article class="voice"><span class="tag">{item.country || 'KOREA'}</span><div class="quote">“{item.quote || item.headline}”</div><h3>{item.headline}</h3><p>{item.summary}</p><div class="voice-foot">{item.displayName || 'Anonymous'}{item.yearsInKorea ? ` · ${item.yearsInKorea} years in Korea` : ''}</div></article>)}</div></div></section></main>
+<BaseLayout title="Real Korea — Seen in Korea" description="Reporting and published experiences from foreigners living in Korea.">
+  <main>
+    <section class="listing-hero">
+      <div class="wrap">
+        <div class="eyebrow">REAL KOREA · 100 VOICES</div>
+        <h1>REAL KOREA</h1>
+        <p>Reporting about life inside Korea, plus published experiences from the people living it. Raw private interview data stays outside the public content dataset.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head archive-section-head"><div><div class="eyebrow">REPORTING</div><h2>Real Korea stories</h2></div><a class="link" href="/articles">ALL STORIES →</a></div>
+        <div class="listing-grid">{articles.length ? articles.map(article => <ArticleCard article={article} />) : <p>No published Real Korea stories yet.</p>}</div>
+      </div>
+    </section>
+
+    <section class="archive-subsection">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">100 VOICES: KOREA</div><h2>Published voices</h2></div><p>Original interviews and consented public stories from foreigners experiencing Korea.</p></div>
+        <div class="grid-3">{interviews.length ? interviews.map(item => <article class="voice"><span class="tag">{item.country || 'KOREA'}</span><div class="quote">“{item.quote || item.headline}”</div><h3>{item.headline}</h3><p>{item.summary}</p><div class="voice-foot">{item.displayName || 'Anonymous'}{item.yearsInKorea ? ` · ${item.yearsInKorea} years in Korea` : ''}</div></article>) : <p>No published interview stories yet.</p>}</div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
