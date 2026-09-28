@@ -11,3 +11,12 @@
 @media(max-width:850px){.cover-shell{padding-top:0}.cover-grid{grid-template-columns:1fr;gap:0;padding:0}.cover-copy{padding:40px 22px 30px}.cover-copy h1{font-size:64px}.cover-story{min-height:520px}.cover-story-copy{left:22px;right:22px;bottom:24px}.cover-story-copy h2{font-size:40px}.signal-inner{padding-left:22px}.desk-header{align-items:start;flex-direction:column;gap:10px}.desk-header h2{font-size:32px}.desk-row{grid-template-columns:36px 72px 1fr;gap:10px}.desk-arrow{display:none}.desk-headline h3{font-size:18px}.desk-headline p{font-size:11px}.secondary-grid{grid-template-columns:1fr}.cover-demo{margin-top:22px}}
 
 .desk-empty{padding:28px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:13px}.desk-empty b{color:var(--ink)}
+
+/* v1.5 — archives + fully clickable editorial navigation */
+.desktop-nav{display:flex;align-items:center;gap:22px}.desktop-nav a{font-size:10px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}.desktop-nav a:hover{color:var(--accent)}
+.signal-inner a{display:flex;align-items:center;min-height:46px;font-weight:800;color:#fff;transition:color .18s ease}.signal-inner a:hover{color:#ff8a57}.signal-inner .signal-active{color:var(--accent);font-weight:900}
+.secondary-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:12px}.secondary-head .secondary-label{margin-bottom:0}.secondary-head a{font-size:10px;font-weight:900;letter-spacing:.08em;color:var(--accent)}
+.archive-topline{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:13px 0;margin-bottom:22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:10px;font-weight:900;letter-spacing:.09em;color:var(--muted)}.archive-topline a{color:var(--accent)}
+.archive-subsection{margin-top:24px;border-top:1px solid var(--line)}.archive-section-head{align-items:end}.listing-grid{display:grid;gap:16px;margin-bottom:72px}.listing-grid .article-card{background:var(--card);border:1px solid var(--line)}
+@media(max-width:1050px){.desktop-nav{gap:14px}.desktop-nav a{font-size:9px}}
+@media(max-width:850px){.secondary-head{align-items:flex-start}.archive-topline{align-items:flex-start;flex-direction:column}.signal-inner a{min-height:46px}.listing-grid{margin-bottom:48px}}
