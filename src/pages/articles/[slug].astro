@@ -8,10 +8,20 @@ const { slug } = Astro.params;
 const article = slug ? await getArticle(slug) : null;
 if (!article) return Astro.redirect('/404');
 const articleUrl = new URL(`/articles/${article.slug}`, Astro.site || Astro.url.origin).toString();
+const siteUrl = new URL('/', Astro.site || Astro.url.origin).toString();
+
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'NewsArticle', headline: article.title,
-  datePublished: article.publishedAt, author: { '@type': 'Organization', name: article.author || 'Seen in Korea Desk' },
-  publisher: { '@type': 'Organization', name: 'Seen in Korea' }, mainEntityOfPage: articleUrl,
+  datePublished: article.publishedAt,
+dateModified: article.updatedAt || article.publishedAt,
+author: { '@type': 'Organization', name: article.author || 'Seen in Korea Desk' },
+  publisher: {
+  '@type': 'Organization',
+  '@id': `${siteUrl}#organization`,
+  name: 'SEEN IN KOREA',
+  url: siteUrl
+},
+mainEntityOfPage: articleUrl,
   ...(article.heroImageUrl ? { image: [article.heroImageUrl] } : {})
 };
 ---
@@ -22,6 +32,7 @@ const jsonLd = {
   canonical={articleUrl}
   ogType="article"
   publishedTime={article.publishedAt}
+  modifiedTime={article.updatedAt}
   author={article.author || 'Seen in Korea Desk'}
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
