@@ -36,8 +36,41 @@ const rest = homepageArticles
 const seoulDate = new Intl.DateTimeFormat('en-US', {
   timeZone: 'Asia/Seoul', month: 'short', day: 'numeric'
 }).format(new Date()).toUpperCase();
+const siteUrl = new URL('/', Astro.site || Astro.url.origin).toString();
+
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      "url": siteUrl,
+      "name": "SEEN IN KOREA",
+      "description":
+        "Independent Korea media covering K-culture, real life in Korea, verified products and practical information.",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": `${siteUrl}#organization`
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}#organization`,
+      "name": "SEEN IN KOREA",
+      "url": siteUrl
+    }
+  ]
+};
+
 ---
 <BaseLayout>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(siteSchema)}
+    />
+  </Fragment>
+
   <main id="top">
     <section class="cover-shell">
       <div class="wrap cover-grid">
