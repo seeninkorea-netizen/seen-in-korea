@@ -1,33 +1,84 @@
 ---
 import '../styles/global.css';
+
 const {
   title = 'SEEN IN KOREA — Korea, verified',
   description = 'K-culture trends, real stories from foreigners in Korea, Korean products, and practical help.',
   image,
-  canonical
+  canonical,
+  ogType = 'website',
+  publishedTime,
+  modifiedTime,
+  author
 } = Astro.props;
-const currentUrl = canonical || new URL(Astro.url.pathname, Astro.site || Astro.url.origin).toString();
+
+const currentUrl =
+  canonical ||
+  new URL(Astro.url.pathname, Astro.site || Astro.url.origin).toString();
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+
+    <title>{title}</title>
+
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
+
     <link rel="canonical" href={currentUrl} />
+
+    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={currentUrl} />
+    <meta property="og:site_name" content="SEEN IN KOREA" />
+
     {image && <meta property="og:image" content={image} />}
-    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
-    <title>{title}</title>
+    {image && <meta property="og:image:alt" content={title} />}
+
+    <!-- Article metadata -->
+    {
+      ogType === 'article' && publishedTime && (
+        <meta property="article:published_time" content={publishedTime} />
+      )
+    }
+
+    {
+      ogType === 'article' && modifiedTime && (
+        <meta property="article:modified_time" content={modifiedTime} />
+      )
+    }
+
+    {
+      ogType === 'article' && author && (
+        <meta property="article:author" content={author} />
+      )
+    }
+
+    <!-- Twitter / X -->
+    <meta
+      name="twitter:card"
+      content={image ? 'summary_large_image' : 'summary'}
+    />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {image && <meta name="twitter:image" content={image} />}
+
+    <slot name="head" />
   </head>
+
   <body>
     <header class="site-header">
       <div class="wrap nav">
         <a class="brand" href="/">SEEN IN <span>KOREA</span></a>
+
         <nav class="desktop-nav">
           <a href="/category/trending">TRENDING</a>
           <a href="/category/seen-on">SEEN ON</a>
@@ -35,14 +86,24 @@ const currentUrl = canonical || new URL(Astro.url.pathname, Astro.site || Astro.
           <a href="/shop-korea">SHOP KOREA</a>
           <a href="/articles">ALL STORIES</a>
         </nav>
+
         <a class="help-btn" href="/korea-help">KOREA HELP →</a>
       </div>
     </header>
+
     <slot />
+
     <footer>
       <div class="wrap footer-grid">
-        <div><div class="footer-brand">SEEN IN KOREA</div><div class="byline">by WON GLOBAL</div></div>
-        <div class="footer-copy">K-culture, real-life Korea and product discovery — built as a media → data → commerce → export system.</div>
+        <div>
+          <div class="footer-brand">SEEN IN KOREA</div>
+          <div class="byline">by WON GLOBAL</div>
+        </div>
+
+        <div class="footer-copy">
+          K-culture, real-life Korea and product discovery — built as a media →
+          data → commerce → export system.
+        </div>
       </div>
     </footer>
   </body>
