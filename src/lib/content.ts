@@ -37,6 +37,71 @@ export async function getArticlesByCategory(category: string): Promise<Article[]
   return client.fetch(`*[_type == "article" && category == $category && defined(slug.current)] | order(publishedAt desc) ${articleProjection}`, { category });
 }
 
+function articleText(article: Article) {
+  return [
+    article.title,
+    article.dek,
+    article.category,
+    article.eyebrow,
+    article.deskLabel,
+    article.deskNote
+  ].filter(Boolean).join(' ').toLowerCase();
+}
+
+export async function getArticlesBySection(section: string): Promise<Article[]> {
+  const articles = await getArticles(250);
+
+  if (section === 'trending') {
+    return articles.filter(a => a.category === 'Trending');
+  }
+
+  if (section === 'seen-on') {
+    return articles.filter(a => a.category === 'Seen On' || articleText(a).includes('seen on'));
+  }
+
+  if (section === 'real-korea') {
+    return articles.filter(a => a.category === 'Real Korea' || a.category === 'Living');
+  }
+
+  if (section === 'shop-korea') {
+    return articles.filter(a =>
+      a.category === 'Shop Korea' ||
+      a.category === 'Seen On' ||
+      articleText(a).includes('seen on')
+    );
+  }
+
+  return [];
+}
+
+const deskMatchers: Record<string, (article: Article) => boolean> = {
+  'seoul': (a) => {
+    const text = articleText(a);
+    return text.includes('seoul') || text.includes('hongdae') || text.includes('myeongdong');
+  },
+  'culture': (a) => {
+    const text = articleText(a);
+    return text.includes('culture') || text.includes('k-culture');
+  },
+  'beauty': (a) => {
+    const text = articleText(a);
+    return text.includes('beauty') || text.includes('k-beauty') || text.includes('skincare') || text.includes('cosmetic');
+  },
+  'entertainment': (a) => {
+    const text = articleText(a);
+    return text.includes('k-pop') || text.includes('k-drama') || text.includes('concert') || text.includes('streaming') || text.includes('entertainment');
+  },
+  'real-korea': (a) => a.category === 'Real Korea' || a.category === 'Living',
+  'products': (a) => a.category === 'Shop Korea' || a.category === 'Seen On' || articleText(a).includes('seen on') || Boolean(a.commerceLinks?.length),
+  'practical-help': (a) => a.category === 'Korea Help' || articleText(a).includes('practical help')
+};
+
+export async function getArticlesByDesk(desk: string): Promise<Article[]> {
+  const articles = await getArticles(250);
+  const matcher = deskMatchers[desk];
+  return matcher ? articles.filter(matcher) : [];
+}
+
 export async function getProducts(limit = 12): Promise<Product[]> {
   if (!client) return demoProducts.slice(0, limit);
   return client.fetch(`*[_type == "product" && defined(slug.current)] | order(_updatedAt desc)[0...$limit]{
