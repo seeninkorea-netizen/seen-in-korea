@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getArticlesByDesk } from '../../lib/content';
+
+const { slug } = Astro.params;
+const deskMap = {
+  'seoul': {
+    title: 'Seoul Desk',
+    eyebrow: 'PLACES · PEOPLE · CITY LIFE',
+    description: 'Seoul stories across shopping, neighborhoods, culture and everyday life.'
+  },
+  'culture': {
+    title: 'Culture',
+    eyebrow: 'KOREA · CULTURE',
+    description: 'Korean culture stories that travel beyond Korea — and what changes when attention becomes action.'
+  },
+  'beauty': {
+    title: 'Beauty',
+    eyebrow: 'K-BEAUTY · RETAIL · PRODUCTS',
+    description: 'K-beauty retail shifts, products, prices and what shoppers are actually buying.'
+  },
+  'entertainment': {
+    title: 'Entertainment',
+    eyebrow: 'K-POP · K-DRAMA · STREAMING',
+    description: 'K-pop, K-drama and entertainment stories with a distribution, audience or commerce angle.'
+  }
+};
+
+const desk = slug ? deskMap[slug] : undefined;
+if (!desk) return Astro.redirect('/404');
+const articles = await getArticlesByDesk(slug!);
+---
+<BaseLayout title={`${desk.title} — Seen in Korea`} description={desk.description}>
+  <main>
+    <section class="listing-hero">
+      <div class="wrap">
+        <div class="eyebrow">{desk.eyebrow}</div>
+        <h1>{desk.title.toUpperCase()}</h1>
+        <p>{desk.description}</p>
+      </div>
+    </section>
+    <section>
+      <div class="wrap">
+        <div class="archive-topline"><span>{articles.length} MATCHING STORIES</span><a href="/articles">VIEW ALL STORIES →</a></div>
+        <div class="listing-grid">{articles.length ? articles.map(article => <ArticleCard article={article} />) : <p>No published stories are tagged for this desk yet.</p>}</div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
