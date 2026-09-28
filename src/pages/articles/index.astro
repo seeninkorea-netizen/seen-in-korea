@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getArticles } from '../../lib/content';
+
+const articles = await getArticles(250);
+---
+<BaseLayout title="All Stories — Seen in Korea" description="All published reporting, analysis and product intelligence from Seen in Korea.">
+  <main>
+    <section class="listing-hero">
+      <div class="wrap">
+        <div class="eyebrow">SEEN IN KOREA · ARCHIVE</div>
+        <h1>ALL STORIES</h1>
+        <p>Every published story, newest first. Homepage placement controls only the homepage — it never removes an article from this archive.</p>
+      </div>
+    </section>
+    <section>
+      <div class="wrap">
+        <div class="archive-topline"><span>{articles.length} PUBLISHED STORIES</span><span>NEWEST FIRST</span></div>
+        <div class="listing-grid">{articles.length ? articles.map(article => <ArticleCard article={article} />) : <p>No published stories yet.</p>}</div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
