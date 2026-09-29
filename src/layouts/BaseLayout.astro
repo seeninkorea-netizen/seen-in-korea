@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getSiteSettings } from '../lib/content';
 
 const {
   title = 'SEEN IN KOREA — Korea, verified',
@@ -15,6 +16,9 @@ const {
 const currentUrl =
   canonical ||
   new URL(Astro.url.pathname, Astro.site || Astro.url.origin).toString();
+
+const siteSettings = await getSiteSettings();
+const footerCopy = siteSettings?.footerCopy ?? '';
 ---
 
 <!doctype html>
@@ -96,17 +100,17 @@ const currentUrl =
     <slot />
 
     <footer>
-      <div class="wrap footer-grid">
-        <div>
-          <div class="footer-brand">SEEN IN KOREA</div>
-          <div class="byline">by WON GLOBAL</div>
-        </div>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="footer-brand">SEEN IN KOREA</div>
+    </div>
 
-        <div class="footer-copy">
-          K-culture, real-life Korea and product discovery — built as a media →
-          data → commerce → export system.
-        </div>
+    {footerCopy && (
+      <div class="footer-copy">
+        {footerCopy}
       </div>
-    </footer>
+    )}
+  </div>
+</footer>
   </body>
 </html>
