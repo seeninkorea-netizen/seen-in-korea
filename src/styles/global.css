@@ -527,3 +527,93 @@
   }
 
 }
+
+/* v1.7.3 — mobile Seen On carousel */
+
+@media (max-width:850px){
+
+  .seen-section{
+    padding:32px 0 36px;
+    overflow:hidden;
+  }
+
+  .seen-section .section-head{
+    margin-bottom:16px;
+  }
+
+  .seen-section .section-head h2{
+    font-size:26px;
+    line-height:1.02;
+  }
+
+  .seen-section .section-head > p{
+    display:none;
+  }
+
+  .seen-grid{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+
+    margin-left:-22px;
+    margin-right:-22px;
+    padding-left:22px;
+    padding-right:44px;
+  }
+
+  .seen-grid::-webkit-scrollbar{
+    display:none;
+  }
+
+  .seen-card{
+    flex:0 0 78%;
+    max-width:310px;
+    scroll-snap-align:start;
+  }
+
+  .seen-photo,
+  .seen-feature .seen-photo{
+    height:210px;
+  }
+
+  .seen-content{
+    padding:17px;
+  }
+
+  .seen-person{
+    margin-top:16px;
+    font-size:10px;
+  }
+
+  .seen-card h3{
+    margin:6px 0 9px;
+    font-size:21px;
+    line-height:1.03;
+  }
+
+  .seen-card p{
+    margin-bottom:16px;
+    font-size:12px;
+    line-height:1.45;
+
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+  .seen-bottom strong{
+    font-size:20px;
+  }
+
+  .method-visual{
+    min-height:210px;
+  }
+
+  .asset-note{
+    display:none;
+  }
+}
