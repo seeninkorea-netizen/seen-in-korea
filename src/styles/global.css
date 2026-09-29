@@ -316,16 +316,23 @@
     font-weight:900;
   }
 
-  .mobile-menu-service-title small{
-    display:inline-block;
-    margin-left:5px;
-    padding:3px 6px;
-    border-radius:999px;
-    background:var(--accent);
-    color:#fff;
-    font-size:8px;
-    letter-spacing:.05em;
-  }
+  .mobile-menu-service-beta{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.mobile-menu-service-beta small{
+  display:inline-block;
+  padding:3px 6px;
+  border-radius:999px;
+  background:var(--accent);
+  color:#fff;
+  font-size:8px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.05em;
+}
 
   .mobile-menu-service a{
     padding:9px 12px 9px 30px;
