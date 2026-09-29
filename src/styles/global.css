@@ -617,3 +617,45 @@
     display:none;
   }
 }
+/* v1.7.4 — compact mobile Korea Help */
+
+@media (max-width:850px){
+
+  .home-help-section{
+    padding:28px 0;
+  }
+
+  .home-help-cta{
+    padding:24px 20px;
+    gap:18px;
+  }
+
+  .home-help-cta h2{
+    margin:8px 0 10px;
+    font-size:32px;
+    line-height:.98;
+  }
+
+  .home-help-cta p{
+    margin:0;
+    font-size:13px;
+    line-height:1.4;
+  }
+
+  .home-help-cta .cta-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+
+  .home-help-cta .cta-actions a{
+    padding:11px 10px;
+  }
+
+  .home-help-section .disclosure{
+    margin-top:10px;
+    font-size:10px;
+    line-height:1.45;
+  }
+
+}
