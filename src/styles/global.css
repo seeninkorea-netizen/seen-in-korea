@@ -514,3 +514,16 @@
     display:none;
   }
 }
+/* v1.7.2 — simplify mobile homepage */
+
+@media (max-width:850px){
+
+  .desk-secondary{
+    display:none;
+  }
+
+  .desk-section{
+    display:none;
+  }
+
+}
