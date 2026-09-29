@@ -33,6 +33,15 @@ const rest = homepageArticles
   .sort(editorialSort)
   .slice(0, 6);
 
+const mobileTopStories = [
+  ...liveDesk,
+  ...rest
+]
+  .filter((article, index, list) =>
+    list.findIndex(item => item._id === article._id) === index
+  )
+  .slice(0, 4);
+
 const seoulDate = new Intl.DateTimeFormat('en-US', {
   timeZone: 'Asia/Seoul', month: 'short', day: 'numeric'
 }).format(new Date()).toUpperCase();
@@ -94,6 +103,53 @@ const siteSchema = {
             <div class="cover-read">READ THE STORY →</div>
           </div>
         </a>}
+      </div>
+    </section>
+
+    <section class="mobile-top-stories" aria-labelledby="mobile-top-stories-title">
+      <div class="wrap">
+
+        <div class="mobile-section-head">
+          <h2 id="mobile-top-stories-title">TOP STORIES</h2>
+          <a href="/articles">See all →</a>
+        </div>
+
+        <div class="mobile-top-list">
+          {mobileTopStories.map(item => (
+            <a
+              class="mobile-top-row"
+              href={`/articles/${item.slug}`}
+            >
+              <div class="mobile-top-thumb">
+                {item.heroImageUrl ? (
+                  <img
+                    src={item.heroImageUrl}
+                    alt={item.heroAlt || item.title}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="mobile-top-placeholder"></div>
+                )}
+              </div>
+     
+              <div class="mobile-top-copy">
+                <h3>{item.title}</h3>
+
+                <div class="mobile-top-meta">
+                  <span>
+                    {item.deskTimeLabel ||
+                      (item.publishedAt
+                        ? readableDate(item.publishedAt)
+                        : 'LATEST')}
+                  </span>
+                  <span>·</span>
+                  <span>{item.deskLabel || item.category}</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
       </div>
     </section>
 
