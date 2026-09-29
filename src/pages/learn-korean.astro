@@ -3,136 +3,708 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Learn Korean | SEEN IN KOREA"
-  description="Practical Korean for real life in Korea — everyday expressions, travel, work, shopping and situations you actually face."
+  title="Learn Korean for Real Life | SEEN IN KOREA"
+  description="Get a personalized Korean study plan, curated free learning resources, and real-life speaking practice with a Korean tutor."
 >
-  <main>
+  <main class="learn-page">
 
-    <section class="listing-hero dark">
-      <div class="wrap">
-        <div class="eyebrow">LEARN KOREAN</div>
+    <!-- HERO -->
+    <section class="learn-hero">
+      <div class="wrap learn-hero-grid">
 
-        <h1>
-          Korean you can<br />
-          actually use.
-        </h1>
+        <div class="learn-hero-copy">
+          <div class="eyebrow">LEARN KOREAN</div>
 
-        <p>
-          Practical Korean for the situations you actually face in Korea —
-          restaurants, shopping, transport, work, appointments and everyday life.
-        </p>
-      </div>
-    </section>
+          <h1>
+            Korean for<br />
+            real life.
+          </h1>
 
-    <section>
-      <div class="wrap">
+          <p class="learn-hero-dek">
+            Get a personalized study plan, curated free resources
+            and live speaking practice — so you can actually use
+            Korean in everyday life.
+          </p>
 
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">START HERE</div>
-            <h2>Learn by situation, not by textbook chapter.</h2>
+          <div class="learn-hero-actions">
+            <a href="#study-plan" class="learn-btn learn-btn-primary">
+              BUILD MY FREE STUDY PLAN →
+            </a>
+
+            <a href="#tutor" class="learn-btn learn-btn-secondary">
+              TRY A 1:1 LESSON →
+            </a>
           </div>
 
+          <div class="learn-trust-row">
+            <span>Personalized for your goals</span>
+            <span>Curated free resources</span>
+            <span>Real conversation practice</span>
+          </div>
+        </div>
+
+        <div class="learn-phrase-card">
+          <div class="learn-phrase-label">USE THIS TODAY</div>
+
+          <strong class="learn-phrase-ko">
+            이거 주세요.
+          </strong>
+
+          <div class="learn-phrase-roman">
+            I-geo ju-se-yo.
+          </div>
+
+          <div class="learn-phrase-en">
+            “This one, please.”
+          </div>
+
+          <div class="learn-phrase-rule"></div>
+
           <p>
-            Short, useful Korean built around real moments in Korea.
+            Use it when pointing to something you want
+            to order or buy.
           </p>
         </div>
 
-        <div class="grid-3">
-
-          <article class="shop-card">
-            <span class="tag">DAILY LIFE</span>
-            <h3>Everyday Korean</h3>
-            <p>
-              Ordering food, asking questions, shopping, cafés,
-              convenience stores and conversations you hear every day.
-            </p>
-          </article>
-
-          <article class="shop-card">
-            <span class="tag">SURVIVAL</span>
-            <h3>Korean for getting things done</h3>
-            <p>
-              Taxis, hospitals, bookings, deliveries, phone calls,
-              addresses and situations where one sentence can solve the problem.
-            </p>
-          </article>
-
-          <article class="shop-card">
-            <span class="tag">REAL KOREA</span>
-            <h3>What Koreans actually say</h3>
-            <p>
-              Natural expressions, tone and context that are often different
-              from literal textbook Korean.
-            </p>
-          </article>
-
-        </div>
       </div>
     </section>
 
-    <section>
+
+    <!-- PERSONALIZED STUDY PLAN -->
+    <section
+      id="study-plan"
+      class="learn-plan-section"
+    >
       <div class="wrap">
 
         <div class="section-head">
           <div>
-            <div class="eyebrow">COMING NEXT</div>
-            <h2>Learn from real situations.</h2>
+            <div class="eyebrow">FREE KOREAN STUDY PLAN</div>
+            <h2>Tell us about you.</h2>
+          </div>
+
+          <p>
+            Three quick choices. We’ll build a realistic starting plan
+            around your goal, level and available time.
+          </p>
+        </div>
+
+
+        <div class="learn-plan-builder">
+
+          <!-- GOAL -->
+          <div class="learn-question">
+            <div class="learn-question-number">01</div>
+
+            <h3>Your goal</h3>
+            <p>Why do you want to learn Korean?</p>
+
+            <div class="learn-option-grid">
+              <button type="button" data-goal="travel">
+                Travel
+              </button>
+
+              <button type="button" data-goal="life">
+                Live in Korea
+              </button>
+
+              <button type="button" data-goal="work">
+                Work / Business
+              </button>
+
+              <button type="button" data-goal="social">
+                Friends / Relationship
+              </button>
+
+              <button type="button" data-goal="topik">
+                TOPIK
+              </button>
+
+              <button type="button" data-goal="culture">
+                K-pop / Drama
+              </button>
+            </div>
+          </div>
+
+
+          <!-- LEVEL -->
+          <div class="learn-question">
+            <div class="learn-question-number">02</div>
+
+            <h3>Your level</h3>
+            <p>What’s your current level?</p>
+
+            <div class="learn-option-grid">
+              <button type="button" data-level="zero">
+                Complete beginner
+              </button>
+
+              <button type="button" data-level="beginner">
+                Beginner
+              </button>
+
+              <button type="button" data-level="intermediate">
+                Intermediate
+              </button>
+
+              <button type="button" data-level="advanced">
+                Advanced
+              </button>
+            </div>
+          </div>
+
+
+          <!-- TIME -->
+          <div class="learn-question">
+            <div class="learn-question-number">03</div>
+
+            <h3>Your time</h3>
+            <p>How much time can you study?</p>
+
+            <div class="learn-option-grid">
+              <button type="button" data-time="10">
+                10 min / day
+              </button>
+
+              <button type="button" data-time="30">
+                30 min / day
+              </button>
+
+              <button type="button" data-time="60">
+                1 hour / day
+              </button>
+
+              <button type="button" data-time="weekend">
+                A few hours / week
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="learn-plan-action">
+          <button
+            id="generate-korean-plan"
+            type="button"
+            class="learn-btn learn-btn-primary"
+          >
+            GET MY KOREAN PLAN →
+          </button>
+
+          <p id="learn-plan-message">
+            Choose your goal, level and study time.
+          </p>
+        </div>
+
+
+        <!-- GENERATED RESULT -->
+        <div
+          id="korean-plan-result"
+          class="learn-plan-result"
+          hidden
+        >
+          <div class="learn-result-head">
+            <div>
+              <div class="eyebrow">YOUR PERSONALIZED PLAN</div>
+              <h2>Your first 4 weeks.</h2>
+            </div>
+
+            <span id="learn-result-profile"></span>
+          </div>
+
+          <div class="learn-week-list">
+
+            <article class="learn-week">
+              <span>WEEK 1</span>
+              <div>
+                <h3 id="week-one-title">Build your foundation</h3>
+                <p id="week-one-copy"></p>
+              </div>
+            </article>
+
+            <article class="learn-week">
+              <span>WEEK 2</span>
+              <div>
+                <h3 id="week-two-title">Useful Korean</h3>
+                <p id="week-two-copy"></p>
+              </div>
+            </article>
+
+            <article class="learn-week">
+              <span>WEEK 3</span>
+              <div>
+                <h3 id="week-three-title">Listen and respond</h3>
+                <p id="week-three-copy"></p>
+              </div>
+            </article>
+
+            <article class="learn-week learn-week-highlight">
+              <span>WEEK 4</span>
+              <div>
+                <h3>Real-life simulation</h3>
+                <p>
+                  Practice the situations you studied with a Korean tutor.
+                  Use role-play to test what you can actually understand and say.
+                </p>
+
+                <a href="#tutor">
+                  PRACTICE WITH A TUTOR →
+                </a>
+              </div>
+            </article>
+
           </div>
         </div>
 
-        <div class="grid-3">
-
-          <article class="voice">
-            <span class="tag">01</span>
-            <div class="quote">“Can I get this to go?”</div>
-            <div class="voice-foot">
-              Café & restaurant Korean
-            </div>
-          </article>
-
-          <article class="voice">
-            <span class="tag">02</span>
-            <div class="quote">“Can you help me make a reservation?”</div>
-            <div class="voice-foot">
-              Booking & phone Korean
-            </div>
-          </article>
-
-          <article class="voice">
-            <span class="tag">03</span>
-            <div class="quote">“Where can I find this?”</div>
-            <div class="voice-foot">
-              Shopping & everyday Korean
-            </div>
-          </article>
-
-        </div>
       </div>
     </section>
 
-    <section>
+
+    <!-- CURATED RESOURCES -->
+    <section id="resources" class="learn-resources">
       <div class="wrap">
-        <div class="cta">
+
+        <div class="section-head">
           <div>
-            <div class="eyebrow">LEARN KOREAN</div>
-            <h2>
-              Less memorizing.<br />
-              More using.
-            </h2>
+            <div class="eyebrow">THE BEST FREE RESOURCES</div>
+            <h2>Curated, not overwhelming.</h2>
+          </div>
+
+          <p>
+            You don't need another list of 100 Korean resources.
+            You need to know which one to use next.
+          </p>
+        </div>
+
+
+        <div class="learn-resource-grid">
+
+          <article class="learn-resource-card">
+            <div class="learn-resource-type">
+              STRUCTURED COURSE
+            </div>
+
+            <h3>King Sejong Institute</h3>
+
             <p>
-              Practical Korean lessons and real-life expressions are coming to Seen in Korea.
+              Structured Korean lessons for learners who need
+              a clear foundation and progression.
+            </p>
+
+            <div class="learn-resource-tags">
+              <span>FREE</span>
+              <span>BEGINNER → ADVANCED</span>
+            </div>
+
+            <a
+              href="https://www.iksi.or.kr/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              VISIT RESOURCE →
+            </a>
+          </article>
+
+
+          <article class="learn-resource-card">
+            <div class="learn-resource-type">
+              LISTENING & SPEAKING
+            </div>
+
+            <h3>Selected YouTube Lessons</h3>
+
+            <p>
+              We select useful videos for pronunciation,
+              listening and natural everyday Korean.
+            </p>
+
+            <div class="learn-resource-tags">
+              <span>FREE</span>
+              <span>CURATED</span>
+            </div>
+
+            <a href="#study-plan">
+              GET RECOMMENDATIONS →
+            </a>
+          </article>
+
+
+          <article class="learn-resource-card">
+            <div class="learn-resource-type">
+              REAL-LIFE KOREAN
+            </div>
+
+            <h3>Seen in Korea Guides</h3>
+
+            <p>
+              Situation-based phrases for restaurants,
+              shopping, transport, booking and daily life.
+            </p>
+
+            <div class="learn-resource-tags">
+              <span>FREE</span>
+              <span>PRACTICAL</span>
+            </div>
+
+            <a href="#situations">
+              EXPLORE GUIDES →
+            </a>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SITUATIONS -->
+    <section id="situations" class="learn-situations">
+      <div class="wrap">
+
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">PRACTICE BEFORE REAL LIFE</div>
+            <h2>Learn by situation.</h2>
+          </div>
+
+          <p>
+            Study the phrases first.
+            Then practice the same situation with a real person.
+          </p>
+        </div>
+
+
+        <div class="learn-situation-grid">
+
+          <article>
+            <span>01</span>
+            <h3>Restaurant</h3>
+            <p>Order food, ask questions and pay.</p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3>Shopping</h3>
+            <p>Ask about products, sizes and prices.</p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3>Taxi & Transport</h3>
+            <p>Explain destinations and understand directions.</p>
+          </article>
+
+          <article>
+            <span>04</span>
+            <h3>Bookings</h3>
+            <p>Make and change reservations or appointments.</p>
+          </article>
+
+          <article>
+            <span>05</span>
+            <h3>Daily Life</h3>
+            <p>Handle the small conversations that happen every day.</p>
+          </article>
+
+          <article>
+            <span>06</span>
+            <h3>Work</h3>
+            <p>Practice useful workplace and business Korean.</p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- TUTOR -->
+    <section id="tutor" class="learn-tutor-section">
+      <div class="wrap">
+
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">REAL CONVERSATION</div>
+            <h2>Put your Korean to the test.</h2>
+          </div>
+
+          <p>
+            This isn't another lecture.
+            Use the Korean you've studied in realistic conversations.
+          </p>
+        </div>
+
+
+        <div class="learn-tutor-card">
+
+          <div class="learn-tutor-placeholder">
+            TUTOR PROFILE
+          </div>
+
+          <div class="learn-tutor-copy">
+            <div class="learn-resource-type">
+              1:1 KOREAN PRACTICE
+            </div>
+
+            <h3>Practice with a Korean tutor</h3>
+
+            <p>
+              Your tutor follows your study plan and recreates
+              real situations — ordering food, shopping,
+              booking appointments, workplace conversations and more.
+            </p>
+
+            <div class="learn-resource-tags">
+              <span>1:1 ONLINE</span>
+              <span>REAL-LIFE ROLE PLAY</span>
+              <span>FEEDBACK</span>
+            </div>
+
+            <a
+              href="mailto:seeninkorea@gmail.com?subject=Korean%20Trial%20Lesson"
+              class="learn-btn learn-btn-primary"
+            >
+              ASK ABOUT A TRIAL LESSON →
+            </a>
+
+            <small>
+              One tutor is currently available.
+              Additional tutors will be added as the program grows.
+            </small>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FINAL CTA -->
+    <section class="learn-final-section">
+      <div class="wrap">
+
+        <div class="learn-final-cta">
+          <div>
+            <div class="eyebrow">START HERE</div>
+
+            <h2>
+              Learn it.<br />
+              Then use it.
+            </h2>
+
+            <p>
+              Start with a free personalized Korean study plan.
+              When you're ready, test it in a real conversation.
             </p>
           </div>
 
-          <div class="cta-actions">
-            <a href="mailto:seeninkorea@gmail.com">
-              CONTACT US
+          <div class="learn-final-actions">
+            <a
+              href="#study-plan"
+              class="learn-btn learn-btn-dark"
+            >
+              BUILD MY STUDY PLAN →
+            </a>
+
+            <a
+              href="#tutor"
+              class="learn-btn learn-btn-light"
+            >
+              TRY A 1:1 LESSON →
             </a>
           </div>
         </div>
+
       </div>
     </section>
 
   </main>
+
+
+  <script is:inline>
+    const selections = {
+      goal: null,
+      level: null,
+      time: null
+    };
+
+    const buttons = document.querySelectorAll(
+      '[data-goal], [data-level], [data-time]'
+    );
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        let group = null;
+
+        if (button.dataset.goal) {
+          group = 'goal';
+          selections.goal = button.dataset.goal;
+        }
+
+        if (button.dataset.level) {
+          group = 'level';
+          selections.level = button.dataset.level;
+        }
+
+        if (button.dataset.time) {
+          group = 'time';
+          selections.time = button.dataset.time;
+        }
+
+        if (!group) return;
+
+        document
+          .querySelectorAll(`[data-${group}]`)
+          .forEach((item) => item.classList.remove('is-selected'));
+
+        button.classList.add('is-selected');
+      });
+    });
+
+
+    const goalPlans = {
+      travel: {
+        label: 'Travel',
+        week2:
+          'Learn restaurant, café, shopping and transport phrases you can use immediately.',
+        week3:
+          'Practice understanding common questions you may hear while travelling in Korea.'
+      },
+
+      life: {
+        label: 'Living in Korea',
+        week2:
+          'Focus on delivery, shopping, appointments, transport and everyday requests.',
+        week3:
+          'Practice the Korean used in recurring daily interactions and service situations.'
+      },
+
+      work: {
+        label: 'Work / Business',
+        week2:
+          'Build useful workplace vocabulary, introductions, requests and polite business expressions.',
+        week3:
+          'Practice understanding workplace questions and responding naturally.'
+      },
+
+      social: {
+        label: 'Friends / Relationship',
+        week2:
+          'Learn casual conversation, introductions, reactions and expressions used with people you know.',
+        week3:
+          'Practice listening to natural conversational Korean and responding without translating every word.'
+      },
+
+      topik: {
+        label: 'TOPIK',
+        week2:
+          'Strengthen vocabulary and grammar patterns appropriate for your current level.',
+        week3:
+          'Combine structured study with listening and reading practice.'
+      },
+
+      culture: {
+        label: 'K-pop / Drama',
+        week2:
+          'Build vocabulary and expressions frequently heard in Korean entertainment and everyday conversation.',
+        week3:
+          'Use short clips and listening practice to recognize natural speech patterns.'
+      }
+    };
+
+
+    const levelPlans = {
+      zero: {
+        label: 'Complete beginner',
+        week1:
+          'Start with Hangul, pronunciation and a small set of survival phrases. Do not try to memorize large vocabulary lists yet.'
+      },
+
+      beginner: {
+        label: 'Beginner',
+        week1:
+          'Review essential sentence patterns and build a practical vocabulary around situations you actually face.'
+      },
+
+      intermediate: {
+        label: 'Intermediate',
+        week1:
+          'Identify your speaking gaps and focus on turning vocabulary you already know into usable conversation.'
+      },
+
+      advanced: {
+        label: 'Advanced',
+        week1:
+          'Focus on natural phrasing, nuance, speed and the difference between technically correct Korean and what people actually say.'
+      }
+    };
+
+
+    const timeLabels = {
+      '10': '10 min/day',
+      '30': '30 min/day',
+      '60': '1 hour/day',
+      weekend: 'a few hours/week'
+    };
+
+
+    const generateButton =
+      document.getElementById('generate-korean-plan');
+
+    const result =
+      document.getElementById('korean-plan-result');
+
+    const message =
+      document.getElementById('learn-plan-message');
+
+
+    generateButton?.addEventListener('click', () => {
+
+      if (
+        !selections.goal ||
+        !selections.level ||
+        !selections.time
+      ) {
+        message.textContent =
+          'Please choose your goal, level and study time first.';
+
+        return;
+      }
+
+
+      const goal = goalPlans[selections.goal];
+      const level = levelPlans[selections.level];
+
+
+      document.getElementById('learn-result-profile').textContent =
+        `${goal.label} · ${level.label} · ${timeLabels[selections.time]}`;
+
+
+      document.getElementById('week-one-copy').textContent =
+        level.week1;
+
+
+      document.getElementById('week-two-copy').textContent =
+        goal.week2;
+
+
+      document.getElementById('week-three-copy').textContent =
+        goal.week3;
+
+
+      result.hidden = false;
+
+      message.textContent =
+        'Your starting plan is ready.';
+
+
+      result.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+    });
+  </script>
+
 </BaseLayout>
