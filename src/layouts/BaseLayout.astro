@@ -226,9 +226,10 @@ const currentPath = Astro.url.pathname;
   <div class="mobile-menu-divider"></div>
 
   <nav class="mobile-menu-secondary">
-    <a href="/about">ABOUT</a>
-    <a href="mailto:seeninkorea@gmail.com">CONTACT</a>
-  </nav>
+  <a href="/about">ABOUT</a>
+  <a href="/editorial-standards">EDITORIAL STANDARDS</a>
+  <a href="/contact">CONTACT</a>
+</nav>
 
 </aside>
 
@@ -238,13 +239,24 @@ const currentPath = Astro.url.pathname;
   <div class="wrap footer-grid">
     <div>
       <div class="footer-brand">SEEN IN KOREA</div>
+      <div class="footer-copy">KOREA, VERIFIED.</div>
     </div>
 
-    {footerCopy && (
+    <div>
       <div class="footer-copy">
-        {footerCopy}
+        <a href="/about">About</a>
+        ·
+        <a href="/editorial-standards">Editorial Standards</a>
+        ·
+        <a href="/contact">Contact</a>
       </div>
-    )}
+
+      {footerCopy && (
+        <div class="footer-copy">
+          {footerCopy}
+        </div>
+      )}
+    </div>
   </div>
 </footer>
 <script is:inline>
