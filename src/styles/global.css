@@ -193,19 +193,19 @@
     letter-spacing:.035em;
   }
 
-  .mobile-category-nav a:first-child{
-    color:var(--accent);
-  }
+  .mobile-category-nav a.active{
+  color:var(--accent);
+}
 
-  .mobile-category-nav a:first-child::after{
-    content:'';
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    height:2px;
-    background:var(--accent);
-  }
+  .mobile-category-nav a.active::after{
+  content:'';
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:2px;
+  background:var(--accent);
+}
 
   /* Dark background behind drawer */
   .mobile-menu-overlay{
