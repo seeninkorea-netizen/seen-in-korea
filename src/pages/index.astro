@@ -55,8 +55,9 @@ const siteSchema = {
       "@id": `${siteUrl}#website`,
       "url": siteUrl,
       "name": "SEEN IN KOREA",
+      "alternateName": "Seen in Korea",
       "description":
-        "Independent Korea media covering K-culture, real life in Korea, verified products and practical information.",
+        "Independent English-language Korea media covering K-culture, real life in Korea, Korean products, consumer trends and practical information.",
       "inLanguage": "en",
       "publisher": {
         "@id": `${siteUrl}#organization`
@@ -66,7 +67,19 @@ const siteSchema = {
       "@type": "Organization",
       "@id": `${siteUrl}#organization`,
       "name": "SEEN IN KOREA",
-      "url": siteUrl
+      "alternateName": "Seen in Korea",
+      "url": siteUrl,
+      "description":
+        "Independent English-language media platform covering Korean culture, consumer trends, products and everyday life.",
+      "email": "seeninkorea@gmail.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "seeninkorea@gmail.com",
+        "contactType": "editorial and business inquiries",
+        "availableLanguage": ["English", "Korean"],
+        "url": `${siteUrl}contact`
+      },
+      "publishingPrinciples": `${siteUrl}editorial-standards`
     }
   ]
 };
