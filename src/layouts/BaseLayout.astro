@@ -19,6 +19,7 @@ const currentUrl =
 
 const siteSettings = await getSiteSettings();
 const footerCopy = siteSettings?.footerCopy ?? '';
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -122,12 +123,41 @@ const footerCopy = siteSettings?.footerCopy ?? '';
     </div>
 
     <nav class="mobile-category-nav" aria-label="Main sections">
-      <a href="/">TOP</a>
-      <a href="/category/trending">TRENDING</a>
-      <a href="/category/seen-on">SEEN ON</a>
-      <a href="/real-korea">REAL KOREA</a>
-      <a href="/shop-korea">SHOP</a>
-    </nav>
+  <a
+    href="/"
+    class:list={{ active: currentPath === '/' }}
+  >
+    TOP
+  </a>
+
+  <a
+    href="/category/trending"
+    class:list={{ active: currentPath.startsWith('/category/trending') }}
+  >
+    TRENDING
+  </a>
+
+  <a
+    href="/category/seen-on"
+    class:list={{ active: currentPath.startsWith('/category/seen-on') }}
+  >
+    SEEN ON
+  </a>
+
+  <a
+    href="/real-korea"
+    class:list={{ active: currentPath.startsWith('/real-korea') }}
+  >
+    REAL KOREA
+  </a>
+
+  <a
+    href="/shop-korea"
+    class:list={{ active: currentPath.startsWith('/shop-korea') }}
+  >
+    SHOP
+  </a>
+</nav>
 
   </div>
 
