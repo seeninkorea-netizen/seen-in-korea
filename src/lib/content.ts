@@ -14,16 +14,32 @@ const client = enabled ? createClient({
   perspective: 'published'
 }) : null;
 
+export type SiteSettings = {
+  title?: string;
+  tagline?: string;
+  footerCopy?: string;
+  contactEmail?: string;
+  instagram?: string;
+  tiktok?: string;
+  x?: string;
+};
+
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  if (!client) {
+    return {
+      title: 'SEEN IN KOREA',
+      tagline: 'What’s trending. What people actually buy. What life in Korea is really like.',
+      footerCopy: 'K-culture, real-life Korea and product discovery — built as a media → data → commerce → export system.'
+    };
+  }
+
+  return client.fetch(`*[_type == "siteSettings"][0]{
+    title, tagline, footerCopy, contactEmail, instagram, tiktok, x
+  }`);
+}
+
 const articleProjection = `{
-    _id,
-  title,
-  "slug": slug.current,
-  dek,
-  category,
-  eyebrow,
-  publishedAt,
-  "updatedAt": _updatedAt,
-  author,
+  _id, title, "slug": slug.current, dek, category, eyebrow, publishedAt, author,
   homepagePlacement, homePriority, homepageUntil, deskLabel, deskTimeLabel, deskNote,
   verification, "heroImageUrl": heroImage.asset->url, heroAlt, body,
   sources[]{label,url},
