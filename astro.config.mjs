@@ -26,5 +26,5 @@ export default defineConfig({
   output: 'server',
   adapter: cloudflare(),
   integrations,
-  site: process.env.PUBLIC_SITE_URL || 'https://seen-in-korea.seeninkorea.workers.dev'
+  site: process.env.PUBLIC_SITE_URL || 'https://seeninkorea.com'
 });
