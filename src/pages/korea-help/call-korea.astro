@@ -4,107 +4,104 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const whatsappNumber = '821057397087';
 
 const freeChatText = encodeURIComponent(
-  `Hi Seen in Korea. I need help with something in Korea.
-
-My situation:
-Location:
-How urgent is it:
-What do you need help with:`
-);
-
-const callNowText = encodeURIComponent(
-  `Hi Seen in Korea. I need CALL KOREA now.
-
-What needs to be called:
-Business / place:
-Phone number or link:
-What do you need us to ask:
-How urgent is it:`
+  [
+    'Hi Seen in Korea. I need help with something in Korea.',
+    '',
+    'What happened:',
+    'Location:',
+    'How urgent is it:',
+    '',
+    'I can send a photo, screenshot, map link or voice message if that helps.'
+  ].join('\n')
 );
 
 const freeChatUrl =
-  `https://wa.me/${whatsappNumber}?text=${freeChatText}`;
-
-const callNowUrl =
-  `https://wa.me/${whatsappNumber}?text=${callNowText}`;
-
+  'https://wa.me/' + whatsappNumber + '?text=' + freeChatText;
 
 const situations = [
   {
+    number: '01',
+    icon: '⌁',
     title: 'Lost & Stolen',
-    description:
-      'Phone, wallet, passport, bag or something left behind.',
-    cta: 'GET HELP →'
+    description: 'Phone, wallet, passport, bag or something left behind.'
   },
   {
+    number: '02',
+    icon: '+',
     title: 'Clinic & Pharmacy',
-    description:
-      'Help communicating with a clinic, hospital or pharmacy.',
-    cta: 'GET HELP →'
+    description: 'Help communicating with a clinic, hospital or pharmacy.'
   },
   {
+    number: '03',
+    icon: '▰',
     title: 'Hotel & Booking',
-    description:
-      'Reservation problems, check-in issues or special requests.',
-    cta: 'GET HELP →'
+    description: 'Reservation problems, check-in issues or special requests.'
   },
   {
+    number: '04',
+    icon: '↗',
     title: 'Taxi & Transport',
-    description:
-      'Lost property, route problems, transport questions or communication.',
-    cta: 'GET HELP →'
+    description: 'Lost property, route problems or transport communication.'
   },
   {
+    number: '05',
+    icon: '₩',
     title: 'Payment & Refund',
-    description:
-      'Need to ask about a charge, refund, cancellation or purchase?',
-    cta: 'GET HELP →'
+    description: 'Charges, refunds, cancellations or purchase questions.'
   },
   {
-    title: 'Call Someone',
-    description:
-      'Give us the number and tell us what you need to ask.',
-    cta: 'CALL KOREA →'
+    number: '06',
+    icon: '☎',
+    title: 'Call a Business',
+    description: 'Send the name or a map link. We can find the number.'
   }
 ];
 
+const makeSituationUrl = (title) => {
+  const text = encodeURIComponent(
+    [
+      `Hi Seen in Korea. I need help with: ${title}`,
+      '',
+      'What happened:',
+      'Location:',
+      '',
+      'I can send a photo, screenshot, map link or voice message.'
+    ].join('\n')
+  );
 
-const howItWorks = [
+  return `https://wa.me/${whatsappNumber}?text=${text}`;
+};
+
+const processSteps = [
   {
-    title: 'Tell us what happened',
+    number: '01',
+    title: 'Send what you have',
     description:
-      'Send a message in English. Screenshots, phone numbers and links help.'
+      'A short message, photo, screenshot, map link or voice note is enough.'
   },
   {
-    title: 'We check the situation',
+    number: '02',
+    title: 'We handle the Korean',
     description:
-      'We clarify what you need and whether a phone call is necessary.'
+      'We figure out who to contact, explain the situation and make the Korean call when needed.'
   },
   {
-    title: 'We call in Korean',
-    description:
-      'If needed, we contact the business or organization and explain your request.'
-  },
-  {
+    number: '03',
     title: 'You get the answer',
     description:
-      'We send the result back to you in clear English.'
+      'We send the result back to you in clear English and tell you the next step.'
   }
 ];
 ---
 
 <BaseLayout
-  title="Call Korea | Real-Time Help in Korea | SEEN IN KOREA"
-  description="Need help communicating in Korea? Call Korea helps foreigners handle urgent practical problems, Korean phone calls, bookings, lost items, transport issues and more."
+  title="Call Korea | Practical Help in Korea | SEEN IN KOREA"
+  description="Stuck in Korea? Tell us what happened. Call Korea helps foreigners handle Korean phone calls, lost items, bookings, transport issues, refunds and practical communication."
 >
-
-  <main class="call-korea-page">
-
+  <main class="call-korea-page call-korea-v2">
 
     <!-- EMERGENCY NOTICE -->
-
     <div class="call-emergency-bar">
-
       <div class="wrap call-emergency-inner">
 
         <strong>
@@ -121,13 +118,11 @@ const howItWorks = [
         </span>
 
       </div>
-
     </div>
 
 
     <!-- HERO -->
-
-    <section class="call-hero">
+    <section class="call-hero call-hero-v2">
 
       <div class="wrap call-hero-grid">
 
@@ -137,19 +132,18 @@ const howItWorks = [
             KOREA HELP · CALL KOREA · BETA
           </div>
 
-
           <h1>
             Stuck in Korea?<br />
-            We can help.
+            Tell us what happened.<br />
+            <span>We’ll handle the Korean.</span>
           </h1>
 
-
           <p class="call-hero-dek">
-            Can't explain the problem in Korean?
-            Tell us what happened.
-            We can help contact the place,
-            make the Korean phone call
-            and get the answer back to you.
+            Don’t know who to call or what to say?
+            Send us what you have.
+            We can find the right place,
+            handle the Korean phone call
+            and tell you what to do next.
           </p>
 
 
@@ -159,17 +153,16 @@ const howItWorks = [
               href={freeChatUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="call-btn call-btn-primary"
+              class="call-btn call-btn-primary call-btn-whatsapp"
             >
-              START CHAT — FREE →
+              GET HELP — FREE CHAT →
             </a>
 
-
             <a
-              href="#call-now"
-              class="call-btn call-btn-secondary"
+              href="#call-payment"
+              class="call-btn call-btn-dark"
             >
-              I NEED A CALL NOW →
+              HANDLE IT FOR ME · ₩2,900 →
             </a>
 
           </div>
@@ -177,27 +170,19 @@ const howItWorks = [
 
           <div class="call-hero-trust">
 
-            <span>
-              No charge to ask
-            </span>
+            <span>No charge to ask</span>
 
-            <span>
-              English ↔ Korean support
-            </span>
+            <span>English ↔ Korean support</span>
 
-            <span>
-              Real person assistance
-            </span>
+            <span>No account required</span>
 
           </div>
 
         </div>
 
 
-
-        <!-- QUICK HELP CARD -->
-
-        <aside class="call-status-card">
+        <!-- HERO SERVICE CARD -->
+        <aside class="call-status-card call-status-card-v2">
 
           <div class="call-status-top">
 
@@ -215,53 +200,67 @@ const howItWorks = [
 
 
           <div class="call-status-question">
-            What do you need help with?
+            We don’t just translate.<br />
+            We handle it for you.
           </div>
 
 
-          <div class="call-status-list">
+          <div class="call-benefit-list">
+
+            <div>
+              <span>01</span>
+              <p>
+                We find the right place to contact.
+              </p>
+            </div>
+
+            <div>
+              <span>02</span>
+              <p>
+                We make the Korean phone call.
+              </p>
+            </div>
+
+            <div>
+              <span>03</span>
+              <p>
+                We explain your request clearly.
+              </p>
+            </div>
+
+            <div>
+              <span>04</span>
+              <p>
+                You get the answer in English.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="call-card-price">
 
             <span>
-              Lost something
+              FIRST REQUEST
             </span>
 
-            <span>
-              Need to call a business
-            </span>
+            <strong>
+              ₩2,900
+            </strong>
 
-            <span>
-              Hotel or booking problem
-            </span>
-
-            <span>
-              Clinic or pharmacy communication
-            </span>
-
-            <span>
-              Taxi or transport issue
-            </span>
-
-            <span>
-              Something else
-            </span>
+            <small>
+              one simple request · typically up to 5 minutes
+            </small>
 
           </div>
 
 
           <a
-            href={freeChatUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#call-payment"
             class="call-status-action"
           >
-            TELL US WHAT HAPPENED →
+            HANDLE IT NOW →
           </a>
-
-
-          <p>
-            Send the place name, phone number,
-            screenshot or link if you have one.
-          </p>
 
         </aside>
 
@@ -270,10 +269,8 @@ const howItWorks = [
     </section>
 
 
-
-    <!-- GET HELP NOW -->
-
-    <section class="call-help-section">
+    <!-- WHAT HAPPENED -->
+    <section class="call-help-section call-help-v2">
 
       <div class="wrap">
 
@@ -282,56 +279,141 @@ const howItWorks = [
           <div>
 
             <div class="eyebrow">
-              GET HELP NOW
+              WHAT HAPPENED?
             </div>
 
             <h2>
-              What's going on?
+              Choose a situation — or just message us.
             </h2>
 
           </div>
 
 
           <p>
-            Choose the closest situation.
-            You don't need to know exactly what service you need.
+            You do not need to know the Korean name,
+            phone number or the right organization
+            before asking for help.
           </p>
 
         </div>
 
 
-        <div class="call-situation-grid">
+        <div class="call-help-layout">
 
-          {
-            situations.map((item, index) => (
+          <div class="call-situation-grid">
 
-              <a
-                href={freeChatUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="call-situation-card"
-              >
+            {
+              situations.map((item) => (
 
-                <span class="call-situation-number">
-                  {String(index + 1).padStart(2, '0')}
+                <a
+                  href={makeSituationUrl(item.title)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="call-situation-card"
+                >
+
+                  <div class="call-situation-topline">
+
+                    <span class="call-situation-number">
+                      {item.number}
+                    </span>
+
+                    <span
+                      class="call-situation-icon"
+                      aria-hidden="true"
+                    >
+                      {item.icon}
+                    </span>
+
+                  </div>
+
+                  <h3>
+                    {item.title}
+                  </h3>
+
+                  <p>
+                    {item.description}
+                  </p>
+
+                  <strong>
+                    ASK FOR HELP →
+                  </strong>
+
+                </a>
+
+              ))
+            }
+
+          </div>
+
+
+          <!-- SEND ANYTHING -->
+          <aside class="call-send-anything">
+
+            <div class="eyebrow">
+              DON’T KNOW THE DETAILS?
+            </div>
+
+            <h3>
+              Just send what you have.
+            </h3>
+
+
+            <div class="call-send-list">
+
+              <div>
+                <span>
+                  PHOTO
                 </span>
 
-                <h3>
-                  {item.title}
-                </h3>
+                <p>
+                  Receipt, sign, ticket or business card.
+                </p>
+              </div>
+
+
+              <div>
+                <span>
+                  SCREENSHOT
+                </span>
 
                 <p>
-                  {item.description}
+                  Booking, message, payment screen or app.
                 </p>
+              </div>
 
-                <strong>
-                  {item.cta}
-                </strong>
 
-              </a>
+              <div>
+                <span>
+                  MAP LINK
+                </span>
 
-            ))
-          }
+                <p>
+                  Google Maps, Naver Map or Kakao Map.
+                </p>
+              </div>
+
+
+              <div>
+                <span>
+                  VOICE
+                </span>
+
+                <p>
+                  Too stressed to type?
+                  Send a voice message.
+                </p>
+              </div>
+
+            </div>
+
+
+            <p class="call-send-note">
+              You don’t need to find the phone number first.
+              We’ll figure out where to contact.
+            </p>
+
+          </aside>
 
         </div>
 
@@ -340,10 +422,8 @@ const howItWorks = [
     </section>
 
 
-
     <!-- HOW IT WORKS -->
-
-    <section class="call-how-section">
+    <section class="call-how-section call-how-v2">
 
       <div class="wrap">
 
@@ -356,31 +436,30 @@ const howItWorks = [
             </div>
 
             <h2>
-              You tell us.<br />
-              We handle the Korean.
+              Three steps. No account. No long form.
             </h2>
 
           </div>
 
 
           <p>
-            Start with a message.
-            We'll confirm what you need before
-            any paid service begins.
+            Start with the fastest option for you.
+            We only ask for the information
+            needed to handle the request.
           </p>
 
         </div>
 
 
-        <div class="call-how-grid">
+        <div class="call-how-grid call-how-grid-v2">
 
           {
-            howItWorks.map((item, index) => (
+            processSteps.map((item) => (
 
               <article>
 
                 <span>
-                  {String(index + 1).padStart(2, '0')}
+                  {item.number}
                 </span>
 
                 <h3>
@@ -403,12 +482,10 @@ const howItWorks = [
     </section>
 
 
-
-    <!-- FREE CHAT VS CALL -->
-
+    <!-- FREE CHAT / PAID HELP -->
     <section
-      id="call-now"
-      class="call-service-section"
+      id="call-payment"
+      class="call-service-section call-service-v2"
     >
 
       <div class="wrap">
@@ -418,60 +495,61 @@ const howItWorks = [
           <div>
 
             <div class="eyebrow">
-              CHOOSE YOUR HELP
+              CHOOSE HOW TO START
             </div>
 
             <h2>
-              Ask first.<br />
-              Pay only when a call is needed.
+              Ask free — or hand it over to us.
             </h2>
 
           </div>
 
-        </div>
 
+          <p>
+            Free chat is for questions and quick guidance.
+            Paid help is for one simple request
+            that needs us to act for you.
+          </p>
+
+        </div>
 
 
         <div class="call-service-grid">
 
 
           <!-- FREE CHAT -->
-
           <article class="call-service-card">
 
             <div class="call-service-label">
-              START HERE
+              ASK FIRST
             </div>
 
-
             <h3>
-              Chat
+              Free Chat
             </h3>
-
 
             <div class="call-price">
               FREE
             </div>
 
-
             <p>
-              Not sure what you need?
-              Message us first.
+              Tell us what happened and send any screenshot,
+              photo, map link or voice message you already have.
             </p>
 
 
             <ul>
 
               <li>
-                Explain your situation
+                No account or signup
               </li>
 
               <li>
-                Send screenshots or links
+                Ask what to do next
               </li>
 
               <li>
-                Find out whether a call is needed
+                Send photos, screenshots or links
               </li>
 
               <li>
@@ -485,25 +563,20 @@ const howItWorks = [
               href={freeChatUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="call-btn call-btn-dark"
+              class="call-btn call-btn-whatsapp"
             >
-              START CHAT — FREE →
+              GET HELP — FREE CHAT →
             </a>
 
           </article>
 
 
-
-          <!-- CALL NOW -->
-
-          <article
-            class="call-service-card call-service-featured"
-          >
+          <!-- PAID HELP -->
+          <article class="call-service-card call-service-featured">
 
             <div class="call-service-label">
-              NEED IT HANDLED?
+              HANDLE IT FOR ME
             </div>
-
 
             <h3>
               Call Korea
@@ -513,7 +586,7 @@ const howItWorks = [
             <div class="call-first-price">
 
               <span>
-                FIRST CALL
+                FIRST REQUEST
               </span>
 
               <strong>
@@ -521,7 +594,7 @@ const howItWorks = [
               </strong>
 
               <small>
-                up to 5 minutes
+                one simple request · typically up to 5 minutes
               </small>
 
             </div>
@@ -530,7 +603,7 @@ const howItWorks = [
             <div class="call-regular-price">
 
               <span>
-                Regular call
+                Regular request
               </span>
 
               <strong>
@@ -540,21 +613,41 @@ const howItWorks = [
             </div>
 
 
-            <p>
-              We confirm the request first.
-              Payment is completed before
-              we make the call.
-            </p>
+            <ul>
+
+              <li>
+                One place or business
+              </li>
+
+              <li>
+                One Korean phone call
+              </li>
+
+              <li>
+                We explain your request
+              </li>
+
+              <li>
+                Short English result summary
+              </li>
+
+            </ul>
 
 
-            <a
-              href={callNowUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="call-btn call-btn-primary"
+            <button
+              type="button"
+              class="call-btn call-btn-primary call-pay-placeholder"
+              aria-disabled="true"
+              data-payment-coming
             >
-              I NEED A CALL NOW →
-            </a>
+              HANDLE IT FOR ME · ₩2,900 →
+            </button>
+
+
+            <small class="call-payment-note">
+              Secure payment will open here.
+              Payment is required before a paid call begins.
+            </small>
 
           </article>
 
@@ -565,15 +658,12 @@ const howItWorks = [
     </section>
 
 
-
     <!-- EXAMPLE -->
-
     <section class="call-example-section">
 
       <div class="wrap">
 
         <div class="call-example-grid">
-
 
           <div>
 
@@ -582,12 +672,10 @@ const howItWorks = [
             </div>
 
             <h2>
-              “I left my bag
-              in a taxi.”
+              “I left my bag in a taxi.”
             </h2>
 
           </div>
-
 
 
           <div class="call-example-conversation">
@@ -601,11 +689,10 @@ const howItWorks = [
 
               <p>
                 I think I left my bag in the taxi.
-                I have the receipt but I can't speak Korean.
+                I only have this receipt.
               </p>
 
             </div>
-
 
 
             <div class="call-message team">
@@ -615,13 +702,12 @@ const howItWorks = [
               </span>
 
               <p>
-                Send us a photo of the receipt.
-                We'll check the information and tell you
-                what we can do next.
+                Send us a photo.
+                You don’t need to find the taxi company
+                or phone number first.
               </p>
 
             </div>
-
 
 
             <div class="call-message user">
@@ -631,11 +717,10 @@ const howItWorks = [
               </span>
 
               <p>
-                Can you call them for me?
+                Can you handle it for me?
               </p>
 
             </div>
-
 
 
             <div class="call-message team">
@@ -645,13 +730,14 @@ const howItWorks = [
               </span>
 
               <p>
-                Yes. We'll confirm the call details
-                and price before making the call.
+                Yes. For a paid request,
+                payment is confirmed first.
+                Then we make the Korean call
+                and send you the result.
               </p>
 
             </div>
 
-
           </div>
 
         </div>
@@ -661,82 +747,88 @@ const howItWorks = [
     </section>
 
 
-
-    <!-- LIMITS -->
-
-    <section class="call-limits-section">
+    <!-- SERVICE GUIDE -->
+    <section class="call-guide-section">
 
       <div class="wrap">
 
-        <div class="section-head">
-
-          <div>
-
-            <div class="eyebrow">
-              BEFORE YOU USE CALL KOREA
-            </div>
-
-            <h2>
-              What we can — and can't — do.
-            </h2>
-
-          </div>
-
-        </div>
+        <div class="call-guide-grid">
 
 
+          <article>
 
-        <div class="call-limits-grid">
+            <span>
+              ✓
+            </span>
 
-
-          <div>
-
-            <strong>
-              WE CAN HELP WITH
-            </strong>
+            <h3>
+              Simple requests
+            </h3>
 
             <p>
-              Korean-language phone calls,
-              practical communication,
-              bookings, inquiries,
-              lost-property follow-up
-              and everyday problems.
+              One place, one request,
+              one outbound call
+              and a short result summary.
             </p>
 
-          </div>
+          </article>
 
 
+          <article>
 
-          <div>
+            <span>
+              !
+            </span>
 
-            <strong>
-              WE ARE NOT
-            </strong>
+            <h3>
+              Emergencies
+            </h3>
 
             <p>
-              Police, emergency medical services,
-              a law firm, medical provider
-              or government agency.
+              Contact 112 for police
+              or 119 for fire and ambulance.
+              Call Korea does not replace emergency services.
             </p>
 
-          </div>
+          </article>
 
 
+          <article>
 
-          <div>
+            <span>
+              ↗
+            </span>
 
-            <strong>
-              FOR EMERGENCIES
-            </strong>
+            <h3>
+              Complex cases
+            </h3>
 
             <p>
-              Contact official emergency services first:
-              112 for police and
-              119 for fire or ambulance.
+              Repeated calls, negotiation
+              or multi-place requests
+              may need a separate quote before we begin.
             </p>
 
-          </div>
+          </article>
 
+
+          <article>
+
+            <span>
+              ○
+            </span>
+
+            <h3>
+              Privacy
+            </h3>
+
+            <p>
+              Only send information needed
+              to handle your request.
+              Avoid unnecessary sensitive information.
+            </p>
+
+          </article>
 
         </div>
 
@@ -745,15 +837,12 @@ const howItWorks = [
     </section>
 
 
-
     <!-- FINAL CTA -->
-
     <section class="call-final-section">
 
       <div class="wrap">
 
         <div class="call-final-cta">
-
 
           <div>
 
@@ -762,18 +851,16 @@ const howItWorks = [
             </div>
 
             <h2>
-              Just tell us<br />
-              what happened.
+              Don’t figure it out alone.<br />
+              Send it to us.
             </h2>
 
             <p>
-              You don't need to choose the right service.
-              Start with a free message
-              and we'll tell you the next step.
+              You do not need to choose the perfect category.
+              A message, photo or screenshot is enough to start.
             </p>
 
           </div>
-
 
 
           <a
@@ -782,9 +869,8 @@ const howItWorks = [
             rel="noopener noreferrer"
             class="call-btn call-btn-dark"
           >
-            GET HELP NOW →
+            GET HELP — FREE CHAT →
           </a>
-
 
         </div>
 
@@ -793,9 +879,7 @@ const howItWorks = [
     </section>
 
 
-
     <!-- OFFICIAL HELP -->
-
     <section class="call-public-help">
 
       <div class="wrap">
@@ -825,6 +909,29 @@ const howItWorks = [
     </section>
 
 
-  </main>
+    <!-- MOBILE STICKY ACTIONS -->
+    <div
+      class="call-mobile-actions"
+      aria-label="Call Korea quick actions"
+    >
 
+      <a
+        href={freeChatUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="call-mobile-free"
+      >
+        FREE CHAT
+      </a>
+
+      <a
+        href="#call-payment"
+        class="call-mobile-paid"
+      >
+        HANDLE IT · ₩2,900
+      </a>
+
+    </div>
+
+  </main>
 </BaseLayout>
