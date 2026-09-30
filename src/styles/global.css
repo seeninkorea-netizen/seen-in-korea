@@ -1561,3 +1561,858 @@
   }
 
 }
+
+/* =========================================================
+   v1.9 — CALL KOREA
+   Real-time practical help in Korea
+   ========================================================= */
+
+.call-korea-page{
+  background:#f6f1e9;
+}
+
+
+/* EMERGENCY BAR */
+
+.call-emergency-bar{
+  padding:0;
+  background:#111;
+  color:#fff;
+  border:0;
+}
+
+.call-emergency-inner{
+  min-height:40px;
+  display:flex;
+  align-items:center;
+  gap:22px;
+  font-size:10px;
+  letter-spacing:.03em;
+}
+
+.call-emergency-inner strong{
+  color:#ff5a19;
+  font-weight:900;
+}
+
+.call-emergency-note{
+  margin-left:auto;
+  color:#aaa;
+}
+
+
+/* HERO */
+
+.call-hero{
+  padding:58px 0 48px;
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(255,77,0,.10),
+      transparent 28%
+    ),
+    #f6f1e9;
+}
+
+.call-hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(320px,.65fr);
+  gap:68px;
+  align-items:center;
+}
+
+.call-hero-copy h1{
+  max-width:760px;
+  margin:12px 0 22px;
+  font-size:clamp(66px,8vw,112px);
+  line-height:.83;
+  letter-spacing:-.075em;
+}
+
+.call-hero-dek{
+  max-width:650px;
+  margin:0;
+  font-size:20px;
+  line-height:1.4;
+  color:#37332f;
+}
+
+.call-hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:28px;
+}
+
+.call-btn{
+  min-height:49px;
+  padding:0 20px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #111;
+  font-family:inherit;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-align:center;
+  cursor:pointer;
+  transition:
+    transform .15s ease,
+    background .15s ease,
+    color .15s ease,
+    border-color .15s ease;
+}
+
+.call-btn:hover{
+  transform:translateY(-1px);
+}
+
+.call-btn-primary{
+  border-color:var(--accent);
+  background:var(--accent);
+  color:#fff;
+}
+
+.call-btn-secondary{
+  background:transparent;
+  color:#111;
+}
+
+.call-btn-dark{
+  background:#111;
+  color:#fff;
+}
+
+.call-hero-trust{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 24px;
+  margin-top:26px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+}
+
+.call-hero-trust span::before{
+  content:'✓';
+  margin-right:6px;
+  color:var(--accent);
+}
+
+
+/* HERO STATUS CARD */
+
+.call-status-card{
+  padding:28px;
+  background:#111;
+  color:#fff;
+  box-shadow:0 22px 60px rgba(0,0,0,.12);
+}
+
+.call-status-top{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding-bottom:20px;
+  border-bottom:1px solid #333;
+}
+
+.call-status-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--accent);
+}
+
+.call-status-top strong{
+  font-size:12px;
+  letter-spacing:.05em;
+}
+
+.call-status-top small{
+  margin-left:auto;
+  padding:4px 7px;
+  border-radius:999px;
+  background:var(--accent);
+  color:#fff;
+  font-size:8px;
+  font-weight:900;
+}
+
+.call-status-question{
+  margin:24px 0 15px;
+  font-size:23px;
+  font-weight:900;
+  line-height:1.05;
+  letter-spacing:-.035em;
+}
+
+.call-status-list{
+  display:grid;
+  gap:0;
+  border-top:1px solid #333;
+}
+
+.call-status-list span{
+  padding:11px 0;
+  border-bottom:1px solid #333;
+  color:#ddd;
+  font-size:12px;
+}
+
+.call-status-list span::before{
+  content:'→';
+  margin-right:9px;
+  color:var(--accent);
+}
+
+.call-status-action{
+  margin-top:22px;
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--accent);
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+}
+
+.call-status-card p{
+  margin:12px 0 0;
+  color:#999;
+  font-size:10px;
+  line-height:1.5;
+}
+
+
+/* GET HELP NOW */
+
+.call-help-section{
+  background:#fbf8f3;
+}
+
+.call-situation-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.call-situation-card{
+  min-height:225px;
+  padding:23px;
+  display:flex;
+  flex-direction:column;
+  background:#fffdfa;
+  border:1px solid var(--line);
+  transition:
+    transform .15s ease,
+    border-color .15s ease,
+    background .15s ease;
+}
+
+.call-situation-card:hover{
+  transform:translateY(-2px);
+  border-color:var(--accent);
+  background:#fff7f1;
+}
+
+.call-situation-number{
+  color:var(--accent);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.call-situation-card h3{
+  margin:30px 0 8px;
+  font-size:24px;
+  line-height:1;
+  letter-spacing:-.045em;
+}
+
+.call-situation-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.call-situation-card strong{
+  margin-top:auto;
+  padding-top:20px;
+  color:var(--accent);
+  font-size:9px;
+  letter-spacing:.05em;
+}
+
+
+/* HOW IT WORKS */
+
+.call-how-section{
+  background:#f0eae1;
+}
+
+.call-how-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:2px solid #111;
+  border-bottom:1px solid var(--line);
+}
+
+.call-how-grid article{
+  min-height:220px;
+  padding:25px;
+  border-right:1px solid var(--line);
+}
+
+.call-how-grid article:last-child{
+  border-right:0;
+}
+
+.call-how-grid article > span{
+  color:var(--accent);
+  font-size:11px;
+  font-weight:900;
+}
+
+.call-how-grid h3{
+  margin:36px 0 8px;
+  font-size:20px;
+  line-height:1.05;
+  letter-spacing:-.035em;
+}
+
+.call-how-grid p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+
+/* CHAT VS CALL */
+
+.call-service-section{
+  background:#fbf8f3;
+}
+
+.call-service-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  max-width:920px;
+  margin:0 auto;
+}
+
+.call-service-card{
+  padding:32px;
+  display:flex;
+  flex-direction:column;
+  min-height:480px;
+  background:#fffdfa;
+  border:1px solid var(--line);
+}
+
+.call-service-featured{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+
+.call-service-label{
+  color:var(--accent);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.1em;
+}
+
+.call-service-card h3{
+  margin:20px 0 8px;
+  font-size:38px;
+  line-height:.95;
+  letter-spacing:-.055em;
+}
+
+.call-price{
+  margin:10px 0 26px;
+  font-size:58px;
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:-.06em;
+}
+
+.call-service-card > p{
+  margin:0 0 20px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.call-service-featured > p{
+  color:#aaa;
+}
+
+.call-service-card ul{
+  margin:0 0 28px;
+  padding:0;
+  list-style:none;
+  border-top:1px solid var(--line);
+}
+
+.call-service-featured ul{
+  border-color:#333;
+}
+
+.call-service-card li{
+  padding:10px 0;
+  border-bottom:1px solid var(--line);
+  color:#4d4944;
+  font-size:11px;
+}
+
+.call-service-featured li{
+  color:#ccc;
+  border-color:#333;
+}
+
+.call-service-card li::before{
+  content:'✓';
+  margin-right:8px;
+  color:var(--accent);
+  font-weight:900;
+}
+
+.call-service-card .call-btn{
+  margin-top:auto;
+}
+
+.call-first-price{
+  margin:18px 0 14px;
+  padding:20px 0;
+  border-top:1px solid #333;
+  border-bottom:1px solid #333;
+}
+
+.call-first-price span{
+  display:block;
+  margin-bottom:4px;
+  color:var(--accent);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.call-first-price strong{
+  display:block;
+  font-size:58px;
+  line-height:.9;
+  letter-spacing:-.06em;
+}
+
+.call-first-price small{
+  display:block;
+  margin-top:7px;
+  color:#aaa;
+  font-size:10px;
+}
+
+.call-regular-price{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  margin-bottom:22px;
+}
+
+.call-regular-price span{
+  color:#aaa;
+  font-size:11px;
+}
+
+.call-regular-price strong{
+  font-size:20px;
+}
+
+
+/* EXAMPLE CONVERSATION */
+
+.call-example-section{
+  background:#f0eae1;
+}
+
+.call-example-grid{
+  display:grid;
+  grid-template-columns:.65fr 1.35fr;
+  gap:70px;
+  align-items:start;
+}
+
+.call-example-grid h2{
+  max-width:390px;
+  margin:12px 0 0;
+  font-size:52px;
+  line-height:.94;
+  letter-spacing:-.06em;
+}
+
+.call-example-conversation{
+  display:grid;
+  gap:10px;
+}
+
+.call-message{
+  max-width:78%;
+  padding:16px 18px;
+  border:1px solid var(--line);
+}
+
+.call-message.user{
+  justify-self:end;
+  background:#fffdfa;
+}
+
+.call-message.team{
+  justify-self:start;
+  background:#111;
+  color:#fff;
+}
+
+.call-message span{
+  display:block;
+  margin-bottom:6px;
+  color:var(--accent);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.call-message p{
+  margin:0;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.call-message.team p{
+  color:#ddd;
+}
+
+
+/* LIMITS */
+
+.call-limits-section{
+  background:#fbf8f3;
+}
+
+.call-limits-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:2px solid #111;
+  border-bottom:1px solid var(--line);
+}
+
+.call-limits-grid > div{
+  padding:25px;
+  border-right:1px solid var(--line);
+}
+
+.call-limits-grid > div:last-child{
+  border-right:0;
+}
+
+.call-limits-grid strong{
+  display:block;
+  margin-bottom:17px;
+  color:var(--accent);
+  font-size:9px;
+  letter-spacing:.08em;
+}
+
+.call-limits-grid p{
+  margin:0;
+  color:#44403b;
+  font-size:13px;
+  line-height:1.55;
+}
+
+
+/* FINAL CTA */
+
+.call-final-section{
+  padding:36px 0;
+  background:#f0eae1;
+}
+
+.call-final-cta{
+  padding:38px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:40px;
+  align-items:end;
+  background:var(--accent);
+}
+
+.call-final-cta .eyebrow{
+  color:#111;
+}
+
+.call-final-cta h2{
+  max-width:650px;
+  margin:8px 0 12px;
+  font-size:52px;
+  line-height:.91;
+  letter-spacing:-.06em;
+}
+
+.call-final-cta p{
+  max-width:600px;
+  margin:0;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.call-final-cta .call-btn{
+  min-width:210px;
+}
+
+
+/* PUBLIC HELP */
+
+.call-public-help{
+  padding:20px 0;
+  background:#111;
+  color:#fff;
+  border:0;
+}
+
+.call-public-help-inner{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.call-public-help-inner span{
+  margin-right:auto;
+  color:var(--accent);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.call-public-help-inner strong{
+  font-size:11px;
+  font-weight:800;
+}
+
+
+/* =========================================================
+   CALL KOREA MOBILE
+   ========================================================= */
+
+@media(max-width:850px){
+
+  .call-emergency-inner{
+    min-height:auto;
+    padding-top:9px;
+    padding-bottom:9px;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:2px 9px;
+  }
+
+  .call-emergency-note{
+    grid-column:1 / -1;
+    margin:0;
+    font-size:8px;
+  }
+
+
+  .call-hero{
+    padding:38px 0 32px;
+  }
+
+  .call-hero-grid{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  .call-hero-copy h1{
+    font-size:clamp(56px,16vw,76px);
+    line-height:.86;
+  }
+
+  .call-hero-dek{
+    font-size:16px;
+  }
+
+  .call-hero-actions{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .call-btn{
+    width:100%;
+  }
+
+  .call-hero-trust{
+    display:grid;
+    gap:7px;
+  }
+
+  .call-status-card{
+    padding:22px;
+  }
+
+  .call-status-question{
+    font-size:21px;
+  }
+
+
+  .call-situation-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+  }
+
+  .call-situation-card{
+    min-height:190px;
+    padding:17px;
+  }
+
+  .call-situation-card h3{
+    margin-top:24px;
+    font-size:19px;
+  }
+
+  .call-situation-card p{
+    font-size:10px;
+  }
+
+
+  .call-how-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .call-how-grid article{
+    min-height:190px;
+    padding:19px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .call-how-grid article:nth-child(2){
+    border-right:0;
+  }
+
+  .call-how-grid h3{
+    margin-top:28px;
+    font-size:18px;
+  }
+
+
+  .call-service-grid{
+    grid-template-columns:1fr;
+  }
+
+  .call-service-card{
+    min-height:0;
+    padding:24px 20px;
+  }
+
+  .call-service-card h3{
+    font-size:32px;
+  }
+
+  .call-price,
+  .call-first-price strong{
+    font-size:48px;
+  }
+
+
+  .call-example-grid{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  .call-example-grid h2{
+    font-size:40px;
+  }
+
+  .call-message{
+    max-width:90%;
+  }
+
+
+  .call-limits-grid{
+    grid-template-columns:1fr;
+  }
+
+  .call-limits-grid > div{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .call-limits-grid > div:last-child{
+    border-bottom:0;
+  }
+
+
+  .call-final-cta{
+    padding:28px 21px;
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .call-final-cta h2{
+    font-size:41px;
+  }
+
+  .call-final-cta .call-btn{
+    min-width:0;
+  }
+
+
+  .call-public-help-inner{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 14px;
+  }
+
+  .call-public-help-inner span{
+    grid-column:1 / -1;
+    margin:0 0 3px;
+  }
+
+  .call-public-help-inner strong{
+    font-size:9px;
+  }
+
+}
+
+
+@media(max-width:520px){
+
+  .call-situation-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .call-situation-card{
+    min-height:175px;
+  }
+
+  .call-how-grid{
+    grid-template-columns:1fr;
+  }
+
+  .call-how-grid article{
+    min-height:150px;
+    border-right:0;
+  }
+
+  .call-how-grid h3{
+    margin-top:22px;
+  }
+
+}
