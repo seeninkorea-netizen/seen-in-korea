@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/call-korea.css';
 
 const whatsappNumber = '821057397087';
 
@@ -11,12 +12,12 @@ const freeChatText = encodeURIComponent(
     'Location:',
     'How urgent is it:',
     '',
-    'I can send a photo, screenshot, map link or voice message if that helps.'
+    'You can also send a photo, screenshot, map link or voice message.'
   ].join('\n')
 );
 
 const freeChatUrl =
-  'https://wa.me/' + whatsappNumber + '?text=' + freeChatText;
+  `https://wa.me/${whatsappNumber}?text=${freeChatText}`;
 
 const situations = [
   {
@@ -29,31 +30,31 @@ const situations = [
     number: '02',
     icon: '+',
     title: 'Clinic & Pharmacy',
-    description: 'Help communicating with a clinic, hospital or pharmacy.'
+    description: 'Need help communicating with a clinic, hospital or pharmacy.'
   },
   {
     number: '03',
     icon: '▰',
     title: 'Hotel & Booking',
-    description: 'Reservation problems, check-in issues or special requests.'
+    description: 'Reservation, check-in or booking problem.'
   },
   {
     number: '04',
     icon: '↗',
     title: 'Taxi & Transport',
-    description: 'Lost property, route problems or transport communication.'
+    description: 'Lost property, route problem or transport communication.'
   },
   {
     number: '05',
     icon: '₩',
     title: 'Payment & Refund',
-    description: 'Charges, refunds, cancellations or purchase questions.'
+    description: 'Charge, cancellation, refund or purchase question.'
   },
   {
     number: '06',
     icon: '☎',
     title: 'Call a Business',
-    description: 'Send the name or a map link. We can find the number.'
+    description: 'Send the name or map link. We can find who to contact.'
   }
 ];
 
@@ -89,19 +90,22 @@ const processSteps = [
     number: '03',
     title: 'You get the answer',
     description:
-      'We send the result back to you in clear English and tell you the next step.'
+      'We send the result back in clear English and tell you what happens next.'
   }
 ];
 ---
 
 <BaseLayout
-  title="Call Korea | Practical Help in Korea | SEEN IN KOREA"
-  description="Stuck in Korea? Tell us what happened. Call Korea helps foreigners handle Korean phone calls, lost items, bookings, transport issues, refunds and practical communication."
+  title="Call Korea | Get Help in Korea | SEEN IN KOREA"
+  description="Stuck in Korea? Tell us what happened. Call Korea helps foreigners handle Korean phone calls, lost items, bookings, transport issues, refunds and everyday communication."
 >
+
   <main class="call-korea-page call-korea-v2">
 
-    <!-- EMERGENCY NOTICE -->
+
+    <!-- EMERGENCY -->
     <div class="call-emergency-bar">
+
       <div class="wrap call-emergency-inner">
 
         <strong>
@@ -118,6 +122,7 @@ const processSteps = [
         </span>
 
       </div>
+
     </div>
 
 
@@ -126,24 +131,26 @@ const processSteps = [
 
       <div class="wrap call-hero-grid">
 
+
         <div class="call-hero-copy">
 
           <div class="eyebrow">
             KOREA HELP · CALL KOREA · BETA
           </div>
 
+
           <h1>
             Stuck in Korea?<br />
-            Tell us what happened.<br />
-            <span>We’ll handle the Korean.</span>
+            <span>We’ll handle it.</span>
           </h1>
+
 
           <p class="call-hero-dek">
             Don’t know who to call or what to say?
-            Send us what you have.
+            Tell us what happened.
             We can find the right place,
-            handle the Korean phone call
-            and tell you what to do next.
+            handle the Korean
+            and give you the answer in English.
           </p>
 
 
@@ -153,7 +160,7 @@ const processSteps = [
               href={freeChatUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="call-btn call-btn-primary call-btn-whatsapp"
+              class="call-btn call-btn-whatsapp"
             >
               GET HELP — FREE CHAT →
             </a>
@@ -170,18 +177,25 @@ const processSteps = [
 
           <div class="call-hero-trust">
 
-            <span>No charge to ask</span>
+            <span>
+              No account
+            </span>
 
-            <span>English ↔ Korean support</span>
+            <span>
+              No long form
+            </span>
 
-            <span>No account required</span>
+            <span>
+              English ↔ Korean
+            </span>
 
           </div>
 
         </div>
 
 
-        <!-- HERO SERVICE CARD -->
+
+        <!-- QUICK SERVICE CARD -->
         <aside class="call-status-card call-status-card-v2">
 
           <div class="call-status-top">
@@ -200,8 +214,8 @@ const processSteps = [
 
 
           <div class="call-status-question">
-            We don’t just translate.<br />
-            We handle it for you.
+            You tell us the problem.<br />
+            We handle the Korean.
           </div>
 
 
@@ -210,7 +224,7 @@ const processSteps = [
             <div>
               <span>01</span>
               <p>
-                We find the right place to contact.
+                We figure out who to contact.
               </p>
             </div>
 
@@ -224,7 +238,7 @@ const processSteps = [
             <div>
               <span>03</span>
               <p>
-                We explain your request clearly.
+                We explain your request.
               </p>
             </div>
 
@@ -249,7 +263,7 @@ const processSteps = [
             </strong>
 
             <small>
-              one simple request · typically up to 5 minutes
+              One simple request · typically up to 5 minutes
             </small>
 
           </div>
@@ -269,6 +283,7 @@ const processSteps = [
     </section>
 
 
+
     <!-- WHAT HAPPENED -->
     <section class="call-help-section call-help-v2">
 
@@ -283,22 +298,23 @@ const processSteps = [
             </div>
 
             <h2>
-              Choose a situation — or just message us.
+              Just choose the closest one.
             </h2>
 
           </div>
 
 
           <p>
-            You do not need to know the Korean name,
-            phone number or the right organization
-            before asking for help.
+            Don’t see your exact situation?
+            Use free chat and just tell us what happened.
           </p>
 
         </div>
 
 
+
         <div class="call-help-layout">
+
 
           <div class="call-situation-grid">
 
@@ -327,16 +343,19 @@ const processSteps = [
 
                   </div>
 
+
                   <h3>
                     {item.title}
                   </h3>
+
 
                   <p>
                     {item.description}
                   </p>
 
+
                   <strong>
-                    ASK FOR HELP →
+                    GET HELP →
                   </strong>
 
                 </a>
@@ -347,6 +366,7 @@ const processSteps = [
           </div>
 
 
+
           <!-- SEND ANYTHING -->
           <aside class="call-send-anything">
 
@@ -354,14 +374,16 @@ const processSteps = [
               DON’T KNOW THE DETAILS?
             </div>
 
+
             <h3>
-              Just send what you have.
+              Send what you have.
             </h3>
 
 
             <div class="call-send-list">
 
               <div>
+
                 <span>
                   PHOTO
                 </span>
@@ -369,21 +391,25 @@ const processSteps = [
                 <p>
                   Receipt, sign, ticket or business card.
                 </p>
+
               </div>
 
 
               <div>
+
                 <span>
                   SCREENSHOT
                 </span>
 
                 <p>
-                  Booking, message, payment screen or app.
+                  Booking, payment, message or app screen.
                 </p>
+
               </div>
 
 
               <div>
+
                 <span>
                   MAP LINK
                 </span>
@@ -391,26 +417,29 @@ const processSteps = [
                 <p>
                   Google Maps, Naver Map or Kakao Map.
                 </p>
+
               </div>
 
 
               <div>
+
                 <span>
-                  VOICE
+                  VOICE MESSAGE
                 </span>
 
                 <p>
                   Too stressed to type?
-                  Send a voice message.
+                  Just explain what happened.
                 </p>
+
               </div>
 
             </div>
 
 
             <p class="call-send-note">
-              You don’t need to find the phone number first.
-              We’ll figure out where to contact.
+              You do not need to find the Korean phone number first.
+              We can figure out where to contact.
             </p>
 
           </aside>
@@ -420,6 +449,7 @@ const processSteps = [
       </div>
 
     </section>
+
 
 
     <!-- HOW IT WORKS -->
@@ -436,19 +466,20 @@ const processSteps = [
             </div>
 
             <h2>
-              Three steps. No account. No long form.
+              Three steps. That’s it.
             </h2>
 
           </div>
 
 
           <p>
-            Start with the fastest option for you.
-            We only ask for the information
-            needed to handle the request.
+            No signup.
+            No long request form.
+            Start with whatever information you already have.
           </p>
 
         </div>
+
 
 
         <div class="call-how-grid call-how-grid-v2">
@@ -482,7 +513,8 @@ const processSteps = [
     </section>
 
 
-    <!-- FREE CHAT / PAID HELP -->
+
+    <!-- START -->
     <section
       id="call-payment"
       class="call-service-section call-service-v2"
@@ -495,53 +527,58 @@ const processSteps = [
           <div>
 
             <div class="eyebrow">
-              CHOOSE HOW TO START
+              START HERE
             </div>
 
             <h2>
-              Ask free — or hand it over to us.
+              Ask us — or hand it over.
             </h2>
 
           </div>
 
 
           <p>
-            Free chat is for questions and quick guidance.
-            Paid help is for one simple request
-            that needs us to act for you.
+            Free chat is for asking what to do.
+            Paid help is for when you want us
+            to make the Korean call for you.
           </p>
 
         </div>
 
 
+
         <div class="call-service-grid">
 
 
-          <!-- FREE CHAT -->
+          <!-- FREE -->
           <article class="call-service-card">
 
             <div class="call-service-label">
               ASK FIRST
             </div>
 
+
             <h3>
               Free Chat
             </h3>
+
 
             <div class="call-price">
               FREE
             </div>
 
+
             <p>
-              Tell us what happened and send any screenshot,
-              photo, map link or voice message you already have.
+              Tell us what happened.
+              Photos, screenshots,
+              map links and voice messages are welcome.
             </p>
 
 
             <ul>
 
               <li>
-                No account or signup
+                No signup
               </li>
 
               <li>
@@ -549,11 +586,11 @@ const processSteps = [
               </li>
 
               <li>
-                Send photos, screenshots or links
+                Send photos or screenshots
               </li>
 
               <li>
-                No payment required to ask
+                No payment to ask
               </li>
 
             </ul>
@@ -571,12 +608,14 @@ const processSteps = [
           </article>
 
 
-          <!-- PAID HELP -->
+
+          <!-- PAID -->
           <article class="call-service-card call-service-featured">
 
             <div class="call-service-label">
               HANDLE IT FOR ME
             </div>
+
 
             <h3>
               Call Korea
@@ -594,7 +633,7 @@ const processSteps = [
               </strong>
 
               <small>
-                one simple request · typically up to 5 minutes
+                One simple request · typically up to 5 minutes
               </small>
 
             </div>
@@ -628,7 +667,7 @@ const processSteps = [
               </li>
 
               <li>
-                Short English result summary
+                English result summary
               </li>
 
             </ul>
@@ -638,15 +677,14 @@ const processSteps = [
               type="button"
               class="call-btn call-btn-primary call-pay-placeholder"
               aria-disabled="true"
-              data-payment-coming
             >
               HANDLE IT FOR ME · ₩2,900 →
             </button>
 
 
             <small class="call-payment-note">
-              Secure payment will open here.
-              Payment is required before a paid call begins.
+              Payment will open directly here.
+              Paid calls only begin after payment is confirmed.
             </small>
 
           </article>
@@ -656,6 +694,7 @@ const processSteps = [
       </div>
 
     </section>
+
 
 
     <!-- EXAMPLE -->
@@ -678,8 +717,8 @@ const processSteps = [
           </div>
 
 
-          <div class="call-example-conversation">
 
+          <div class="call-example-conversation">
 
             <div class="call-message user">
 
@@ -702,9 +741,8 @@ const processSteps = [
               </span>
 
               <p>
-                Send us a photo.
-                You don’t need to find the taxi company
-                or phone number first.
+                Send us the receipt.
+                You don’t need to find the taxi company first.
               </p>
 
             </div>
@@ -717,7 +755,7 @@ const processSteps = [
               </span>
 
               <p>
-                Can you handle it for me?
+                Can you call them for me?
               </p>
 
             </div>
@@ -730,9 +768,9 @@ const processSteps = [
               </span>
 
               <p>
-                Yes. For a paid request,
-                payment is confirmed first.
-                Then we make the Korean call
+                Yes.
+                Once payment is confirmed,
+                we’ll make the Korean call
                 and send you the result.
               </p>
 
@@ -747,19 +785,17 @@ const processSteps = [
     </section>
 
 
-    <!-- SERVICE GUIDE -->
+
+    <!-- GUIDE -->
     <section class="call-guide-section">
 
       <div class="wrap">
 
         <div class="call-guide-grid">
 
-
           <article>
 
-            <span>
-              ✓
-            </span>
+            <span>✓</span>
 
             <h3>
               Simple requests
@@ -776,18 +812,16 @@ const processSteps = [
 
           <article>
 
-            <span>
-              !
-            </span>
+            <span>!</span>
 
             <h3>
               Emergencies
             </h3>
 
             <p>
-              Contact 112 for police
-              or 119 for fire and ambulance.
-              Call Korea does not replace emergency services.
+              Use 112 for police
+              and 119 for fire or ambulance.
+              Call Korea is not an emergency service.
             </p>
 
           </article>
@@ -795,18 +829,16 @@ const processSteps = [
 
           <article>
 
-            <span>
-              ↗
-            </span>
+            <span>↗</span>
 
             <h3>
-              Complex cases
+              Complex requests
             </h3>
 
             <p>
-              Repeated calls, negotiation
-              or multi-place requests
-              may need a separate quote before we begin.
+              Multiple places,
+              repeated calls or negotiation
+              may need a separate quote.
             </p>
 
           </article>
@@ -814,18 +846,15 @@ const processSteps = [
 
           <article>
 
-            <span>
-              ○
-            </span>
+            <span>○</span>
 
             <h3>
               Privacy
             </h3>
 
             <p>
-              Only send information needed
-              to handle your request.
-              Avoid unnecessary sensitive information.
+              Only send information
+              needed to handle the request.
             </p>
 
           </article>
@@ -837,7 +866,8 @@ const processSteps = [
     </section>
 
 
-    <!-- FINAL CTA -->
+
+    <!-- FINAL -->
     <section class="call-final-section">
 
       <div class="wrap">
@@ -847,17 +877,16 @@ const processSteps = [
           <div>
 
             <div class="eyebrow">
-              STILL NOT SURE?
+              NOT SURE WHAT TO DO?
             </div>
 
             <h2>
-              Don’t figure it out alone.<br />
-              Send it to us.
+              Just tell us what happened.
             </h2>
 
             <p>
-              You do not need to choose the perfect category.
-              A message, photo or screenshot is enough to start.
+              You don’t need to know who to call.
+              Start with a free message.
             </p>
 
           </div>
@@ -879,7 +908,8 @@ const processSteps = [
     </section>
 
 
-    <!-- OFFICIAL HELP -->
+
+    <!-- OFFICIAL -->
     <section class="call-public-help">
 
       <div class="wrap">
@@ -909,7 +939,8 @@ const processSteps = [
     </section>
 
 
-    <!-- MOBILE STICKY ACTIONS -->
+
+    <!-- MOBILE FIXED BUTTONS -->
     <div
       class="call-mobile-actions"
       aria-label="Call Korea quick actions"
@@ -933,5 +964,7 @@ const processSteps = [
 
     </div>
 
+
   </main>
+
 </BaseLayout>
