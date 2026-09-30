@@ -13,21 +13,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="wrap learn-hero-grid">
         <div class="learn-hero-copy">
           <div class="eyebrow">LEARN KOREAN</div>
-          <h1>Korean for<br />real life.</h1>
+          <h1>Find your next<br /><span class="learn-accent-text">Korean lesson.</span></h1>
           <p class="learn-hero-dek">
-            Too many Korean resources. One clear path.
-            Get a personalized plan, one next lesson at a time,
-            and practical missions that help you actually use Korean.
+            Tell us your goal, level and situation.
+            We’ll show you a verified next lesson to start with —
+            then guide you one clear step at a time.
           </p>
           <div class="learn-hero-actions">
-            <a href="#study-plan" class="learn-btn learn-btn-primary">BUILD MY FREE STUDY PLAN →</a>
+            <a href="#study-plan" class="learn-btn learn-btn-primary">FIND MY NEXT KOREAN LESSON →</a>
             <a href="#tutor" class="learn-btn learn-btn-secondary">TAKE A REAL-LIFE TEST →</a>
           </div>
           <div class="learn-trust-row">
-            <span>One clear next step</span>
+            <span>Personalized for your goals</span>
             <span>Curated free resources</span>
-            <span>Real-life practice</span>
+            <span>Real conversation practice</span>
           </div>
+          <div class="learn-hero-time">About 30 seconds · 5 simple questions</div>
         </div>
 
         <div class="learn-phrase-card">
@@ -46,13 +47,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="wrap">
         <div class="section-head">
           <div>
-            <div class="eyebrow">FREE KOREAN NAVIGATOR</div>
-            <h2>Tell us what you need.</h2>
+            <div class="eyebrow">KOREAN LESSON NAVIGATOR</div>
+            <h2>What should you learn next?</h2>
           </div>
           <p>
-            Five quick answers. We’ll decide what to learn first,
-            what to skip for now, and which free resource fits you best.
+            Five simple questions. We’ll narrow down the options and show you one clear next lesson.
           </p>
+        </div>
+
+        <div class="learn-progress-box" aria-live="polite">
+          <div class="learn-progress-meta">
+            <strong id="learn-progress-text">Step 1 of 5</strong>
+            <span>About 30 seconds total</span>
+          </div>
+          <div class="learn-progress-track" aria-hidden="true">
+            <span id="learn-progress-bar"></span>
+          </div>
         </div>
 
         <div class="learn-plan-builder learn-plan-progressive">
@@ -184,17 +194,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <div class="learn-plan-action" id="learn-plan-action" hidden>
           <button id="generate-korean-plan" type="button" class="learn-btn learn-btn-primary">
-            BUILD MY KOREAN PATH →
+            SHOW ME WHAT TO LEARN NEXT →
           </button>
           <p id="learn-plan-message">Your answers are ready.</p>
         </div>
 
         <!-- GENERATED RESULT -->
         <div id="korean-plan-result" class="learn-plan-result" hidden>
+          <div id="learn-return-banner" class="learn-return-banner" hidden>
+            <div>
+              <strong>WELCOME BACK</strong>
+              <span>Continue where you left off.</span>
+            </div>
+            <button type="button" id="learn-return-continue">CONTINUE →</button>
+          </div>
+
           <div class="learn-result-head">
             <div>
-              <div class="eyebrow">YOUR PERSONALIZED PATH</div>
-              <h2 id="learn-result-title">Your Korean plan.</h2>
+              <div class="eyebrow">YOUR KOREAN PATH</div>
+              <h2 id="learn-result-title">Your Korean path.</h2>
             </div>
             <span id="learn-result-profile"></span>
           </div>
@@ -205,32 +223,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <button type="button" id="print-korean-plan">PRINT / PDF</button>
           </div>
 
-          <div class="learn-plan-summary">
-            <div class="learn-plan-summary-item">
-              <small>YOUR TARGET</small>
-              <strong id="learn-plan-target"></strong>
+          <details class="learn-path-details">
+            <summary>VIEW MY PATH DETAILS <span>+</span></summary>
+            <div class="learn-plan-summary">
+              <div class="learn-plan-summary-item">
+                <small>YOUR TARGET</small>
+                <strong id="learn-plan-target"></strong>
+              </div>
+              <div class="learn-plan-summary-item">
+                <small>STUDY COMMITMENT</small>
+                <strong id="learn-plan-commitment"></strong>
+              </div>
+              <div class="learn-plan-summary-item">
+                <small>PRIMARY FOCUS</small>
+                <strong id="learn-plan-focus"></strong>
+              </div>
+              <div class="learn-plan-summary-item">
+                <small>SKIP FOR NOW</small>
+                <strong id="learn-plan-skip"></strong>
+              </div>
             </div>
-            <div class="learn-plan-summary-item">
-              <small>STUDY COMMITMENT</small>
-              <strong id="learn-plan-commitment"></strong>
-            </div>
-            <div class="learn-plan-summary-item">
-              <small>PRIMARY FOCUS</small>
-              <strong id="learn-plan-focus"></strong>
-            </div>
-            <div class="learn-plan-summary-item">
-              <small>SKIP FOR NOW</small>
-              <strong id="learn-plan-skip"></strong>
-            </div>
-          </div>
-
-          <div class="learn-why-now">
-            <div class="learn-week-resource-label">WHY THIS NOW</div>
-            <p id="learn-why-now-copy"></p>
-          </div>
+          </details>
 
           <!-- TODAY -->
-          <section class="learn-today-card">
+          <section class="learn-today-card" id="learn-today-card">
             <div class="learn-today-top">
               <div>
                 <div class="learn-week-resource-label">TODAY · ONE CLEAR NEXT STEP</div>
@@ -238,11 +254,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               <strong id="learn-today-duration"></strong>
             </div>
-            <ol>
-              <li id="learn-today-step-one"></li>
-              <li id="learn-today-step-two"></li>
-              <li id="learn-today-step-three"></li>
-            </ol>
+
+            <div class="learn-today-why">
+              <div class="learn-week-resource-label">WHY THIS NOW</div>
+              <p id="learn-why-now-copy"></p>
+            </div>
+
             <a
               id="learn-today-link"
               class="learn-btn learn-btn-primary"
@@ -251,47 +268,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               rel="noopener noreferrer"
               data-resource-link="today"
             >
-              DO THIS NEXT →
+              START THIS LESSON →
             </a>
+
+            <details class="learn-today-steps">
+              <summary>VIEW TODAY'S 3 STEPS <span>+</span></summary>
+              <ol>
+                <li id="learn-today-step-one"></li>
+                <li id="learn-today-step-two"></li>
+                <li id="learn-today-step-three"></li>
+              </ol>
+            </details>
           </section>
 
-          <!-- PHASE 1 -->
-          <div class="learn-week-list">
-            <article class="learn-week">
-              <span>PHASE 1</span>
-              <div>
+          <!-- PHASES -->
+          <div class="learn-week-list learn-phase-list">
+
+            <details class="learn-phase-accordion" data-phase-details="one" open>
+              <summary>
+                <span class="learn-phase-number">1</span>
+                <span class="learn-phase-summary-copy">
+                  <small id="phase-one-status">CURRENT · FOUNDATION</small>
+                  <strong id="phase-one-title"></strong>
+                </span>
+                <span class="learn-phase-toggle">+</span>
+              </summary>
+              <div class="learn-phase-body">
                 <div class="learn-week-purpose" id="phase-one-purpose">FOUNDATION</div>
-                <h3 id="phase-one-title"></h3>
                 <p id="phase-one-copy"></p>
-                <div class="learn-week-time">
-                  Recommended pace: <strong id="phase-one-time"></strong>
-                </div>
+                <div class="learn-week-time">Recommended pace: <strong id="phase-one-time"></strong></div>
                 <div class="learn-week-resource" data-resource-card="one">
                   <div class="learn-week-resource-label">RECOMMENDED NEXT STEP</div>
-                  <div class="learn-week-resource-provider">
-                    <span id="phase-one-provider"></span>
-                    <span class="learn-free-badge">FREE</span>
-                  </div>
+                  <div class="learn-week-resource-provider"><span id="phase-one-provider"></span><span class="learn-free-badge">FREE</span></div>
                   <h4 id="phase-one-resource-title"></h4>
                   <p id="phase-one-resource-reason"></p>
-                  <div class="learn-resource-meta">
-                    <span id="phase-one-best-for"></span>
-                    <span id="phase-one-checked"></span>
-                  </div>
-                  <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-one-not-for"></span></p>
-                  <div class="learn-sik-check" aria-label="Seen in Korea verification summary">
-                    <div class="learn-sik-check-head">
-                      <span>SIK CHECK</span>
-                      <strong id="phase-one-confidence"></strong>
+
+                  <details class="learn-why-picked">
+                    <summary>WHY WE PICKED THIS <span>+</span></summary>
+                    <div class="learn-why-picked-body">
+                      <div class="learn-resource-meta"><span id="phase-one-best-for"></span><span id="phase-one-checked"></span></div>
+                      <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-one-not-for"></span></p>
+                      <details class="learn-sik-check" aria-label="Seen in Korea verification summary">
+                        <summary class="learn-sik-check-head"><span>SIK CHECK</span><strong id="phase-one-confidence"></strong><b>+</b></summary>
+                        <div class="learn-sik-check-grid">
+                          <span>Official source</span><strong id="phase-one-check-official"></strong>
+                          <span>Free access</span><strong id="phase-one-check-free"></strong>
+                          <span>Level fit</span><strong id="phase-one-check-level"></strong>
+                          <span>Independent evidence</span><strong id="phase-one-check-independent"></strong>
+                        </div>
+                        <small id="phase-one-last-checked"></small>
+                      </details>
                     </div>
-                    <div class="learn-sik-check-grid">
-                      <span>Official source</span><strong id="phase-one-check-official"></strong>
-                      <span>Free access</span><strong id="phase-one-check-free"></strong>
-                      <span>Level fit</span><strong id="phase-one-check-level"></strong>
-                      <span>Independent evidence</span><strong id="phase-one-check-independent"></strong>
-                    </div>
-                    <small id="phase-one-last-checked"></small>
-                  </div>
+                  </details>
+
                   <div class="learn-resource-actions">
                     <a id="phase-one-resource-link" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="one">START FREE RESOURCE →</a>
                     <button type="button" data-alt-resource="one">TRY ANOTHER OPTION</button>
@@ -308,44 +337,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   </div>
                 </div>
               </div>
-            </article>
+            </details>
 
-            <!-- PHASE 2 -->
-            <article class="learn-week">
-              <span>PHASE 2</span>
-              <div>
+            <details class="learn-phase-accordion" data-phase-details="two">
+              <summary>
+                <span class="learn-phase-number">2</span>
+                <span class="learn-phase-summary-copy">
+                  <small id="phase-two-status">NEXT · YOUR GOAL</small>
+                  <strong id="phase-two-title"></strong>
+                </span>
+                <span class="learn-phase-toggle">+</span>
+              </summary>
+              <div class="learn-phase-body">
                 <div class="learn-week-purpose" id="phase-two-purpose">YOUR GOAL</div>
-                <h3 id="phase-two-title"></h3>
                 <p id="phase-two-copy"></p>
-                <div class="learn-week-time">
-                  Recommended pace: <strong id="phase-two-time"></strong>
-                </div>
+                <div class="learn-week-time">Recommended pace: <strong id="phase-two-time"></strong></div>
                 <div class="learn-week-resource" data-resource-card="two">
-                  <div class="learn-week-resource-label">RECOMMENDED NEXT RESOURCE</div>
-                  <div class="learn-week-resource-provider">
-                    <span id="phase-two-provider"></span>
-                    <span class="learn-free-badge">FREE</span>
-                  </div>
+                  <div class="learn-week-resource-label">RECOMMENDED NEXT STEP</div>
+                  <div class="learn-week-resource-provider"><span id="phase-two-provider"></span><span class="learn-free-badge">FREE</span></div>
                   <h4 id="phase-two-resource-title"></h4>
                   <p id="phase-two-resource-reason"></p>
-                  <div class="learn-resource-meta">
-                    <span id="phase-two-best-for"></span>
-                    <span id="phase-two-checked"></span>
-                  </div>
-                  <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-two-not-for"></span></p>
-                  <div class="learn-sik-check" aria-label="Seen in Korea verification summary">
-                    <div class="learn-sik-check-head">
-                      <span>SIK CHECK</span>
-                      <strong id="phase-two-confidence"></strong>
+                  <details class="learn-why-picked">
+                    <summary>WHY WE PICKED THIS <span>+</span></summary>
+                    <div class="learn-why-picked-body">
+                      <div class="learn-resource-meta"><span id="phase-two-best-for"></span><span id="phase-two-checked"></span></div>
+                      <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-two-not-for"></span></p>
+                      <details class="learn-sik-check" aria-label="Seen in Korea verification summary">
+                        <summary class="learn-sik-check-head"><span>SIK CHECK</span><strong id="phase-two-confidence"></strong><b>+</b></summary>
+                        <div class="learn-sik-check-grid">
+                          <span>Official source</span><strong id="phase-two-check-official"></strong>
+                          <span>Free access</span><strong id="phase-two-check-free"></strong>
+                          <span>Level fit</span><strong id="phase-two-check-level"></strong>
+                          <span>Independent evidence</span><strong id="phase-two-check-independent"></strong>
+                        </div>
+                        <small id="phase-two-last-checked"></small>
+                      </details>
                     </div>
-                    <div class="learn-sik-check-grid">
-                      <span>Official source</span><strong id="phase-two-check-official"></strong>
-                      <span>Free access</span><strong id="phase-two-check-free"></strong>
-                      <span>Level fit</span><strong id="phase-two-check-level"></strong>
-                      <span>Independent evidence</span><strong id="phase-two-check-independent"></strong>
-                    </div>
-                    <small id="phase-two-last-checked"></small>
-                  </div>
+                  </details>
                   <div class="learn-resource-actions">
                     <a id="phase-two-resource-link" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="two">START FREE RESOURCE →</a>
                     <button type="button" data-alt-resource="two">TRY ANOTHER OPTION</button>
@@ -362,44 +390,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   </div>
                 </div>
               </div>
-            </article>
+            </details>
 
-            <!-- PHASE 3 -->
-            <article class="learn-week">
-              <span>PHASE 3</span>
-              <div>
+            <details class="learn-phase-accordion" data-phase-details="three">
+              <summary>
+                <span class="learn-phase-number">3</span>
+                <span class="learn-phase-summary-copy">
+                  <small id="phase-three-status">NEXT · PRACTICE</small>
+                  <strong id="phase-three-title"></strong>
+                </span>
+                <span class="learn-phase-toggle">+</span>
+              </summary>
+              <div class="learn-phase-body">
                 <div class="learn-week-purpose">PRACTICE</div>
-                <h3 id="phase-three-title"></h3>
                 <p id="phase-three-copy"></p>
-                <div class="learn-week-time">
-                  Recommended pace: <strong id="phase-three-time"></strong>
-                </div>
+                <div class="learn-week-time">Recommended pace: <strong id="phase-three-time"></strong></div>
                 <div class="learn-week-resource" data-resource-card="three">
-                  <div class="learn-week-resource-label">RECOMMENDED PRACTICE</div>
-                  <div class="learn-week-resource-provider">
-                    <span id="phase-three-provider"></span>
-                    <span class="learn-free-badge">FREE</span>
-                  </div>
+                  <div class="learn-week-resource-label">RECOMMENDED NEXT STEP</div>
+                  <div class="learn-week-resource-provider"><span id="phase-three-provider"></span><span class="learn-free-badge">FREE</span></div>
                   <h4 id="phase-three-resource-title"></h4>
                   <p id="phase-three-resource-reason"></p>
-                  <div class="learn-resource-meta">
-                    <span id="phase-three-best-for"></span>
-                    <span id="phase-three-checked"></span>
-                  </div>
-                  <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-three-not-for"></span></p>
-                  <div class="learn-sik-check" aria-label="Seen in Korea verification summary">
-                    <div class="learn-sik-check-head">
-                      <span>SIK CHECK</span>
-                      <strong id="phase-three-confidence"></strong>
+                  <details class="learn-why-picked">
+                    <summary>WHY WE PICKED THIS <span>+</span></summary>
+                    <div class="learn-why-picked-body">
+                      <div class="learn-resource-meta"><span id="phase-three-best-for"></span><span id="phase-three-checked"></span></div>
+                      <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-three-not-for"></span></p>
+                      <details class="learn-sik-check" aria-label="Seen in Korea verification summary">
+                        <summary class="learn-sik-check-head"><span>SIK CHECK</span><strong id="phase-three-confidence"></strong><b>+</b></summary>
+                        <div class="learn-sik-check-grid">
+                          <span>Official source</span><strong id="phase-three-check-official"></strong>
+                          <span>Free access</span><strong id="phase-three-check-free"></strong>
+                          <span>Level fit</span><strong id="phase-three-check-level"></strong>
+                          <span>Independent evidence</span><strong id="phase-three-check-independent"></strong>
+                        </div>
+                        <small id="phase-three-last-checked"></small>
+                      </details>
                     </div>
-                    <div class="learn-sik-check-grid">
-                      <span>Official source</span><strong id="phase-three-check-official"></strong>
-                      <span>Free access</span><strong id="phase-three-check-free"></strong>
-                      <span>Level fit</span><strong id="phase-three-check-level"></strong>
-                      <span>Independent evidence</span><strong id="phase-three-check-independent"></strong>
-                    </div>
-                    <small id="phase-three-last-checked"></small>
-                  </div>
+                  </details>
                   <div class="learn-resource-actions">
                     <a id="phase-three-resource-link" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="three">START FREE RESOURCE →</a>
                     <button type="button" data-alt-resource="three">TRY ANOTHER OPTION</button>
@@ -416,7 +443,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   </div>
                 </div>
               </div>
-            </article>
+            </details>
 
             <!-- SIK MISSION -->
             <article class="learn-week learn-mission-week">
@@ -442,6 +469,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </article>
           </div>
         </div>
+          <a id="learn-mobile-sticky" class="learn-mobile-sticky" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="today">
+            START TODAY · <span id="learn-mobile-sticky-time">10 MIN</span> →
+          </a>
       </div>
     </section>
 
@@ -574,7 +604,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <p>Your path should get clearer as you study — not more complicated.</p>
           </div>
           <div class="learn-final-actions">
-            <a href="#study-plan" class="learn-btn learn-btn-dark">BUILD MY STUDY PATH →</a>
+            <a href="#study-plan" class="learn-btn learn-btn-dark">FIND MY NEXT KOREAN LESSON →</a>
             <a href="#tutor" class="learn-btn learn-btn-light">TAKE A REAL-LIFE TEST →</a>
           </div>
         </div>
@@ -648,6 +678,51 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .learn-mission-button{margin-top:14px;min-height:38px;padding:0 12px;border:1px solid #111;background:#111;color:#fff;font:inherit;font-size:9px;font-weight:900;cursor:pointer;}
     #learn-mission-status{display:block;margin-top:8px;color:var(--muted);}
 
+
+    .learn-accent-text{color:var(--accent);}
+    .learn-hero-time{margin-top:12px;color:var(--muted);font-size:9px;font-weight:800;letter-spacing:.03em;}
+    .learn-progress-box{margin:0 0 14px;padding:12px 14px;border:1px solid var(--line);background:#fff;}
+    .learn-progress-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px;}
+    .learn-progress-meta strong{font-size:9px;letter-spacing:.05em;}
+    .learn-progress-meta span{color:var(--muted);font-size:8px;}
+    .learn-progress-track{height:4px;background:#e6e1da;overflow:hidden;}
+    .learn-progress-track span{display:block;width:20%;height:100%;background:var(--accent);transition:width .2s ease;}
+    .learn-return-banner{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0 0 18px;padding:14px 16px;border:1px solid #ffd7c8;background:#fff7f3;}
+    .learn-return-banner div{display:flex;flex-direction:column;gap:3px;}
+    .learn-return-banner strong{font-size:9px;color:var(--accent);letter-spacing:.08em;}
+    .learn-return-banner span{font-size:11px;}
+    .learn-return-banner button{min-height:34px;padding:0 10px;border:0;background:var(--accent);color:#fff;font:inherit;font-size:8px;font-weight:900;cursor:pointer;}
+    .learn-path-details{margin:0 0 18px;border:1px solid var(--line);background:#fff;}
+    .learn-path-details>summary,.learn-today-steps>summary,.learn-why-picked>summary{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 14px;cursor:pointer;list-style:none;font-size:8px;font-weight:900;letter-spacing:.06em;}
+    .learn-path-details>summary::-webkit-details-marker,.learn-today-steps>summary::-webkit-details-marker,.learn-why-picked>summary::-webkit-details-marker,.learn-phase-accordion>summary::-webkit-details-marker,.learn-sik-check>summary::-webkit-details-marker{display:none;}
+    .learn-path-details .learn-plan-summary{margin:0;border:0;border-top:1px solid var(--line);}
+    .learn-today-why{margin:16px 0 18px;padding-top:14px;border-top:1px solid #333;}
+    .learn-today-why p{margin:0;color:#ddd;font-size:11px;line-height:1.55;}
+    .learn-today-steps{margin-top:12px;border-top:1px solid #333;}
+    .learn-today-steps>summary{padding:12px 0 0;color:#fff;}
+    .learn-today-steps ol{margin:12px 0 0;}
+    .learn-phase-list{display:grid;gap:8px;}
+    .learn-phase-accordion{border:1px solid var(--line);background:#fff;}
+    .learn-phase-accordion>summary{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px;cursor:pointer;list-style:none;}
+    .learn-phase-number{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#999;color:#fff;font-size:10px;font-weight:900;}
+    .learn-phase-summary-copy{display:flex;min-width:0;flex-direction:column;gap:3px;}
+    .learn-phase-summary-copy small{color:var(--muted);font-size:7px;font-weight:900;letter-spacing:.08em;}
+    .learn-phase-summary-copy strong{font-size:12px;line-height:1.3;}
+    .learn-phase-toggle{font-size:16px;font-weight:500;}
+    .learn-phase-accordion[open]>.learn-phase-body{border-top:1px solid var(--line);}
+    .learn-phase-accordion[open] .learn-phase-number{background:var(--accent);}
+    .learn-phase-accordion[open]>.learn-phase-body{padding:16px;}
+    .learn-phase-accordion[open]>summary .learn-phase-toggle{transform:rotate(45deg);}
+    .learn-why-picked{margin-top:12px;border:1px solid var(--line);background:#fff;}
+    .learn-why-picked-body{padding:0 12px 12px;}
+    .learn-sik-check{padding:0!important;}
+    .learn-sik-check>summary{list-style:none;cursor:pointer;padding:12px;}
+    .learn-sik-check[open] .learn-sik-check-grid{padding:0 12px 10px;}
+    .learn-sik-check[open]>small{padding:0 12px 12px;}
+    .learn-sik-check-head{margin:0!important;}
+    .learn-sik-check-head b{font-size:12px;}
+    .learn-mobile-sticky{display:none;}
+
     @media(max-width:850px){
       .learn-plan-summary{grid-template-columns:1fr;}
       .learn-plan-summary-item{min-height:0;}
@@ -658,13 +733,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       .learn-today-card h3{font-size:21px;}
       .learn-resource-actions{display:grid;grid-template-columns:1fr;}
       .learn-resource-actions a,.learn-resource-actions button{justify-content:center;}
+      .learn-progress-meta{align-items:flex-start;}
+      .learn-return-banner{align-items:flex-start;flex-direction:column;}
+      .learn-return-banner button{width:100%;}
+      .learn-phase-accordion>summary{grid-template-columns:auto 1fr auto;padding:12px;}
+      .learn-phase-summary-copy strong{font-size:11px;}
+      .learn-mobile-sticky{display:flex;position:fixed;z-index:80;left:14px;right:14px;bottom:14px;min-height:46px;align-items:center;justify-content:center;padding:0 16px;background:var(--accent);color:#fff;text-decoration:none;font-size:10px;font-weight:900;box-shadow:0 8px 24px rgba(0,0,0,.16);}
+      #korean-plan-result[hidden] .learn-mobile-sticky{display:none;}
     }
 
     @media print{
       body *{visibility:hidden!important;}
       #korean-plan-result,#korean-plan-result *{visibility:visible!important;}
       #korean-plan-result{position:absolute;inset:0 auto auto 0;width:100%;margin:0;border:0;box-shadow:none;}
-      .learn-result-actions,.learn-resource-actions,.learn-difficulty,.learn-mission-button{display:none!important;}
+      .learn-result-actions,.learn-resource-actions,.learn-difficulty,.learn-mission-button,.learn-mobile-sticky{display:none!important;}
     }
   </style>
 
@@ -673,6 +755,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     const selections={goal:null,level:null,time:null,focus:null,context:null};
     const feedback={};
+    const completedPhases={one:false,two:false,three:false};
+    let resourceProfileKey='';
     const resourceState={one:[],two:[],three:[]};
     const currentResourceIndex={one:0,two:0,three:0};
     const stepOrder=['goal','level','time','focus','context'];
@@ -844,6 +928,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     function confidenceLabel(value){return`${String(value||'low').toUpperCase()} CONFIDENCE`;}
 
     function setText(id,value){const element=document.getElementById(id);if(element)element.textContent=value||'';}
+
+    function updateProgress(step){
+      const index=Math.max(0,stepOrder.indexOf(step));
+      setText('learn-progress-text',`Step ${index+1} of ${stepOrder.length}`);
+      const bar=document.getElementById('learn-progress-bar');
+      if(bar)bar.style.width=`${((index+1)/stepOrder.length)*100}%`;
+    }
+
+    function currentOpenStep(){
+      return stepOrder.find((step)=>document.querySelector(`[data-plan-step="${step}"]`)?.classList.contains('is-open'))||'context';
+    }
     function getContextConfig(){return contextConfig[selections.goal]||contextConfig.travel;}
     function getContextLabel(value=selections.context){const option=getContextConfig().options.find(([key])=>key===value);return option?option[1]:'';}
 
@@ -879,11 +974,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     function revealNextStep(step){
       const index=stepOrder.indexOf(step);
       const nextStep=stepOrder[index+1];
-      if(!nextStep){document.getElementById('learn-plan-action')?.removeAttribute('hidden');return;}
+      if(!nextStep){document.getElementById('learn-plan-action')?.removeAttribute('hidden');updateProgress(step);return;}
       if(nextStep==='context')renderContextQuestion();
       const nextElement=document.querySelector(`[data-plan-step="${nextStep}"]`);
       nextElement?.removeAttribute('hidden');
       nextElement?.classList.add('is-open');
+      updateProgress(nextStep);
       if(!restoringPlan)setTimeout(()=>nextElement?.scrollIntoView({behavior:'smooth',block:'center'}),120);
     }
 
@@ -911,6 +1007,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const value=optionButton.dataset.value;
       if(!step||!value)return;
       if(!selections.goal)track('plan_started');
+      const hadCompletePlan=allSelected();
+      if(hadCompletePlan){completedPhases.one=false;completedPhases.two=false;completedPhases.three=false;resourceProfileKey='';}
       completeStep(step,value);
     });
 
@@ -925,6 +1023,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         const complete=document.querySelector(`[data-complete="${step}"]`);
         stepElement?.classList.remove('is-complete');
         stepElement?.classList.add('is-open');
+        updateProgress(step);
         options?.removeAttribute('hidden');
         complete?.setAttribute('hidden','');
         stepElement?.scrollIntoView({behavior:'smooth',block:'center'});
@@ -1013,7 +1112,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       return unique.length?unique:rankResources(role);
     }
 
-    function buildResourceState(){
+    function getResourceProfileKey(){return stepOrder.map((step)=>selections[step]||'').join('|');}
+
+    function buildResourceState({force=false}={}){
+      const nextKey=getResourceProfileKey();
+      if(!force&&resourceProfileKey===nextKey&&resourceState.one.length&&resourceState.two.length&&resourceState.three.length)return;
       const utilityFirst=useUtilityFirst();
       const phaseOneRole=utilityFirst?'goal':'foundation';
       const phaseTwoRole=utilityFirst?'foundation':'goal';
@@ -1023,6 +1126,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const twoId=resourceState.two[0]?.id;
       resourceState.three=rankWithFallback('practice',[oneId,twoId].filter(Boolean));
       currentResourceIndex.one=0;currentResourceIndex.two=0;currentResourceIndex.three=0;
+      resourceProfileKey=nextKey;
     }
 
     function currentResource(phase){const list=resourceState[phase]||[];return list[currentResourceIndex[phase]%Math.max(list.length,1)];}
@@ -1085,6 +1189,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const steps=todaySteps(resource);
       setText('learn-today-step-one',steps[0]);setText('learn-today-step-two',steps[1]);setText('learn-today-step-three',steps[2]);
       const link=document.getElementById('learn-today-link');if(link){link.href=resource.url;link.dataset.resourceId=resource.id;}
+      const sticky=document.getElementById('learn-mobile-sticky');if(sticky){sticky.href=resource.url;sticky.dataset.resourceId=resource.id;}
+      setText('learn-mobile-sticky-time',timePlans[selections.time].today);
     }
 
     function renderPhaseCopy(){
@@ -1102,6 +1208,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       setText('phase-three-copy',`${goal.practiceCopy} ${focusPlans[selections.focus].practice}`);
       ['one','two','three'].forEach((phase)=>setText(`phase-${phase}-time`,timePlans[selections.time].pace));
     }
+
+
+    function phaseLabel(phase){
+      if(phase==='one')return selections.goal==='travel'&&selections.context==='urgent'?'SURVIVAL FIRST':'FOUNDATION';
+      if(phase==='two')return selections.goal==='travel'&&selections.context==='urgent'?'FOUNDATION':'YOUR GOAL';
+      return'PRACTICE';
+    }
+
+    function updatePhaseStates(){
+      const phases=['one','two','three'];
+      const firstIncomplete=phases.find((phase)=>!completedPhases[phase])||null;
+      phases.forEach((phase)=>{
+        const isDone=completedPhases[phase];
+        const status=isDone?'COMPLETED':phase===firstIncomplete?'CURRENT':'NEXT';
+        setText(`phase-${phase}-status`,`${status} · ${phaseLabel(phase)}`);
+        const details=document.querySelector(`[data-phase-details="${phase}"]`);
+        if(details)details.classList.toggle('is-completed',isDone);
+      });
+    }
+
+    function openPhase(phase){
+      document.querySelectorAll('[data-phase-details]').forEach((details)=>{details.open=details.dataset.phaseDetails===phase;});
+      document.querySelector(`[data-phase-details="${phase}"]`)?.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    document.querySelectorAll('[data-phase-details]').forEach((details)=>{
+      details.addEventListener('toggle',()=>{
+        if(!details.open)return;
+        document.querySelectorAll('[data-phase-details]').forEach((other)=>{if(other!==details)other.open=false;});
+      });
+    });
 
     function renderMission(){const mission=missionPlans[selections.goal];setText('learn-mission-title',mission.title);setText('learn-mission-copy',mission.copy);setText('learn-mission-status','');}
 
@@ -1130,9 +1267,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       setText('learn-plan-focus',focusPlans[selections.focus].strategy);
       setText('learn-plan-skip',goalPlans[selections.goal].skip);
       setText('learn-why-now-copy',whyNow());
-      renderPhaseCopy();['one','two','three'].forEach(renderResource);renderToday();renderMission();renderFinal();
+      renderPhaseCopy();['one','two','three'].forEach(renderResource);renderToday();renderMission();renderFinal();updatePhaseStates();
       document.getElementById('korean-plan-result')?.removeAttribute('hidden');
       setText('learn-plan-message','Your Korean path is ready.');
+      saveState(false);
       track('plan_completed',{goal:selections.goal,level:selections.level,time:selections.time,focus:selections.focus,context:selections.context});
       if(scroll)document.getElementById('korean-plan-result')?.scrollIntoView({behavior:'smooth',block:'start'});
       return true;
@@ -1148,6 +1286,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       button.addEventListener('click',()=>{
         const phase=button.dataset.altResource;const list=resourceState[phase]||[];if(list.length<2)return;
         currentResourceIndex[phase]=(currentResourceIndex[phase]+1)%list.length;renderResource(phase);if(phase==='one')renderToday();
+        saveState(false);
         const resource=currentResource(phase);track('resource_alternative_selected',{phase,resource_id:resource?.id||''});
       });
     });
@@ -1187,7 +1326,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               ? adjusted?'Got it. We made the next recommendation simpler.':'Got it. We saved this feedback for your next recommendation.'
               : 'Good. We’ll keep the next recommendation around this difficulty.';
         }
+        completedPhases[phase]=true;
+        updatePhaseStates();
+        const nextPhase=phase==='one'?'two':phase==='two'?'three':null;
         saveState(false);
+        if(nextPhase)setTimeout(()=>openPhase(nextPhase),220);
         track(value==='easy'?'resource_too_easy':value==='hard'?'resource_too_hard':'resource_just_right',{phase,resource_id:resource?.id||'',adjusted});
       });
     });
@@ -1204,7 +1347,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     });
 
     function saveState(showMessage=true){
-      localStorage.setItem(STORAGE_KEY,JSON.stringify({selections,feedback}));
+      localStorage.setItem(STORAGE_KEY,JSON.stringify({selections,feedback,completedPhases,currentResourceIndex}));
       if(showMessage)setText('learn-plan-message','Plan saved on this device.');
     }
 
@@ -1247,13 +1390,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       return true;
     }
 
+    document.getElementById('learn-return-continue')?.addEventListener('click',()=>{
+      const firstIncomplete=['one','two','three'].find((phase)=>!completedPhases[phase]);
+      if(firstIncomplete)openPhase(firstIncomplete);
+      else document.getElementById('learn-today-card')?.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+
+    updateProgress('goal');
+
     const params=new URLSearchParams(window.location.search);const queryValues={};stepOrder.forEach((step)=>{queryValues[step]=params.get(step);});
     const restoredFromUrl=restorePlan(queryValues,{source:'url'});
     let restoredFromStorage=false;
     if(!restoredFromUrl){
       try{
         const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');
-        if(saved?.selections){restoredFromStorage=restorePlan(saved.selections,{source:'localStorage'});Object.assign(feedback,saved.feedback||{});}
+        if(saved?.selections){
+          Object.assign(feedback,saved.feedback||{});
+          Object.assign(completedPhases,saved.completedPhases||{});
+          restoredFromStorage=restorePlan(saved.selections,{source:'localStorage'});
+          if(restoredFromStorage){
+            if(saved.currentResourceIndex)Object.assign(currentResourceIndex,saved.currentResourceIndex);
+            ['one','two','three'].forEach(renderResource);renderToday();updatePhaseStates();
+            const banner=document.getElementById('learn-return-banner');
+            banner?.removeAttribute('hidden');
+          }
+        }
       }catch(error){localStorage.removeItem(STORAGE_KEY);}
     }
     if(!restoredFromUrl&&!restoredFromStorage){
