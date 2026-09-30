@@ -70,287 +70,295 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
 
-   <!-- PERSONALIZED STUDY PLAN -->
-<section
-  id="study-plan"
-  class="learn-plan-section"
->
-  <div class="wrap">
-
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">FREE KOREAN STUDY PLAN</div>
-        <h2>Tell us about you.</h2>
-      </div>
-
-      <p>
-        Answer one question at a time.
-        We’ll build a starting plan around your goal,
-        level, available time and learning priority.
-      </p>
-    </div>
-
-
-    <div class="learn-plan-builder learn-plan-progressive">
-
-      <!-- STEP 1 -->
-      <div
-        class="learn-question is-open"
-        data-plan-step="goal"
-      >
-        <div class="learn-question-top">
-          <div class="learn-question-number">01</div>
-
-          <div>
-            <h3>Your goal</h3>
-            <p>Why do you want to learn Korean?</p>
-          </div>
-        </div>
-
-        <div
-          class="learn-question-options"
-          data-options="goal"
-        >
-          <div class="learn-option-grid">
-            <button type="button" data-goal="travel">
-              Travel
-            </button>
-
-            <button type="button" data-goal="life">
-              Live in Korea
-            </button>
-
-            <button type="button" data-goal="work">
-              Work / Business
-            </button>
-
-            <button type="button" data-goal="social">
-              Friends / Dating
-            </button>
-
-            <button type="button" data-goal="topik">
-              TOPIK
-            </button>
-
-            <button type="button" data-goal="culture">
-              K-pop / Drama
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="learn-step-complete"
-          data-complete="goal"
-          hidden
-        >
-          <span>
-            ✓ <strong data-summary="goal"></strong>
-          </span>
-
-          <button
-            type="button"
-            data-change-step="goal"
-          >
-            CHANGE
-          </button>
-        </div>
-      </div>
-
-
-      <!-- STEP 2 -->
-      <div
-        class="learn-question"
-        data-plan-step="level"
-        hidden
-      >
-        <div class="learn-question-top">
-          <div class="learn-question-number">02</div>
-
-          <div>
-            <h3>Your level</h3>
-            <p>What’s your current Korean level?</p>
-          </div>
-        </div>
-
-        <div
-          class="learn-question-options"
-          data-options="level"
-        >
-          <div class="learn-option-grid">
-            <button type="button" data-level="zero">
-              Complete beginner
-            </button>
-
-            <button type="button" data-level="beginner">
-              Beginner
-            </button>
-
-            <button type="button" data-level="intermediate">
-              Intermediate
-            </button>
-
-            <button type="button" data-level="advanced">
-              Advanced
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="learn-step-complete"
-          data-complete="level"
-          hidden
-        >
-          <span>
-            ✓ <strong data-summary="level"></strong>
-          </span>
-
-          <button
-            type="button"
-            data-change-step="level"
-          >
-            CHANGE
-          </button>
-        </div>
-      </div>
-
-
-      <!-- STEP 3 -->
-      <div
-        class="learn-question"
-        data-plan-step="time"
-        hidden
-      >
-        <div class="learn-question-top">
-          <div class="learn-question-number">03</div>
-
-          <div>
-            <h3>Your time</h3>
-            <p>How much time can you realistically study?</p>
-          </div>
-        </div>
-
-        <div
-          class="learn-question-options"
-          data-options="time"
-        >
-          <div class="learn-option-grid">
-            <button type="button" data-time="10">
-              10 min / day
-            </button>
-
-            <button type="button" data-time="30">
-              30 min / day
-            </button>
-
-            <button type="button" data-time="60">
-              1 hour / day
-            </button>
-
-            <button type="button" data-time="weekend">
-              A few hours / week
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="learn-step-complete"
-          data-complete="time"
-          hidden
-        >
-          <span>
-            ✓ <strong data-summary="time"></strong>
-          </span>
-
-          <button
-            type="button"
-            data-change-step="time"
-          >
-            CHANGE
-          </button>
-        </div>
-      </div>
-
-
-      <!-- STEP 4 -->
-      <div
-        class="learn-question"
-        data-plan-step="focus"
-        hidden
-      >
-        <div class="learn-question-top">
-          <div class="learn-question-number">04</div>
-
-          <div>
-            <h3>Your priority</h3>
-            <p>What do you want the most help with?</p>
-          </div>
-        </div>
-
-        <div
-          class="learn-question-options"
-          data-options="focus"
-        >
-          <div class="learn-option-grid">
-            <button type="button" data-focus="speaking">
-              Speaking
-            </button>
-
-            <button type="button" data-focus="listening">
-              Listening
-            </button>
-
-            <button type="button" data-focus="reading">
-              Reading
-            </button>
-
-            <button type="button" data-focus="writing">
-              Writing
-            </button>
-
-            <button type="button" data-focus="unsure">
-              I’m not sure
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="learn-step-complete"
-          data-complete="focus"
-          hidden
-        >
-          <span>
-            ✓ <strong data-summary="focus"></strong>
-          </span>
-
-          <button
-            type="button"
-            data-change-step="focus"
-          >
-            CHANGE
-          </button>
-        </div>
-      </div>
-
-    </div>
-
-
-    <div
-      class="learn-plan-action"
-      id="learn-plan-action"
-      hidden
+    <!-- PERSONALIZED STUDY PLAN -->
+    <section
+      id="study-plan"
+      class="learn-plan-section"
     >
-      <button
-        id="generate-korean-plan"
-        type="button"
-        class="learn-btn learn-btn-primary"
-      >
-        BUILD MY KOREAN PLAN →
-      </button>
+      <div class="wrap">
 
-      <p id="learn-plan-message">
-        Your answers are ready.
-      </p>
-    </div>
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">FREE KOREAN STUDY PLAN</div>
+            <h2>Tell us about you.</h2>
+          </div>
+
+          <p>
+            Answer one question at a time.
+            We’ll build a starting plan around your goal,
+            level, available time and learning priority.
+          </p>
+        </div>
+
+
+        <div class="learn-plan-builder learn-plan-progressive">
+
+          <!-- STEP 1 -->
+          <div
+            class="learn-question is-open"
+            data-plan-step="goal"
+          >
+            <div class="learn-question-top">
+              <div class="learn-question-number">01</div>
+
+              <div>
+                <h3>Your goal</h3>
+                <p>Why do you want to learn Korean?</p>
+              </div>
+            </div>
+
+            <div
+              class="learn-question-options"
+              data-options="goal"
+            >
+              <div class="learn-option-grid">
+
+                <button type="button" data-goal="travel">
+                  Travel
+                </button>
+
+                <button type="button" data-goal="life">
+                  Live in Korea
+                </button>
+
+                <button type="button" data-goal="work">
+                  Work / Business
+                </button>
+
+                <button type="button" data-goal="social">
+                  Friends / Dating
+                </button>
+
+                <button type="button" data-goal="topik">
+                  TOPIK
+                </button>
+
+                <button type="button" data-goal="culture">
+                  K-pop / Drama
+                </button>
+
+              </div>
+            </div>
+
+            <div
+              class="learn-step-complete"
+              data-complete="goal"
+              hidden
+            >
+              <span>
+                ✓ <strong data-summary="goal"></strong>
+              </span>
+
+              <button
+                type="button"
+                data-change-step="goal"
+              >
+                CHANGE
+              </button>
+            </div>
+          </div>
+
+
+          <!-- STEP 2 -->
+          <div
+            class="learn-question"
+            data-plan-step="level"
+            hidden
+          >
+            <div class="learn-question-top">
+              <div class="learn-question-number">02</div>
+
+              <div>
+                <h3>Your level</h3>
+                <p>What’s your current Korean level?</p>
+              </div>
+            </div>
+
+            <div
+              class="learn-question-options"
+              data-options="level"
+            >
+              <div class="learn-option-grid">
+
+                <button type="button" data-level="zero">
+                  Complete beginner
+                </button>
+
+                <button type="button" data-level="beginner">
+                  Beginner
+                </button>
+
+                <button type="button" data-level="intermediate">
+                  Intermediate
+                </button>
+
+                <button type="button" data-level="advanced">
+                  Advanced
+                </button>
+
+              </div>
+            </div>
+
+            <div
+              class="learn-step-complete"
+              data-complete="level"
+              hidden
+            >
+              <span>
+                ✓ <strong data-summary="level"></strong>
+              </span>
+
+              <button
+                type="button"
+                data-change-step="level"
+              >
+                CHANGE
+              </button>
+            </div>
+          </div>
+
+
+          <!-- STEP 3 -->
+          <div
+            class="learn-question"
+            data-plan-step="time"
+            hidden
+          >
+            <div class="learn-question-top">
+              <div class="learn-question-number">03</div>
+
+              <div>
+                <h3>Your time</h3>
+                <p>How much time can you realistically study?</p>
+              </div>
+            </div>
+
+            <div
+              class="learn-question-options"
+              data-options="time"
+            >
+              <div class="learn-option-grid">
+
+                <button type="button" data-time="10">
+                  10 min / day
+                </button>
+
+                <button type="button" data-time="30">
+                  30 min / day
+                </button>
+
+                <button type="button" data-time="60">
+                  1 hour / day
+                </button>
+
+                <button type="button" data-time="weekend">
+                  A few hours / week
+                </button>
+
+              </div>
+            </div>
+
+            <div
+              class="learn-step-complete"
+              data-complete="time"
+              hidden
+            >
+              <span>
+                ✓ <strong data-summary="time"></strong>
+              </span>
+
+              <button
+                type="button"
+                data-change-step="time"
+              >
+                CHANGE
+              </button>
+            </div>
+          </div>
+
+
+          <!-- STEP 4 -->
+          <div
+            class="learn-question"
+            data-plan-step="focus"
+            hidden
+          >
+            <div class="learn-question-top">
+              <div class="learn-question-number">04</div>
+
+              <div>
+                <h3>Your priority</h3>
+                <p>What do you want the most help with?</p>
+              </div>
+            </div>
+
+            <div
+              class="learn-question-options"
+              data-options="focus"
+            >
+              <div class="learn-option-grid">
+
+                <button type="button" data-focus="speaking">
+                  Speaking
+                </button>
+
+                <button type="button" data-focus="listening">
+                  Listening
+                </button>
+
+                <button type="button" data-focus="reading">
+                  Reading
+                </button>
+
+                <button type="button" data-focus="writing">
+                  Writing
+                </button>
+
+                <button type="button" data-focus="unsure">
+                  I’m not sure
+                </button>
+
+              </div>
+            </div>
+
+            <div
+              class="learn-step-complete"
+              data-complete="focus"
+              hidden
+            >
+              <span>
+                ✓ <strong data-summary="focus"></strong>
+              </span>
+
+              <button
+                type="button"
+                data-change-step="focus"
+              >
+                CHANGE
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div
+          class="learn-plan-action"
+          id="learn-plan-action"
+          hidden
+        >
+          <button
+            id="generate-korean-plan"
+            type="button"
+            class="learn-btn learn-btn-primary"
+          >
+            BUILD MY KOREAN PLAN →
+          </button>
+
+          <p id="learn-plan-message">
+            Your answers are ready.
+          </p>
+        </div>
 
 
         <!-- GENERATED RESULT -->
@@ -368,48 +376,149 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <span id="learn-result-profile"></span>
           </div>
 
+
+          <div
+            class="learn-result-actions"
+            aria-label="Plan actions"
+          >
+            <button
+              type="button"
+              id="save-korean-plan"
+            >
+              SAVE PLAN
+            </button>
+
+            <button
+              type="button"
+              id="share-korean-plan"
+            >
+              SHARE PLAN
+            </button>
+
+            <button
+              type="button"
+              id="print-korean-plan"
+            >
+              PRINT / PDF
+            </button>
+          </div>
+
+
+          <div class="learn-plan-summary">
+
+            <div class="learn-plan-summary-item">
+              <small>YOUR TARGET</small>
+              <strong id="learn-plan-target"></strong>
+            </div>
+
+            <div class="learn-plan-summary-item">
+              <small>STUDY COMMITMENT</small>
+              <strong id="learn-plan-commitment"></strong>
+            </div>
+
+            <div class="learn-plan-summary-item">
+              <small>PRIMARY FOCUS</small>
+              <strong id="learn-plan-focus"></strong>
+            </div>
+
+            <div class="learn-plan-summary-item">
+              <small>SKIP FOR NOW</small>
+              <strong id="learn-plan-skip"></strong>
+            </div>
+
+          </div>
+
+
           <div class="learn-week-list">
 
             <article class="learn-week">
               <span>WEEK 1</span>
+
               <div>
-                <h3 id="week-one-title">Build your foundation</h3>
+                <div class="learn-week-purpose">
+                  FOUNDATION
+                </div>
+
+                <h3 id="week-one-title"></h3>
+
                 <p id="week-one-copy"></p>
+
+                <div class="learn-week-time">
+                  Recommended pace:
+                  <strong id="week-one-time"></strong>
+                </div>
               </div>
             </article>
+
 
             <article class="learn-week">
               <span>WEEK 2</span>
+
               <div>
-                <h3 id="week-two-title">Useful Korean</h3>
+                <div class="learn-week-purpose">
+                  YOUR GOAL
+                </div>
+
+                <h3 id="week-two-title"></h3>
+
                 <p id="week-two-copy"></p>
+
+                <div class="learn-week-time">
+                  Recommended pace:
+                  <strong id="week-two-time"></strong>
+                </div>
               </div>
             </article>
+
 
             <article class="learn-week">
               <span>WEEK 3</span>
+
               <div>
-                <h3 id="week-three-title">Listen and respond</h3>
+                <div class="learn-week-purpose">
+                  PRACTICE
+                </div>
+
+                <h3 id="week-three-title"></h3>
+
                 <p id="week-three-copy"></p>
+
+                <div class="learn-week-time">
+                  Recommended pace:
+                  <strong id="week-three-time"></strong>
+                </div>
               </div>
             </article>
 
-            <article class="learn-week learn-week-highlight">
+
+            <article
+              class="learn-week learn-week-highlight"
+            >
               <span>WEEK 4</span>
+
               <div>
-                <h3>Real-life simulation</h3>
-                <p>
-                  Practice the situations you studied with a Korean tutor.
-                  Use role-play to test what you can actually understand and say.
+                <div class="learn-week-purpose">
+                  REAL-LIFE TEST
+                </div>
+
+                <h3>
+                  See if you can actually use it.
+                </h3>
+
+                <p id="week-four-copy">
+                  Put your Korean into practice in realistic situations
+                  with a Korean tutor. This session focuses on using what
+                  you learned — not learning another grammar lesson.
                 </p>
 
                 <a href="#tutor">
-                  PRACTICE WITH A TUTOR →
+                  TAKE MY REAL-LIFE TEST →
                 </a>
               </div>
             </article>
 
           </div>
+
         </div>
 
       </div>
@@ -417,13 +526,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 
     <!-- CURATED RESOURCES -->
-    <section id="resources" class="learn-resources">
+    <section
+      id="resources"
+      class="learn-resources"
+    >
       <div class="wrap">
 
         <div class="section-head">
           <div>
-            <div class="eyebrow">THE BEST FREE RESOURCES</div>
-            <h2>Curated, not overwhelming.</h2>
+            <div class="eyebrow">
+              THE BEST FREE RESOURCES
+            </div>
+
+            <h2>
+              Curated, not overwhelming.
+            </h2>
           </div>
 
           <p>
@@ -436,11 +553,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="learn-resource-grid">
 
           <article class="learn-resource-card">
+
             <div class="learn-resource-type">
               STRUCTURED COURSE
             </div>
 
-            <h3>King Sejong Institute</h3>
+            <h3>
+              King Sejong Institute
+            </h3>
 
             <p>
               Structured Korean lessons for learners who need
@@ -459,15 +579,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             >
               VISIT RESOURCE →
             </a>
+
           </article>
 
 
           <article class="learn-resource-card">
+
             <div class="learn-resource-type">
               LISTENING & SPEAKING
             </div>
 
-            <h3>Selected YouTube Lessons</h3>
+            <h3>
+              Selected YouTube Lessons
+            </h3>
 
             <p>
               We select useful videos for pronunciation,
@@ -482,15 +606,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <a href="#study-plan">
               GET RECOMMENDATIONS →
             </a>
+
           </article>
 
 
           <article class="learn-resource-card">
+
             <div class="learn-resource-type">
               REAL-LIFE KOREAN
             </div>
 
-            <h3>Seen in Korea Guides</h3>
+            <h3>
+              Seen in Korea Guides
+            </h3>
 
             <p>
               Situation-based phrases for restaurants,
@@ -505,6 +633,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <a href="#situations">
               EXPLORE GUIDES →
             </a>
+
           </article>
 
         </div>
@@ -514,13 +643,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 
     <!-- SITUATIONS -->
-    <section id="situations" class="learn-situations">
+    <section
+      id="situations"
+      class="learn-situations"
+    >
       <div class="wrap">
 
         <div class="section-head">
           <div>
-            <div class="eyebrow">PRACTICE BEFORE REAL LIFE</div>
-            <h2>Learn by situation.</h2>
+            <div class="eyebrow">
+              PRACTICE BEFORE REAL LIFE
+            </div>
+
+            <h2>
+              Learn by situation.
+            </h2>
           </div>
 
           <p>
@@ -535,37 +672,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <article>
             <span>01</span>
             <h3>Restaurant</h3>
-            <p>Order food, ask questions and pay.</p>
+            <p>
+              Order food, ask questions and pay.
+            </p>
           </article>
 
           <article>
             <span>02</span>
             <h3>Shopping</h3>
-            <p>Ask about products, sizes and prices.</p>
+            <p>
+              Ask about products, sizes and prices.
+            </p>
           </article>
 
           <article>
             <span>03</span>
             <h3>Taxi & Transport</h3>
-            <p>Explain destinations and understand directions.</p>
+            <p>
+              Explain destinations and understand directions.
+            </p>
           </article>
 
           <article>
             <span>04</span>
             <h3>Bookings</h3>
-            <p>Make and change reservations or appointments.</p>
+            <p>
+              Make and change reservations or appointments.
+            </p>
           </article>
 
           <article>
             <span>05</span>
             <h3>Daily Life</h3>
-            <p>Handle the small conversations that happen every day.</p>
+            <p>
+              Handle the small conversations that happen every day.
+            </p>
           </article>
 
           <article>
             <span>06</span>
             <h3>Work</h3>
-            <p>Practice useful workplace and business Korean.</p>
+            <p>
+              Practice useful workplace and business Korean.
+            </p>
           </article>
 
         </div>
@@ -575,13 +724,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 
     <!-- TUTOR -->
-    <section id="tutor" class="learn-tutor-section">
+    <section
+      id="tutor"
+      class="learn-tutor-section"
+    >
       <div class="wrap">
 
         <div class="section-head">
           <div>
-            <div class="eyebrow">REAL CONVERSATION</div>
-            <h2>Put your Korean to the test.</h2>
+            <div class="eyebrow">
+              REAL CONVERSATION
+            </div>
+
+            <h2>
+              Put your Korean to the test.
+            </h2>
           </div>
 
           <p>
@@ -597,12 +754,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             TUTOR PROFILE
           </div>
 
+
           <div class="learn-tutor-copy">
+
             <div class="learn-resource-type">
               1:1 KOREAN PRACTICE
             </div>
 
-            <h3>Practice with a Korean tutor</h3>
+            <h3>
+              Practice with a Korean tutor
+            </h3>
 
             <p>
               Your tutor follows your study plan and recreates
@@ -627,6 +788,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               One tutor is currently available.
               Additional tutors will be added as the program grows.
             </small>
+
           </div>
 
         </div>
@@ -640,8 +802,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="wrap">
 
         <div class="learn-final-cta">
+
           <div>
-            <div class="eyebrow">START HERE</div>
+            <div class="eyebrow">
+              START HERE
+            </div>
 
             <h2>
               Learn it.<br />
@@ -654,7 +819,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </p>
           </div>
 
+
           <div class="learn-final-actions">
+
             <a
               href="#study-plan"
               class="learn-btn learn-btn-dark"
@@ -668,7 +835,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             >
               TRY A 1:1 LESSON →
             </a>
+
           </div>
+
         </div>
 
       </div>
@@ -677,444 +846,1344 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </main>
 
 
-  <script is:inline>
-  const selections = {
-    goal: null,
-    level: null,
-    time: null,
-    focus: null
-  };
+  <style is:global>
 
-  const stepOrder = [
-    'goal',
-    'level',
-    'time',
-    'focus'
-  ];
-
-  const labels = {
-    goal: {
-      travel: 'Travel',
-      life: 'Live in Korea',
-      work: 'Work / Business',
-      social: 'Friends / Dating',
-      topik: 'TOPIK',
-      culture: 'K-pop / Drama'
-    },
-
-    level: {
-      zero: 'Complete beginner',
-      beginner: 'Beginner',
-      intermediate: 'Intermediate',
-      advanced: 'Advanced'
-    },
-
-    time: {
-      '10': '10 min / day',
-      '30': '30 min / day',
-      '60': '1 hour / day',
-      weekend: 'A few hours / week'
-    },
-
-    focus: {
-      speaking: 'Speaking',
-      listening: 'Listening',
-      reading: 'Reading',
-      writing: 'Writing',
-      unsure: 'Not sure yet'
+    .learn-result-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:-4px 0 24px;
     }
-  };
+
+    .learn-result-actions button{
+      min-height:36px;
+      padding:0 12px;
+      border:1px solid var(--line);
+      background:#f8f5ef;
+      color:#111;
+      font:inherit;
+      font-size:9px;
+      font-weight:900;
+      letter-spacing:.06em;
+      cursor:pointer;
+    }
+
+    .learn-result-actions button:hover{
+      border-color:var(--accent);
+    }
 
 
-  function getButtonValue(button, step) {
-    return button.dataset[step];
-  }
+    .learn-plan-summary{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:1px;
+      margin-bottom:28px;
+      background:var(--line);
+      border:1px solid var(--line);
+    }
+
+    .learn-plan-summary-item{
+      min-height:112px;
+      padding:18px;
+      background:#f8f5ef;
+    }
+
+    .learn-plan-summary-item small{
+      display:block;
+      margin-bottom:10px;
+      color:var(--accent);
+      font-size:8px;
+      font-weight:900;
+      letter-spacing:.09em;
+    }
+
+    .learn-plan-summary-item strong{
+      display:block;
+      font-size:15px;
+      line-height:1.35;
+      letter-spacing:-.02em;
+    }
 
 
-  function resetStepsAfter(step) {
-    const currentIndex = stepOrder.indexOf(step);
+    .learn-week-purpose{
+      margin-bottom:6px;
+      color:var(--accent);
+      font-size:8px;
+      font-weight:900;
+      letter-spacing:.1em;
+    }
 
-    stepOrder.forEach((name, index) => {
-      if (index <= currentIndex) return;
+    .learn-week-time{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:10px;
+    }
 
-      selections[name] = null;
+    .learn-week-time strong{
+      color:#111;
+    }
+
+
+    @media (max-width:850px){
+
+      .learn-plan-summary{
+        grid-template-columns:1fr;
+      }
+
+      .learn-plan-summary-item{
+        min-height:0;
+      }
+
+      .learn-result-actions{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+      }
+
+      .learn-result-actions button{
+        padding:8px 6px;
+      }
+
+    }
+
+
+    @media print{
+
+      body *{
+        visibility:hidden !important;
+      }
+
+      #korean-plan-result,
+      #korean-plan-result *{
+        visibility:visible !important;
+      }
+
+      #korean-plan-result{
+        position:absolute;
+        inset:0 auto auto 0;
+        width:100%;
+        margin:0;
+        border:0;
+        box-shadow:none;
+      }
+
+      .learn-result-actions{
+        display:none !important;
+      }
+
+    }
+
+  </style>
+
+
+  <script is:inline>
+
+    const STORAGE_KEY = 'sik-korean-plan-v1';
+
+
+    const selections = {
+      goal: null,
+      level: null,
+      time: null,
+      focus: null
+    };
+
+
+    const stepOrder = [
+      'goal',
+      'level',
+      'time',
+      'focus'
+    ];
+
+
+    const labels = {
+
+      goal: {
+        travel: 'Travel',
+        life: 'Live in Korea',
+        work: 'Work / Business',
+        social: 'Friends / Dating',
+        topik: 'TOPIK',
+        culture: 'K-pop / Drama'
+      },
+
+      level: {
+        zero: 'Complete beginner',
+        beginner: 'Beginner',
+        intermediate: 'Intermediate',
+        advanced: 'Advanced'
+      },
+
+      time: {
+        '10': '10 min / day',
+        '30': '30 min / day',
+        '60': '1 hour / day',
+        weekend: 'A few hours / week'
+      },
+
+      focus: {
+        speaking: 'Speaking',
+        listening: 'Listening',
+        reading: 'Reading',
+        writing: 'Writing',
+        unsure: 'Not sure yet'
+      }
+
+    };
+
+
+    const goalPlans = {
+
+      travel: {
+        label: 'Travel',
+
+        target:
+          'Handle common restaurant, shopping, transport and everyday situations during a trip to Korea.',
+
+        week2Title:
+          'Survival Korean for your trip',
+
+        week2:
+          'Focus on ordering food, shopping, transportation, directions and the questions travellers hear most often.',
+
+        week3Title:
+          'Respond without freezing',
+
+        week3:
+          'Practice understanding common questions and answering quickly without translating every sentence.',
+
+        skip:
+          'Advanced grammar and long writing exercises'
+      },
+
+
+      life: {
+        label: 'Living in Korea',
+
+        target:
+          'Handle recurring everyday situations in Korea with less translation and outside help.',
+
+        week2Title:
+          'Korean for everyday life',
+
+        week2:
+          'Focus on delivery, shopping, appointments, transport, service interactions and everyday requests.',
+
+        week3Title:
+          'Handle everyday conversations',
+
+        week3:
+          'Practice the conversations that repeat most often when living in Korea and learn how to respond naturally.',
+
+        skip:
+          'Rare vocabulary and exam-focused memorization'
+      },
+
+
+      work: {
+        label: 'Work / Business',
+
+        target:
+          'Communicate more confidently in common Korean workplace and professional situations.',
+
+        week2Title:
+          'Korean for work',
+
+        week2:
+          'Build practical workplace vocabulary, introductions, requests and polite expressions used in professional situations.',
+
+        week3Title:
+          'Workplace response practice',
+
+        week3:
+          'Practice meetings, workplace questions and professional conversations without relying on direct translation.',
+
+        skip:
+          'Slang and low-priority casual expressions'
+      },
+
+
+      social: {
+        label: 'Friends / Dating',
+
+        target:
+          'Follow casual Korean conversations and respond more naturally in social situations.',
+
+        week2Title:
+          'Korean people actually use socially',
+
+        week2:
+          'Learn introductions, reactions, casual questions and expressions commonly used between friends and people getting to know each other.',
+
+        week3Title:
+          'Natural conversation practice',
+
+        week3:
+          'Practice following conversational Korean and responding without building every sentence in English first.',
+
+        skip:
+          'Formal business vocabulary and exam-style writing'
+      },
+
+
+      topik: {
+        label: 'TOPIK',
+
+        target:
+          'Build the vocabulary, grammar and comprehension skills needed for structured TOPIK preparation.',
+
+        week2Title:
+          'Build your TOPIK foundation',
+
+        week2:
+          'Focus on high-value vocabulary and grammar patterns appropriate for your current Korean level.',
+
+        week3Title:
+          'TOPIK comprehension practice',
+
+        week3:
+          'Use structured reading and listening practice to identify the question types and language patterns you struggle with most.',
+
+        skip:
+          'Low-frequency casual slang'
+      },
+
+
+      culture: {
+        label: 'K-pop / Drama',
+
+        target:
+          'Understand more of the Korean you hear in entertainment and everyday media without relying entirely on subtitles.',
+
+        week2Title:
+          'Korean you keep hearing',
+
+        week2:
+          'Learn expressions, reactions and vocabulary that repeatedly appear in Korean entertainment and everyday speech.',
+
+        week3Title:
+          'Listen without subtitles first',
+
+        week3:
+          'Use short clips and repeated listening to recognize natural pronunciation, speed and common speech patterns.',
+
+        skip:
+          'Formal business language and advanced writing'
+      }
+
+    };
+
+
+    const levelPlans = {
+
+      zero: {
+        label: 'Complete beginner',
+
+        week1Title:
+          'Hangul + essential survival Korean',
+
+        week1:
+          'Start with Hangul, pronunciation and a very small group of expressions you can use immediately. Avoid large vocabulary lists for now.'
+      },
+
+
+      beginner: {
+        label: 'Beginner',
+
+        week1Title:
+          'Turn basic Korean into usable Korean',
+
+        week1:
+          'Strengthen essential sentence patterns and practical vocabulary around situations you are actually likely to face.'
+      },
+
+
+      intermediate: {
+        label: 'Intermediate',
+
+        week1Title:
+          'Find the gaps in your Korean',
+
+        week1:
+          'Identify where your listening or speaking breaks down and begin turning vocabulary you already know into faster, more natural responses.'
+      },
+
+
+      advanced: {
+        label: 'Advanced',
+
+        week1Title:
+          'Make your Korean sound more natural',
+
+        week1:
+          'Focus on nuance, natural phrasing, response speed and the difference between grammatically correct Korean and Korean people actually use.'
+      }
+
+    };
+
+
+    const focusPlans = {
+
+      speaking: {
+        label: 'Speaking',
+
+        strategy:
+          'Speaking-first',
+
+        description:
+          'Your plan emphasizes producing Korean, role-play and answering without translating first.'
+      },
+
+
+      listening: {
+        label: 'Listening',
+
+        strategy:
+          'Listening-first',
+
+        description:
+          'Your plan emphasizes understanding natural speed, recognizing spoken patterns and responding to what you hear.'
+      },
+
+
+      reading: {
+        label: 'Reading',
+
+        strategy:
+          'Reading-first',
+
+        description:
+          'Your plan emphasizes Hangul fluency and understanding practical Korean you encounter in real life.'
+      },
+
+
+      writing: {
+        label: 'Writing',
+
+        strategy:
+          'Writing-first',
+
+        description:
+          'Your plan emphasizes practical sentence construction, messaging and useful written Korean.'
+      },
+
+
+      unsure: {
+        label: 'Balanced',
+
+        strategy:
+          'Balanced foundation',
+
+        description:
+          'Your plan balances speaking, listening, reading and vocabulary until your strongest learning need becomes clearer.'
+      }
+
+    };
+
+
+    const timePlans = {
+
+      '10': {
+        commitment:
+          '10 min/day · about 50 min/week',
+
+        week:
+          '10 minutes a day, 5 days'
+      },
+
+
+      '30': {
+        commitment:
+          '30 min/day · about 2.5 hours/week',
+
+        week:
+          '30 minutes a day, 5 days'
+      },
+
+
+      '60': {
+        commitment:
+          '1 hour/day · about 5 hours/week',
+
+        week:
+          '1 hour a day, 5 days'
+      },
+
+
+      weekend: {
+        commitment:
+          'A few focused hours each week',
+
+        week:
+          '2–3 focused study sessions'
+      }
+
+    };
+
+
+    let restoringPlan = false;
+
+
+    function getButtonValue(button, step) {
+      return button.dataset[step];
+    }
+
+
+    function isValidSelection(step, value) {
+      return Boolean(
+        value &&
+        labels[step]?.[value]
+      );
+    }
+
+
+    function resetStepsAfter(step) {
+
+      const currentIndex =
+        stepOrder.indexOf(step);
+
+
+      stepOrder.forEach(
+        (name, index) => {
+
+          if (index <= currentIndex) return;
+
+
+          selections[name] = null;
+
+
+          const stepElement =
+            document.querySelector(
+              `[data-plan-step="${name}"]`
+            );
+
+
+          const options =
+            document.querySelector(
+              `[data-options="${name}"]`
+            );
+
+
+          const complete =
+            document.querySelector(
+              `[data-complete="${name}"]`
+            );
+
+
+          stepElement?.setAttribute(
+            'hidden',
+            ''
+          );
+
+
+          stepElement?.classList.remove(
+            'is-open',
+            'is-complete'
+          );
+
+
+          options?.removeAttribute(
+            'hidden'
+          );
+
+
+          complete?.setAttribute(
+            'hidden',
+            ''
+          );
+
+
+          document
+            .querySelectorAll(
+              `[data-${name}]`
+            )
+            .forEach(
+              (button) => {
+                button.classList.remove(
+                  'is-selected'
+                );
+              }
+            );
+
+        }
+      );
+
+
+      document
+        .getElementById(
+          'learn-plan-action'
+        )
+        ?.setAttribute(
+          'hidden',
+          ''
+        );
+
+
+      document
+        .getElementById(
+          'korean-plan-result'
+        )
+        ?.setAttribute(
+          'hidden',
+          ''
+        );
+
+    }
+
+
+    function revealNextStep(step) {
+
+      const index =
+        stepOrder.indexOf(step);
+
+
+      const nextStep =
+        stepOrder[index + 1];
+
+
+      if (!nextStep) {
+
+        document
+          .getElementById(
+            'learn-plan-action'
+          )
+          ?.removeAttribute(
+            'hidden'
+          );
+
+        return;
+      }
+
+
+      const nextElement =
+        document.querySelector(
+          `[data-plan-step="${nextStep}"]`
+        );
+
+
+      nextElement?.removeAttribute(
+        'hidden'
+      );
+
+
+      nextElement?.classList.add(
+        'is-open'
+      );
+
+
+      if (!restoringPlan) {
+
+        setTimeout(() => {
+
+          nextElement?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+
+        }, 120);
+
+      }
+
+    }
+
+
+    function completeStep(
+      step,
+      value
+    ) {
+
+      selections[step] = value;
+
+
+      resetStepsAfter(step);
+
 
       const stepElement =
-        document.querySelector(`[data-plan-step="${name}"]`);
+        document.querySelector(
+          `[data-plan-step="${step}"]`
+        );
+
 
       const options =
-        document.querySelector(`[data-options="${name}"]`);
+        document.querySelector(
+          `[data-options="${step}"]`
+        );
+
 
       const complete =
-        document.querySelector(`[data-complete="${name}"]`);
+        document.querySelector(
+          `[data-complete="${step}"]`
+        );
 
-      stepElement?.setAttribute('hidden', '');
+
+      const summary =
+        document.querySelector(
+          `[data-summary="${step}"]`
+        );
+
+
+      document
+        .querySelectorAll(
+          `[data-${step}]`
+        )
+        .forEach(
+          (button) => {
+
+            button.classList.toggle(
+              'is-selected',
+              getButtonValue(
+                button,
+                step
+              ) === value
+            );
+
+          }
+        );
+
+
+      if (summary) {
+
+        summary.textContent =
+          labels[step]?.[value] ||
+          value;
+
+      }
+
+
+      options?.setAttribute(
+        'hidden',
+        ''
+      );
+
+
+      complete?.removeAttribute(
+        'hidden'
+      );
+
 
       stepElement?.classList.remove(
-        'is-open',
+        'is-open'
+      );
+
+
+      stepElement?.classList.add(
         'is-complete'
       );
 
-      options?.removeAttribute('hidden');
-      complete?.setAttribute('hidden', '');
 
-      document
-        .querySelectorAll(`[data-${name}]`)
-        .forEach((button) => {
-          button.classList.remove('is-selected');
-        });
-    });
+      revealNextStep(step);
 
-    document
-      .getElementById('learn-plan-action')
-      ?.setAttribute('hidden', '');
-
-    document
-      .getElementById('korean-plan-result')
-      ?.setAttribute('hidden', '');
-  }
-
-
-  function revealNextStep(step) {
-    const index = stepOrder.indexOf(step);
-    const nextStep = stepOrder[index + 1];
-
-    if (!nextStep) {
-      document
-        .getElementById('learn-plan-action')
-        ?.removeAttribute('hidden');
-
-      return;
     }
 
-    const nextElement =
-      document.querySelector(
-        `[data-plan-step="${nextStep}"]`
-      );
 
-    nextElement?.removeAttribute('hidden');
-    nextElement?.classList.add('is-open');
+    stepOrder.forEach(
+      (step) => {
 
-    setTimeout(() => {
-      nextElement?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
-    }, 120);
-  }
+        document
+          .querySelectorAll(
+            `[data-${step}]`
+          )
+          .forEach(
+            (button) => {
 
+              button.addEventListener(
+                'click',
+                () => {
 
-  function completeStep(step, value) {
-    selections[step] = value;
-
-    resetStepsAfter(step);
-
-    const stepElement =
-      document.querySelector(
-        `[data-plan-step="${step}"]`
-      );
-
-    const options =
-      document.querySelector(
-        `[data-options="${step}"]`
-      );
-
-    const complete =
-      document.querySelector(
-        `[data-complete="${step}"]`
-      );
-
-    const summary =
-      document.querySelector(
-        `[data-summary="${step}"]`
-      );
-
-    document
-      .querySelectorAll(`[data-${step}]`)
-      .forEach((button) => {
-        button.classList.toggle(
-          'is-selected',
-          getButtonValue(button, step) === value
-        );
-      });
-
-    if (summary) {
-      summary.textContent =
-        labels[step]?.[value] || value;
-    }
-
-    options?.setAttribute('hidden', '');
-    complete?.removeAttribute('hidden');
-
-    stepElement?.classList.remove('is-open');
-    stepElement?.classList.add('is-complete');
-
-    revealNextStep(step);
-  }
+                  const value =
+                    getButtonValue(
+                      button,
+                      step
+                    );
 
 
-  stepOrder.forEach((step) => {
-    document
-      .querySelectorAll(`[data-${step}]`)
-      .forEach((button) => {
-        button.addEventListener('click', () => {
-          const value =
-            getButtonValue(button, step);
+                  completeStep(
+                    step,
+                    value
+                  );
 
-          completeStep(step, value);
-        });
-      });
-  });
+                }
+              );
 
-
-  document
-    .querySelectorAll('[data-change-step]')
-    .forEach((button) => {
-
-      button.addEventListener('click', () => {
-        const step =
-          button.dataset.changeStep;
-
-        resetStepsAfter(step);
-
-        selections[step] = null;
-
-        const stepElement =
-          document.querySelector(
-            `[data-plan-step="${step}"]`
+            }
           );
 
-        const options =
-          document.querySelector(
-            `[data-options="${step}"]`
-          );
-
-        const complete =
-          document.querySelector(
-            `[data-complete="${step}"]`
-          );
-
-        stepElement?.classList.remove(
-          'is-complete'
-        );
-
-        stepElement?.classList.add('is-open');
-
-        options?.removeAttribute('hidden');
-        complete?.setAttribute('hidden', '');
-
-        stepElement?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
-        });
-      });
-    });
-
-
-  const goalPlans = {
-    travel: {
-      label: 'Travel',
-      week2:
-        'Focus on restaurant, café, shopping, transport and direction phrases you can use during a trip.',
-      week3:
-        'Train your listening and response speed for common situations you are likely to encounter while travelling.'
-    },
-
-    life: {
-      label: 'Living in Korea',
-      week2:
-        'Focus on delivery, shopping, appointments, transport and everyday service interactions.',
-      week3:
-        'Practice recurring conversations you are likely to face while living in Korea.'
-    },
-
-    work: {
-      label: 'Work / Business',
-      week2:
-        'Build workplace vocabulary, introductions, polite requests and practical business expressions.',
-      week3:
-        'Practice responding naturally during workplace conversations, meetings and professional situations.'
-    },
-
-    social: {
-      label: 'Friends / Dating',
-      week2:
-        'Learn casual conversation, introductions, reactions and expressions used in social situations.',
-      week3:
-        'Practice following natural conversational Korean without translating every sentence.'
-    },
-
-    topik: {
-      label: 'TOPIK',
-      week2:
-        'Strengthen vocabulary and grammar patterns appropriate for your current level.',
-      week3:
-        'Combine structured study with focused listening and reading practice.'
-    },
-
-    culture: {
-      label: 'K-pop / Drama',
-      week2:
-        'Learn expressions and vocabulary frequently heard in Korean entertainment and everyday conversation.',
-      week3:
-        'Use short clips and listening exercises to recognize natural speech patterns.'
-    }
-  };
-
-
-  const levelPlans = {
-    zero: {
-      label: 'Complete beginner',
-      week1:
-        'Start with Hangul, pronunciation and a small set of survival expressions before expanding your vocabulary.'
-    },
-
-    beginner: {
-      label: 'Beginner',
-      week1:
-        'Review essential sentence patterns and build practical vocabulary around situations you actually face.'
-    },
-
-    intermediate: {
-      label: 'Intermediate',
-      week1:
-        'Identify your speaking and comprehension gaps and turn vocabulary you already know into usable Korean.'
-    },
-
-    advanced: {
-      label: 'Advanced',
-      week1:
-        'Focus on natural phrasing, nuance, speed and the difference between technically correct Korean and everyday Korean.'
-    }
-  };
-
-
-  const focusPlans = {
-    speaking:
-      'Your plan will emphasize active speaking, role-play and producing Korean without translating first.',
-
-    listening:
-      'Your plan will emphasize listening comprehension, natural speed and recognizing common spoken patterns.',
-
-    reading:
-      'Your plan will emphasize Hangul fluency, practical reading and understanding Korean you encounter in real life.',
-
-    writing:
-      'Your plan will emphasize useful sentence construction, messaging and practical written Korean.',
-
-    unsure:
-      'Your plan will balance speaking, listening, reading and core vocabulary until your strongest priority becomes clearer.'
-  };
-
-
-  const generateButton =
-    document.getElementById(
-      'generate-korean-plan'
-    );
-
-  const result =
-    document.getElementById(
-      'korean-plan-result'
-    );
-
-  const message =
-    document.getElementById(
-      'learn-plan-message'
+      }
     );
 
 
-  generateButton?.addEventListener('click', () => {
+    document
+      .querySelectorAll(
+        '[data-change-step]'
+      )
+      .forEach(
+        (button) => {
 
-    if (
-      !selections.goal ||
-      !selections.level ||
-      !selections.time ||
-      !selections.focus
+          button.addEventListener(
+            'click',
+            () => {
+
+              const step =
+                button.dataset.changeStep;
+
+
+              resetStepsAfter(step);
+
+
+              selections[step] = null;
+
+
+              const stepElement =
+                document.querySelector(
+                  `[data-plan-step="${step}"]`
+                );
+
+
+              const options =
+                document.querySelector(
+                  `[data-options="${step}"]`
+                );
+
+
+              const complete =
+                document.querySelector(
+                  `[data-complete="${step}"]`
+                );
+
+
+              stepElement?.classList.remove(
+                'is-complete'
+              );
+
+
+              stepElement?.classList.add(
+                'is-open'
+              );
+
+
+              options?.removeAttribute(
+                'hidden'
+              );
+
+
+              complete?.setAttribute(
+                'hidden',
+                ''
+              );
+
+
+              stepElement?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+              });
+
+            }
+          );
+
+        }
+      );
+
+
+    const generateButton =
+      document.getElementById(
+        'generate-korean-plan'
+      );
+
+
+    const result =
+      document.getElementById(
+        'korean-plan-result'
+      );
+
+
+    const message =
+      document.getElementById(
+        'learn-plan-message'
+      );
+
+
+    function setText(
+      id,
+      value
     ) {
-      if (message) {
-        message.textContent =
-          'Please complete all four steps first.';
+
+      const element =
+        document.getElementById(id);
+
+
+      if (element) {
+        element.textContent = value;
       }
 
-      return;
     }
 
-    const goal =
-      goalPlans[selections.goal];
 
-    const level =
-      levelPlans[selections.level];
+    function renderPlan(
+      { scroll = true } = {}
+    ) {
 
-    const timeLabel =
-      labels.time[selections.time];
+      if (
+        !selections.goal ||
+        !selections.level ||
+        !selections.time ||
+        !selections.focus
+      ) {
 
-    const focusLabel =
-      labels.focus[selections.focus];
+        if (message) {
+
+          message.textContent =
+            'Please complete all four steps first.';
+
+        }
 
 
-    const profile =
-      document.getElementById(
-        'learn-result-profile'
+        return false;
+      }
+
+
+      const goal =
+        goalPlans[
+          selections.goal
+        ];
+
+
+      const level =
+        levelPlans[
+          selections.level
+        ];
+
+
+      const focus =
+        focusPlans[
+          selections.focus
+        ];
+
+
+      const time =
+        timePlans[
+          selections.time
+        ];
+
+
+      const timeLabel =
+        labels.time[
+          selections.time
+        ];
+
+
+      const focusLabel =
+        labels.focus[
+          selections.focus
+        ];
+
+
+      setText(
+        'learn-result-profile',
+        `${goal.label} · ${level.label} · ${timeLabel} · ${focusLabel}`
       );
 
-    const week1 =
-      document.getElementById(
-        'week-one-copy'
-      );
 
-    const week2 =
-      document.getElementById(
-        'week-two-copy'
-      );
-
-    const week3 =
-      document.getElementById(
-        'week-three-copy'
+      setText(
+        'learn-plan-target',
+        goal.target
       );
 
 
-    if (profile) {
-      profile.textContent =
-        `${goal.label} · ${level.label} · ${timeLabel} · ${focusLabel}`;
-    }
-
-    if (week1) {
-      week1.textContent =
-        `${level.week1} ${focusPlans[selections.focus]}`;
-    }
-
-    if (week2) {
-      week2.textContent =
-        goal.week2;
-    }
-
-    if (week3) {
-      week3.textContent =
-        goal.week3;
-    }
+      setText(
+        'learn-plan-commitment',
+        time.commitment
+      );
 
 
-    if (message) {
-      message.textContent =
-        'Building your personalized plan...';
-    }
+      setText(
+        'learn-plan-focus',
+        focus.strategy
+      );
 
 
-    setTimeout(() => {
-      result?.removeAttribute('hidden');
+      setText(
+        'learn-plan-skip',
+        goal.skip
+      );
+
+
+      setText(
+        'week-one-title',
+        level.week1Title
+      );
+
+
+      setText(
+        'week-one-copy',
+        `${level.week1} ${focus.description}`
+      );
+
+
+      setText(
+        'week-two-title',
+        goal.week2Title
+      );
+
+
+      setText(
+        'week-two-copy',
+        goal.week2
+      );
+
+
+      setText(
+        'week-three-title',
+        goal.week3Title
+      );
+
+
+      setText(
+        'week-three-copy',
+        goal.week3
+      );
+
+
+      [
+        'week-one-time',
+        'week-two-time',
+        'week-three-time'
+      ].forEach(
+        (id) => {
+
+          setText(
+            id,
+            time.week
+          );
+
+        }
+      );
+
+
+      result?.removeAttribute(
+        'hidden'
+      );
+
 
       if (message) {
+
         message.textContent =
           'Your Korean plan is ready.';
+
       }
 
-      result?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }, 450);
 
-  });
-</script>
+      if (scroll) {
+
+        result?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+
+      }
+
+
+      return true;
+
+    }
+
+
+    generateButton?.addEventListener(
+      'click',
+      () => {
+
+        if (
+          !selections.goal ||
+          !selections.level ||
+          !selections.time ||
+          !selections.focus
+        ) {
+
+          if (message) {
+
+            message.textContent =
+              'Please complete all four steps first.';
+
+          }
+
+
+          return;
+        }
+
+
+        if (message) {
+
+          message.textContent =
+            'Building your personalized plan...';
+
+        }
+
+
+        setTimeout(
+          () => {
+            renderPlan();
+          },
+          450
+        );
+
+      }
+    );
+
+
+    document
+      .getElementById(
+        'save-korean-plan'
+      )
+      ?.addEventListener(
+        'click',
+        () => {
+
+          if (
+            !renderPlan({
+              scroll: false
+            })
+          ) {
+            return;
+          }
+
+
+          localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(
+              selections
+            )
+          );
+
+
+          if (message) {
+
+            message.textContent =
+              'Plan saved on this device.';
+
+          }
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        'share-korean-plan'
+      )
+      ?.addEventListener(
+        'click',
+        async () => {
+
+          if (
+            !renderPlan({
+              scroll: false
+            })
+          ) {
+            return;
+          }
+
+
+          const url =
+            new URL(
+              window.location.href
+            );
+
+
+          stepOrder.forEach(
+            (step) => {
+
+              url.searchParams.set(
+                step,
+                selections[step]
+              );
+
+            }
+          );
+
+
+          url.hash =
+            'korean-plan-result';
+
+
+          const shareData = {
+
+            title:
+              'My Korean Study Plan — Seen in Korea',
+
+            text:
+              'Here is my personalized Korean study plan.',
+
+            url:
+              url.toString()
+
+          };
+
+
+          try {
+
+            if (navigator.share) {
+
+              await navigator.share(
+                shareData
+              );
+
+            } else {
+
+              await navigator.clipboard.writeText(
+                url.toString()
+              );
+
+
+              if (message) {
+
+                message.textContent =
+                  'Share link copied.';
+
+              }
+
+            }
+
+          } catch (error) {
+
+            if (
+              error?.name !==
+                'AbortError' &&
+              message
+            ) {
+
+              message.textContent =
+                'Could not share automatically. Copy the page URL and try again.';
+
+            }
+
+          }
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        'print-korean-plan'
+      )
+      ?.addEventListener(
+        'click',
+        () => {
+
+          if (
+            !renderPlan({
+              scroll: false
+            })
+          ) {
+            return;
+          }
+
+
+          window.print();
+
+        }
+      );
+
+
+    function restorePlan(values) {
+
+      const valid =
+        stepOrder.every(
+          (step) =>
+            isValidSelection(
+              step,
+              values?.[step]
+            )
+        );
+
+
+      if (!valid) {
+        return false;
+      }
+
+
+      restoringPlan = true;
+
+
+      stepOrder.forEach(
+        (step) => {
+
+          completeStep(
+            step,
+            values[step]
+          );
+
+        }
+      );
+
+
+      restoringPlan = false;
+
+
+      renderPlan({
+        scroll: false
+      });
+
+
+      return true;
+
+    }
+
+
+    const queryValues = {};
+
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    stepOrder.forEach(
+      (step) => {
+
+        queryValues[step] =
+          params.get(step);
+
+      }
+    );
+
+
+    const restoredFromUrl =
+      restorePlan(
+        queryValues
+      );
+
+
+    if (!restoredFromUrl) {
+
+      try {
+
+        const savedPlan =
+          JSON.parse(
+            localStorage.getItem(
+              STORAGE_KEY
+            ) || 'null'
+          );
+
+
+        if (savedPlan) {
+
+          restorePlan(
+            savedPlan
+          );
+
+        }
+
+      } catch (error) {
+
+        localStorage.removeItem(
+          STORAGE_KEY
+        );
+
+      }
+
+    }
+
+  </script>
 
 </BaseLayout>
