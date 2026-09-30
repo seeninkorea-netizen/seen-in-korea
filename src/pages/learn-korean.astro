@@ -15,20 +15,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="eyebrow">LEARN KOREAN</div>
           <h1>Find your next<br /><span class="learn-accent-text">Korean lesson.</span></h1>
           <p class="learn-hero-dek">
-            Tell us your goal, level and situation.
-            We’ll show you a verified next lesson to start with —
-            then guide you one clear step at a time.
+            Tell us your goal and situation.
+            We’ll show you what to learn next.
           </p>
           <div class="learn-hero-actions">
             <a href="#study-plan" class="learn-btn learn-btn-primary">FIND MY NEXT KOREAN LESSON →</a>
-            <a href="#tutor" class="learn-btn learn-btn-secondary">TAKE A REAL-LIFE TEST →</a>
           </div>
           <div class="learn-trust-row">
-            <span>Personalized for your goals</span>
-            <span>Curated free resources</span>
-            <span>Real conversation practice</span>
+            <span>Only 5 questions</span>
+            <span>Personalized to you</span>
+            <span>Free verified resources</span>
           </div>
-          <div class="learn-hero-time">About 30 seconds · 5 simple questions</div>
+          <div class="learn-hero-time">About 30 seconds</div>
         </div>
 
         <div class="learn-phrase-card">
@@ -45,15 +43,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- PERSONALIZED STUDY PLAN -->
     <section id="study-plan" class="learn-plan-section">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">KOREAN LESSON NAVIGATOR</div>
-            <h2>What should you learn next?</h2>
-          </div>
-          <p>
-            Five simple questions. We’ll narrow down the options and show you one clear next lesson.
-          </p>
-        </div>
+        <div class="learn-planner-label">KOREAN LESSON NAVIGATOR</div>
 
         <div class="learn-progress-box" aria-live="polite">
           <div class="learn-progress-meta">
@@ -71,8 +61,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="learn-question-top">
               <div class="learn-question-number">01</div>
               <div>
-                <h3>Your goal</h3>
-                <p>Why do you want to learn Korean?</p>
+                <h3>Why are you learning Korean?</h3>
+                <p>Choose your main goal.</p>
               </div>
             </div>
             <div class="learn-question-options" data-options="goal">
@@ -95,8 +85,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="learn-question-top">
               <div class="learn-question-number">02</div>
               <div>
-                <h3>Your level</h3>
-                <p>What’s your current Korean level?</p>
+                <h3>What’s your current level?</h3>
+                <p>Choose the option that fits you best.</p>
               </div>
             </div>
             <div class="learn-question-options" data-options="level">
@@ -119,7 +109,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </button>
                 <button class="learn-level-option" type="button" data-plan-option data-step="level" data-value="unsure">
                   <strong>I’m not sure</strong>
-                  <small>Start me on a safer route and adjust after my first feedback.</small>
+                  <small>We’ll suggest a safe starting point.</small>
                 </button>
               </div>
             </div>
@@ -133,8 +123,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="learn-question-top">
               <div class="learn-question-number">03</div>
               <div>
-                <h3>Your time</h3>
-                <p>How much time can you realistically study?</p>
+                <h3>How much time can you study?</h3>
+                <p>Choose what you can actually keep up.</p>
               </div>
             </div>
             <div class="learn-question-options" data-options="time">
@@ -196,7 +186,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <button id="generate-korean-plan" type="button" class="learn-btn learn-btn-primary">
             SHOW ME WHAT TO LEARN NEXT →
           </button>
-          <p id="learn-plan-message">Your answers are ready.</p>
+          <p id="learn-plan-message"></p>
         </div>
 
         <!-- GENERATED RESULT -->
@@ -218,9 +208,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
 
           <div class="learn-result-actions" aria-label="Plan actions">
-            <button type="button" id="save-korean-plan">SAVE PLAN</button>
-            <button type="button" id="share-korean-plan">SHARE PLAN</button>
-            <button type="button" id="print-korean-plan">PRINT / PDF</button>
+            <button type="button" id="save-korean-plan">SAVE</button>
+            <button type="button" id="share-korean-plan">SHARE</button>
+            <button type="button" id="print-korean-plan">PRINT</button>
           </div>
 
           <details class="learn-path-details">
@@ -249,8 +239,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <section class="learn-today-card" id="learn-today-card">
             <div class="learn-today-top">
               <div>
-                <div class="learn-week-resource-label">TODAY · ONE CLEAR NEXT STEP</div>
+                <div class="learn-week-resource-label">YOUR NEXT LESSON</div>
                 <h3 id="learn-today-title"></h3>
+                <small id="learn-today-provider" class="learn-today-provider"></small>
               </div>
               <strong id="learn-today-duration"></strong>
             </div>
@@ -272,7 +263,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </a>
 
             <details class="learn-today-steps">
-              <summary>VIEW TODAY'S 3 STEPS <span>+</span></summary>
+              <summary>3-STEP PLAN <span>+</span></summary>
               <ol>
                 <li id="learn-today-step-one"></li>
                 <li id="learn-today-step-two"></li>
@@ -284,7 +275,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <!-- PHASES -->
           <div class="learn-week-list learn-phase-list">
 
-            <details class="learn-phase-accordion" data-phase-details="one" open>
+            <details class="learn-phase-accordion" data-phase-details="one">
               <summary>
                 <span class="learn-phase-number">1</span>
                 <span class="learn-phase-summary-copy">
@@ -298,13 +289,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <p id="phase-one-copy"></p>
                 <div class="learn-week-time">Recommended pace: <strong id="phase-one-time"></strong></div>
                 <div class="learn-week-resource" data-resource-card="one">
-                  <div class="learn-week-resource-label">RECOMMENDED NEXT STEP</div>
+                  <div class="learn-week-resource-label">NEXT LESSON</div>
                   <div class="learn-week-resource-provider"><span id="phase-one-provider"></span><span class="learn-free-badge">FREE</span></div>
                   <h4 id="phase-one-resource-title"></h4>
                   <p id="phase-one-resource-reason"></p>
 
                   <details class="learn-why-picked">
-                    <summary>WHY WE PICKED THIS <span>+</span></summary>
+                    <summary>WHY THIS <span>+</span></summary>
                     <div class="learn-why-picked-body">
                       <div class="learn-resource-meta"><span id="phase-one-best-for"></span><span id="phase-one-checked"></span></div>
                       <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-one-not-for"></span></p>
@@ -322,9 +313,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   </details>
 
                   <div class="learn-resource-actions">
-                    <a id="phase-one-resource-link" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="one">START FREE RESOURCE →</a>
-                    <button type="button" data-alt-resource="one">TRY ANOTHER OPTION</button>
-                    <button type="button" data-resource-complete="one">✓ I FINISHED THIS</button>
+                    <a id="phase-one-resource-link" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="one">START LESSON →</a>
+                    <button type="button" data-alt-resource="one">TRY ANOTHER</button>
+                    <button type="button" data-resource-complete="one">I FINISHED THIS</button>
                   </div>
                   <div class="learn-difficulty" data-difficulty-panel="one" hidden>
                     <strong>How did it feel?</strong>
@@ -353,12 +344,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <p id="phase-two-copy"></p>
                 <div class="learn-week-time">Recommended pace: <strong id="phase-two-time"></strong></div>
                 <div class="learn-week-resource" data-resource-card="two">
-                  <div class="learn-week-resource-label">RECOMMENDED NEXT STEP</div>
+                  <div class="learn-week-resource-label">NEXT LESSON</div>
                   <div class="learn-week-resource-provider"><span id="phase-two-provider"></span><span class="learn-free-badge">FREE</span></div>
                   <h4 id="phase-two-resource-title"></h4>
                   <p id="phase-two-resource-reason"></p>
                   <details class="learn-why-picked">
-                    <summary>WHY WE PICKED THIS <span>+</span></summary>
+                    <summary>WHY THIS <span>+</span></summary>
                     <div class="learn-why-picked-body">
                       <div class="learn-resource-meta"><span id="phase-two-best-for"></span><span id="phase-two-checked"></span></div>
                       <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-two-not-for"></span></p>
@@ -375,9 +366,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                   </details>
                   <div class="learn-resource-actions">
-                    <a id="phase-two-resource-link" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="two">START FREE RESOURCE →</a>
-                    <button type="button" data-alt-resource="two">TRY ANOTHER OPTION</button>
-                    <button type="button" data-resource-complete="two">✓ I FINISHED THIS</button>
+                    <a id="phase-two-resource-link" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="two">START LESSON →</a>
+                    <button type="button" data-alt-resource="two">TRY ANOTHER</button>
+                    <button type="button" data-resource-complete="two">I FINISHED THIS</button>
                   </div>
                   <div class="learn-difficulty" data-difficulty-panel="two" hidden>
                     <strong>How did it feel?</strong>
@@ -406,12 +397,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <p id="phase-three-copy"></p>
                 <div class="learn-week-time">Recommended pace: <strong id="phase-three-time"></strong></div>
                 <div class="learn-week-resource" data-resource-card="three">
-                  <div class="learn-week-resource-label">RECOMMENDED NEXT STEP</div>
+                  <div class="learn-week-resource-label">NEXT LESSON</div>
                   <div class="learn-week-resource-provider"><span id="phase-three-provider"></span><span class="learn-free-badge">FREE</span></div>
                   <h4 id="phase-three-resource-title"></h4>
                   <p id="phase-three-resource-reason"></p>
                   <details class="learn-why-picked">
-                    <summary>WHY WE PICKED THIS <span>+</span></summary>
+                    <summary>WHY THIS <span>+</span></summary>
                     <div class="learn-why-picked-body">
                       <div class="learn-resource-meta"><span id="phase-three-best-for"></span><span id="phase-three-checked"></span></div>
                       <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-three-not-for"></span></p>
@@ -428,9 +419,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                   </details>
                   <div class="learn-resource-actions">
-                    <a id="phase-three-resource-link" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="three">START FREE RESOURCE →</a>
-                    <button type="button" data-alt-resource="three">TRY ANOTHER OPTION</button>
-                    <button type="button" data-resource-complete="three">✓ I FINISHED THIS</button>
+                    <a id="phase-three-resource-link" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="three">START LESSON →</a>
+                    <button type="button" data-alt-resource="three">TRY ANOTHER</button>
+                    <button type="button" data-resource-complete="three">I FINISHED THIS</button>
                   </div>
                   <div class="learn-difficulty" data-difficulty-panel="three" hidden>
                     <strong>How did it feel?</strong>
@@ -446,27 +437,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </details>
 
             <!-- SIK MISSION -->
-            <article class="learn-week learn-mission-week">
-              <span>MISSION</span>
-              <div>
-                <div class="learn-week-purpose">SEEN IN KOREA MISSION</div>
-                <h3 id="learn-mission-title"></h3>
+            <details class="learn-phase-accordion learn-support-accordion">
+              <summary>
+                <span class="learn-phase-number">✓</span>
+                <span class="learn-phase-summary-copy">
+                  <small>SEEN IN KOREA MISSION</small>
+                  <strong id="learn-mission-title"></strong>
+                </span>
+                <span class="learn-phase-toggle">+</span>
+              </summary>
+              <div class="learn-phase-body">
                 <p id="learn-mission-copy"></p>
-                <button type="button" id="complete-mission" class="learn-mission-button">✓ MARK MISSION COMPLETE</button>
+                <button type="button" id="complete-mission" class="learn-mission-button">MARK COMPLETE</button>
                 <small id="learn-mission-status"></small>
               </div>
-            </article>
+            </details>
 
             <!-- FINAL TEST -->
-            <article class="learn-week learn-week-highlight">
-              <span>FINAL</span>
-              <div>
-                <div class="learn-week-purpose" id="learn-final-purpose">REAL-LIFE TEST</div>
-                <h3 id="learn-final-title">See if you can actually use it.</h3>
+            <details class="learn-phase-accordion learn-support-accordion learn-final-accordion">
+              <summary>
+                <span class="learn-phase-number">★</span>
+                <span class="learn-phase-summary-copy">
+                  <small id="learn-final-purpose">REAL-LIFE TEST</small>
+                  <strong id="learn-final-title">See if you can actually use it.</strong>
+                </span>
+                <span class="learn-phase-toggle">+</span>
+              </summary>
+              <div class="learn-phase-body">
                 <p id="learn-final-copy"></p>
-                <a id="learn-final-link" href="#tutor">TAKE MY REAL-LIFE TEST →</a>
+                <a id="learn-final-link" href="#tutor" class="learn-inline-action">TAKE MY REAL-LIFE TEST →</a>
               </div>
-            </article>
+            </details>
           </div>
         </div>
           <a id="learn-mobile-sticky" class="learn-mobile-sticky" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="today">
@@ -481,50 +482,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="section-head">
           <div>
             <div class="eyebrow">HOW WE PICK RESOURCES</div>
-            <h2>Verified before ranked.</h2>
+            <h2>One next step, not 50 links.</h2>
           </div>
           <p>
-            We don’t rank resources by popularity alone.
-            We first check whether a resource is usable for your level,
-            then compare the eligible options for your situation.
+            We check level fit, current access, practical value
+            and where each resource falls short.
           </p>
         </div>
 
-        <div class="learn-methodology-strip">
-          <strong>WE CHECK</strong>
-          <span>Who it is actually for</span>
+        <div class="learn-methodology-strip learn-methodology-strip-simple">
           <span>Level fit</span>
-          <span>Practical value</span>
-          <span>Time required</span>
-          <span>Current availability</span>
-          <span>What it does well</span>
-          <span>Where it falls short</span>
+          <span>Free access</span>
+          <span>Practical use</span>
+          <span>Clear limits</span>
         </div>
 
-        <div class="learn-resource-grid">
-          <article class="learn-resource-card">
-            <div class="learn-resource-type">ELIGIBILITY FIRST</div>
-            <h3>Level comes before ranking</h3>
-            <p>A resource outside your selected level is removed before recommendation scores are compared.</p>
-            <div class="learn-resource-tags"><span>LEVEL FILTER</span><span>NO GUESSING</span></div>
-          </article>
-
-          <article class="learn-resource-card">
-            <div class="learn-resource-type">RECOMMENDED NEXT STEP</div>
-            <h3>One clear recommendation first</h3>
-            <p>Your goal, time, problem and real-life context decide which eligible resource should come next.</p>
-            <div class="learn-resource-tags"><span>WHY THIS NOW</span><span>CONTEXT FIT</span></div>
-          </article>
-
-          <article class="learn-resource-card">
-            <div class="learn-resource-type">FEEDBACK-ADJUSTED</div>
-            <h3>Your next recommendation can adjust</h3>
-            <p>Tell us if a resource feels too easy or too hard. We use that feedback to adjust the next recommendation when a suitable option exists.</p>
-            <div class="learn-resource-tags"><span>TOO EASY</span><span>JUST RIGHT</span><span>TOO HARD</span></div>
-          </article>
-        </div>
-
-        <p class="learn-methodology-note">We recommend one next step, not 50 links. Confidence reflects the evidence we have checked so far — not a numeric quality score.</p>
+        <p class="learn-methodology-note">
+          Recommendations are filtered for eligibility first, then ranked for your goal and situation.
+        </p>
       </div>
     </section>
 
@@ -536,7 +511,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="eyebrow">PRACTICE BEFORE REAL LIFE</div>
             <h2>Learn by situation.</h2>
           </div>
-          <p>Learn the Korean first. Then use it in a realistic mission or conversation.</p>
+          <p>Learn it. Then use it in a real situation.</p>
         </div>
 
         <div class="learn-situation-grid">
@@ -559,8 +534,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <h2>Test what you can actually use.</h2>
           </div>
           <p>
-            Not another lecture. Use the Korean you studied in realistic role-play
-            and get feedback on what to work on next.
+            Use what you studied in realistic role-play and get clear feedback.
           </p>
         </div>
 
@@ -614,8 +588,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </main>
 
   <style is:global>
-    .learn-result-actions{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 24px;}
-    .learn-result-actions button{min-height:36px;padding:0 12px;border:1px solid var(--line);background:#f8f5ef;color:#111;font:inherit;font-size:9px;font-weight:900;letter-spacing:.06em;cursor:pointer;}
+    .learn-result-actions{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 18px;}
+    .learn-result-actions button{min-height:32px;padding:0 10px;border:1px solid var(--line);background:#fff;color:#555;font:inherit;font-size:8px;font-weight:900;letter-spacing:.05em;cursor:pointer;}
     .learn-result-actions button:hover{border-color:var(--accent);}
 
     .learn-level-option{display:flex!important;flex-direction:column;align-items:flex-start!important;gap:4px;text-align:left!important;}
@@ -631,13 +605,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .learn-why-now{margin:0 0 24px;padding:16px 18px;border-left:3px solid var(--accent);background:#fff7f3;}
     .learn-why-now p{margin:0;font-size:12px;line-height:1.55;}
 
-    .learn-today-card{margin:0 0 30px;padding:22px;border:1px solid #111;background:#111;color:#fff;}
+    .learn-today-card{margin:0 0 26px;padding:20px;border:1px solid var(--line);background:#fff;color:#111;}
     .learn-today-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;}
-    .learn-today-card h3{margin:4px 0 0;color:#fff;font-size:24px;letter-spacing:-.04em;}
-    .learn-today-top>strong{flex:0 0 auto;padding:7px 9px;background:#fff;color:#111;font-size:9px;letter-spacing:.06em;}
-    .learn-today-card ol{margin:18px 0 20px;padding-left:20px;color:#ddd;}
-    .learn-today-card li{margin:7px 0;font-size:12px;line-height:1.5;}
-    .learn-today-card .learn-btn{display:inline-flex;}
+    .learn-today-card h3{margin:4px 0 2px;color:#111;font-size:22px;letter-spacing:-.04em;}
+    .learn-today-provider{display:block;color:var(--muted);font-size:9px;font-weight:700;}
+    .learn-today-top>strong{flex:0 0 auto;padding:6px 8px;background:#fff3cf;color:#111;font-size:8px;letter-spacing:.05em;}
+    .learn-today-card ol{margin:12px 0 0;padding-left:20px;color:#555;}
+    .learn-today-card li{margin:6px 0;font-size:11px;line-height:1.45;}
+    .learn-today-card .learn-btn{display:flex;width:100%;justify-content:center;margin-top:14px;}
 
     .learn-week-purpose{margin-bottom:6px;color:var(--accent);font-size:8px;font-weight:900;letter-spacing:.1em;}
     .learn-week-time{margin-top:12px;color:var(--muted);font-size:10px;}
@@ -663,10 +638,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .learn-sik-check-grid strong{color:#111;font-size:8px;text-align:right;}
     .learn-sik-check>small{display:block;margin-top:9px;color:var(--muted);font-size:8px;}
 
-    .learn-methodology-strip{display:flex;flex-wrap:wrap;gap:7px;margin:-6px 0 22px;}
+    .learn-methodology-strip{display:flex;flex-wrap:wrap;gap:7px;margin:-6px 0 14px;}
     .learn-methodology-strip strong,.learn-methodology-strip span{padding:7px 9px;border:1px solid var(--line);background:#fff;font-size:8px;font-weight:900;letter-spacing:.03em;}
     .learn-methodology-strip strong{border-color:#111;background:#111;color:#fff;}
-    .learn-methodology-note{margin:16px 0 0;color:var(--muted);font-size:10px;line-height:1.5;}
+    .learn-methodology-note{margin:8px 0 0;color:var(--muted);font-size:9px;line-height:1.45;}
 
     .learn-difficulty{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
     .learn-difficulty>strong{display:block;margin-bottom:8px;font-size:10px;}
@@ -680,6 +655,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 
     .learn-accent-text{color:var(--accent);}
+    .learn-planner-label{margin:0 0 8px;color:var(--accent);font-size:8px;font-weight:900;letter-spacing:.1em;}
     .learn-hero-time{margin-top:12px;color:var(--muted);font-size:9px;font-weight:800;letter-spacing:.03em;}
     .learn-progress-box{margin:0 0 14px;padding:12px 14px;border:1px solid var(--line);background:#fff;}
     .learn-progress-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px;}
@@ -692,14 +668,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .learn-return-banner strong{font-size:9px;color:var(--accent);letter-spacing:.08em;}
     .learn-return-banner span{font-size:11px;}
     .learn-return-banner button{min-height:34px;padding:0 10px;border:0;background:var(--accent);color:#fff;font:inherit;font-size:8px;font-weight:900;cursor:pointer;}
-    .learn-path-details{margin:0 0 18px;border:1px solid var(--line);background:#fff;}
+    .learn-path-details{display:none;}
     .learn-path-details>summary,.learn-today-steps>summary,.learn-why-picked>summary{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 14px;cursor:pointer;list-style:none;font-size:8px;font-weight:900;letter-spacing:.06em;}
     .learn-path-details>summary::-webkit-details-marker,.learn-today-steps>summary::-webkit-details-marker,.learn-why-picked>summary::-webkit-details-marker,.learn-phase-accordion>summary::-webkit-details-marker,.learn-sik-check>summary::-webkit-details-marker{display:none;}
     .learn-path-details .learn-plan-summary{margin:0;border:0;border-top:1px solid var(--line);}
-    .learn-today-why{margin:16px 0 18px;padding-top:14px;border-top:1px solid #333;}
-    .learn-today-why p{margin:0;color:#ddd;font-size:11px;line-height:1.55;}
-    .learn-today-steps{margin-top:12px;border-top:1px solid #333;}
-    .learn-today-steps>summary{padding:12px 0 0;color:#fff;}
+    .learn-today-why{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);}
+    .learn-today-why p{margin:0;color:#555;font-size:10px;line-height:1.5;}
+    .learn-today-steps{margin-top:10px;border-top:1px solid var(--line);}
+    .learn-today-steps>summary{padding:10px 0 0;color:#555;}
     .learn-today-steps ol{margin:12px 0 0;}
     .learn-phase-list{display:grid;gap:8px;}
     .learn-phase-accordion{border:1px solid var(--line);background:#fff;}
@@ -713,6 +689,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .learn-phase-accordion[open] .learn-phase-number{background:var(--accent);}
     .learn-phase-accordion[open]>.learn-phase-body{padding:16px;}
     .learn-phase-accordion[open]>summary .learn-phase-toggle{transform:rotate(45deg);}
+    .learn-support-accordion{margin-top:8px;}
+    .learn-support-accordion .learn-phase-number{font-size:11px;}
+    .learn-final-accordion{background:#fffaf1;}
+    .learn-final-accordion .learn-phase-number{background:#f0a21a;}
+    .learn-inline-action{display:inline-flex;margin-top:12px;color:var(--accent);font-size:9px;font-weight:900;text-decoration:none;}
     .learn-why-picked{margin-top:12px;border:1px solid var(--line);background:#fff;}
     .learn-why-picked-body{padding:0 12px 12px;}
     .learn-sik-check{padding:0!important;}
@@ -738,7 +719,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       .learn-return-banner button{width:100%;}
       .learn-phase-accordion>summary{grid-template-columns:auto 1fr auto;padding:12px;}
       .learn-phase-summary-copy strong{font-size:11px;}
-      .learn-mobile-sticky{display:flex;position:fixed;z-index:80;left:14px;right:14px;bottom:14px;min-height:46px;align-items:center;justify-content:center;padding:0 16px;background:var(--accent);color:#fff;text-decoration:none;font-size:10px;font-weight:900;box-shadow:0 8px 24px rgba(0,0,0,.16);}
+      .learn-mobile-sticky{display:flex;position:fixed;z-index:80;left:12px;right:12px;bottom:12px;min-height:44px;align-items:center;justify-content:center;padding:0 14px;background:var(--accent);color:#fff;text-decoration:none;font-size:9px;font-weight:900;box-shadow:0 8px 24px rgba(0,0,0,.16);}
       #korean-plan-result[hidden] .learn-mobile-sticky{display:none;}
     }
 
@@ -931,7 +912,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     function updateProgress(step){
       const index=Math.max(0,stepOrder.indexOf(step));
-      setText('learn-progress-text',`Step ${index+1} of ${stepOrder.length}`);
+      setText('learn-progress-text',`${index+1} / ${stepOrder.length}`);
       const bar=document.getElementById('learn-progress-bar');
       if(bar)bar.style.width=`${((index+1)/stepOrder.length)*100}%`;
     }
@@ -1046,13 +1027,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
 
     function whyNow(){
-      const time=labels.time[selections.time];
       const context=getContextLabel();
-      if(selections.level==='unsure')return`You weren’t sure about your level, so we’re using a beginner-safe route instead of guessing. Your first feedback can adjust the next recommendation. Your current priority is “${context}.”`;
-      const level=labels.level[selections.level];
-      if(selections.goal==='travel'&&selections.context==='urgent')return`Your trip is within 2 weeks and you have ${time}. We’re prioritizing phrases, listening and situations you can use immediately instead of grammar-heavy study.`;
-      if(selections.goal==='topik'&&selections.context==='urgent')return`Your test is within 1 month. We’re using official-style practice early so your study time goes toward the question types and gaps that matter most.`;
-      return`You’re ${level.toLowerCase()}, your main need is ${focusPlans[selections.focus].strategy.toLowerCase()}, and your real-life priority is “${context}.” We filter by level first, then rank the eligible resources around that combination.`;
+      if(selections.level==='unsure')return`You’re not sure about your level, so we’re starting with a safer option and adjusting after your feedback.`;
+      if(selections.goal==='travel'&&selections.context==='urgent')return`You’re travelling soon, so we’re focusing on real situations you’re likely to use.`;
+      if(selections.goal==='topik'&&selections.context==='urgent')return`Your test is soon, so we’re prioritizing official-style practice and repeat mistakes.`;
+      return`This fits your ${labels.level[selections.level].toLowerCase()} level and your current priority: ${context}.`;
     }
 
     function useUtilityFirst(){return selections.context==='urgent'&&selections.goal==='travel';}
@@ -1185,6 +1164,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     function renderToday(){
       const resource=currentResource('one');if(!resource)return;
       setText('learn-today-title',resource.title);
+      setText('learn-today-provider',resource.provider);
       setText('learn-today-duration',timePlans[selections.time].today);
       const steps=todaySteps(resource);
       setText('learn-today-step-one',steps[0]);setText('learn-today-step-two',steps[1]);setText('learn-today-step-three',steps[2]);
@@ -1261,7 +1241,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       if(!allSelected()){setText('learn-plan-message','Please complete all five steps first.');return false;}
       buildResourceState();
       setText('learn-result-title',planLength());
-      setText('learn-result-profile',`${labels.goal[selections.goal]} · ${labels.level[selections.level]} · ${labels.time[selections.time]} · ${labels.focus[selections.focus]}`);
+      setText('learn-result-profile',`${labels.goal[selections.goal]} · ${labels.level[selections.level]} · ${labels.time[selections.time]}`);
       setText('learn-plan-target',goalPlans[selections.goal].target);
       setText('learn-plan-commitment',timePlans[selections.time].commitment);
       setText('learn-plan-focus',focusPlans[selections.focus].strategy);
@@ -1269,7 +1249,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       setText('learn-why-now-copy',whyNow());
       renderPhaseCopy();['one','two','three'].forEach(renderResource);renderToday();renderMission();renderFinal();updatePhaseStates();
       document.getElementById('korean-plan-result')?.removeAttribute('hidden');
-      setText('learn-plan-message','Your Korean path is ready.');
+      setText('learn-plan-message','');
       saveState(false);
       track('plan_completed',{goal:selections.goal,level:selections.level,time:selections.time,focus:selections.focus,context:selections.context});
       if(scroll)document.getElementById('korean-plan-result')?.scrollIntoView({behavior:'smooth',block:'start'});
@@ -1278,7 +1258,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     document.getElementById('generate-korean-plan')?.addEventListener('click',()=>{
       if(!allSelected()){setText('learn-plan-message','Please complete all five steps first.');return;}
-      setText('learn-plan-message','Building your personalized path...');
+      setText('learn-plan-message','Finding your next lesson...');
       setTimeout(()=>renderPlan(),350);
     });
 
@@ -1348,7 +1328,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     function saveState(showMessage=true){
       localStorage.setItem(STORAGE_KEY,JSON.stringify({selections,feedback,completedPhases,currentResourceIndex}));
-      if(showMessage)setText('learn-plan-message','Plan saved on this device.');
+      if(showMessage)setText('learn-plan-message','Saved.');
     }
 
     document.getElementById('save-korean-plan')?.addEventListener('click',()=>{if(!renderPlan({scroll:false}))return;saveState(true);});
