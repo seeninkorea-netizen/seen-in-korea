@@ -82,230 +82,368 @@ const currentPath = Astro.url.pathname;
   </head>
 
   <body>
-   <header class="site-header">
 
-  <!-- Desktop header -->
-  <div class="wrap nav desktop-header-row">
-    <a class="brand" href="/">SEEN IN <span>KOREA</span></a>
+    <header class="site-header">
 
-    <nav class="desktop-nav">
-      <a href="/category/trending">TRENDING</a>
-      <a href="/category/seen-on">SEEN ON</a>
-      <a href="/real-korea">REAL KOREA</a>
-      <a href="/shop-korea">SHOP KOREA</a>
-      <a href="/articles">ALL STORIES</a>
-    </nav>
+      <!-- Desktop header -->
+      <div class="wrap nav desktop-header-row">
 
-    <a class="help-btn" href="/korea-help">KOREA HELP →</a>
-  </div>
+        <a class="brand" href="/">
+          SEEN IN <span>KOREA</span>
+        </a>
 
-  <!-- Mobile header -->
-  <div class="mobile-header">
+        <nav class="desktop-nav">
 
-    <div class="mobile-header-main">
-      <button
-        class="mobile-menu-btn"
-        type="button"
-        aria-label="Open menu"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+          <a href="/category/trending">
+            TRENDING
+          </a>
 
-      <a class="brand mobile-brand" href="/">
-        SEEN IN <span>KOREA</span>
-      </a>
+          <a href="/category/seen-on">
+            SEEN ON
+          </a>
 
-      <div class="mobile-header-spacer" aria-hidden="true"></div>
-    </div>
+          <a href="/real-korea">
+            REAL KOREA
+          </a>
 
-    <nav class="mobile-category-nav" aria-label="Main sections">
-  <a
-    href="/"
-    class:list={{ active: currentPath === '/' }}
-  >
-    TOP
-  </a>
+          <a href="/learn-korean">
+            LEARN KOREAN
+          </a>
 
-  <a
-    href="/category/trending"
-    class:list={{ active: currentPath.startsWith('/category/trending') }}
-  >
-    TRENDING
-  </a>
+        </nav>
 
-  <a
-    href="/category/seen-on"
-    class:list={{ active: currentPath.startsWith('/category/seen-on') }}
-  >
-    SEEN ON
-  </a>
+        <a class="help-btn" href="/korea-help">
+          KOREA HELP →
+        </a>
 
-  <a
-    href="/real-korea"
-    class:list={{ active: currentPath.startsWith('/real-korea') }}
-  >
-    REAL KOREA
-  </a>
+      </div>
 
-  <a
-    href="/shop-korea"
-    class:list={{ active: currentPath.startsWith('/shop-korea') }}
-  >
-    SHOP
-  </a>
-</nav>
 
-  </div>
+      <!-- Mobile header -->
+      <div class="mobile-header">
 
-</header>
+        <div class="mobile-header-main">
 
-<div class="mobile-menu-overlay" data-mobile-menu-close></div>
+          <button
+            class="mobile-menu-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
 
-<aside
-  id="mobile-menu"
-  class="mobile-menu-drawer"
-  aria-hidden="true"
->
-  <div class="mobile-menu-top">
-    <a class="brand" href="/">SEEN IN <span>KOREA</span></a>
+          <a class="brand mobile-brand" href="/">
+            SEEN IN <span>KOREA</span>
+          </a>
 
-    <button
-      class="mobile-menu-close"
-      type="button"
-      aria-label="Close menu"
+          <div
+            class="mobile-header-spacer"
+            aria-hidden="true"
+          ></div>
+
+        </div>
+
+
+        <!-- Mobile horizontal navigation -->
+        <nav
+          class="mobile-category-nav"
+          aria-label="Main sections"
+        >
+
+          <a
+            href="/"
+            class:list={{
+              active: currentPath === '/'
+            }}
+          >
+            TOP
+          </a>
+
+          <a
+            href="/category/trending"
+            class:list={{
+              active: currentPath.startsWith('/category/trending')
+            }}
+          >
+            TRENDING
+          </a>
+
+          <a
+            href="/category/seen-on"
+            class:list={{
+              active: currentPath.startsWith('/category/seen-on')
+            }}
+          >
+            SEEN ON
+          </a>
+
+          <a
+            href="/real-korea"
+            class:list={{
+              active: currentPath.startsWith('/real-korea')
+            }}
+          >
+            REAL KOREA
+          </a>
+
+          <a
+            href="/learn-korean"
+            class:list={{
+              active: currentPath.startsWith('/learn-korean')
+            }}
+          >
+            LEARN
+          </a>
+
+        </nav>
+
+      </div>
+
+    </header>
+
+
+    <!-- Mobile menu overlay -->
+    <div
+      class="mobile-menu-overlay"
       data-mobile-menu-close
+    ></div>
+
+
+    <!-- Mobile menu drawer -->
+    <aside
+      id="mobile-menu"
+      class="mobile-menu-drawer"
+      aria-hidden="true"
     >
-      ×
-    </button>
-  </div>
 
- <nav class="mobile-menu-links">
+      <div class="mobile-menu-top">
 
-  <a class="mobile-menu-primary" href="/">
-    TOP STORIES
-  </a>
+        <a class="brand" href="/">
+          SEEN IN <span>KOREA</span>
+        </a>
 
-  <a href="/category/trending">
-    TRENDING
-  </a>
+        <button
+          class="mobile-menu-close"
+          type="button"
+          aria-label="Close menu"
+          data-mobile-menu-close
+        >
+          ×
+        </button>
 
-  <a href="/category/seen-on">
-    SEEN ON
-  </a>
+      </div>
 
-  <a href="/real-korea">
-    REAL KOREA
-  </a>
 
-  <a href="/shop-korea">
-    SHOP KOREA
-  </a>
+      <!-- STORIES -->
+      <nav class="mobile-menu-links">
 
-  <a href="/articles">
-    ALL STORIES
-  </a>
+        <a
+          class="mobile-menu-primary"
+          href="/"
+        >
+          TOP STORIES
+        </a>
 
-</nav>
+        <a href="/category/trending">
+          TRENDING
+        </a>
 
-  <div class="mobile-menu-divider"></div>
+        <a href="/category/seen-on">
+          SEEN ON
+        </a>
 
-  <div class="mobile-menu-service">
-  <div class="mobile-menu-service-title">
-    KOREA HELP
-  </div>
+        <a href="/real-korea">
+          REAL KOREA
+        </a>
 
-  <a href="/korea-help/call-korea" class="mobile-menu-service-beta">
-    Call Korea <small>BETA</small>
-  </a>
+        <a href="/articles">
+          ALL STORIES
+        </a>
 
-  <a href="/korea-help/translation">
-    Translation
-  </a>
+      </nav>
 
-  <a href="/learn-korean">
-    Learn Korean
-  </a>
-</div>
 
-  <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-divider"></div>
 
-  <nav class="mobile-menu-secondary">
-  <a href="/about">ABOUT</a>
-  <a href="/editorial-standards">EDITORIAL STANDARDS</a>
-  <a href="/contact">CONTACT</a>
-</nav>
 
-</aside>
+      <!-- LEARN & DECIDE -->
+      <div class="mobile-menu-service">
+
+        <div class="mobile-menu-service-title">
+          LEARN &amp; DECIDE
+        </div>
+
+        <a href="/learn-korean">
+          Learn Korean
+        </a>
+
+      </div>
+
+
+      <div class="mobile-menu-divider"></div>
+
+
+      <!-- KOREA HELP -->
+      <div class="mobile-menu-service">
+
+        <div class="mobile-menu-service-title">
+          KOREA HELP
+        </div>
+
+        <a
+          href="/korea-help/call-korea"
+          class="mobile-menu-service-beta"
+        >
+          Call Korea <small>BETA</small>
+        </a>
+
+        <a href="/korea-help/translation">
+          Translation
+        </a>
+
+      </div>
+
+
+      <div class="mobile-menu-divider"></div>
+
+
+      <!-- SHOP -->
+      <div class="mobile-menu-service">
+
+        <div class="mobile-menu-service-title">
+          SHOP
+        </div>
+
+        <a href="/shop-korea">
+          Shop Korea
+        </a>
+
+      </div>
+
+
+      <div class="mobile-menu-divider"></div>
+
+
+      <!-- SECONDARY -->
+      <nav class="mobile-menu-secondary">
+
+        <a href="/about">
+          ABOUT
+        </a>
+
+        <a href="/editorial-standards">
+          EDITORIAL STANDARDS
+        </a>
+
+        <a href="/contact">
+          CONTACT
+        </a>
+
+      </nav>
+
+    </aside>
+
 
     <slot />
 
-    <footer>
-  <div class="wrap footer-grid">
-    <div>
-      <div class="footer-brand">SEEN IN KOREA</div>
-      <div class="footer-copy">KOREA, VERIFIED.</div>
-    </div>
 
-    <div>
-      <div class="footer-copy">
-        <a href="/about">About</a>
-        ·
-        <a href="/editorial-standards">Editorial Standards</a>
-        ·
-        <a href="/contact">Contact</a>
+    <footer>
+
+      <div class="wrap footer-grid">
+
+        <div>
+
+          <div class="footer-brand">
+            SEEN IN KOREA
+          </div>
+
+          <div class="footer-copy">
+            KOREA, VERIFIED.
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="footer-copy">
+
+            <a href="/about">
+              About
+            </a>
+
+            ·
+
+            <a href="/editorial-standards">
+              Editorial Standards
+            </a>
+
+            ·
+
+            <a href="/contact">
+              Contact
+            </a>
+
+          </div>
+
+
+          {footerCopy && (
+            <div class="footer-copy">
+              {footerCopy}
+            </div>
+          )}
+
+        </div>
+
       </div>
 
-      {footerCopy && (
-        <div class="footer-copy">
-          {footerCopy}
-        </div>
-      )}
-    </div>
-  </div>
-</footer>
-<script is:inline>
-  const menuButton = document.querySelector('.mobile-menu-btn');
-  const menuDrawer = document.querySelector('.mobile-menu-drawer');
-  const menuOverlay = document.querySelector('.mobile-menu-overlay');
-  const closeButtons = document.querySelectorAll('[data-mobile-menu-close]');
+    </footer>
 
-  function openMobileMenu() {
-    menuDrawer?.classList.add('is-open');
-    menuOverlay?.classList.add('is-open');
-    document.body.classList.add('mobile-menu-open');
 
-    menuButton?.setAttribute('aria-expanded', 'true');
-    menuDrawer?.setAttribute('aria-hidden', 'false');
-  }
+    <script is:inline>
+      const menuButton = document.querySelector('.mobile-menu-btn');
+      const menuDrawer = document.querySelector('.mobile-menu-drawer');
+      const menuOverlay = document.querySelector('.mobile-menu-overlay');
+      const closeButtons = document.querySelectorAll('[data-mobile-menu-close]');
 
-  function closeMobileMenu() {
-    menuDrawer?.classList.remove('is-open');
-    menuOverlay?.classList.remove('is-open');
-    document.body.classList.remove('mobile-menu-open');
+      function openMobileMenu() {
+        menuDrawer?.classList.add('is-open');
+        menuOverlay?.classList.add('is-open');
+        document.body.classList.add('mobile-menu-open');
 
-    menuButton?.setAttribute('aria-expanded', 'false');
-    menuDrawer?.setAttribute('aria-hidden', 'true');
-  }
+        menuButton?.setAttribute('aria-expanded', 'true');
+        menuDrawer?.setAttribute('aria-hidden', 'false');
+      }
 
-  menuButton?.addEventListener('click', openMobileMenu);
+      function closeMobileMenu() {
+        menuDrawer?.classList.remove('is-open');
+        menuOverlay?.classList.remove('is-open');
+        document.body.classList.remove('mobile-menu-open');
 
-  closeButtons.forEach((button) => {
-    button.addEventListener('click', closeMobileMenu);
-  });
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menuDrawer?.setAttribute('aria-hidden', 'true');
+      }
 
-  menuDrawer?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMobileMenu);
-  });
+      menuButton?.addEventListener('click', openMobileMenu);
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      closeMobileMenu();
-    }
-  });
-</script>
+      closeButtons.forEach((button) => {
+        button.addEventListener('click', closeMobileMenu);
+      });
+
+      menuDrawer?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+    </script>
+
   </body>
 </html>
