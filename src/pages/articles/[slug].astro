@@ -17,7 +17,7 @@ const authorSchema =
     ? {
         '@type': 'Organization',
         name: 'Seen in Korea Desk',
-        url: `${siteUrl}about`
+        url: `${siteUrl}authors/seen-in-korea-desk`
       }
     : {
         '@type': 'Person',
@@ -81,8 +81,19 @@ const jsonLd = {
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
   <main>
-    <section class="article-hero"><div class="article-wrap"><div class="eyebrow">{article.eyebrow || article.category}</div><h1 class="article-title">{article.title}</h1><div class="article-dek">{article.dek}</div><div class="article-meta">{readableDate(article.publishedAt)} · {article.author || 'Seen in Korea Desk'}{article.verification && article.verification !== 'Not applicable' ? ` · ${article.verification}` : ''}</div>{article.heroImageUrl && <img class="article-hero-image" src={article.heroImageUrl} alt={article.heroAlt || article.title} />}</div></section>
-    <article class="article-wrap article-body">
+<div class="article-meta">
+  {readableDate(article.publishedAt)} ·
+  {
+    authorName === 'Seen in Korea Desk' ? (
+      <a href="/authors/seen-in-korea-desk">Seen in Korea Desk</a>
+    ) : (
+      authorName
+    )
+  }
+  {article.verification && article.verification !== 'Not applicable'
+    ? ` · ${article.verification}`
+    : ''}
+</div>    <article class="article-wrap article-body">
       {article.body?.length ? <PortableBody value={article.body} /> : <p>{article.dek}</p>}
       {article.commerceLinks?.length ? <section class="commerce-box"><div class="eyebrow">Where to buy</div><h2>Price & retailer check</h2><div class="commerce-list">{article.commerceLinks.map(item => <a class="commerce-row" href={item.url} rel={item.affiliate ? 'sponsored nofollow' : 'noopener'} target="_blank"><span><strong>{item.retailer}</strong>{item.market ? ` · ${item.market}` : ''}</span><span>{item.price || 'Check price'} →</span></a>)}</div><p class="affiliate-note">Some retailer links may be affiliate links. Editorial conclusions are not determined by commissions.</p></section> : null}
       {article.sources?.length ? <section class="sources-box"><strong>Sources</strong><ol>{article.sources.map(source => <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>)}</ol></section> : null}
