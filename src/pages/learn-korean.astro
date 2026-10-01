@@ -325,7 +325,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   <p id="phase-one-resource-reason"></p>
 
                   <details class="learn-why-picked">
-                    <summary>WHY THIS <span>+</span></summary>
+                    <summary>WHY WE PICKED THIS <span>+</span></summary>
                     <div class="learn-why-picked-body">
                       <div class="learn-resource-meta"><span id="phase-one-best-for"></span><span id="phase-one-checked"></span></div>
                       <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-one-not-for"></span></p>
@@ -379,7 +379,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   <h4 id="phase-two-resource-title"></h4>
                   <p id="phase-two-resource-reason"></p>
                   <details class="learn-why-picked">
-                    <summary>WHY THIS <span>+</span></summary>
+                    <summary>WHY WE PICKED THIS <span>+</span></summary>
                     <div class="learn-why-picked-body">
                       <div class="learn-resource-meta"><span id="phase-two-best-for"></span><span id="phase-two-checked"></span></div>
                       <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-two-not-for"></span></p>
@@ -432,7 +432,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   <h4 id="phase-three-resource-title"></h4>
                   <p id="phase-three-resource-reason"></p>
                   <details class="learn-why-picked">
-                    <summary>WHY THIS <span>+</span></summary>
+                    <summary>WHY WE PICKED THIS <span>+</span></summary>
                     <div class="learn-why-picked-body">
                       <div class="learn-resource-meta"><span id="phase-three-best-for"></span><span id="phase-three-checked"></span></div>
                       <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-three-not-for"></span></p>
@@ -534,7 +534,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
     <!-- SITUATIONS -->
-    <section id="situations" class="learn-situations">
+    <section id="situations" class="learn-situations" hidden>
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -556,7 +556,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
     <!-- TUTOR -->
-    <section id="tutor" class="learn-tutor-section">
+    <section id="tutor" class="learn-tutor-section" hidden>
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -599,7 +599,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
     <!-- FINAL CTA -->
-    <section class="learn-final-section">
+    <section id="learn-final-section" class="learn-final-section" hidden>
       <div class="wrap">
         <div class="learn-final-cta">
           <div>
@@ -2112,6 +2112,71 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     }
 
+
+    /* =========================================================
+       v3.6 — mobile focus + sticky CTA visibility polish
+       ========================================================= */
+
+    .learn-situations[hidden],
+    .learn-tutor-section[hidden],
+    .learn-final-section[hidden],
+    .learn-return-banner[hidden]{
+      display:none!important;
+    }
+
+    .learn-return-banner{
+      display:grid!important;
+      grid-template-columns:minmax(0,1fr) auto!important;
+      align-items:center!important;
+      gap:12px!important;
+      padding:12px 14px!important;
+      margin-bottom:14px!important;
+    }
+
+    .learn-return-banner button{
+      width:auto!important;
+      min-width:112px!important;
+      min-height:34px!important;
+    }
+
+    .learn-why-picked>summary{
+      letter-spacing:.045em!important;
+    }
+
+    @media(max-width:850px){
+      .learn-return-banner{
+        grid-template-columns:minmax(0,1fr) auto!important;
+        align-items:center!important;
+        padding:11px 12px!important;
+      }
+
+      .learn-return-banner span{
+        font-size:9px!important;
+      }
+
+      .learn-return-banner button{
+        width:auto!important;
+        min-width:96px!important;
+        min-height:32px!important;
+        padding:0 10px!important;
+      }
+
+      .learn-mobile-sticky:not([hidden]){
+        height:46px!important;
+        min-height:46px!important;
+        left:12px!important;
+        right:12px!important;
+        bottom:12px!important;
+        border-radius:9px!important;
+      }
+
+      @supports (-webkit-touch-callout:none){
+        .learn-mobile-sticky:not([hidden]){
+          bottom:calc(env(safe-area-inset-bottom) + 58px)!important;
+        }
+      }
+    }
+
   </style>
 
   <script is:inline>
@@ -2335,6 +2400,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       document.getElementById('korean-plan-result')?.setAttribute('hidden','');
       document.getElementById('learn-mobile-sticky')?.setAttribute('hidden','');
       document.getElementById('resources')?.setAttribute('hidden','');
+      document.getElementById('situations')?.setAttribute('hidden','');
+      document.getElementById('tutor')?.setAttribute('hidden','');
+      document.getElementById('learn-final-section')?.setAttribute('hidden','');
     }
 
     function revealNextStep(step){
@@ -2673,8 +2741,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       renderPhaseCopy();['one','two','three'].forEach(renderResource);renderToday();renderMission();renderFinal();updatePhaseStates();
       if(scroll){document.querySelectorAll('[data-phase-details]').forEach((details)=>{details.open=false;});}
       document.getElementById('korean-plan-result')?.removeAttribute('hidden');
-      document.getElementById('learn-mobile-sticky')?.removeAttribute('hidden');
+      document.getElementById('learn-plan-action')?.setAttribute('hidden','');
       document.getElementById('resources')?.removeAttribute('hidden');
+      document.getElementById('situations')?.removeAttribute('hidden');
+      document.getElementById('tutor')?.removeAttribute('hidden');
+      document.getElementById('learn-final-section')?.removeAttribute('hidden');
+      setTimeout(syncMobileSticky,60);
       setText('learn-plan-message','');
       saveState(false);
       track('plan_completed',{goal:selections.goal,level:selections.level,time:selections.time,focus:selections.focus,context:selections.context});
@@ -2801,6 +2873,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       if(firstIncomplete)openPhase(firstIncomplete);
       else document.getElementById('learn-today-card')?.scrollIntoView({behavior:'smooth',block:'start'});
     });
+
+
+    // v3.6: show the mobile sticky CTA only when the generated path is on screen
+    // and the primary START THIS LESSON button is no longer visible.
+    let stickyResultVisible=false;
+    let stickyPrimaryVisible=false;
+
+    function syncMobileSticky(){
+      const sticky=document.getElementById('learn-mobile-sticky');
+      const result=document.getElementById('korean-plan-result');
+      if(!sticky||!result)return;
+      const shouldShow=!result.hasAttribute('hidden')&&stickyResultVisible&&!stickyPrimaryVisible;
+      if(shouldShow)sticky.removeAttribute('hidden');
+      else sticky.setAttribute('hidden','');
+    }
+
+    if('IntersectionObserver' in window){
+      const result=document.getElementById('korean-plan-result');
+      const primary=document.getElementById('learn-today-link');
+
+      if(result){
+        new IntersectionObserver((entries)=>{
+          stickyResultVisible=Boolean(entries[0]?.isIntersecting);
+          syncMobileSticky();
+        },{threshold:.01}).observe(result);
+      }
+
+      if(primary){
+        new IntersectionObserver((entries)=>{
+          stickyPrimaryVisible=Boolean(entries[0]?.isIntersecting);
+          syncMobileSticky();
+        },{threshold:.15}).observe(primary);
+      }
+    }
 
     updateProgress('goal');
 
