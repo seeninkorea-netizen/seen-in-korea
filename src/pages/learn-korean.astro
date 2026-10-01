@@ -413,7 +413,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
             </details>
 
-            <details class="learn-phase-accordion" data-phase-details="three">
+            <details class="learn-phase-accordion learn-sik-practice-phase" data-phase-details="three">
               <summary>
                 <span class="learn-phase-number">3</span>
                 <span class="learn-phase-summary-copy">
@@ -422,64 +422,64 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </span>
                 <span class="learn-phase-toggle">+</span>
               </summary>
+
               <div class="learn-phase-body">
-                <div class="learn-week-purpose">PRACTICE</div>
+                <div class="learn-week-purpose">SIK PRACTICE</div>
                 <p id="phase-three-copy"></p>
-                <div class="learn-week-time">Recommended pace: <strong id="phase-three-time"></strong></div>
-                <div class="learn-week-resource" data-resource-card="three">
-                  <div class="learn-week-resource-label">NEXT LESSON</div>
-                  <div class="learn-week-resource-provider"><span id="phase-three-provider"></span><span class="learn-free-badge">FREE</span></div>
-                  <h4 id="phase-three-resource-title"></h4>
-                  <p id="phase-three-resource-reason"></p>
-                  <details class="learn-why-picked">
-                    <summary>WHY WE PICKED THIS <span>+</span></summary>
-                    <div class="learn-why-picked-body">
-                      <div class="learn-resource-meta"><span id="phase-three-best-for"></span><span id="phase-three-checked"></span></div>
-                      <p class="learn-not-ideal"><strong>Not ideal for:</strong> <span id="phase-three-not-for"></span></p>
-                      <details class="learn-sik-check" aria-label="Seen in Korea verification summary">
-                        <summary class="learn-sik-check-head"><span>SIK CHECK</span><strong id="phase-three-confidence"></strong><b>+</b></summary>
-                        <div class="learn-sik-check-grid">
-                          <span>Official source</span><strong id="phase-three-check-official"></strong>
-                          <span>Free access</span><strong id="phase-three-check-free"></strong>
-                          <span>Level fit</span><strong id="phase-three-check-level"></strong>
-                          <span>Independent evidence</span><strong id="phase-three-check-independent"></strong>
-                        </div>
-                        <small id="phase-three-last-checked"></small>
-                      </details>
+
+                <div class="learn-week-time">
+                  Suggested practice: <strong id="phase-three-time"></strong>
+                </div>
+
+                <div class="learn-practice-card">
+                  <div class="learn-week-resource-label">YOUR PRACTICE</div>
+                  <h4 id="phase-three-practice-title"></h4>
+                  <p id="phase-three-practice-scenario"></p>
+
+                  <button
+                    type="button"
+                    id="start-sik-practice"
+                    class="learn-practice-start"
+                  >
+                    START MY PRACTICE →
+                  </button>
+
+                  <div id="sik-practice-panel" class="learn-practice-panel" hidden>
+                    <ol class="learn-practice-steps">
+                      <li>
+                        <span>1</span>
+                        <p id="phase-three-step-one"></p>
+                      </li>
+                      <li>
+                        <span>2</span>
+                        <p id="phase-three-step-two"></p>
+                      </li>
+                      <li>
+                        <span>3</span>
+                        <p id="phase-three-step-three"></p>
+                      </li>
+                    </ol>
+
+                    <button
+                      type="button"
+                      id="complete-sik-practice"
+                      class="learn-practice-complete"
+                    >
+                      I FINISHED THIS
+                    </button>
+
+                    <div id="sik-practice-feedback" class="learn-difficulty learn-practice-feedback" hidden>
+                      <strong>How did it feel?</strong>
+                      <div>
+                        <button type="button" data-practice-difficulty="easy">TOO EASY</button>
+                        <button type="button" data-practice-difficulty="right">JUST RIGHT</button>
+                        <button type="button" data-practice-difficulty="hard">TOO HARD</button>
+                      </div>
                     </div>
-                  </details>
-                  <div class="learn-resource-actions">
-                    <a id="phase-three-resource-link" href="#" target="_blank" rel="noopener noreferrer" data-resource-link="three">START LESSON →</a>
-                    <button type="button" data-alt-resource="three">TRY ANOTHER</button>
-                    <button type="button" data-resource-complete="three">I FINISHED THIS</button>
-                  </div>
-                  <div class="learn-difficulty" data-difficulty-panel="three" hidden>
-                    <strong>How did it feel?</strong>
-                    <div>
-                      <button type="button" data-difficulty="easy" data-phase="three">TOO EASY</button>
-                      <button type="button" data-difficulty="right" data-phase="three">JUST RIGHT</button>
-                      <button type="button" data-difficulty="hard" data-phase="three">TOO HARD</button>
-                    </div>
-                    <p data-adaptation-note="three"></p>
+
+                    <p id="sik-practice-status" class="learn-practice-status"></p>
                   </div>
                 </div>
-              </div>
-            </details>
-
-            <!-- SIK MISSION -->
-            <details class="learn-phase-accordion learn-support-accordion">
-              <summary>
-                <span class="learn-phase-number">✓</span>
-                <span class="learn-phase-summary-copy">
-                  <small>SEEN IN KOREA MISSION</small>
-                  <strong id="learn-mission-title"></strong>
-                </span>
-                <span class="learn-phase-toggle">+</span>
-              </summary>
-              <div class="learn-phase-body">
-                <p id="learn-mission-copy"></p>
-                <button type="button" id="complete-mission" class="learn-mission-button">MARK COMPLETE</button>
-                <small id="learn-mission-status"></small>
               </div>
             </details>
 
@@ -2177,6 +2177,140 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     }
 
+  
+    /* =========================================================
+       v3.8 — SIK-owned Phase 3 practice
+       ========================================================= */
+
+    .learn-sik-practice-phase[open] .learn-phase-number{
+      background:#111;
+    }
+
+    .learn-practice-card{
+      margin-top:16px;
+      padding:18px;
+      border:1px solid #d8d2c8;
+      background:#fffaf3;
+    }
+
+    .learn-practice-card h4{
+      margin:4px 0 8px;
+      font-size:19px;
+      line-height:1.15;
+      letter-spacing:-.035em;
+    }
+
+    .learn-practice-card>p{
+      margin:0;
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.55;
+    }
+
+    .learn-practice-start,
+    .learn-practice-complete{
+      width:100%;
+      min-height:42px;
+      margin-top:14px;
+      border:0;
+      background:var(--accent);
+      color:#fff;
+      font:inherit;
+      font-size:9px;
+      font-weight:900;
+      letter-spacing:.04em;
+      cursor:pointer;
+    }
+
+    .learn-practice-complete{
+      background:#111;
+    }
+
+    .learn-practice-panel[hidden],
+    .learn-practice-feedback[hidden]{
+      display:none!important;
+    }
+
+    .learn-practice-panel{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+    }
+
+    .learn-practice-steps{
+      display:grid;
+      gap:8px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    .learn-practice-steps li{
+      display:grid;
+      grid-template-columns:28px minmax(0,1fr);
+      gap:10px;
+      align-items:start;
+      padding:10px;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+
+    .learn-practice-steps li>span{
+      width:28px;
+      height:28px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:#111;
+      color:#fff;
+      font-size:9px;
+      font-weight:900;
+    }
+
+    .learn-practice-steps p{
+      margin:3px 0 0!important;
+      color:#222!important;
+      font-size:10px!important;
+      line-height:1.45!important;
+    }
+
+    .learn-practice-feedback{
+      margin-top:14px;
+    }
+
+    .learn-practice-status{
+      margin:10px 0 0!important;
+      color:var(--muted)!important;
+      font-size:9px!important;
+      font-weight:800;
+    }
+
+    @media(max-width:850px){
+      .learn-practice-card{
+        padding:15px;
+      }
+
+      .learn-practice-card h4{
+        font-size:17px;
+      }
+
+      .learn-practice-steps li{
+        grid-template-columns:25px minmax(0,1fr);
+        gap:9px;
+        padding:9px;
+      }
+
+      .learn-practice-steps li>span{
+        width:25px;
+        height:25px;
+      }
+
+      .learn-practice-start,
+      .learn-practice-complete{
+        min-height:40px;
+      }
+    }
+
   </style>
 
   <script is:inline>
@@ -2241,6 +2375,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     // Resource policy: hard level eligibility first; verification gate second; ranking third.
     // Verified links and metadata last audited Oct. 1, 2026. Do not mark unknown claims as true.
+    const practiceTimePlans={
+      '10':'5–10 minutes',
+      '30':'10–15 minutes',
+      '60':'15–20 minutes',
+      weekend:'15–20 minutes'
+    };
+
     const resources=[
       {
         id:'go-billy-hangul',difficulty:1,roles:['foundation'],provider:'GO! Billy Korean',title:'Learn Hangul in 90 Minutes',url:'https://www.youtube.com/watch?v=s5aobqyEaMQ',type:'video',
@@ -2627,18 +2768,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     function getResourceProfileKey(){return stepOrder.map((step)=>selections[step]||'').join('|');}
 
+    function rankPhaseTwo(role,excludeIds=[]){
+      let ranked=rankResources(role,excludeIds);
+      if(ranked.length)return ranked;
+
+      // If a goal-specific resource is not yet appropriate for this level,
+      // bridge with a different verified foundation/practice resource instead
+      // of showing the same external lesson twice.
+      for(const fallbackRole of ['foundation','practice']){
+        if(fallbackRole===role)continue;
+        ranked=rankResources(fallbackRole,excludeIds);
+        if(ranked.length)return ranked;
+      }
+
+      // Last-resort compatibility fallback.
+      return rankResources(role);
+    }
+
     function buildResourceState({force=false}={}){
       const nextKey=getResourceProfileKey();
-      if(!force&&resourceProfileKey===nextKey&&resourceState.one.length&&resourceState.two.length&&resourceState.three.length)return;
+      if(!force&&resourceProfileKey===nextKey&&resourceState.one.length&&resourceState.two.length)return;
+
       const utilityFirst=useUtilityFirst();
       const phaseOneRole=utilityFirst?'goal':'foundation';
       const phaseTwoRole=utilityFirst?'foundation':'goal';
+
       resourceState.one=rankWithFallback(phaseOneRole);
+
       const oneId=resourceState.one[0]?.id;
-      resourceState.two=rankWithFallback(phaseTwoRole,oneId?[oneId]:[]);
-      const twoId=resourceState.two[0]?.id;
-      resourceState.three=rankWithFallback('practice',[oneId,twoId].filter(Boolean));
-      currentResourceIndex.one=0;currentResourceIndex.two=0;currentResourceIndex.three=0;
+      resourceState.two=rankPhaseTwo(phaseTwoRole,oneId?[oneId]:[]);
+
+      // Phase 3 is intentionally owned by SIK rather than another external link.
+      resourceState.three=[];
+
+      currentResourceIndex.one=0;
+      currentResourceIndex.two=0;
+      currentResourceIndex.three=0;
       resourceProfileKey=nextKey;
     }
 
@@ -2745,27 +2910,56 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     }
 
+    function phaseTwoIsFoundationBridge(){
+      const resource=currentResource('two');
+      if(!resource||useUtilityFirst())return false;
+      return !resource.goals.includes(selections.goal);
+    }
+
     function renderPhaseCopy(){
       const utilityFirst=useUtilityFirst();
       const level=levelPlans[selections.level];
       const goal=goalPlans[selections.goal];
+
       if(utilityFirst){
-        setText('phase-one-purpose','SURVIVAL FIRST');setText('phase-one-title',goal.goalTitle);setText('phase-one-copy',goal.goalCopy);
-        setText('phase-two-purpose','FOUNDATION');setText('phase-two-title',level.foundationTitle);setText('phase-two-copy',level.foundationCopy);
+        setText('phase-one-purpose','SURVIVAL FIRST');
+        setText('phase-one-title',goal.goalTitle);
+        setText('phase-one-copy',goal.goalCopy);
+
+        setText('phase-two-purpose','FOUNDATION');
+        setText('phase-two-title',level.foundationTitle);
+        setText('phase-two-copy',level.foundationCopy);
       }else{
-        setText('phase-one-purpose','FOUNDATION');setText('phase-one-title',level.foundationTitle);setText('phase-one-copy',level.foundationCopy);
-        setText('phase-two-purpose','YOUR GOAL');setText('phase-two-title',goal.goalTitle);setText('phase-two-copy',goal.goalCopy);
+        setText('phase-one-purpose','FOUNDATION');
+        setText('phase-one-title',level.foundationTitle);
+        setText('phase-one-copy',level.foundationCopy);
+
+        if(phaseTwoIsFoundationBridge()){
+          setText('phase-two-purpose','FOUNDATION BRIDGE');
+          setText('phase-two-title','One more foundation step before your goal');
+          setText('phase-two-copy','At your current level, one more foundation step is more useful than forcing a goal-specific lesson too early.');
+        }else{
+          setText('phase-two-purpose','YOUR GOAL');
+          setText('phase-two-title',goal.goalTitle);
+          setText('phase-two-copy',goal.goalCopy);
+        }
       }
+
       setText('phase-three-title',goal.practiceTitle);
-      setText('phase-three-copy',`${goal.practiceCopy} ${focusPlans[selections.focus].practice}`);
-      ['one','two','three'].forEach((phase)=>setText(`phase-${phase}-time`,timePlans[selections.time].pace));
+      setText('phase-three-copy','No new lesson. Use what you learned without leaning on translation or notes.');
+      setText('phase-one-time',timePlans[selections.time].pace);
+      setText('phase-two-time',timePlans[selections.time].pace);
+      setText('phase-three-time',practiceTimePlans[selections.time]);
     }
 
 
     function phaseLabel(phase){
       if(phase==='one')return selections.goal==='travel'&&selections.context==='urgent'?'SURVIVAL FIRST':'FOUNDATION';
-      if(phase==='two')return selections.goal==='travel'&&selections.context==='urgent'?'FOUNDATION':'YOUR GOAL';
-      return'PRACTICE';
+      if(phase==='two'){
+        if(selections.goal==='travel'&&selections.context==='urgent')return'FOUNDATION';
+        return phaseTwoIsFoundationBridge()?'FOUNDATION BRIDGE':'YOUR GOAL';
+      }
+      return'SIK PRACTICE';
     }
 
     function updatePhaseStates(){
@@ -2792,7 +2986,112 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       });
     });
 
-    function renderMission(){const mission=missionPlans[selections.goal];setText('learn-mission-title',mission.title);setText('learn-mission-copy',mission.copy);setText('learn-mission-status','');}
+    function practiceScenario(){
+      const scenarios={
+        travel:`Pretend you are in Korea. Order one item, ask one simple follow-up question, and finish politely.`,
+        life:{
+          appointments:`Make or change an appointment using one short Korean request.`,
+          delivery:`Ask about a delivery or product, then respond to one follow-up question.`,
+          admin:`Ask a staff member what document or next step you need.`,
+          daily:`Handle one everyday request in Korean without opening a translator.`
+        },
+        work:{
+          meetings:`A coworker asks for an update. Give a two-sentence update and make one polite request.`,
+          calls:`Imagine a work phone call: greet, explain why you are calling, and make one polite request.`,
+          jobsearch:`Answer a short self-introduction question with your role or experience and one reason you are interested.`,
+          office:`Ask a coworker for help or clarification using one polite workplace request.`
+        },
+        social:{
+          friends:`Answer three getting-to-know-you questions, then ask one back.`,
+          dating:`Ask and answer two simple questions about interests or weekend plans.`,
+          casual:`React to something, ask one follow-up question, and share one detail about yourself.`,
+          socialall:`Keep a 30-second casual exchange going without translating every sentence first.`
+        },
+        culture:{
+          drama:`Watch 20–30 seconds of a Korean drama clip without subtitles. Catch three expressions and shadow one line.`,
+          kpop:`Listen to 20–30 seconds of a K-pop lyric or interview. Catch three expressions and repeat one line.`,
+          variety:`Watch 20–30 seconds of Korean variety or YouTube content without subtitles. Catch three expressions and shadow one line.`,
+          cultureall:`Choose a short Korean clip you enjoy. Watch once without subtitles, catch three expressions, and repeat one line.`
+        },
+        topik:{
+          urgent:`Do 10 official-style questions in one timed block and mark every question you guessed.`,
+          quarter:`Do 10 official-style questions, then make a short error log for the mistakes that repeat.`,
+          later:`Do 10 official-style questions and explain why each wrong answer was wrong.`,
+          flexible:`Use 10 official-style questions as a mini diagnostic and note your three weakest areas.`
+        }
+      };
+
+      const selected=scenarios[selections.goal];
+      if(typeof selected==='string')return selected;
+      return selected?.[selections.context]||missionPlans[selections.goal]?.copy||'Use one thing you learned without looking at your notes.';
+    }
+
+    function practiceSteps(){
+      if(selections.goal==='topik'){
+        return[
+          'Complete the 10 questions without checking explanations as you go.',
+          'Mark every wrong answer and every answer you guessed.',
+          'Review the 3 mistakes that repeat and use those gaps to choose what to study next.'
+        ];
+      }
+
+      const steps={
+        speaking:[
+          'Look at the scenario for 10 seconds, then hide your notes.',
+          'Respond aloud in Korean before checking the lesson.',
+          'Repeat once with a faster, more natural response.'
+        ],
+        listening:[
+          'Replay a short section from Phase 2 once without subtitles.',
+          'Say or write what you understood before checking.',
+          'Replay at normal speed and catch one detail you missed.'
+        ],
+        reading:[
+          'Read one short Korean prompt from Phase 2 without romanization.',
+          'Say or write the meaning before checking.',
+          'Read it aloud once at a natural pace.'
+        ],
+        writing:[
+          'Write a 2–3 sentence response to the scenario without using translation.',
+          'Check the lesson only after you finish.',
+          'Rewrite once using one useful phrase from Phase 2.'
+        ],
+        unsure:[
+          'Choose 3 useful lines or patterns from Phase 2.',
+          'Use them once without looking.',
+          'Repeat the hardest part one more time.'
+        ]
+      };
+
+      return steps[selections.focus]||steps.unsure;
+    }
+
+    function renderPractice(){
+      const mission=missionPlans[selections.goal];
+      const steps=practiceSteps();
+
+      setText('phase-three-practice-title',mission?.title||goalPlans[selections.goal].practiceTitle);
+      setText('phase-three-practice-scenario',practiceScenario());
+      setText('phase-three-step-one',steps[0]);
+      setText('phase-three-step-two',steps[1]);
+      setText('phase-three-step-three',steps[2]);
+
+      const panel=document.getElementById('sik-practice-panel');
+      const feedbackPanel=document.getElementById('sik-practice-feedback');
+      const start=document.getElementById('start-sik-practice');
+
+      panel?.setAttribute('hidden','');
+      feedbackPanel?.setAttribute('hidden','');
+
+      if(start){
+        start.textContent=completedPhases.three?'REPEAT PRACTICE →':'START MY PRACTICE →';
+      }
+
+      setText(
+        'sik-practice-status',
+        completedPhases.three?'COMPLETED ✓ · Repeat this practice anytime.':''
+      );
+    }
 
     function renderFinal(){
       const finalLink=document.getElementById('learn-final-link');
@@ -2819,7 +3118,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       setText('learn-plan-focus',focusPlans[selections.focus].strategy);
       setText('learn-plan-skip',goalPlans[selections.goal].skip);
       setText('learn-why-now-copy',whyNow());
-      renderPhaseCopy();['one','two','three'].forEach(renderResource);renderToday();renderMission();renderFinal();updatePhaseStates();
+      renderPhaseCopy();['one','two'].forEach(renderResource);renderToday();renderPractice();renderFinal();updatePhaseStates();
       if(scroll){document.querySelectorAll('[data-phase-details]').forEach((details)=>{details.open=false;});}
       document.getElementById('korean-plan-result')?.removeAttribute('hidden');
       document.getElementById('learn-plan-action')?.setAttribute('hidden','');
@@ -2858,7 +3157,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     });
 
     function adaptNextResource(phase,value){
-      const nextPhase=phase==='one'?'two':phase==='two'?'three':null;
+      const nextPhase=phase==='one'?'two':null;
       if(!nextPhase||value==='right')return false;
       const list=resourceState[nextPhase]||[];
       const current=currentResource(nextPhase);
@@ -2901,8 +3200,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       });
     });
 
-    document.getElementById('complete-mission')?.addEventListener('click',()=>{
-      setText('learn-mission-status','Mission complete. Your next step is the final test or practice check.');saveState(false);track('mission_completed',{goal:selections.goal});
+    document.getElementById('start-sik-practice')?.addEventListener('click',()=>{
+      const panel=document.getElementById('sik-practice-panel');
+      panel?.removeAttribute('hidden');
+      track('sik_practice_started',{
+        goal:selections.goal||'',
+        level:selections.level||'',
+        focus:selections.focus||'',
+        context:selections.context||''
+      });
+    });
+
+    document.getElementById('complete-sik-practice')?.addEventListener('click',()=>{
+      completedPhases.three=true;
+      updatePhaseStates();
+      document.getElementById('sik-practice-feedback')?.removeAttribute('hidden');
+      setText('sik-practice-status','Practice complete. Optional: tell us how it felt.');
+      const start=document.getElementById('start-sik-practice');
+      if(start)start.textContent='REPEAT PRACTICE →';
+      saveState(false);
+      track('sik_practice_completed',{
+        goal:selections.goal||'',
+        level:selections.level||'',
+        focus:selections.focus||'',
+        context:selections.context||''
+      });
+    });
+
+    document.querySelectorAll('[data-practice-difficulty]').forEach((button)=>{
+      button.addEventListener('click',()=>{
+        const value=button.dataset.practiceDifficulty;
+        feedback.three={resourceId:'sik-practice',difficulty:value};
+        setText('sik-practice-status','Feedback saved. Your next recommendation can use this.');
+        saveState(false);
+        track(
+          value==='easy'?'sik_practice_too_easy':value==='hard'?'sik_practice_too_hard':'sik_practice_just_right',
+          {goal:selections.goal||'',level:selections.level||'',focus:selections.focus||'',context:selections.context||''}
+        );
+      });
     });
 
     function saveState(showMessage=true){
@@ -3003,7 +3338,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           restoredFromStorage=restorePlan(saved.selections,{source:'localStorage'});
           if(restoredFromStorage){
             if(saved.currentResourceIndex)Object.assign(currentResourceIndex,saved.currentResourceIndex);
-            ['one','two','three'].forEach(renderResource);renderToday();updatePhaseStates();
+            ['one','two'].forEach(renderResource);renderToday();renderPractice();updatePhaseStates();
             const banner=document.getElementById('learn-return-banner');
             banner?.removeAttribute('hidden');
           }
