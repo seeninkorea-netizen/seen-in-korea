@@ -2239,97 +2239,178 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       weekend:{commitment:'A few focused hours each week',pace:'2–3 focused sessions each week',today:'45–90 MIN'}
     };
 
+    // Resource policy: hard level eligibility first; verification gate second; ranking third.
+    // Verified links and metadata last audited Oct. 1, 2026. Do not mark unknown claims as true.
     const resources=[
       {
         id:'go-billy-hangul',difficulty:1,roles:['foundation'],provider:'GO! Billy Korean',title:'Learn Hangul in 90 Minutes',url:'https://www.youtube.com/watch?v=s5aobqyEaMQ',type:'video',
         levels:['zero'],safeForUnsure:false,goals:['all'],contexts:['all'],skills:['reading','speaking','listening'],priority:100,shortFriendly:true,urgentFriendly:false,
         bestFor:'Complete beginners who cannot read Hangul yet.',notFor:'Learners who already read Hangul comfortably.',reason:'A single start-to-finish Hangul lesson is a lower-friction first step than opening a full course immediately.',
-        verification:{officialChecked:false,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:false,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Current YouTube access checked.','The video explicitly teaches Hangul from the beginning.','Independent learner outcome evidence has not been established by SIK.']
       },
       {
         id:'quick-korean-1',difficulty:1,roles:['foundation','goal','practice'],provider:'Korea Cyber University',title:'Quick Korean · Level 1',url:'https://qkorean-en.koreacu.ac.kr/cms/FrCon/index.do?MENU_ID=40',type:'course',
         levels:['zero','beginner'],safeForUnsure:true,goals:['all'],contexts:['all'],skills:['all'],priority:82,shortFriendly:false,urgentFriendly:false,
         bestFor:'Learners who want a structured free course and clear progression.',notFor:'Someone who needs only a few survival phrases before an imminent trip.',reason:'It gives beginner learners a structured sequence instead of forcing them to assemble lessons themselves.',
-        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Official Korea Cyber University curriculum checked.','Level 1 is described as basic daily interaction and conversation.','Video lectures are currently offered through public video platforms.']
       },
       {
         id:'go-billy-beginner',difficulty:1,roles:['foundation','practice'],provider:'GO! Billy Korean',title:'Beginner Korean Course',url:'https://www.youtube.com/watch?v=sx0yyQqkpqo',type:'video course',
         levels:['zero','beginner'],safeForUnsure:true,goals:['all'],contexts:['all'],skills:['all'],priority:76,shortFriendly:true,urgentFriendly:false,
         bestFor:'Beginners who prefer guided video teaching.',notFor:'Intermediate learners who already know basic sentence structures.',reason:'It provides a free beginner sequence with a teacher-led video format.',
-        verification:{officialChecked:false,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:false,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Current YouTube access checked.','The creator identifies it as a free beginner curriculum.','Independent learner outcome evidence remains limited.']
       },
       {
         id:'small-talk-travel',difficulty:1,roles:['goal','practice'],provider:'Small Talk in Korean',title:'Korean Travel Phrases for Beginners',url:'https://www.youtube.com/watch?v=L0x3BjauPfY',type:'video',
         levels:['zero','beginner'],safeForUnsure:true,goals:['travel'],contexts:['urgent','month'],skills:['speaking','listening'],priority:110,shortFriendly:true,urgentFriendly:true,
         bestFor:'Travellers who need realistic airport, taxi, transport and shopping Korean.',notFor:'Learners whose main goal is grammar depth or TOPIK.',reason:'It repeats travel situations at slow and normal speed, so it trains comprehension as well as phrases.',
-        verification:{officialChecked:false,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:false,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Current YouTube access checked.','The lesson is explicitly designed for beginners and travel situations.','Independent effectiveness evidence remains limited.']
       },
       {
         id:'quick-korean-2',difficulty:2,roles:['goal','practice'],provider:'Korea Cyber University',title:'Quick Korean · Level 2',url:'https://qkorean-en.koreacu.ac.kr/cms/FrCon/index.do?MENU_ID=40',type:'course',
         levels:['beginner','intermediate'],safeForUnsure:false,goals:['travel','life','social'],contexts:['daily','friends','casual','socialall','quarter','flexible'],skills:['all'],priority:86,shortFriendly:false,urgentFriendly:false,
         bestFor:'Learners ready for everyday conversations such as restaurants and shopping.',notFor:'Complete beginners who still cannot read basic Hangul.',reason:'Its everyday conversation scope fits learners who need Korean for practical social situations.',
-        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Official Korea Cyber University curriculum checked.','Level 2 explicitly covers simple conversations in places such as supermarkets and restaurants.','Independent outcome evidence remains limited.']
       },
       {
         id:'quick-korean-3',difficulty:3,roles:['foundation','goal','practice'],provider:'Korea Cyber University',title:'Quick Korean · Level 3',url:'https://qkorean-en.koreacu.ac.kr/cms/FrCon/index.do?MENU_ID=40',type:'course',
         levels:['intermediate'],safeForUnsure:false,goals:['life','work','social','culture','all'],contexts:['daily','office','friends','casual','socialall','cultureall'],skills:['all'],priority:88,shortFriendly:false,urgentFriendly:false,
         bestFor:'Intermediate learners who want broader social and workplace communication.',notFor:'Complete beginners or learners looking only for short survival phrases.',reason:'It moves beyond basic transactions into familiar social topics such as work, relationships and daily life.',
-        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Official Korea Cyber University curriculum checked.','Level 3 explicitly includes work, hobbies, relationships and family.','Independent outcome evidence remains limited.']
       },
       {
         id:'quick-korean-4',difficulty:4,roles:['foundation','goal','practice'],provider:'Korea Cyber University',title:'Quick Korean · Level 4',url:'https://qkorean-en.koreacu.ac.kr/cms/FrCon/index.do?MENU_ID=40',type:'course',
         levels:['advanced'],safeForUnsure:false,goals:['life','work','social','culture','all'],contexts:['daily','office','meetings','friends','casual','socialall','cultureall'],skills:['all'],priority:88,shortFriendly:false,urgentFriendly:false,
         bestFor:'Advanced learners who want freer discussion and more complex communication.',notFor:'Beginners who still need basic sentence patterns.',reason:'It is better aligned with advanced learners than restarting a beginner curriculum.',
-        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Official Korea Cyber University curriculum checked.','Level 4 is described as freer, more fluent communication on broader topics.','Independent outcome evidence remains limited.']
       },
       {
         id:'nuri-business-1',difficulty:2,roles:['goal','practice'],provider:'Nuri Sejong Institute',title:'Business Korean 1',url:'https://nuri.iksi.or.kr/front/cms/contents/layout2/learningtextbooks/detail.do?csCmsMastrSeq=2146&menuSn=645',type:'ebook + listening',
         levels:['beginner'],safeForUnsure:true,goals:['work'],contexts:['meetings','calls','jobsearch','office'],skills:['speaking','listening','reading','writing','all'],priority:112,shortFriendly:false,urgentFriendly:true,
         bestFor:'Beginner workplace learners who need job-search, interview, phone-call, customer-service and meeting Korean.',notFor:'Learners focused mainly on travel, entertainment or advanced professional nuance.',reason:'Its official table of contents directly covers job search, interview preparation, workplace phone calls, customer service and meetings.',
-        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Official Nuri Sejong textbook page checked.','The resource is marked Beginner and provides e-book, PDF and listening material.','Independent learner outcome evidence remains limited.']
       },
       {
         id:'ksi-business',difficulty:2,roles:['goal','practice'],provider:'Online King Sejong Institute',title:'Business Korean',url:'https://www.iksi.or.kr/lms/main/main.do?lang=EN',type:'course',
         levels:['beginner'],safeForUnsure:true,goals:['work'],contexts:['meetings','office'],skills:['speaking','listening','writing','reading','all'],priority:96,shortFriendly:false,urgentFriendly:false,
         bestFor:'Beginner learners who want a structured business-purpose Korean course.',notFor:'Learners focused mainly on travel or entertainment Korean.',reason:'A dedicated business curriculum is more relevant to workplace Korean than a general beginner course.',
-        verification:{officialChecked:true,freeAccessChecked:'unknown',levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:true,freeAccessChecked:'unknown',levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Official Online King Sejong curriculum checked.','Business Korean 1 and 2 are listed as self-learning business-purpose courses.','The current public pages checked by SIK do not state a self-study fee clearly enough to mark free access as confirmed.']
       },
       {
         id:'nuri-business',difficulty:3,roles:['goal','practice'],provider:'Nuri Sejong Institute',title:'Sejong Business Korean · Basic Work',url:'https://nuri.iksi.or.kr/front/cms/contents/layout2/learningtextbooks/detail.do?csCmsMastrSeq=17126&language=ko&menuSn=645',type:'ebook + listening',
         levels:['intermediate'],safeForUnsure:false,goals:['work'],contexts:['meetings','office'],skills:['speaking','writing','listening','reading'],priority:92,shortFriendly:false,urgentFriendly:false,
         bestFor:'Intermediate learners who want work tasks, speaking and writing practice.',notFor:'Complete beginners who need English-heavy explanations.',reason:'It adds task-based work practice and listening material after the core business foundation.',
-        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Official Nuri Sejong page checked.','The resource is explicitly marked Intermediate.','E-book, PDF and listening materials are currently available from the official page.']
       },
       {
         id:'topik-official',difficulty:2,roles:['goal','practice'],provider:'TOPIK · NIIED',title:'Official TOPIK Practice',url:'https://www.topik.go.kr/',type:'official practice',
         levels:['zero','beginner','intermediate','advanced'],safeForUnsure:true,goals:['topik'],contexts:['urgent','quarter','later','flexible'],skills:['reading','listening','writing','all'],priority:120,shortFriendly:true,urgentFriendly:true,
         bestFor:'TOPIK learners who need official practice and a reality check on their current level.',notFor:'Learners whose goal is only everyday speaking.',reason:'Official TOPIK practice is the closest reference point for exam format and current test tasks.',
-        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Official TOPIK site checked.','TOPIK Basic and IBT listening/reading/writing practice are currently available.','This verifies exam relevance, not a guarantee of score improvement.']
       },
       {
-        id:'prof-yoon-topik',difficulty:2,roles:['practice'],provider:'Prof. Yoon’s Korean Language Class',title:'TOPIK Listening Practice',url:'https://www.youtube.com/watch?v=hLf2IVQ5PGU',type:'video',
+        id:'prof-yoon-topik',difficulty:2,roles:['practice'],provider:'Prof. Yoon’s Korean Language Class',title:'TOPIK 47 · Listening Practice',url:'https://www.youtube.com/watch?v=hLf2IVQ5PGU',type:'video',
         levels:['beginner','intermediate'],safeForUnsure:false,goals:['topik'],contexts:['all'],skills:['listening','reading'],priority:96,shortFriendly:true,urgentFriendly:true,
         bestFor:'TOPIK learners who want teacher-guided listening practice.',notFor:'Learners who are not preparing for TOPIK.',reason:'It can add guided listening practice after official TOPIK material.',
-        verification:{officialChecked:false,freeAccessChecked:true,levelFitChecked:'unknown',practicalFitChecked:true,independentEvidence:'limited',confidence:'low',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:false,freeAccessChecked:true,levelFitChecked:'unknown',practicalFitChecked:true,independentEvidence:'limited',confidence:'low',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['The YouTube page is currently accessible.','SIK has not completed a strong level-fit review for this specific video.','Kept in the database but excluded from normal recommendations while confidence is low.']
       },
       {
-        id:'ttmik-natural',difficulty:3,roles:['goal','practice'],provider:'Talk To Me In Korean',title:'Natural Korean Conversation · Listening Practice',url:'https://www.youtube.com/watch?v=6Y7VwFR5cDg',type:'video',
+        id:'ttmik-natural',difficulty:3,roles:['goal','practice'],provider:'Talk To Me In Korean',title:'1 Hour Natural Korean Conversation · Listening Practice',url:'https://www.youtube.com/watch?v=6Y7VwFR5cDg',type:'video',
         levels:['intermediate','advanced'],safeForUnsure:false,goals:['culture','social','life'],contexts:['casual','socialall','variety','cultureall','daily'],skills:['listening','speaking'],priority:102,shortFriendly:true,urgentFriendly:false,
         bestFor:'Intermediate+ learners who need longer natural native-speaker listening.',notFor:'Complete beginners who still need slow, highly structured Korean.',reason:'Natural conversation is a useful challenge once basic grammar is no longer the main bottleneck.',
-        verification:{officialChecked:false,freeAccessChecked:true,levelFitChecked:'unknown',practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Sep. 30, 2026'},
+        verification:{officialChecked:false,freeAccessChecked:true,levelFitChecked:'unknown',practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
         evidenceNotes:['Current YouTube access checked.','The video contains a full natural Korean conversation with Korean/English subtitles.','The exact level fit is an SIK editorial judgment rather than a publisher-stated level.']
+      },
+
+      // v3.7 — verified gap-fill resources (Oct. 1, 2026)
+      {
+        id:'sejong-travel-korean',difficulty:1,roles:['goal','practice'],provider:'Nuri Sejong Institute',title:'Korean Language for Travelers',url:'https://nuri.iksi.or.kr/front/cms/contents/layout2/learningtextbooks/detail.do?csCmsMastrSeq=4759&menuSn=645',type:'ebook + listening',
+        levels:['beginner'],safeForUnsure:true,goals:['travel'],contexts:['urgent','month','quarter','flexible'],skills:['speaking','listening','reading'],priority:124,shortFriendly:false,urgentFriendly:true,
+        bestFor:'Beginner travellers who want an official travel-focused textbook with English support and listening material.',notFor:'Intermediate or advanced learners who already handle basic travel interactions comfortably.',reason:'This official beginner resource is built specifically for Korean travel and includes an e-book, downloadable PDFs and listening material.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official Nuri Sejong page checked on Oct. 1, 2026.','The page labels the resource Beginner and Korean Language for Travelers 1.','E-book, English PDFs and listening files are currently offered from the official page.']
+      },
+      {
+        id:'sejong-practical-2',difficulty:2,roles:['goal','practice'],provider:'Nuri Sejong Institute',title:'King Sejong Institute Practical Korean 2',url:'https://nuri.iksi.or.kr/front/cms/contents/layout2/learningkorean/detail.do?csCmsMastrSeq=15359&menuSn=664',type:'ebook + listening',
+        levels:['beginner'],safeForUnsure:false,goals:['life','travel','social'],contexts:['appointments','daily','friends','casual','quarter','flexible'],skills:['speaking','listening','reading'],priority:110,shortFriendly:false,urgentFriendly:false,
+        bestFor:'Beginner learners who need practical conversations about transport, food, phone calls, reservations, requests and daily life.',notFor:'Someone who needs only a few emergency phrases or an exam-only study plan.',reason:'Its official curriculum includes transportation, food ordering, phone and reservation tasks, requests and daily-life conversation.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official Nuri Sejong page checked on Oct. 1, 2026.','The page labels the resource Beginner.','Its published table of contents includes transportation, food, phone/reservation, requests and everyday-life themes, with e-book and MP3 support.']
+      },
+      {
+        id:'sejong-practical-3',difficulty:3,roles:['goal','practice'],provider:'Nuri Sejong Institute',title:'King Sejong Institute Practical Korean 3',url:'https://nuri.iksi.or.kr/front/cms/contents/layout2/learningkorean/detail.do?csCmsMastrSeq=15360&menuSn=664',type:'ebook + listening',
+        levels:['intermediate'],safeForUnsure:false,goals:['life','travel','social','culture'],contexts:['daily','friends','casual','cultureall','quarter','flexible'],skills:['speaking','listening','reading'],priority:112,shortFriendly:false,urgentFriendly:false,
+        bestFor:'Intermediate learners who want practical speaking and listening around appointments, shopping, relationships, culture and travel.',notFor:'Complete beginners who still need Hangul or basic sentence patterns.',reason:'The official intermediate curriculum uses integrated listening-and-speaking tasks across everyday, social, shopping, cultural and travel topics.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official Nuri Sejong page checked on Oct. 1, 2026.','The page labels the resource Intermediate.','The published contents include appointments, shopping/exchanges, culture, health, economic life and travel, with e-book and MP3 support.']
+      },
+      {
+        id:'sejong-practical-4',difficulty:4,roles:['goal','practice'],provider:'Nuri Sejong Institute',title:'King Sejong Institute Practical Korean 4',url:'https://nuri.iksi.or.kr/front/cms/contents/layout2/learningkorean/detail.do?csCmsMastrSeq=15361&menuSn=664',type:'ebook + listening',
+        levels:['intermediate'],safeForUnsure:false,goals:['life','work','social','culture'],contexts:['daily','office','jobsearch','cultureall'],skills:['speaking','listening','reading'],priority:110,shortFriendly:false,urgentFriendly:false,
+        bestFor:'Intermediate learners ready for longer practical conversations about work, employment, relationships, problems and daily life.',notFor:'Beginners who need English-heavy explanations and very short survival phrases.',reason:'Its intermediate tasks include employment, workplace life, repairs, relationships, social issues and extended speaking activities.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official Nuri Sejong page checked on Oct. 1, 2026.','The page labels the resource Intermediate.','Its contents include employment, workplace tasks, relationships, repair/problem situations and integrated speaking activities.']
+      },
+      {
+        id:'sejong-k-wave',difficulty:2,roles:['goal','practice'],provider:'Nuri Sejong Institute',title:'K-wave Korean',url:'https://nuri.iksi.or.kr/front/cms/contents/layout2/learningtextbooks/detail.do?csCmsContentsType=CMS_CONTENTS_TYPE%3A%3ACMS_EBOOK&csCmsMastrSeq=5993&menuSn=645&referenceType=',type:'ebook + video',
+        levels:['beginner'],safeForUnsure:false,goals:['culture'],contexts:['drama','kpop','cultureall'],skills:['listening','reading','speaking'],priority:126,shortFriendly:false,urgentFriendly:false,
+        bestFor:'Beginner learners motivated by K-dramas and K-pop who want vocabulary and expressions tied to that content.',notFor:'Learners whose priority is TOPIK, workplace Korean or unrelated daily-life tasks.',reason:'The official K-wave Korean textbook explicitly uses K-dramas and K-pop to teach Korean expressions and culture, with linked video materials.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official Nuri Sejong page checked on Oct. 1, 2026.','The resource is labeled Beginner and explicitly uses K-drama and K-pop.','The official page provides an e-book/PDF and states that linked video materials are available through King Sejong Institute channels.']
+      },
+      {
+        id:'nuri-business-2',difficulty:2,roles:['goal','practice'],provider:'Nuri Sejong Institute',title:'Business Korean 2',url:'https://nuri.iksi.or.kr/front/cms/contents/layout2/learningtextbooks/detail.do?csCmsMastrSeq=2147&menuSn=645',type:'ebook + listening',
+        levels:['beginner'],safeForUnsure:false,goals:['work'],contexts:['office','meetings'],skills:['speaking','listening','reading','writing'],priority:114,shortFriendly:false,urgentFriendly:false,
+        bestFor:'Beginner workplace learners moving beyond basic introductions into internal communication, customers, negotiation, orders and reports.',notFor:'Learners focused mainly on travel, entertainment or casual social Korean.',reason:'The official second business volume targets practical workplace communication such as internal communication, customer consultation, negotiation, orders and reporting.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official Nuri Sejong page checked on Oct. 1, 2026.','The resource is labeled Beginner.','The official page currently provides an e-book, downloadable PDF and MP3, and its contents cover practical workplace communication.']
+      },
+      {
+        id:'sejong-korean-5a',difficulty:4,roles:['foundation','goal','practice'],provider:'Nuri Sejong Institute',title:'King Sejong Institute Korean 5A',url:'https://nuri.iksi.or.kr/front/cms/contents/layout2/learningcyber/detail.do?csCmsMastrSeq=16098&menuSn=647',type:'course + ebook',
+        levels:['advanced'],safeForUnsure:false,goals:['all'],contexts:['all'],skills:['all'],priority:98,shortFriendly:false,urgentFriendly:false,
+        bestFor:'Advanced learners who want a structured official course based on Korean proficiency levels 5–6 and real-life communication.',notFor:'Learners who need beginner explanations or a single short survival lesson.',reason:'This official advanced course is built from the standard advanced Korean curriculum and includes real-life communication practice.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official Nuri Sejong page checked on Oct. 1, 2026.','The page explicitly labels the resource Advanced and says it is based on advanced levels 5–6.','E-book/PDF/listening materials and an associated Online King Sejong course are currently listed.']
+      },
+      {
+        id:'sejong-korean-6a',difficulty:4,roles:['foundation','goal','practice'],provider:'Nuri Sejong Institute',title:'King Sejong Institute Korean 6A',url:'https://nuri.iksi.or.kr/front/cms/contents/layout2/learningcyber/detail.do?csCmsMastrSeq=16119&menuSn=647',type:'course + ebook',
+        levels:['advanced'],safeForUnsure:false,goals:['all'],contexts:['all'],skills:['all'],priority:94,shortFriendly:false,urgentFriendly:false,
+        bestFor:'Advanced learners who want another official high-level course after or alongside 5A.',notFor:'Beginners and learners looking for a short context-specific phrase lesson.',reason:'It provides a second verified advanced pathway grounded in levels 5–6 with real-life communication practice.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official Nuri Sejong page checked on Oct. 1, 2026.','The page explicitly labels the resource Advanced and says it is based on advanced levels 5–6.','E-book/PDF/listening materials and an associated Online King Sejong course are currently listed.']
+      },
+      {
+        id:'topik-basic-official',difficulty:1,roles:['foundation','practice'],provider:'TOPIK · NIIED',title:'TOPIK Basic · Official Open Test',url:'https://www.topik.go.kr/TWSTDY/TWSTDY0111.do',type:'official practice',
+        levels:['zero','beginner'],safeForUnsure:true,goals:['topik'],contexts:['later','flexible'],skills:['listening','reading'],priority:112,shortFriendly:true,urgentFriendly:false,
+        bestFor:'Entry-level learners who want an official check below TOPIK I difficulty before building a longer exam plan.',notFor:'Intermediate or advanced TOPIK II learners.',reason:'TOPIK Basic is an official free entry-level test designed for learners below TOPIK I, with listening and reading diagnostics.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official TOPIK page checked on Oct. 1, 2026.','TOPIK states that TOPIK Basic is below TOPIK I beginner level and contains 40 listening/reading questions.','The official notice states that the test is free and intended for learning support, not legal certification.']
+      },
+      {
+        id:'topik-ibt-1',difficulty:2,roles:['goal','practice'],provider:'TOPIK · NIIED',title:'TOPIK I · Official IBT Practice',url:'https://www.topik.go.kr/asset/vendor/tutorial/exam1/login.html',type:'official practice',
+        levels:['beginner'],safeForUnsure:true,goals:['topik'],contexts:['urgent','quarter','later','flexible'],skills:['listening','reading'],priority:128,shortFriendly:true,urgentFriendly:true,
+        bestFor:'Beginner TOPIK I learners who want to practice the official IBT interface and task style.',notFor:'Intermediate or advanced TOPIK II learners.',reason:'This is the official TOPIK I IBT practice environment, so it is more exam-specific than a general Korean lesson.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official TOPIK I IBT practice page checked on Oct. 1, 2026.','The page explicitly identifies itself as TOPIK I IBT practice.','The practice interface is publicly accessible from the official TOPIK domain.']
+      },
+      {
+        id:'topik-ibt-2',difficulty:3,roles:['goal','practice'],provider:'TOPIK · NIIED',title:'TOPIK II · Official IBT Practice',url:'https://www.topik.go.kr/asset/vendor/tutorial/exam2/login.html',type:'official practice',
+        levels:['intermediate','advanced'],safeForUnsure:false,goals:['topik'],contexts:['urgent','quarter','later','flexible'],skills:['listening','reading','writing'],priority:128,shortFriendly:true,urgentFriendly:true,
+        bestFor:'Intermediate and advanced TOPIK II learners who need official listening, reading and writing interface practice.',notFor:'Complete beginners and learners preparing only for everyday conversation.',reason:'The official TOPIK II IBT practice includes listening, reading and writing tasks in the real test interface.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'high',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:['Official TOPIK II IBT practice pages checked on Oct. 1, 2026.','Official practice pages expose listening, reading and writing task interfaces.','This verifies exam-format relevance, not a guarantee of score improvement.']
       }
     ];
 
