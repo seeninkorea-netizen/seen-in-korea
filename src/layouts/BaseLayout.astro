@@ -82,18 +82,14 @@ const currentPath = Astro.url.pathname;
   </head>
 
   <body>
-
     <header class="site-header">
-
       <!-- Desktop header -->
       <div class="wrap nav desktop-header-row">
-
         <a class="brand" href="/">
           SEEN IN <span>KOREA</span>
         </a>
 
         <nav class="desktop-nav">
-
           <a href="/category/trending">
             TRENDING
           </a>
@@ -109,21 +105,16 @@ const currentPath = Astro.url.pathname;
           <a href="/learn-korean">
             LEARN KOREAN
           </a>
-
         </nav>
 
         <a class="help-btn" href="/korea-help">
           KOREA HELP →
         </a>
-
       </div>
-
 
       <!-- Mobile header -->
       <div class="mobile-header">
-
         <div class="mobile-header-main">
-
           <button
             class="mobile-menu-btn"
             type="button"
@@ -144,16 +135,13 @@ const currentPath = Astro.url.pathname;
             class="mobile-header-spacer"
             aria-hidden="true"
           ></div>
-
         </div>
-
 
         <!-- Mobile horizontal navigation -->
         <nav
           class="mobile-category-nav"
           aria-label="Main sections"
         >
-
           <a
             href="/"
             class:list={{
@@ -198,13 +186,9 @@ const currentPath = Astro.url.pathname;
           >
             LEARN
           </a>
-
         </nav>
-
       </div>
-
     </header>
-
 
     <!-- Mobile menu overlay -->
     <div
@@ -212,16 +196,13 @@ const currentPath = Astro.url.pathname;
       data-mobile-menu-close
     ></div>
 
-
     <!-- Mobile menu drawer -->
     <aside
       id="mobile-menu"
       class="mobile-menu-drawer"
       aria-hidden="true"
     >
-
       <div class="mobile-menu-top">
-
         <a class="brand" href="/">
           SEEN IN <span>KOREA</span>
         </a>
@@ -234,13 +215,10 @@ const currentPath = Astro.url.pathname;
         >
           ×
         </button>
-
       </div>
-
 
       <!-- STORIES -->
       <nav class="mobile-menu-links">
-
         <a
           class="mobile-menu-primary"
           href="/"
@@ -263,16 +241,12 @@ const currentPath = Astro.url.pathname;
         <a href="/articles">
           ALL STORIES
         </a>
-
       </nav>
-
 
       <div class="mobile-menu-divider"></div>
 
-
       <!-- LEARN & DECIDE -->
       <div class="mobile-menu-service">
-
         <div class="mobile-menu-service-title">
           LEARN &amp; DECIDE
         </div>
@@ -280,16 +254,12 @@ const currentPath = Astro.url.pathname;
         <a href="/learn-korean">
           Learn Korean
         </a>
-
       </div>
-
 
       <div class="mobile-menu-divider"></div>
 
-
       <!-- KOREA HELP -->
       <div class="mobile-menu-service">
-
         <div class="mobile-menu-service-title">
           KOREA HELP
         </div>
@@ -304,16 +274,12 @@ const currentPath = Astro.url.pathname;
         <a href="/korea-help/translation">
           Translation
         </a>
-
       </div>
-
 
       <div class="mobile-menu-divider"></div>
 
-
       <!-- SHOP -->
       <div class="mobile-menu-service">
-
         <div class="mobile-menu-service-title">
           SHOP
         </div>
@@ -321,16 +287,12 @@ const currentPath = Astro.url.pathname;
         <a href="/shop-korea">
           Shop Korea
         </a>
-
       </div>
-
 
       <div class="mobile-menu-divider"></div>
 
-
       <!-- SECONDARY -->
       <nav class="mobile-menu-secondary">
-
         <a href="/about">
           ABOUT
         </a>
@@ -339,24 +301,21 @@ const currentPath = Astro.url.pathname;
           EDITORIAL STANDARDS
         </a>
 
+        <a href="/how-we-verify">
+          HOW WE VERIFY
+        </a>
+
         <a href="/contact">
           CONTACT
         </a>
-
       </nav>
-
     </aside>
-
 
     <slot />
 
-
     <footer>
-
       <div class="wrap footer-grid">
-
         <div>
-
           <div class="footer-brand">
             SEEN IN KOREA
           </div>
@@ -364,14 +323,10 @@ const currentPath = Astro.url.pathname;
           <div class="footer-copy">
             KOREA, VERIFIED.
           </div>
-
         </div>
 
-
         <div>
-
           <div class="footer-copy">
-
             <a href="/about">
               About
             </a>
@@ -384,25 +339,25 @@ const currentPath = Astro.url.pathname;
 
             ·
 
+            <a href="/how-we-verify">
+              How We Verify
+            </a>
+
+            ·
+
             <a href="/contact">
               Contact
             </a>
-
           </div>
-
 
           {footerCopy && (
             <div class="footer-copy">
               {footerCopy}
             </div>
           )}
-
         </div>
-
       </div>
-
     </footer>
-
 
     <script is:inline>
       const menuButton = document.querySelector('.mobile-menu-btn');
@@ -444,6 +399,5 @@ const currentPath = Astro.url.pathname;
         }
       });
     </script>
-
   </body>
 </html>
