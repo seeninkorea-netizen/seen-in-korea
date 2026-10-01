@@ -10,23 +10,63 @@ if (!article) return Astro.redirect('/404');
 const articleUrl = new URL(`/articles/${article.slug}`, Astro.site || Astro.url.origin).toString();
 const siteUrl = new URL('/', Astro.site || Astro.url.origin).toString();
 
+const authorName = article.author || 'Seen in Korea Desk';
+
+const authorSchema =
+  authorName === 'Seen in Korea Desk'
+    ? {
+        '@type': 'Organization',
+        name: 'Seen in Korea Desk',
+        url: `${siteUrl}about`
+      }
+    : {
+        '@type': 'Person',
+        name: authorName
+      };
+
 const jsonLd = {
-  '@context': 'https://schema.org', '@type': 'NewsArticle', headline: article.title,
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+
+  headline: article.title,
+  description: article.dek,
+
   datePublished: article.publishedAt,
-dateModified: article.updatedAt || article.publishedAt,
-author: {
-  '@type': 'Organization',
-  name: article.author || 'Seen in Korea Desk',
-  url: siteUrl
-},
+  dateModified: article.updatedAt || article.publishedAt,
+
+  inLanguage: 'en',
+  articleSection: article.category,
+
+  author: authorSchema,
+
   publisher: {
-  '@type': 'Organization',
-  '@id': `${siteUrl}#organization`,
-  name: 'SEEN IN KOREA',
-  url: siteUrl
-},
-mainEntityOfPage: articleUrl,
-  ...(article.heroImageUrl ? { image: [article.heroImageUrl] } : {})
+    '@type': 'Organization',
+    '@id': `${siteUrl}#organization`,
+    name: 'SEEN IN KOREA',
+    url: siteUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}logo.png.svg`
+    }
+  },
+
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${siteUrl}#website`,
+    name: 'SEEN IN KOREA',
+    url: siteUrl
+  },
+
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': articleUrl
+  },
+
+  ...(article.heroImageUrl
+    ? {
+        image: [article.heroImageUrl]
+      }
+    : {})
 };
 ---
 <BaseLayout
