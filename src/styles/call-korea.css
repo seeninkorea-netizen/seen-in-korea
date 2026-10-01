@@ -1,1249 +1,1381 @@
 /* =========================================================
-   CALL KOREA — FAST HELP EXPERIENCE
-   Seen in Korea
+   CALL KOREA — SIMPLIFIED UX
    ========================================================= */
 
-
-/* ---------------------------------------------------------
-   PAGE
-   --------------------------------------------------------- */
-
 .call-korea-page{
-  --call-bg:#f6f2eb;
-  --call-paper:#fffdfa;
-  --call-paper-2:#fbf8f3;
-  --call-soft:#eee8df;
-  --call-ink:#111;
-  --call-muted:#68635d;
-  --call-line:#d2ccc3;
-  --call-dark:#111;
-  --call-accent:#ff4d00;
-  --call-green:#18a957;
-  --call-blue:#247cff;
+  --ck-bg:#f5f1ea;
+  --ck-paper:#fffdfa;
+  --ck-soft:#ece6dd;
+  --ck-line:#d4cec5;
+  --ck-ink:#111;
+  --ck-muted:#67615a;
+  --ck-accent:#ff4d00;
+  --ck-green:#17a957;
 
-  position:relative;
-  overflow:hidden;
-  background:var(--call-bg);
-  color:var(--call-ink);
+  background:var(--ck-bg);
+  color:var(--ck-ink);
 }
+
+
+.call-korea-page *{
+  box-sizing:border-box;
+}
+
 
 .call-korea-page section{
-  border-bottom:1px solid var(--call-line);
+  border-bottom:1px solid var(--ck-line);
 }
+
 
 .call-korea-page .eyebrow{
-  color:var(--call-accent);
-}
-
-
-/* ---------------------------------------------------------
-   EMERGENCY BAR
-   --------------------------------------------------------- */
-
-.call-korea-page .call-emergency-bar{
-  padding:0;
-  border:0;
-  background:#111;
-  color:#fff;
-}
-
-.call-korea-page .call-emergency-inner{
-  min-height:42px;
-  display:flex;
-  align-items:center;
-  gap:20px;
+  color:var(--ck-accent);
   font-size:10px;
-  line-height:1.35;
-  letter-spacing:.03em;
-}
-
-.call-korea-page .call-emergency-inner strong{
-  color:#ff6b32;
-  font-weight:900;
-}
-
-.call-korea-page .call-emergency-note{
-  margin-left:auto;
-  color:#aaa;
-}
-
-
-/* ---------------------------------------------------------
-   HERO
-   --------------------------------------------------------- */
-
-.call-korea-page .call-hero-v2{
-  position:relative;
-  padding:64px 0 56px;
-  overflow:hidden;
-  background:
-    radial-gradient(
-      circle at 82% 16%,
-      rgba(255,77,0,.15),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 8% 86%,
-      rgba(36,124,255,.08),
-      transparent 24%
-    ),
-    linear-gradient(
-      135deg,
-      #f8f4ed 0%,
-      #eee7dd 100%
-    );
-}
-
-.call-korea-page .call-hero-v2::before{
-  content:'';
-  position:absolute;
-  inset:auto -80px -180px auto;
-  width:430px;
-  height:430px;
-  border-radius:50%;
-  border:1px solid rgba(17,17,17,.08);
-}
-
-.call-korea-page .call-hero-v2::after{
-  content:'';
-  position:absolute;
-  right:120px;
-  bottom:-220px;
-  width:520px;
-  height:520px;
-  border-radius:50%;
-  border:1px solid rgba(255,77,0,.10);
-}
-
-.call-korea-page .call-hero-grid{
-  position:relative;
-  z-index:2;
-  display:grid;
-  grid-template-columns:minmax(0,1.15fr) minmax(320px,.65fr);
-  gap:62px;
-  align-items:center;
-}
-
-.call-korea-page .call-hero-copy h1{
-  max-width:820px;
-  margin:13px 0 22px;
-  font-size:clamp(58px,7.1vw,100px);
-  line-height:.87;
-  letter-spacing:-.072em;
-}
-
-.call-korea-page .call-hero-copy h1 span{
-  color:var(--call-accent);
-}
-
-.call-korea-page .call-hero-dek{
-  max-width:680px;
-  margin:0;
-  color:#38342f;
-  font-size:19px;
-  line-height:1.48;
-}
-
-.call-korea-page .call-hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:28px;
-}
-
-
-/* ---------------------------------------------------------
-   BUTTONS
-   --------------------------------------------------------- */
-
-.call-korea-page .call-btn{
-  min-height:52px;
-  padding:0 20px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid #111;
-  border-radius:3px;
-  font-family:inherit;
-  font-size:10px;
-  font-weight:900;
-  line-height:1;
-  letter-spacing:.045em;
-  text-align:center;
-  cursor:pointer;
-  transition:
-    transform .16s ease,
-    background .16s ease,
-    color .16s ease,
-    border-color .16s ease,
-    box-shadow .16s ease;
-}
-
-.call-korea-page .call-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 9px 22px rgba(0,0,0,.09);
-}
-
-.call-korea-page .call-btn-primary{
-  border-color:var(--call-accent);
-  background:var(--call-accent);
-  color:#fff;
-}
-
-.call-korea-page .call-btn-dark{
-  border-color:#111;
-  background:#111;
-  color:#fff;
-}
-
-.call-korea-page .call-btn-secondary{
-  background:transparent;
-  color:#111;
-}
-
-.call-korea-page .call-btn-whatsapp{
-  border-color:var(--call-green);
-  background:var(--call-green);
-  color:#fff;
-}
-
-
-/* ---------------------------------------------------------
-   HERO TRUST
-   --------------------------------------------------------- */
-
-.call-korea-page .call-hero-trust{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px 24px;
-  margin-top:28px;
-  padding-top:18px;
-  border-top:1px solid var(--call-line);
-  color:var(--call-muted);
-  font-size:10px;
-  font-weight:800;
-}
-
-.call-korea-page .call-hero-trust span::before{
-  content:'✓';
-  margin-right:6px;
-  color:var(--call-accent);
-}
-
-
-/* ---------------------------------------------------------
-   HERO SERVICE CARD
-   --------------------------------------------------------- */
-
-.call-korea-page .call-status-card-v2{
-  position:relative;
-  padding:28px;
-  overflow:hidden;
-  background:#111;
-  color:#fff;
-  box-shadow:0 22px 60px rgba(0,0,0,.14);
-}
-
-.call-korea-page .call-status-card-v2::after{
-  content:'';
-  position:absolute;
-  right:-70px;
-  bottom:-80px;
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  background:rgba(255,77,0,.13);
-}
-
-.call-korea-page .call-status-top{
-  position:relative;
-  z-index:2;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding-bottom:19px;
-  border-bottom:1px solid #333;
-}
-
-.call-korea-page .call-status-dot{
-  width:9px;
-  height:9px;
-  flex:0 0 auto;
-  border-radius:50%;
-  background:var(--call-accent);
-}
-
-.call-korea-page .call-status-top strong{
-  font-size:12px;
-  letter-spacing:.055em;
-}
-
-.call-korea-page .call-status-top small{
-  margin-left:auto;
-  padding:4px 7px;
-  border-radius:999px;
-  background:var(--call-accent);
-  color:#fff;
-  font-size:8px;
-  font-weight:900;
-  line-height:1;
-}
-
-.call-korea-page .call-status-question{
-  position:relative;
-  z-index:2;
-  margin:24px 0 18px;
-  font-size:26px;
-  font-weight:900;
-  line-height:1.02;
-  letter-spacing:-.045em;
-}
-
-.call-korea-page .call-benefit-list{
-  position:relative;
-  z-index:2;
-  display:grid;
-  border-top:1px solid #333;
-}
-
-.call-korea-page .call-benefit-list > div{
-  display:grid;
-  grid-template-columns:28px minmax(0,1fr);
-  gap:7px;
-  align-items:center;
-  padding:10px 0;
-  border-bottom:1px solid #333;
-}
-
-.call-korea-page .call-benefit-list span{
-  color:var(--call-accent);
-  font-size:9px;
-  font-weight:900;
-}
-
-.call-korea-page .call-benefit-list p{
-  margin:0;
-  color:#ddd;
-  font-size:11px;
-  line-height:1.35;
-}
-
-.call-korea-page .call-card-price{
-  position:relative;
-  z-index:2;
-  padding:20px 0 3px;
-}
-
-.call-korea-page .call-card-price > span{
-  display:block;
-  margin-bottom:6px;
-  color:#aaa;
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:.09em;
-}
-
-.call-korea-page .call-card-price strong{
-  display:block;
-  color:#fff;
-  font-size:48px;
-  line-height:.93;
-  letter-spacing:-.06em;
-}
-
-.call-korea-page .call-card-price small{
-  display:block;
-  margin-top:8px;
-  color:#999;
-  font-size:9px;
-  line-height:1.4;
-}
-
-.call-korea-page .call-status-action{
-  position:relative;
-  z-index:2;
-  min-height:49px;
-  margin-top:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:var(--call-accent);
-  color:#fff;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:.04em;
-}
-
-
-/* ---------------------------------------------------------
-   HELP SECTION
-   --------------------------------------------------------- */
-
-.call-korea-page .call-help-v2{
-  background:#fbf8f3;
-}
-
-.call-korea-page .call-help-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 280px;
-  gap:18px;
-  align-items:stretch;
-}
-
-.call-korea-page .call-situation-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.call-korea-page .call-situation-card{
-  min-height:220px;
-  padding:22px;
-  display:flex;
-  flex-direction:column;
-  background:#fffdfa;
-  border:1px solid var(--call-line);
-  transition:
-    transform .16s ease,
-    border-color .16s ease,
-    background .16s ease,
-    box-shadow .16s ease;
-}
-
-.call-korea-page .call-situation-card:hover{
-  transform:translateY(-2px);
-  border-color:var(--call-accent);
-  background:#fff7f2;
-  box-shadow:0 10px 26px rgba(0,0,0,.05);
-}
-
-.call-korea-page .call-situation-topline{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.call-korea-page .call-situation-number{
-  color:var(--call-accent);
-  font-size:9px;
   font-weight:900;
   letter-spacing:.08em;
 }
 
-.call-korea-page .call-situation-icon{
-  width:34px;
-  height:34px;
+
+/* =========================================================
+   EMERGENCY
+   ========================================================= */
+
+.call-emergency{
+  background:#111;
+  color:#fff;
+}
+
+
+.call-emergency-inner{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  font-size:10px;
+}
+
+
+.call-emergency-inner strong{
+  color:#ff6a33;
+}
+
+
+.call-emergency-inner small{
+  margin-left:auto;
+  color:#aaa;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.call-hero{
+  padding:58px 0 52px;
+
+  background:
+    radial-gradient(
+      circle at 84% 15%,
+      rgba(255,77,0,.12),
+      transparent 25%
+    ),
+    linear-gradient(
+      135deg,
+      #f8f4ee,
+      #ece6dd
+    );
+}
+
+
+.call-hero-grid{
   display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:#f2ece4;
-  color:#111;
-  font-size:16px;
-  font-weight:900;
+  grid-template-columns:
+    minmax(0,1.2fr)
+    minmax(300px,.62fr);
+
+  gap:56px;
+  align-items:center;
 }
 
-.call-korea-page .call-situation-card:nth-child(2) .call-situation-icon{
-  background:#edf4ff;
-  color:#247cff;
+
+.call-hero-copy h1{
+  max-width:820px;
+  margin:12px 0 20px;
+
+  font-size:clamp(
+    62px,
+    7.3vw,
+    102px
+  );
+
+  line-height:.86;
+  letter-spacing:-.07em;
 }
 
-.call-korea-page .call-situation-card:nth-child(3) .call-situation-icon{
-  background:#f2edff;
-  color:#7957e8;
+
+.call-hero-copy h1 span{
+  color:var(--ck-accent);
 }
 
-.call-korea-page .call-situation-card:nth-child(4) .call-situation-icon{
-  background:#fff2dd;
-  color:#d68400;
-}
 
-.call-korea-page .call-situation-card:nth-child(5) .call-situation-icon{
-  background:#e9f8ef;
-  color:#15964c;
-}
-
-.call-korea-page .call-situation-card:nth-child(6) .call-situation-icon{
-  background:#f0eeee;
-  color:#111;
-}
-
-.call-korea-page .call-situation-card h3{
-  margin:28px 0 8px;
-  font-size:22px;
-  line-height:1;
-  letter-spacing:-.04em;
-}
-
-.call-korea-page .call-situation-card p{
+.call-hero-copy > p{
+  max-width:660px;
   margin:0;
-  color:var(--call-muted);
-  font-size:11px;
+
+  color:#37332f;
+
+  font-size:18px;
   line-height:1.5;
 }
 
-.call-korea-page .call-situation-card strong{
-  margin-top:auto;
-  padding-top:18px;
-  color:var(--call-accent);
+
+.call-hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:10px;
+  margin-top:27px;
+}
+
+
+/* =========================================================
+   HERO ACTIONS
+   ========================================================= */
+
+.call-action{
+  min-height:58px;
+  min-width:220px;
+
+  padding:10px 18px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+
+  border:1px solid #111;
+
+  font-size:11px;
+  font-weight:900;
+  line-height:1.15;
+}
+
+
+.call-action small{
+  margin-top:4px;
+
   font-size:9px;
+  font-weight:700;
+
+  opacity:.72;
+}
+
+
+.call-action-free{
+  border-color:var(--ck-green);
+
+  background:var(--ck-green);
+  color:#fff;
+}
+
+
+.call-action-paid{
+  background:#111;
+  color:#fff;
+}
+
+
+.call-trust{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:10px 22px;
+
+  margin-top:20px;
+  padding-top:16px;
+
+  border-top:1px solid var(--ck-line);
+
+  color:var(--ck-muted);
+
+  font-size:10px;
+  font-weight:800;
+}
+
+
+.call-trust span::before{
+  content:'✓';
+
+  margin-right:6px;
+
+  color:var(--ck-accent);
+}
+
+
+/* =========================================================
+   DESKTOP SUMMARY
+   ========================================================= */
+
+.call-hero-summary{
+  padding:26px;
+
+  background:#111;
+  color:#fff;
+
+  box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.12);
+}
+
+
+.call-summary-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:12px;
+
+  padding-bottom:16px;
+
+  border-bottom:1px solid #333;
+}
+
+
+.call-summary-top strong{
+  font-size:12px;
   letter-spacing:.05em;
 }
 
 
-/* ---------------------------------------------------------
-   SEND WHAT YOU HAVE
-   --------------------------------------------------------- */
+.call-summary-top span{
+  padding:4px 7px;
 
-.call-korea-page .call-send-anything{
-  min-height:100%;
-  padding:24px;
-  background:#eaf2fb;
-  border:1px solid #d6e4f4;
+  border-radius:999px;
+
+  background:var(--ck-accent);
+
+  font-size:8px;
+  font-weight:900;
 }
 
-.call-korea-page .call-send-anything .eyebrow{
-  color:#1b68bd;
+
+.call-hero-summary h2{
+  margin:20px 0 16px;
+
+  font-size:26px;
+  line-height:1.03;
+  letter-spacing:-.04em;
 }
 
-.call-korea-page .call-send-anything h3{
-  margin:10px 0 21px;
-  font-size:27px;
-  line-height:1;
-  letter-spacing:-.045em;
+
+.call-hero-summary ol{
+  margin:0;
+  padding:0;
+
+  list-style:none;
+
+  border-top:1px solid #333;
 }
 
-.call-korea-page .call-send-list{
-  display:grid;
+
+.call-hero-summary li{
+  padding:10px 0;
+
+  border-bottom:1px solid #333;
+
+  color:#ddd;
+
+  font-size:11px;
 }
 
-.call-korea-page .call-send-list > div{
-  padding:13px 0;
-  border-top:1px solid rgba(27,104,189,.18);
+
+.call-hero-summary li::before{
+  content:'→';
+
+  margin-right:8px;
+
+  color:var(--ck-accent);
 }
 
-.call-korea-page .call-send-list span{
+
+.call-summary-price{
+  padding:18px 0 5px;
+}
+
+
+.call-summary-price span{
   display:block;
-  margin-bottom:4px;
-  color:#1b68bd;
+
+  color:#aaa;
+
   font-size:9px;
   font-weight:900;
-  letter-spacing:.08em;
 }
 
-.call-korea-page .call-send-list p{
-  margin:0;
-  color:#35475a;
-  font-size:11px;
+
+.call-summary-price strong{
+  display:block;
+
+  margin-top:4px;
+
+  font-size:46px;
+  line-height:.95;
+  letter-spacing:-.05em;
+}
+
+
+.call-summary-price small{
+  display:block;
+
+  margin-top:7px;
+
+  color:#999;
+
+  font-size:9px;
   line-height:1.4;
 }
 
-.call-korea-page .call-send-note{
-  margin:20px 0 0;
-  padding-top:16px;
-  border-top:1px solid rgba(27,104,189,.18);
-  color:#173b63;
-  font-size:11px;
-  font-weight:800;
-  line-height:1.5;
-}
 
+.call-hero-summary > a{
+  min-height:48px;
 
-/* ---------------------------------------------------------
-   HOW IT WORKS
-   --------------------------------------------------------- */
+  margin-top:16px;
 
-.call-korea-page .call-how-v2{
-  background:#f0eae1;
-}
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-.call-korea-page .call-how-grid-v2{
-  grid-template-columns:repeat(3,1fr);
-}
+  background:var(--ck-accent);
+  color:#fff;
 
-.call-korea-page .call-how-grid{
-  display:grid;
-  border-top:2px solid #111;
-  border-bottom:1px solid var(--call-line);
-}
-
-.call-korea-page .call-how-grid article{
-  min-height:215px;
-  padding:25px;
-  border-right:1px solid var(--call-line);
-}
-
-.call-korea-page .call-how-grid article:last-child{
-  border-right:0;
-}
-
-.call-korea-page .call-how-grid article > span{
-  color:var(--call-accent);
   font-size:10px;
   font-weight:900;
-  letter-spacing:.08em;
 }
 
-.call-korea-page .call-how-grid h3{
-  margin:39px 0 9px;
-  font-size:21px;
-  line-height:1.05;
-  letter-spacing:-.035em;
+
+/* =========================================================
+   SHARED SECTION
+   ========================================================= */
+
+.call-section{
+  padding:54px 0;
 }
 
-.call-korea-page .call-how-grid p{
+
+.call-section-head{
+  margin-bottom:24px;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    minmax(240px,420px);
+
+  gap:30px;
+
+  align-items:end;
+}
+
+
+.call-section-head h2{
+  margin:8px 0 0;
+
+  font-size:44px;
+  line-height:.95;
+  letter-spacing:-.055em;
+}
+
+
+.call-section-head > p{
   margin:0;
-  color:var(--call-muted);
+
+  color:var(--ck-muted);
+
   font-size:12px;
   line-height:1.5;
 }
 
 
-/* ---------------------------------------------------------
-   SERVICES
-   --------------------------------------------------------- */
+/* =========================================================
+   SITUATIONS
+   ========================================================= */
 
-.call-korea-page .call-service-v2{
+.call-situations{
   background:#fbf8f3;
 }
 
-.call-korea-page .call-service-grid{
-  max-width:930px;
-  margin:0 auto;
+
+.call-situation-list{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
 
-.call-korea-page .call-service-card{
-  min-height:500px;
-  padding:32px;
-  display:flex;
-  flex-direction:column;
-  background:#fffdfa;
-  border:1px solid var(--call-line);
-}
+  grid-template-columns:
+    repeat(3,1fr);
 
-.call-korea-page .call-service-featured{
-  border-color:#111;
-  background:#111;
-  color:#fff;
-}
-
-.call-korea-page .call-service-label{
-  color:var(--call-accent);
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:.1em;
-}
-
-.call-korea-page .call-service-card h3{
-  margin:20px 0 8px;
-  font-size:39px;
-  line-height:.95;
-  letter-spacing:-.055em;
-}
-
-.call-korea-page .call-price{
-  margin:10px 0 27px;
-  font-size:58px;
-  font-weight:900;
-  line-height:.9;
-  letter-spacing:-.06em;
-}
-
-.call-korea-page .call-service-card > p{
-  margin:0 0 22px;
-  color:var(--call-muted);
-  font-size:13px;
-  line-height:1.5;
-}
-
-.call-korea-page .call-service-card ul{
-  margin:0 0 28px;
-  padding:0;
-  list-style:none;
-  border-top:1px solid var(--call-line);
-}
-
-.call-korea-page .call-service-card li{
-  padding:10px 0;
-  border-bottom:1px solid var(--call-line);
-  color:#4a4640;
-  font-size:11px;
-}
-
-.call-korea-page .call-service-card li::before{
-  content:'✓';
-  margin-right:8px;
-  color:var(--call-accent);
-  font-weight:900;
-}
-
-.call-korea-page .call-service-featured ul{
-  border-color:#333;
-}
-
-.call-korea-page .call-service-featured li{
-  border-color:#333;
-  color:#ccc;
-}
-
-.call-korea-page .call-service-card .call-btn{
-  margin-top:auto;
-}
-
-.call-korea-page .call-first-price{
-  margin:17px 0 14px;
-  padding:20px 0;
-  border-top:1px solid #333;
-  border-bottom:1px solid #333;
-}
-
-.call-korea-page .call-first-price > span{
-  display:block;
-  margin-bottom:5px;
-  color:var(--call-accent);
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:.09em;
-}
-
-.call-korea-page .call-first-price strong{
-  display:block;
-  font-size:58px;
-  line-height:.9;
-  letter-spacing:-.06em;
-}
-
-.call-korea-page .call-first-price small{
-  display:block;
-  margin-top:8px;
-  color:#999;
-  font-size:9px;
-  line-height:1.4;
-}
-
-.call-korea-page .call-regular-price{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
-  margin-bottom:18px;
-}
-
-.call-korea-page .call-regular-price span{
-  color:#999;
-  font-size:11px;
-}
-
-.call-korea-page .call-regular-price strong{
-  font-size:20px;
-}
-
-.call-korea-page .call-pay-placeholder{
-  width:100%;
-  opacity:.88;
-}
-
-.call-korea-page .call-payment-note{
-  display:block;
-  margin-top:11px;
-  color:#888;
-  font-size:9px;
-  line-height:1.45;
-  text-align:center;
+  gap:10px;
 }
 
 
-/* ---------------------------------------------------------
-   EXAMPLE CONVERSATION
-   --------------------------------------------------------- */
+.call-situation{
+  min-height:160px;
 
-.call-korea-page .call-example-section{
-  background:#f0eae1;
-}
+  padding:18px;
 
-.call-korea-page .call-example-grid{
   display:grid;
-  grid-template-columns:.65fr 1.35fr;
-  gap:70px;
+
+  grid-template-columns:
+    38px
+    minmax(0,1fr)
+    auto;
+
+  gap:13px;
+
   align-items:start;
-}
 
-.call-korea-page .call-example-grid h2{
-  max-width:400px;
-  margin:12px 0 0;
-  font-size:51px;
-  line-height:.94;
-  letter-spacing:-.06em;
-}
+  background:var(--ck-paper);
 
-.call-korea-page .call-example-conversation{
-  display:grid;
-  gap:10px;
-}
+  border:
+    1px solid
+    var(--ck-line);
 
-.call-korea-page .call-message{
-  max-width:80%;
-  padding:17px 19px;
-  border:1px solid var(--call-line);
-}
-
-.call-korea-page .call-message.user{
-  justify-self:end;
-  background:#fffdfa;
-}
-
-.call-korea-page .call-message.team{
-  justify-self:start;
-  border-color:#111;
-  background:#111;
-  color:#fff;
-}
-
-.call-korea-page .call-message span{
-  display:block;
-  margin-bottom:6px;
-  color:var(--call-accent);
-  font-size:8px;
-  font-weight:900;
-  letter-spacing:.08em;
-}
-
-.call-korea-page .call-message p{
-  margin:0;
-  font-size:13px;
-  line-height:1.5;
-}
-
-.call-korea-page .call-message.team p{
-  color:#ddd;
+  transition:
+    transform .15s ease,
+    border-color .15s ease;
 }
 
 
-/* ---------------------------------------------------------
-   SERVICE GUIDE
-   --------------------------------------------------------- */
+.call-situation:hover{
+  transform:translateY(-2px);
 
-.call-korea-page .call-guide-section{
-  background:#fbf8f3;
+  border-color:
+    var(--ck-accent);
 }
 
-.call-korea-page .call-guide-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
 
-.call-korea-page .call-guide-grid article{
-  min-height:205px;
-  padding:22px;
-  background:#fffdfa;
-  border:1px solid var(--call-line);
-}
+.call-situation-icon{
+  width:34px;
+  height:34px;
 
-.call-korea-page .call-guide-grid article:nth-child(1){
-  background:#eef8f1;
-}
-
-.call-korea-page .call-guide-grid article:nth-child(2){
-  background:#fff0ee;
-}
-
-.call-korea-page .call-guide-grid article:nth-child(3){
-  background:#eef4fc;
-}
-
-.call-korea-page .call-guide-grid article:nth-child(4){
-  background:#f1f5ff;
-}
-
-.call-korea-page .call-guide-grid article > span{
-  width:29px;
-  height:29px;
   display:grid;
   place-items:center;
+
   border-radius:50%;
-  background:#111;
-  color:#fff;
+
+  background:#f0ebe4;
+
+  font-size:15px;
+  font-weight:900;
+}
+
+
+.call-situation h3{
+  margin:3px 0 7px;
+
+  font-size:20px;
+  line-height:1;
+  letter-spacing:-.035em;
+}
+
+
+.call-situation p{
+  margin:0;
+
+  color:var(--ck-muted);
+
+  font-size:11px;
+  line-height:1.45;
+}
+
+
+.call-situation > strong{
+  margin-top:8px;
+
+  color:var(--ck-accent);
+
+  font-size:14px;
+}
+
+
+/* =========================================================
+   SEND WHAT YOU HAVE
+   ========================================================= */
+
+.call-send-box{
+  margin-top:14px;
+
+  padding:22px;
+
+  display:grid;
+
+  grid-template-columns:
+    220px
+    1fr
+    1.1fr;
+
+  gap:22px;
+
+  align-items:center;
+
+  background:#eaf2fb;
+
+  border:
+    1px solid
+    #d5e3f3;
+}
+
+
+.call-send-box h3{
+  margin:6px 0 0;
+
+  font-size:24px;
+  letter-spacing:-.04em;
+}
+
+
+.call-send-options{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:7px;
+}
+
+
+.call-send-options span{
+  padding:7px 9px;
+
+  border:
+    1px solid
+    #b7cee8;
+
+  border-radius:999px;
+
+  background:#fff;
+  color:#255b91;
+
+  font-size:8px;
+  font-weight:900;
+}
+
+
+.call-send-box > p{
+  margin:0;
+
+  color:#35516d;
+
+  font-size:11px;
+  line-height:1.5;
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+   ========================================================= */
+
+.call-how{
+  background:#efe9e0;
+}
+
+
+.call-step-list{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  border-top:
+    2px solid #111;
+
+  border-bottom:
+    1px solid
+    var(--ck-line);
+}
+
+
+.call-step-list article{
+  min-height:155px;
+
+  padding:22px;
+
+  display:grid;
+
+  grid-template-columns:
+    34px
+    1fr;
+
+  gap:14px;
+
+  border-right:
+    1px solid
+    var(--ck-line);
+}
+
+
+.call-step-list article:last-child{
+  border-right:0;
+}
+
+
+.call-step-list article > span{
+  color:var(--ck-accent);
+
   font-size:11px;
   font-weight:900;
 }
 
-.call-korea-page .call-guide-grid h3{
-  margin:30px 0 8px;
-  font-size:19px;
+
+.call-step-list h3{
+  margin:0 0 7px;
+
+  font-size:20px;
   line-height:1.05;
   letter-spacing:-.035em;
 }
 
-.call-korea-page .call-guide-grid p{
+
+.call-step-list p{
   margin:0;
-  color:#514c46;
+
+  color:var(--ck-muted);
+
   font-size:11px;
-  line-height:1.5;
+  line-height:1.45;
 }
 
 
-/* ---------------------------------------------------------
-   FINAL CTA
-   --------------------------------------------------------- */
+/* =========================================================
+   START
+   ========================================================= */
 
-.call-korea-page .call-final-section{
-  padding:36px 0;
-  background:#f0eae1;
+.call-start{
+  background:#fbf8f3;
 }
 
-.call-korea-page .call-final-cta{
-  padding:40px;
+
+.call-start-grid{
+  max-width:900px;
+
+  margin:0 auto;
+
   display:grid;
-  grid-template-columns:1fr auto;
-  gap:40px;
-  align-items:end;
-  background:var(--call-accent);
-}
 
-.call-korea-page .call-final-cta .eyebrow{
-  color:#111;
-}
+  grid-template-columns:
+    1fr
+    1fr;
 
-.call-korea-page .call-final-cta h2{
-  max-width:690px;
-  margin:8px 0 12px;
-  font-size:52px;
-  line-height:.91;
-  letter-spacing:-.06em;
-}
-
-.call-korea-page .call-final-cta p{
-  max-width:620px;
-  margin:0;
-  font-size:13px;
-  line-height:1.5;
-}
-
-.call-korea-page .call-final-cta .call-btn{
-  min-width:220px;
+  gap:12px;
 }
 
 
-/* ---------------------------------------------------------
-   OFFICIAL HELP
-   --------------------------------------------------------- */
+.call-start-card{
+  min-height:360px;
 
-.call-korea-page .call-public-help{
-  padding:20px 0;
-  border:0;
+  padding:28px;
+
+  display:flex;
+  flex-direction:column;
+
+  border:
+    1px solid
+    var(--ck-line);
+}
+
+
+.call-start-free{
+  background:
+    var(--ck-paper);
+}
+
+
+.call-start-paid{
+  border-color:#111;
+
   background:#111;
   color:#fff;
 }
 
-.call-korea-page .call-public-help-inner{
-  display:flex;
-  align-items:center;
-  gap:28px;
-}
 
-.call-korea-page .call-public-help-inner span{
-  margin-right:auto;
-  color:var(--call-accent);
+.call-start-label{
+  color:var(--ck-accent);
+
   font-size:9px;
   font-weight:900;
   letter-spacing:.08em;
 }
 
-.call-korea-page .call-public-help-inner strong{
-  font-size:11px;
-  font-weight:800;
+
+.call-start-card h3{
+  margin:14px 0 7px;
+
+  font-size:34px;
+  line-height:1;
+  letter-spacing:-.05em;
 }
 
 
-/* ---------------------------------------------------------
-   MOBILE STICKY ACTIONS
-   --------------------------------------------------------- */
+.call-start-card div > strong{
+  display:block;
 
-.call-korea-page .call-mobile-actions{
+  font-size:50px;
+  line-height:.95;
+  letter-spacing:-.055em;
+}
+
+
+.call-start-card div > small{
+  display:block;
+
+  margin-top:6px;
+
+  color:#aaa;
+
+  font-size:9px;
+}
+
+
+.call-start-card > p{
+  margin:20px 0;
+
+  color:var(--ck-muted);
+
+  font-size:12px;
+  line-height:1.5;
+}
+
+
+.call-start-paid > p{
+  color:#bbb;
+}
+
+
+.call-start-card > a,
+.call-payment-button{
+  min-height:50px;
+
+  margin-top:auto;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:0;
+
+  font:inherit;
+
+  font-size:10px;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+
+.call-start-free > a{
+  background:var(--ck-green);
+  color:#fff;
+}
+
+
+.call-payment-button{
+  width:100%;
+
+  background:var(--ck-accent);
+  color:#fff;
+}
+
+
+.call-payment-note{
+  margin-top:9px;
+
+  color:#888;
+
+  font-size:8px;
+  line-height:1.4;
+
+  text-align:center;
+}
+
+
+/* =========================================================
+   COMPACT NOTES
+   ========================================================= */
+
+.call-compact-notes{
+  max-width:900px;
+
+  margin:12px auto 0;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:8px;
+}
+
+
+.call-compact-notes > div{
+  padding:14px;
+
+  background:#f0ebe4;
+
+  border:
+    1px solid
+    var(--ck-line);
+}
+
+
+.call-compact-notes strong{
+  display:block;
+
+  margin-bottom:5px;
+
+  font-size:10px;
+}
+
+
+.call-compact-notes p{
+  margin:0;
+
+  color:var(--ck-muted);
+
+  font-size:9px;
+  line-height:1.4;
+}
+
+
+/* =========================================================
+   OFFICIAL HELP
+   ========================================================= */
+
+.call-official{
+  padding:18px 0;
+
+  border:0 !important;
+
+  background:#111;
+  color:#fff;
+}
+
+
+.call-official .wrap{
+  display:flex;
+  align-items:center;
+
+  gap:24px;
+}
+
+
+.call-official span{
+  margin-right:auto;
+
+  color:var(--ck-accent);
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.07em;
+}
+
+
+.call-official strong{
+  font-size:10px;
+}
+
+
+/* =========================================================
+   MOBILE ACTION BAR
+   ========================================================= */
+
+.call-mobile-actions{
   display:none;
 }
 
 
 /* =========================================================
-   TABLET / MOBILE
+   MOBILE
    ========================================================= */
 
 @media(max-width:850px){
 
   .call-korea-page{
-    padding-bottom:72px;
+    padding-bottom:64px;
   }
 
 
-  /* EMERGENCY */
+  /* Emergency */
 
-  .call-korea-page .call-emergency-inner{
-    min-height:auto;
-    padding-top:9px;
-    padding-bottom:9px;
+  .call-emergency-inner{
+    min-height:36px;
+
+    padding-top:7px;
+    padding-bottom:7px;
+
     display:grid;
-    grid-template-columns:auto 1fr;
-    gap:3px 9px;
-  }
 
-  .call-korea-page .call-emergency-note{
-    grid-column:1 / -1;
-    margin:0;
-    font-size:8px;
-  }
+    grid-template-columns:
+      auto
+      1fr;
 
+    gap:2px 8px;
 
-  /* HERO */
-
-  .call-korea-page .call-hero-v2{
-    padding:38px 0 34px;
-  }
-
-  .call-korea-page .call-hero-grid{
-    grid-template-columns:1fr;
-    gap:27px;
-  }
-
-  .call-korea-page .call-hero-copy h1{
-    margin:10px 0 17px;
-    font-size:clamp(47px,13vw,67px);
-    line-height:.9;
-  }
-
-  .call-korea-page .call-hero-dek{
-    font-size:15px;
-    line-height:1.45;
-  }
-
-  .call-korea-page .call-hero-actions{
-    display:grid;
-    grid-template-columns:1fr;
-  }
-
-  .call-korea-page .call-btn{
-    width:100%;
-  }
-
-  .call-korea-page .call-hero-trust{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:7px;
-    padding-top:15px;
-    font-size:8px;
-    text-align:center;
-  }
-
-  .call-korea-page .call-hero-trust span::before{
-    display:block;
-    margin:0 0 4px;
-    font-size:12px;
-  }
-
-
-  /* SERVICE CARD */
-
-  .call-korea-page .call-status-card-v2{
-    padding:22px;
-  }
-
-  .call-korea-page .call-status-question{
-    font-size:22px;
-  }
-
-  .call-korea-page .call-card-price strong{
-    font-size:44px;
-  }
-
-
-  /* HELP */
-
-  .call-korea-page .call-help-layout{
-    grid-template-columns:1fr;
-  }
-
-  .call-korea-page .call-situation-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:8px;
-  }
-
-  .call-korea-page .call-situation-card{
-    min-height:185px;
-    padding:17px;
-  }
-
-  .call-korea-page .call-situation-icon{
-    width:30px;
-    height:30px;
-    font-size:14px;
-  }
-
-  .call-korea-page .call-situation-card h3{
-    margin-top:22px;
-    font-size:18px;
-  }
-
-  .call-korea-page .call-situation-card p{
-    font-size:10px;
-  }
-
-  .call-korea-page .call-situation-card strong{
-    font-size:8px;
-  }
-
-  .call-korea-page .call-send-anything{
-    padding:21px;
-  }
-
-
-  /* HOW */
-
-  .call-korea-page .call-how-grid-v2{
-    grid-template-columns:1fr;
-  }
-
-  .call-korea-page .call-how-grid article{
-    min-height:150px;
-    border-right:0;
-    border-bottom:1px solid var(--call-line);
-  }
-
-  .call-korea-page .call-how-grid article:last-child{
-    border-bottom:0;
-  }
-
-  .call-korea-page .call-how-grid h3{
-    margin-top:22px;
-  }
-
-
-  /* SERVICES */
-
-  .call-korea-page .call-service-grid{
-    grid-template-columns:1fr;
-  }
-
-  .call-korea-page .call-service-card{
-    min-height:0;
-    padding:24px 20px;
-  }
-
-  .call-korea-page .call-service-card h3{
-    font-size:32px;
-  }
-
-  .call-korea-page .call-price,
-  .call-korea-page .call-first-price strong{
-    font-size:48px;
-  }
-
-
-  /* EXAMPLE */
-
-  .call-korea-page .call-example-grid{
-    grid-template-columns:1fr;
-    gap:28px;
-  }
-
-  .call-korea-page .call-example-grid h2{
-    font-size:40px;
-  }
-
-  .call-korea-page .call-message{
-    max-width:92%;
-  }
-
-
-  /* GUIDE */
-
-  .call-korea-page .call-guide-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .call-korea-page .call-guide-grid article{
-    min-height:190px;
-    padding:18px;
-  }
-
-
-  /* FINAL */
-
-  .call-korea-page .call-final-cta{
-    padding:29px 21px;
-    grid-template-columns:1fr;
-    gap:24px;
-  }
-
-  .call-korea-page .call-final-cta h2{
-    font-size:40px;
-  }
-
-  .call-korea-page .call-final-cta .call-btn{
-    min-width:0;
-  }
-
-
-  /* OFFICIAL */
-
-  .call-korea-page .call-public-help-inner{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px 14px;
-  }
-
-  .call-korea-page .call-public-help-inner span{
-    grid-column:1 / -1;
-    margin:0 0 3px;
-  }
-
-  .call-korea-page .call-public-help-inner strong{
     font-size:9px;
   }
 
 
-  /* STICKY MOBILE CTA */
+  .call-emergency-inner small{
+    grid-column:
+      1 / -1;
 
-  .call-korea-page .call-mobile-actions{
+    margin:0;
+
+    font-size:7px;
+  }
+
+
+  /* Hero */
+
+  .call-hero{
+    padding:
+      30px 0
+      24px;
+  }
+
+
+  .call-hero-grid{
+    display:block;
+  }
+
+
+  .call-hero-summary{
+    display:none;
+  }
+
+
+  .call-hero-copy h1{
+    margin:
+      9px 0
+      14px;
+
+    font-size:
+      clamp(
+        42px,
+        12.5vw,
+        59px
+      );
+
+    line-height:.9;
+  }
+
+
+  .call-hero-copy > p{
+    max-width:none;
+
+    font-size:14px;
+    line-height:1.45;
+  }
+
+
+  .call-hero-actions{
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+      1fr;
+
+    gap:8px;
+  }
+
+
+  .call-action{
+    min-width:0;
+    width:100%;
+
+    min-height:54px;
+
+    padding:
+      9px
+      15px;
+  }
+
+
+  .call-trust{
+    display:grid;
+
+    grid-template-columns:
+      repeat(3,1fr);
+
+    gap:4px;
+
+    margin-top:14px;
+    padding-top:12px;
+
+    text-align:center;
+
+    font-size:8px;
+  }
+
+
+  .call-trust span::before{
+    display:block;
+
+    margin:
+      0 0
+      3px;
+  }
+
+
+  /* Sections */
+
+  .call-section{
+    padding:
+      34px 0;
+  }
+
+
+  .call-section-head{
+    margin-bottom:15px;
+
+    display:block;
+  }
+
+
+  .call-section-head h2{
+    font-size:31px;
+  }
+
+
+  .call-section-head > p{
+    margin-top:8px;
+
+    font-size:10px;
+  }
+
+
+  /* Situations */
+
+  .call-situation-list{
+    grid-template-columns:
+      1fr;
+
+    gap:7px;
+  }
+
+
+  .call-situation{
+    min-height:0;
+
+    padding:
+      12px 13px;
+
+    grid-template-columns:
+      36px
+      minmax(0,1fr)
+      20px;
+
+    gap:10px;
+
+    align-items:center;
+
+    border-radius:4px;
+  }
+
+
+  .call-situation-icon{
+    width:32px;
+    height:32px;
+
+    font-size:13px;
+  }
+
+
+  .call-situation h3{
+    margin:0;
+
+    font-size:15px;
+  }
+
+
+  .call-situation p{
+    display:none;
+  }
+
+
+  .call-situation > strong{
+    margin:0;
+
+    justify-self:end;
+
+    font-size:13px;
+  }
+
+
+  /* Send box */
+
+  .call-send-box{
+    margin-top:10px;
+
+    padding:16px;
+
+    display:block;
+  }
+
+
+  .call-send-box h3{
+    font-size:21px;
+  }
+
+
+  .call-send-options{
+    margin:
+      14px 0
+      12px;
+  }
+
+
+  .call-send-options span{
+    padding:
+      6px 8px;
+
+    font-size:7px;
+  }
+
+
+  .call-send-box > p{
+    font-size:10px;
+  }
+
+
+  /* How */
+
+  .call-step-list{
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .call-step-list article{
+    min-height:0;
+
+    padding:
+      15px 4px;
+
+    grid-template-columns:
+      28px
+      1fr;
+
+    border-right:0;
+
+    border-bottom:
+      1px solid
+      var(--ck-line);
+  }
+
+
+  .call-step-list article:last-child{
+    border-bottom:0;
+  }
+
+
+  .call-step-list h3{
+    font-size:16px;
+  }
+
+
+  .call-step-list p{
+    font-size:10px;
+  }
+
+
+  /* Start */
+
+  .call-start-grid{
+    grid-template-columns:
+      1fr;
+
+    gap:8px;
+  }
+
+
+  .call-start-card{
+    min-height:0;
+
+    padding:18px;
+  }
+
+
+  .call-start-card h3{
+    margin:
+      9px 0
+      5px;
+
+    font-size:25px;
+  }
+
+
+  .call-start-card div > strong{
+    font-size:37px;
+  }
+
+
+  .call-start-card > p{
+    margin:
+      12px 0
+      15px;
+
+    font-size:10px;
+  }
+
+
+  .call-start-card > a,
+  .call-payment-button{
+    min-height:46px;
+  }
+
+
+  .call-compact-notes{
+    grid-template-columns:
+      1fr 1fr;
+
+    gap:7px;
+  }
+
+
+  .call-compact-notes > div:first-child{
+    grid-column:
+      1 / -1;
+
+    background:#fff0ee;
+  }
+
+
+  .call-compact-notes > div{
+    padding:11px;
+  }
+
+
+  /* Official */
+
+  .call-official{
+    padding:
+      14px 0;
+  }
+
+
+  .call-official .wrap{
+    display:grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap:
+      5px 10px;
+  }
+
+
+  .call-official span{
+    grid-column:
+      1 / -1;
+
+    margin:
+      0 0 2px;
+  }
+
+
+  .call-official strong{
+    font-size:8px;
+  }
+
+
+  /* Fixed CTA */
+
+  .call-mobile-actions{
     position:fixed;
-    z-index:90;
+
+    z-index:120;
+
     left:0;
     right:0;
     bottom:0;
+
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
+
+    grid-template-columns:
+      1fr
+      1.15fr;
+
+    gap:6px;
+
     padding:
-      9px
-      max(12px,env(safe-area-inset-right))
-      calc(9px + env(safe-area-inset-bottom))
-      max(12px,env(safe-area-inset-left));
-    border-top:1px solid rgba(0,0,0,.12);
-    background:rgba(255,253,250,.96);
-    backdrop-filter:blur(14px);
-    box-shadow:0 -10px 30px rgba(0,0,0,.09);
+      7px
+      max(
+        10px,
+        env(safe-area-inset-right)
+      )
+      calc(
+        7px +
+        env(safe-area-inset-bottom)
+      )
+      max(
+        10px,
+        env(safe-area-inset-left)
+      );
+
+    background:
+      rgba(
+        255,
+        253,
+        250,
+        .95
+      );
+
+    border-top:
+      1px solid
+      rgba(0,0,0,.1);
+
+    backdrop-filter:
+      blur(12px);
+
+    transition:
+      transform .2s ease,
+      opacity .2s ease;
   }
 
-  .call-korea-page .call-mobile-actions a{
-    min-height:48px;
+
+  .call-mobile-actions.is-hidden{
+    transform:
+      translateY(
+        calc(
+          100% +
+          12px
+        )
+      );
+
+    opacity:0;
+
+    pointer-events:none;
+  }
+
+
+  .call-mobile-actions a{
+    min-height:42px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:5px;
-    font-size:10px;
+
+    border-radius:4px;
+
+    font-size:9px;
     font-weight:900;
-    letter-spacing:.02em;
+
     text-align:center;
   }
 
-  .call-korea-page .call-mobile-free{
-    background:var(--call-green);
+
+  .call-mobile-free{
+    background:var(--ck-green);
     color:#fff;
   }
 
-  .call-korea-page .call-mobile-paid{
+
+  .call-mobile-paid{
     background:#111;
     color:#fff;
   }
@@ -1252,73 +1384,34 @@
 
 
 /* =========================================================
-   SMALL MOBILE
+   SMALL PHONES
    ========================================================= */
 
-@media(max-width:520px){
+@media(max-width:420px){
 
-  .call-korea-page .call-hero-copy h1{
-    font-size:clamp(43px,13vw,58px);
+  .call-hero-copy h1{
+    font-size:
+      clamp(
+        39px,
+        12vw,
+        50px
+      );
   }
 
-  .call-korea-page .call-hero-trust{
-    gap:4px;
+
+  .call-trust{
+    font-size:7px;
   }
 
-  .call-korea-page .call-situation-grid{
-    grid-template-columns:1fr 1fr;
+
+  .call-compact-notes{
+    grid-template-columns:
+      1fr;
   }
 
-  .call-korea-page .call-situation-card{
-    min-height:175px;
-    padding:15px;
-  }
 
-  .call-korea-page .call-situation-card h3{
-    font-size:16px;
-  }
-
-  .call-korea-page .call-guide-grid{
-    grid-template-columns:1fr;
-  }
-
-  .call-korea-page .call-guide-grid article{
-    min-height:0;
-  }
-
-  .call-korea-page .call-message{
-    max-width:94%;
-  }
-
-  .call-korea-page .call-final-cta h2{
-    font-size:37px;
-  }
-
-}
-
-
-/* =========================================================
-   VERY SMALL MOBILE
-   ========================================================= */
-
-@media(max-width:380px){
-
-  .call-korea-page .call-situation-grid{
-    grid-template-columns:1fr;
-  }
-
-  .call-korea-page .call-situation-card{
-    min-height:150px;
-  }
-
-  .call-korea-page .call-hero-trust{
-    grid-template-columns:1fr;
-    text-align:left;
-  }
-
-  .call-korea-page .call-hero-trust span::before{
-    display:inline;
-    margin-right:6px;
+  .call-compact-notes > div:first-child{
+    grid-column:auto;
   }
 
 }
