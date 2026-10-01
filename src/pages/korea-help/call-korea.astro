@@ -12,7 +12,7 @@ const freeChatText = encodeURIComponent(
     'Location:',
     'How urgent is it:',
     '',
-    'You can also send a photo, screenshot, map link or voice message.'
+    'You can send a photo, screenshot, map link or voice message.'
   ].join('\n')
 );
 
@@ -21,40 +21,34 @@ const freeChatUrl =
 
 const situations = [
   {
-    number: '01',
     icon: '⌁',
-    title: 'Lost & Stolen',
+    title: 'Lost something',
     description: 'Phone, wallet, passport, bag or something left behind.'
   },
   {
-    number: '02',
-    icon: '+',
-    title: 'Clinic & Pharmacy',
-    description: 'Need help communicating with a clinic, hospital or pharmacy.'
-  },
-  {
-    number: '03',
     icon: '▰',
-    title: 'Hotel & Booking',
-    description: 'Reservation, check-in or booking problem.'
+    title: 'Booking problem',
+    description: 'Hotel, restaurant, salon, clinic or reservation issue.'
   },
   {
-    number: '04',
     icon: '↗',
-    title: 'Taxi & Transport',
+    title: 'Taxi / transport',
     description: 'Lost property, route problem or transport communication.'
   },
   {
-    number: '05',
     icon: '₩',
-    title: 'Payment & Refund',
+    title: 'Payment / refund',
     description: 'Charge, cancellation, refund or purchase question.'
   },
   {
-    number: '06',
     icon: '☎',
-    title: 'Call a Business',
-    description: 'Send the name or map link. We can find who to contact.'
+    title: 'Call a business',
+    description: 'Send the place name or map link. We can find who to contact.'
+  },
+  {
+    icon: '…',
+    title: 'Something else',
+    description: 'Not sure which category fits? Just tell us what happened.'
   }
 ];
 
@@ -73,24 +67,21 @@ const makeSituationUrl = (title) => {
   return `https://wa.me/${whatsappNumber}?text=${text}`;
 };
 
-const processSteps = [
+const steps = [
   {
-    number: '01',
+    number: '1',
     title: 'Send what you have',
-    description:
-      'A short message, photo, screenshot, map link or voice note is enough.'
+    description: 'Message, photo, screenshot, map link or voice note.'
   },
   {
-    number: '02',
+    number: '2',
     title: 'We handle the Korean',
-    description:
-      'We figure out who to contact, explain the situation and make the Korean call when needed.'
+    description: 'We figure out who to contact and make the call when needed.'
   },
   {
-    number: '03',
-    title: 'You get the answer',
-    description:
-      'We send the result back in clear English and tell you what happens next.'
+    number: '3',
+    title: 'Get the answer',
+    description: 'We send the result back to you in clear English.'
   }
 ];
 ---
@@ -99,38 +90,32 @@ const processSteps = [
   title="Call Korea | Get Help in Korea | SEEN IN KOREA"
   description="Stuck in Korea? Tell us what happened. Call Korea helps foreigners handle Korean phone calls, lost items, bookings, transport issues, refunds and everyday communication."
 >
-
-  <main class="call-korea-page call-korea-v2">
-
+  <main class="call-korea-page">
 
     <!-- EMERGENCY -->
-    <div class="call-emergency-bar">
-
+    <div class="call-emergency">
       <div class="wrap call-emergency-inner">
 
         <strong>
-          IN IMMEDIATE DANGER?
+          Emergency?
         </strong>
 
         <span>
           Police 112 · Fire / Ambulance 119
         </span>
 
-        <span class="call-emergency-note">
-          Call Korea is practical support,
-          not an emergency service.
-        </span>
+        <small>
+          Call Korea is not an emergency service.
+        </small>
 
       </div>
-
     </div>
 
 
     <!-- HERO -->
-    <section class="call-hero call-hero-v2">
+    <section class="call-hero">
 
       <div class="wrap call-hero-grid">
-
 
         <div class="call-hero-copy">
 
@@ -138,19 +123,16 @@ const processSteps = [
             KOREA HELP · CALL KOREA · BETA
           </div>
 
-
           <h1>
             Stuck in Korea?<br />
-            <span>We’ll handle it.</span>
+            <span>We’ll handle the Korean.</span>
           </h1>
 
-
-          <p class="call-hero-dek">
-            Don’t know who to call or what to say?
+          <p>
+            Lost something? Need to call a place?
+            Booking or refund problem?
             Tell us what happened.
-            We can find the right place,
-            handle the Korean
-            and give you the answer in English.
+            You do not need to know who to call first.
           </p>
 
 
@@ -160,25 +142,32 @@ const processSteps = [
               href={freeChatUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="call-btn call-btn-whatsapp"
+              class="call-action call-action-free"
             >
-              GET HELP — FREE CHAT →
+              FREE CHAT
+              <small>
+                Ask us first
+              </small>
             </a>
+
 
             <a
               href="#call-payment"
-              class="call-btn call-btn-dark"
+              class="call-action call-action-paid"
             >
-              HANDLE IT FOR ME · ₩2,900 →
+              HANDLE IT · ₩2,900
+              <small>
+                First paid request
+              </small>
             </a>
 
           </div>
 
 
-          <div class="call-hero-trust">
+          <div class="call-trust">
 
             <span>
-              No account
+              No signup
             </span>
 
             <span>
@@ -194,65 +183,46 @@ const processSteps = [
         </div>
 
 
+        <!-- DESKTOP SUMMARY -->
+        <aside class="call-hero-summary">
 
-        <!-- QUICK SERVICE CARD -->
-        <aside class="call-status-card call-status-card-v2">
-
-          <div class="call-status-top">
-
-            <span class="call-status-dot"></span>
+          <div class="call-summary-top">
 
             <strong>
               CALL KOREA
             </strong>
 
-            <small>
+            <span>
               BETA
-            </small>
+            </span>
 
           </div>
 
 
-          <div class="call-status-question">
+          <h2>
             You tell us the problem.<br />
             We handle the Korean.
-          </div>
+          </h2>
 
 
-          <div class="call-benefit-list">
+          <ol>
 
-            <div>
-              <span>01</span>
-              <p>
-                We figure out who to contact.
-              </p>
-            </div>
+            <li>
+              We find who to contact.
+            </li>
 
-            <div>
-              <span>02</span>
-              <p>
-                We make the Korean phone call.
-              </p>
-            </div>
+            <li>
+              We make the Korean call.
+            </li>
 
-            <div>
-              <span>03</span>
-              <p>
-                We explain your request.
-              </p>
-            </div>
+            <li>
+              You get the answer in English.
+            </li>
 
-            <div>
-              <span>04</span>
-              <p>
-                You get the answer in English.
-              </p>
-            </div>
-
-          </div>
+          </ol>
 
 
-          <div class="call-card-price">
+          <div class="call-summary-price">
 
             <span>
               FIRST REQUEST
@@ -269,10 +239,7 @@ const processSteps = [
           </div>
 
 
-          <a
-            href="#call-payment"
-            class="call-status-action"
-          >
+          <a href="#call-payment">
             HANDLE IT NOW →
           </a>
 
@@ -283,13 +250,12 @@ const processSteps = [
     </section>
 
 
-
-    <!-- WHAT HAPPENED -->
-    <section class="call-help-section call-help-v2">
+    <!-- SITUATIONS -->
+    <section class="call-section call-situations">
 
       <div class="wrap">
 
-        <div class="section-head">
+        <div class="call-section-head">
 
           <div>
 
@@ -298,151 +264,106 @@ const processSteps = [
             </div>
 
             <h2>
-              Just choose the closest one.
+              Choose the closest one.
             </h2>
 
           </div>
 
-
           <p>
-            Don’t see your exact situation?
-            Use free chat and just tell us what happened.
+            Not sure?
+            Tap “Something else”
+            or start a free chat.
           </p>
 
         </div>
 
 
+        <div class="call-situation-list">
 
-        <div class="call-help-layout">
+          {
+            situations.map((item) => (
 
+              <a
+                href={makeSituationUrl(item.title)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="call-situation"
+              >
 
-          <div class="call-situation-grid">
-
-            {
-              situations.map((item) => (
-
-                <a
-                  href={makeSituationUrl(item.title)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="call-situation-card"
+                <span
+                  class="call-situation-icon"
+                  aria-hidden="true"
                 >
+                  {item.icon}
+                </span>
 
-                  <div class="call-situation-topline">
 
-                    <span class="call-situation-number">
-                      {item.number}
-                    </span>
-
-                    <span
-                      class="call-situation-icon"
-                      aria-hidden="true"
-                    >
-                      {item.icon}
-                    </span>
-
-                  </div>
-
+                <div>
 
                   <h3>
                     {item.title}
                   </h3>
 
-
                   <p>
                     {item.description}
                   </p>
 
-
-                  <strong>
-                    GET HELP →
-                  </strong>
-
-                </a>
-
-              ))
-            }
-
-          </div>
+                </div>
 
 
+                <strong>
+                  →
+                </strong>
 
-          <!-- SEND ANYTHING -->
-          <aside class="call-send-anything">
+              </a>
+
+            ))
+          }
+
+        </div>
+
+
+        <!-- SEND WHAT YOU HAVE -->
+        <div class="call-send-box">
+
+          <div>
 
             <div class="eyebrow">
               DON’T KNOW THE DETAILS?
             </div>
 
-
             <h3>
               Send what you have.
             </h3>
 
-
-            <div class="call-send-list">
-
-              <div>
-
-                <span>
-                  PHOTO
-                </span>
-
-                <p>
-                  Receipt, sign, ticket or business card.
-                </p>
-
-              </div>
+          </div>
 
 
-              <div>
+          <div class="call-send-options">
 
-                <span>
-                  SCREENSHOT
-                </span>
+            <span>
+              PHOTO
+            </span>
 
-                <p>
-                  Booking, payment, message or app screen.
-                </p>
+            <span>
+              SCREENSHOT
+            </span>
 
-              </div>
+            <span>
+              MAP LINK
+            </span>
 
+            <span>
+              VOICE MESSAGE
+            </span>
 
-              <div>
-
-                <span>
-                  MAP LINK
-                </span>
-
-                <p>
-                  Google Maps, Naver Map or Kakao Map.
-                </p>
-
-              </div>
+          </div>
 
 
-              <div>
-
-                <span>
-                  VOICE MESSAGE
-                </span>
-
-                <p>
-                  Too stressed to type?
-                  Just explain what happened.
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <p class="call-send-note">
-              You do not need to find the Korean phone number first.
-              We can figure out where to contact.
-            </p>
-
-          </aside>
+          <p>
+            You do not need to find the Korean phone number first.
+            A receipt, booking screen or map link can be enough.
+          </p>
 
         </div>
 
@@ -451,13 +372,12 @@ const processSteps = [
     </section>
 
 
-
     <!-- HOW IT WORKS -->
-    <section class="call-how-section call-how-v2">
+    <section class="call-section call-how">
 
       <div class="wrap">
 
-        <div class="section-head">
+        <div class="call-section-head">
 
           <div>
 
@@ -471,21 +391,18 @@ const processSteps = [
 
           </div>
 
-
           <p>
-            No signup.
+            No account.
             No long request form.
-            Start with whatever information you already have.
           </p>
 
         </div>
 
 
-
-        <div class="call-how-grid call-how-grid-v2">
+        <div class="call-step-list">
 
           {
-            processSteps.map((item) => (
+            steps.map((item) => (
 
               <article>
 
@@ -493,13 +410,17 @@ const processSteps = [
                   {item.number}
                 </span>
 
-                <h3>
-                  {item.title}
-                </h3>
+                <div>
 
-                <p>
-                  {item.description}
-                </p>
+                  <h3>
+                    {item.title}
+                  </h3>
+
+                  <p>
+                    {item.description}
+                  </p>
+
+                </div>
 
               </article>
 
@@ -513,16 +434,15 @@ const processSteps = [
     </section>
 
 
-
     <!-- START -->
     <section
       id="call-payment"
-      class="call-service-section call-service-v2"
+      class="call-section call-start"
     >
 
       <div class="wrap">
 
-        <div class="section-head">
+        <div class="call-section-head">
 
           <div>
 
@@ -536,370 +456,144 @@ const processSteps = [
 
           </div>
 
-
-          <p>
-            Free chat is for asking what to do.
-            Paid help is for when you want us
-            to make the Korean call for you.
-          </p>
-
         </div>
 
 
-
-        <div class="call-service-grid">
-
-
-          <!-- FREE -->
-          <article class="call-service-card">
-
-            <div class="call-service-label">
-              ASK FIRST
-            </div>
+        <div class="call-start-grid">
 
 
-            <h3>
-              Free Chat
-            </h3>
+          <!-- FREE CHAT -->
+          <article class="call-start-card call-start-free">
 
+            <div>
 
-            <div class="call-price">
-              FREE
+              <span class="call-start-label">
+                ASK FIRST
+              </span>
+
+              <h3>
+                Free Chat
+              </h3>
+
+              <strong>
+                FREE
+              </strong>
+
             </div>
 
 
             <p>
-              Tell us what happened.
-              Photos, screenshots,
-              map links and voice messages are welcome.
+              Ask what to do next.
+              Send a photo, screenshot,
+              map link or voice message.
             </p>
-
-
-            <ul>
-
-              <li>
-                No signup
-              </li>
-
-              <li>
-                Ask what to do next
-              </li>
-
-              <li>
-                Send photos or screenshots
-              </li>
-
-              <li>
-                No payment to ask
-              </li>
-
-            </ul>
 
 
             <a
               href={freeChatUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="call-btn call-btn-whatsapp"
             >
-              GET HELP — FREE CHAT →
+              START FREE CHAT →
             </a>
 
           </article>
 
 
-
           <!-- PAID -->
-          <article class="call-service-card call-service-featured">
+          <article class="call-start-card call-start-paid">
 
-            <div class="call-service-label">
-              HANDLE IT FOR ME
-            </div>
+            <div>
 
-
-            <h3>
-              Call Korea
-            </h3>
-
-
-            <div class="call-first-price">
-
-              <span>
-                FIRST REQUEST
+              <span class="call-start-label">
+                HANDLE IT FOR ME
               </span>
+
+              <h3>
+                Call Korea
+              </h3>
 
               <strong>
                 ₩2,900
               </strong>
 
               <small>
-                One simple request · typically up to 5 minutes
+                First request · regular request ₩4,900
               </small>
 
             </div>
 
 
-            <div class="call-regular-price">
-
-              <span>
-                Regular request
-              </span>
-
-              <strong>
-                ₩4,900
-              </strong>
-
-            </div>
-
-
-            <ul>
-
-              <li>
-                One place or business
-              </li>
-
-              <li>
-                One Korean phone call
-              </li>
-
-              <li>
-                We explain your request
-              </li>
-
-              <li>
-                English result summary
-              </li>
-
-            </ul>
+            <p>
+              One place,
+              one simple Korean phone call
+              and a short English result summary.
+            </p>
 
 
             <button
               type="button"
-              class="call-btn call-btn-primary call-pay-placeholder"
               aria-disabled="true"
+              class="call-payment-button"
             >
-              HANDLE IT FOR ME · ₩2,900 →
+              HANDLE IT · ₩2,900 →
             </button>
 
 
             <small class="call-payment-note">
-              Payment will open directly here.
-              Paid calls only begin after payment is confirmed.
+              Payment connection is being prepared.
+              Paid calls begin only after payment is confirmed.
             </small>
 
           </article>
 
         </div>
 
-      </div>
 
-    </section>
-
-
-
-    <!-- EXAMPLE -->
-    <section class="call-example-section">
-
-      <div class="wrap">
-
-        <div class="call-example-grid">
+        <!-- NOTES -->
+        <div class="call-compact-notes">
 
           <div>
 
-            <div class="eyebrow">
-              EXAMPLE
-            </div>
-
-            <h2>
-              “I left my bag in a taxi.”
-            </h2>
-
-          </div>
-
-
-
-          <div class="call-example-conversation">
-
-            <div class="call-message user">
-
-              <span>
-                YOU
-              </span>
-
-              <p>
-                I think I left my bag in the taxi.
-                I only have this receipt.
-              </p>
-
-            </div>
-
-
-            <div class="call-message team">
-
-              <span>
-                CALL KOREA
-              </span>
-
-              <p>
-                Send us the receipt.
-                You don’t need to find the taxi company first.
-              </p>
-
-            </div>
-
-
-            <div class="call-message user">
-
-              <span>
-                YOU
-              </span>
-
-              <p>
-                Can you call them for me?
-              </p>
-
-            </div>
-
-
-            <div class="call-message team">
-
-              <span>
-                CALL KOREA
-              </span>
-
-              <p>
-                Yes.
-                Once payment is confirmed,
-                we’ll make the Korean call
-                and send you the result.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- GUIDE -->
-    <section class="call-guide-section">
-
-      <div class="wrap">
-
-        <div class="call-guide-grid">
-
-          <article>
-
-            <span>✓</span>
-
-            <h3>
-              Simple requests
-            </h3>
-
-            <p>
-              One place, one request,
-              one outbound call
-              and a short result summary.
-            </p>
-
-          </article>
-
-
-          <article>
-
-            <span>!</span>
-
-            <h3>
-              Emergencies
-            </h3>
+            <strong>
+              Emergency
+            </strong>
 
             <p>
               Use 112 for police
-              and 119 for fire or ambulance.
-              Call Korea is not an emergency service.
-            </p>
-
-          </article>
-
-
-          <article>
-
-            <span>↗</span>
-
-            <h3>
-              Complex requests
-            </h3>
-
-            <p>
-              Multiple places,
-              repeated calls or negotiation
-              may need a separate quote.
-            </p>
-
-          </article>
-
-
-          <article>
-
-            <span>○</span>
-
-            <h3>
-              Privacy
-            </h3>
-
-            <p>
-              Only send information
-              needed to handle the request.
-            </p>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- FINAL -->
-    <section class="call-final-section">
-
-      <div class="wrap">
-
-        <div class="call-final-cta">
-
-          <div>
-
-            <div class="eyebrow">
-              NOT SURE WHAT TO DO?
-            </div>
-
-            <h2>
-              Just tell us what happened.
-            </h2>
-
-            <p>
-              You don’t need to know who to call.
-              Start with a free message.
+              or 119 for fire / ambulance.
             </p>
 
           </div>
 
 
-          <a
-            href={freeChatUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="call-btn call-btn-dark"
-          >
-            GET HELP — FREE CHAT →
-          </a>
+          <div>
+
+            <strong>
+              Complex requests
+            </strong>
+
+            <p>
+              Repeated calls,
+              negotiation or multiple places
+              may need a separate quote.
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <strong>
+              Privacy
+            </strong>
+
+            <p>
+              Only send information
+              needed to handle your request.
+            </p>
+
+          </div>
 
         </div>
 
@@ -908,39 +602,33 @@ const processSteps = [
     </section>
 
 
-
-    <!-- OFFICIAL -->
-    <section class="call-public-help">
+    <!-- OFFICIAL HELP -->
+    <section class="call-official">
 
       <div class="wrap">
 
-        <div class="call-public-help-inner">
+        <span>
+          OFFICIAL HELP IN KOREA
+        </span>
 
-          <span>
-            OFFICIAL HELP IN KOREA
-          </span>
+        <strong>
+          Police 112
+        </strong>
 
-          <strong>
-            Police 112
-          </strong>
+        <strong>
+          Fire / Ambulance 119
+        </strong>
 
-          <strong>
-            Fire / Ambulance 119
-          </strong>
-
-          <strong>
-            Korea Travel Helpline 1330
-          </strong>
-
-        </div>
+        <strong>
+          Travel Helpline 1330
+        </strong>
 
       </div>
 
     </section>
 
 
-
-    <!-- MOBILE FIXED BUTTONS -->
+    <!-- MOBILE QUICK ACTIONS -->
     <div
       class="call-mobile-actions"
       aria-label="Call Korea quick actions"
@@ -955,6 +643,7 @@ const processSteps = [
         FREE CHAT
       </a>
 
+
       <a
         href="#call-payment"
         class="call-mobile-paid"
@@ -964,6 +653,43 @@ const processSteps = [
 
     </div>
 
+
+    <script is:inline>
+
+      const quickActions =
+        document.querySelector('.call-mobile-actions');
+
+      const officialHelp =
+        document.querySelector('.call-official');
+
+
+      if (
+        quickActions &&
+        officialHelp &&
+        'IntersectionObserver' in window
+      ) {
+
+        const observer =
+          new IntersectionObserver(
+            ([entry]) => {
+
+              quickActions.classList.toggle(
+                'is-hidden',
+                entry.isIntersecting
+              );
+
+            },
+            {
+              threshold: 0.15
+            }
+          );
+
+
+        observer.observe(officialHelp);
+
+      }
+
+    </script>
 
   </main>
 
