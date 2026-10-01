@@ -2610,11 +2610,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         evidenceNotes:['Current YouTube access checked.','The video explicitly teaches Hangul from the beginning.','Independent learner outcome evidence has not been established by SIK.']
       },
       {
-        id:'quick-korean-1',difficulty:1,roles:['foundation','goal','practice'],provider:'Korea Cyber University',title:'Quick Korean · Level 1',url:'https://qkorean-en.koreacu.ac.kr/cms/FrCon/index.do?MENU_ID=40',type:'course',
+        id:'quick-korean-1',difficulty:1,roles:['foundation','goal','practice'],provider:'Korea Cyber University',title:'Quick Korean · Level 1',url:'https://www.youtube.com/watch?v=MRInzFff9Uw',type:'video course',
         levels:['zero','beginner'],safeForUnsure:true,goals:['all'],contexts:['all'],skills:['all'],priority:82,shortFriendly:false,urgentFriendly:false,
-        bestFor:'Learners who want a structured free course and clear progression.',notFor:'Someone who needs only a few survival phrases before an imminent trip.',reason:'It gives beginner learners a structured sequence instead of forcing them to assemble lessons themselves.',
-        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
-        evidenceNotes:['Official Korea Cyber University curriculum checked.','Level 1 is described as basic daily interaction and conversation.','Video lectures are currently offered through public video platforms.']
+        bestFor:'Beginners who want a structured free video course with English instruction.',notFor:'Learners needing only urgent travel phrases or individual pronunciation feedback. Premium live classes are separate and paid.',reason:'Start at a specific lesson selected from your stated level, rather than searching the course overview.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:'unknown',independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
+        evidenceNotes:[
+          'Official curriculum: https://qkorean-en.koreacu.ac.kr/cms/FrCon/index.do?MENU_ID=40',
+          'Official channel lists English Level 1 lessons, beginning with Hangeul I and II, followed by 2-1 Hello.',
+          'Hangeul I: 68 minutes 57 seconds. Page and metadata checked; playback confirmed by the site owner on Oct. 1, 2026.',
+          '2-1 Hello: official channel listing and direct URL checked; playback has not been independently tested by SIK.',
+          'Free video content is distinct from paid premium classes. SIK has not established independent learning-outcome evidence.'
+        ]
       },
       {
         id:'go-billy-beginner',difficulty:1,roles:['foundation','practice'],provider:'GO! Billy Korean',title:'Beginner Korean Course',url:'https://www.youtube.com/watch?v=sx0yyQqkpqo',type:'video course',
@@ -3048,7 +3054,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       resourceProfileKey=nextKey;
     }
 
-    function currentResource(phase){const list=resourceState[phase]||[];return list[currentResourceIndex[phase]%Math.max(list.length,1)];}
+    function currentResource(phase){
+      const list=resourceState[phase]||[];
+      const resource=list[currentResourceIndex[phase]%Math.max(list.length,1)];
+      if(!resource||resource.id!=='quick-korean-1')return resource;
+
+      // Keep the catalog ID stable for saved plans, feedback and analytics.
+      // A declared beginner can already read Hangul; an uncertain learner
+      // gets an explicitly labelled alphabet review, not an inferred level.
+      const startsWithConversation=selections.level==='beginner';
+      return{
+        ...resource,
+        title:startsWithConversation
+          ? 'Quick Korean · 2-1 Hello (English)'
+          : 'Quick Korean · 1-1 Hangeul I (English)',
+        url:startsWithConversation
+          ? 'https://www.youtube.com/watch?v=BZDX_uEe9mc'
+          : 'https://www.youtube.com/watch?v=MRInzFff9Uw',
+        entryLesson:startsWithConversation?'greetings':'hangul',
+        bestFor:startsWithConversation
+          ? 'Beginners who can read Hangul and want to practise basic greetings with English instruction.'
+          : selections.level==='unsure'
+            ? 'An alphabet review if you are unsure of your level. If you read Hangul comfortably, choose Beginner above.'
+            : 'Learning Hangul from the beginning with English instruction. Full video: 68 min 57 sec; study only your planned portion today.',
+        notFor:startsWithConversation
+          ? 'Learning Hangul from scratch or getting individual speaking feedback. Premium live classes are separate and paid.'
+          : 'Learners who already read Hangul comfortably. This is a long lesson, not a 10-minute video. Premium live classes are separate and paid.'
+      };
+    }
 
     function resourceReason(resource){
       let reason=resource.reason;
@@ -3102,6 +3135,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     function todaySteps(resource){
       const focusPractice=focusPlans[selections.focus].practice;
+      if(resource?.id==='quick-korean-1'){
+        const isHangul=resource.entryLesson==='hangul';
+        const budget=selections.time==='10'?7:selections.time==='30'?20:40;
+        return[
+          `Watch up to ${budget} minutes, pausing when needed. You do not need to finish the video today.`,
+          isHangul
+            ? 'Pause and copy up to 3 letters actually introduced in the part you watched; say their sounds aloud.'
+            : 'Pause and repeat up to 3 greeting expressions actually introduced in the part you watched.',
+          isHangul
+            ? 'Hide your notes and recall those letters. Note where you stopped so you can resume next time.'
+            : 'Try one greeting without looking. Note where you stopped so you can resume next time.'
+        ];
+      }
       if(resource?.id==='go-billy-hangul'){
         if(selections.time==='10')return['Watch only 0:00–6:55 today.','Write the first consonants and vowels once.','Read 5 syllable blocks aloud without romanization.'];
         if(selections.time==='30')return['Watch 0:00–26:00.','Pause and write each new letter once.','Read 10 syllable blocks aloud without romanization.'];
@@ -3716,3 +3762,4 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </script>
 
 </BaseLayout>
+
