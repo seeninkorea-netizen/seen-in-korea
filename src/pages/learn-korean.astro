@@ -570,6 +570,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <p class="learn-methodology-note">
           Recommendations are filtered for eligibility first, then ranked for your goal and situation.
+          SIK Practice uses original real-life prompts and prioritizes scenarios close to your current level.
         </p>
       </div>
     </section>
@@ -2521,7 +2522,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     }
 
-  </style>
+  
+    /* v4.0 — 100-scenario SIK Practice library.
+       Practice scenarios are ordered by distance from the learner's selected level. */
+</style>
 
   <script is:inline>
     const STORAGE_KEY='sik-korean-navigator-v2';
@@ -2766,527 +2770,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     ];
 
-    const practiceScenarioBank={
-      travel:[
-        {
-          title:'Restaurant · Order naturally',
-          situation:'You are at a casual restaurant and want to order one dish, then ask whether it is spicy.',
-          promptKo:'주문 도와드릴까요?',
-          promptEn:'Can I take your order?',
-          answerKo:'네, 비빔밥 하나 주세요. 많이 매워요?',
-          answerEn:'Yes, one bibimbap, please. Is it very spicy?',
-          keyKo:'하나 주세요',
-          keyEn:'One, please.'
-        },
-        {
-          title:'Convenience store · Ask for something',
-          situation:'You cannot find bottled water in a convenience store.',
-          promptKo:'찾으시는 거 있으세요?',
-          promptEn:'Are you looking for something?',
-          answerKo:'네, 물 어디 있어요?',
-          answerEn:'Yes. Where is the water?',
-          keyKo:'어디 있어요?',
-          keyEn:'Where is it?'
-        },
-        {
-          title:'Taxi · Give your destination',
-          situation:'You get into a taxi and need to tell the driver where you are going.',
-          promptKo:'어디로 가세요?',
-          promptEn:'Where are you going?',
-          answerKo:'홍대입구역으로 가 주세요.',
-          answerEn:'Please take me to Hongik University Station.',
-          keyKo:'~로 가 주세요',
-          keyEn:'Please take me to ~.'
-        },
-        {
-          title:'Subway · Check the right direction',
-          situation:'You are unsure whether this train goes to Seoul Station.',
-          promptKo:'어디 가세요?',
-          promptEn:'Where are you headed?',
-          answerKo:'서울역에 가요. 이거 타면 돼요?',
-          answerEn:'I’m going to Seoul Station. Can I take this one?',
-          keyKo:'이거 타면 돼요?',
-          keyEn:'Can I take this one?'
-        }
-      ],
-
-      life:{
-        appointments:[
-          {
-            title:'Appointment · Change the time',
-            situation:'You need to move an appointment from 2 p.m. to 4 p.m.',
-            promptKo:'예약 시간 변경하시려고요?',
-            promptEn:'Would you like to change your appointment time?',
-            answerKo:'네, 두 시 예약인데 네 시로 바꿀 수 있을까요?',
-            answerEn:'Yes. I have a 2 p.m. appointment. Could I change it to 4 p.m.?',
-            keyKo:'바꿀 수 있을까요?',
-            keyEn:'Could I change it?'
-          },
-          {
-            title:'Clinic · Ask about availability',
-            situation:'You want to know whether there is an appointment available tomorrow morning.',
-            promptKo:'언제 방문 가능하세요?',
-            promptEn:'When are you available to visit?',
-            answerKo:'내일 오전에 가능한 시간이 있을까요?',
-            answerEn:'Is there any time available tomorrow morning?',
-            keyKo:'가능한 시간이 있을까요?',
-            keyEn:'Is there an available time?'
-          }
-        ],
-        delivery:[
-          {
-            title:'Delivery · Ask about a delay',
-            situation:'Your order has not arrived yet and you want to ask when it will come.',
-            promptKo:'어떤 주문 건 때문에 연락 주셨어요?',
-            promptEn:'Which order are you contacting us about?',
-            answerKo:'어제 도착 예정이었는데 아직 안 왔어요. 언제 받을 수 있을까요?',
-            answerEn:'It was supposed to arrive yesterday, but it hasn’t. When can I receive it?',
-            keyKo:'언제 받을 수 있을까요?',
-            keyEn:'When can I receive it?'
-          },
-          {
-            title:'Shopping · Ask about another size',
-            situation:'The item fits poorly and you want to ask for a different size.',
-            promptKo:'사이즈 괜찮으세요?',
-            promptEn:'Is the size okay?',
-            answerKo:'조금 작아요. 한 사이즈 큰 거 있나요?',
-            answerEn:'It’s a little small. Do you have one size bigger?',
-            keyKo:'큰 거 있나요?',
-            keyEn:'Do you have a bigger one?'
-          }
-        ],
-        admin:[
-          {
-            title:'Service desk · Ask what you need',
-            situation:'You are at a public service desk and want to know which documents are required.',
-            promptKo:'어떤 업무 보러 오셨어요?',
-            promptEn:'What are you here to take care of?',
-            answerKo:'이거 신청하려고 왔는데요. 어떤 서류가 필요해요?',
-            answerEn:'I’m here to apply for this. What documents do I need?',
-            keyKo:'어떤 서류가 필요해요?',
-            keyEn:'What documents do I need?'
-          },
-          {
-            title:'Service desk · Ask where to submit',
-            situation:'You have a completed form but do not know where to submit it.',
-            promptKo:'작성 다 하셨어요?',
-            promptEn:'Have you finished filling it out?',
-            answerKo:'네. 이 서류는 어디에 제출하면 돼요?',
-            answerEn:'Yes. Where should I submit this document?',
-            keyKo:'어디에 제출하면 돼요?',
-            keyEn:'Where should I submit it?'
-          }
-        ],
-        daily:[
-          {
-            title:'Cafe · Change your order',
-            situation:'You want your drink without ice.',
-            promptKo:'아이스로 드릴까요?',
-            promptEn:'Would you like it iced?',
-            answerKo:'아니요, 얼음 없이 주세요.',
-            answerEn:'No, please make it without ice.',
-            keyKo:'~ 없이 주세요',
-            keyEn:'Please give it to me without ~.'
-          },
-          {
-            title:'Building · Ask for help',
-            situation:'A machine or door in your building is not working and you need help.',
-            promptKo:'무슨 문제 있으세요?',
-            promptEn:'Is there a problem?',
-            answerKo:'네, 이게 작동을 안 해요. 한번 봐주실 수 있을까요?',
-            answerEn:'Yes, this isn’t working. Could you take a look?',
-            keyKo:'봐주실 수 있을까요?',
-            keyEn:'Could you take a look?'
-          }
-        ]
-      },
-
-      work:{
-        meetings:[
-          {
-            title:'Meeting · Give a short update',
-            situation:'A coworker asks where your task currently stands.',
-            promptKo:'지금 진행 상황이 어떻게 돼요?',
-            promptEn:'How is the progress right now?',
-            answerKo:'자료 정리는 거의 끝났고요. 오늘 오후에 초안 공유드릴게요.',
-            answerEn:'The materials are almost organized. I’ll share the draft this afternoon.',
-            keyKo:'공유드릴게요',
-            keyEn:'I’ll share it with you.'
-          },
-          {
-            title:'Meeting · Ask for clarification',
-            situation:'You understand the general task but one point is unclear.',
-            promptKo:'여기까지 이해되셨죠?',
-            promptEn:'You understand up to this point, right?',
-            answerKo:'네, 대부분 이해했습니다. 그런데 이 부분만 한 번 더 설명해 주실 수 있을까요?',
-            answerEn:'Yes, I understand most of it. Could you explain just this part one more time?',
-            keyKo:'한 번 더 설명해 주실 수 있을까요?',
-            keyEn:'Could you explain it one more time?'
-          }
-        ],
-        calls:[
-          {
-            title:'Phone call · Ask for someone',
-            situation:'You call a company and need to speak with a specific person.',
-            promptKo:'네, 안녕하세요. 어디시죠?',
-            promptEn:'Hello. Who is calling?',
-            answerKo:'안녕하세요. ABC 회사 김민수인데요. 이지현 대리님 계실까요?',
-            answerEn:'Hello. This is Min-su Kim from ABC Company. Is Assistant Manager Lee Ji-hyeon available?',
-            keyKo:'~님 계실까요?',
-            keyEn:'Is ~ available?'
-          },
-          {
-            title:'Phone call · Leave a message',
-            situation:'The person you called is unavailable, so you want to leave a short message.',
-            promptKo:'지금 자리에 안 계신데 메모 남겨드릴까요?',
-            promptEn:'They’re away from their desk. Would you like to leave a message?',
-            answerKo:'네, 회의 일정 확인 부탁드린다고 전해 주세요.',
-            answerEn:'Yes. Please tell them I’m asking to confirm the meeting schedule.',
-            keyKo:'~라고 전해 주세요',
-            keyEn:'Please tell them that ~.'
-          }
-        ],
-        jobsearch:[
-          {
-            title:'Interview · Introduce yourself',
-            situation:'The interviewer asks for a short self-introduction.',
-            promptKo:'간단하게 자기소개 부탁드립니다.',
-            promptEn:'Please briefly introduce yourself.',
-            answerKo:'안녕하세요. 저는 해외마케팅 분야에서 일해 왔고, 한국 시장과 해외 고객을 연결하는 업무에 관심이 많습니다.',
-            answerEn:'Hello. I have worked in overseas marketing, and I’m very interested in work that connects the Korean market with international customers.',
-            keyKo:'~ 분야에서 일해 왔습니다',
-            keyEn:'I have worked in the field of ~.'
-          },
-          {
-            title:'Interview · Explain why you applied',
-            situation:'The interviewer asks why you applied for the role.',
-            promptKo:'저희 회사에 지원한 이유가 무엇인가요?',
-            promptEn:'Why did you apply to our company?',
-            answerKo:'제가 해 온 경험을 활용할 수 있고, 이 직무에서 더 전문적으로 성장하고 싶어서 지원했습니다.',
-            answerEn:'I applied because I can use my previous experience and want to grow more professionally in this role.',
-            keyKo:'~해서 지원했습니다',
-            keyEn:'I applied because ~.'
-          }
-        ],
-        office:[
-          {
-            title:'Office · Ask for help',
-            situation:'You need a coworker to check a document before you send it.',
-            promptKo:'도와드릴 일 있어요?',
-            promptEn:'Is there anything I can help you with?',
-            answerKo:'네, 이 파일 보내기 전에 잠깐 확인해 주실 수 있을까요?',
-            answerEn:'Yes. Could you quickly check this file before I send it?',
-            keyKo:'확인해 주실 수 있을까요?',
-            keyEn:'Could you check it for me?'
-          },
-          {
-            title:'Office · Ask to move a meeting',
-            situation:'You cannot make the current meeting time.',
-            promptKo:'내일 세 시 회의 괜찮으시죠?',
-            promptEn:'Tomorrow’s 3 p.m. meeting works for you, right?',
-            answerKo:'죄송한데 세 시는 어려울 것 같습니다. 네 시로 조정 가능할까요?',
-            answerEn:'Sorry, but 3 p.m. may be difficult for me. Could we move it to 4 p.m.?',
-            keyKo:'조정 가능할까요?',
-            keyEn:'Would it be possible to adjust it?'
-          }
-        ]
-      },
-
-      social:{
-        friends:[
-          {
-            title:'Friends · Weekend plans',
-            situation:'Someone you just met asks what you usually do on weekends.',
-            promptKo:'주말에는 보통 뭐 해요?',
-            promptEn:'What do you usually do on weekends?',
-            answerKo:'보통 가족이랑 시간을 보내거나 카페에 가요. 주말에는 뭐 하세요?',
-            answerEn:'I usually spend time with my family or go to a cafe. What do you do on weekends?',
-            keyKo:'보통 ~해요',
-            keyEn:'I usually ~.'
-          },
-          {
-            title:'Friends · Where you live',
-            situation:'A new friend asks where in Korea you live.',
-            promptKo:'한국에서는 어디에 살아요?',
-            promptEn:'Where do you live in Korea?',
-            answerKo:'일산에 살아요. 서울이랑 가까워서 이동하기 편해요.',
-            answerEn:'I live in Ilsan. It’s close to Seoul, so it’s convenient to get around.',
-            keyKo:'~에 살아요',
-            keyEn:'I live in ~.'
-          }
-        ],
-        dating:[
-          {
-            title:'Dating · Ask about interests',
-            situation:'You are getting to know someone and want to continue the conversation naturally.',
-            promptKo:'요즘 뭐에 제일 관심 있어요?',
-            promptEn:'What are you most interested in these days?',
-            answerKo:'요즘은 여행이랑 맛집 찾는 걸 좋아해요. 혹시 여행 좋아하세요?',
-            answerEn:'These days I like traveling and finding good restaurants. Do you like traveling?',
-            keyKo:'혹시 ~ 좋아하세요?',
-            keyEn:'Do you happen to like ~?'
-          },
-          {
-            title:'Dating · Suggest meeting again',
-            situation:'The conversation went well and you want to suggest another meeting.',
-            promptKo:'오늘 어땠어요?',
-            promptEn:'How was today?',
-            answerKo:'저는 재미있었어요. 다음에 시간 되면 같이 커피 마실래요?',
-            answerEn:'I had a good time. If you’re free next time, would you like to get coffee together?',
-            keyKo:'같이 ~할래요?',
-            keyEn:'Would you like to ~ together?'
-          }
-        ],
-        casual:[
-          {
-            title:'Casual · Talk about the weather',
-            situation:'A Korean acquaintance mentions the weather.',
-            promptKo:'오늘 진짜 춥죠?',
-            promptEn:'It’s really cold today, isn’t it?',
-            answerKo:'네, 생각보다 훨씬 추워요. 내일도 춥대요?',
-            answerEn:'Yes, it’s much colder than I expected. Is it supposed to be cold tomorrow too?',
-            keyKo:'생각보다 ~해요',
-            keyEn:'It’s more ~ than I expected.'
-          },
-          {
-            title:'Casual · Ask for a recommendation',
-            situation:'You are talking about food and want a local recommendation.',
-            promptKo:'한국 음식 잘 드세요?',
-            promptEn:'Do you eat Korean food well?',
-            answerKo:'네, 좋아해요. 이 근처에 맛있는 곳 있으면 추천해 주세요.',
-            answerEn:'Yes, I like it. If there’s a good place around here, please recommend it.',
-            keyKo:'추천해 주세요',
-            keyEn:'Please recommend something.'
-          }
-        ],
-        socialall:[
-          {
-            title:'Social · Keep the conversation going',
-            situation:'Someone asks how long you have been in Korea.',
-            promptKo:'한국에 온 지 얼마나 됐어요?',
-            promptEn:'How long has it been since you came to Korea?',
-            answerKo:'한 1년 정도 됐어요. 아직 모르는 곳이 많아서 여기저기 다녀보려고 해요.',
-            answerEn:'It’s been about a year. There are still many places I don’t know, so I’m trying to explore more.',
-            keyKo:'~ 정도 됐어요',
-            keyEn:'It has been about ~.'
-          },
-          {
-            title:'Social · Share a recent experience',
-            situation:'Someone asks what you did recently.',
-            promptKo:'요즘 뭐 하고 지냈어요?',
-            promptEn:'What have you been up to lately?',
-            answerKo:'최근에는 일이 좀 바빴는데, 주말에 가족이랑 근교에 다녀왔어요.',
-            answerEn:'Work has been a little busy lately, but I went on a short trip nearby with my family over the weekend.',
-            keyKo:'최근에는 ~했어요',
-            keyEn:'Recently, I ~.'
-          }
-        ]
-      },
-
-      culture:{
-        drama:[
-          {
-            title:'Drama · Catch the emotion',
-            situation:'Imagine a character sounding surprised after hearing unexpected news.',
-            promptKo:'진짜? 나한테 왜 이제 말해?',
-            promptEn:'Really? Why are you only telling me now?',
-            answerKo:'미안해. 어떻게 말해야 할지 몰랐어.',
-            answerEn:'I’m sorry. I didn’t know how to tell you.',
-            keyKo:'어떻게 ~해야 할지 모르다',
-            keyEn:'To not know how to ~.'
-          },
-          {
-            title:'Drama · Everyday reaction',
-            situation:'A friend is late again and the speaker sounds mildly annoyed.',
-            promptKo:'또 늦었어? 무슨 일 있었어?',
-            promptEn:'You’re late again? Did something happen?',
-            answerKo:'미안, 길이 너무 막혔어. 오래 기다렸어?',
-            answerEn:'Sorry, traffic was really bad. Did you wait long?',
-            keyKo:'오래 기다렸어?',
-            keyEn:'Did you wait long?'
-          }
-        ],
-        kpop:[
-          {
-            title:'K-pop · Interview question',
-            situation:'Imagine an artist being asked what music they listen to most these days.',
-            promptKo:'요즘 가장 자주 듣는 노래가 뭐예요?',
-            promptEn:'What song do you listen to most these days?',
-            answerKo:'요즘은 편하게 들을 수 있는 노래를 많이 들어요. 특히 밤에 자주 들어요.',
-            answerEn:'These days I listen to a lot of easygoing music, especially at night.',
-            keyKo:'자주 들어요',
-            keyEn:'I listen to it often.'
-          },
-          {
-            title:'K-pop · Fan conversation',
-            situation:'Someone asks which performance you liked most.',
-            promptKo:'어떤 무대가 제일 좋았어요?',
-            promptEn:'Which performance did you like the most?',
-            answerKo:'마지막 무대가 제일 좋았어요. 분위기도 좋았고 라이브도 인상적이었어요.',
-            answerEn:'I liked the final performance the most. The atmosphere was great, and the live performance was impressive.',
-            keyKo:'~가 제일 좋았어요',
-            keyEn:'I liked ~ the most.'
-          }
-        ],
-        variety:[
-          {
-            title:'Variety · React quickly',
-            situation:'A host asks whether you are confident about today’s challenge.',
-            promptKo:'오늘 미션 자신 있어요?',
-            promptEn:'Are you confident about today’s mission?',
-            answerKo:'솔직히 조금 긴장되는데 한번 해 볼게요.',
-            answerEn:'Honestly, I’m a little nervous, but I’ll give it a try.',
-            keyKo:'한번 해 볼게요',
-            keyEn:'I’ll give it a try.'
-          },
-          {
-            title:'YouTube · Give your opinion',
-            situation:'Someone asks what you thought about something you just watched.',
-            promptKo:'직접 보니까 어땠어요?',
-            promptEn:'How was it seeing it in person?',
-            answerKo:'생각보다 훨씬 재미있었어요. 다음에도 또 보고 싶어요.',
-            answerEn:'It was much more fun than I expected. I want to see it again next time.',
-            keyKo:'생각보다 훨씬 ~했어요',
-            keyEn:'It was much more ~ than I expected.'
-          }
-        ],
-        cultureall:[
-          {
-            title:'Media · Explain what you like',
-            situation:'Someone asks why you like Korean content.',
-            promptKo:'한국 콘텐츠를 왜 좋아해요?',
-            promptEn:'Why do you like Korean content?',
-            answerKo:'이야기 전개가 빠르고 표현이 재미있어서 자주 봐요.',
-            answerEn:'I watch it often because the stories move quickly and the expressions are interesting.',
-            keyKo:'~해서 자주 봐요',
-            keyEn:'I watch it often because ~.'
-          },
-          {
-            title:'Media · Recommend something',
-            situation:'A friend asks you to recommend one Korean show, song, or channel.',
-            promptKo:'요즘 볼 만한 거 있어요?',
-            promptEn:'Is there anything worth watching these days?',
-            answerKo:'네, 요즘 재미있게 보는 프로그램이 하나 있어요. 가볍게 보기 좋아요.',
-            answerEn:'Yes, there’s a show I’ve been enjoying lately. It’s easy to watch.',
-            keyKo:'볼 만한 거',
-            keyEn:'Something worth watching.'
-          }
-        ]
-      },
-
-      topik:{
-        listening:[
-          {
-            title:'TOPIK-style listening · Main point',
-            situation:'Imagine you hear: "이번 주 토요일에는 도서관 공사 때문에 오전 열 시부터 오후 두 시까지 이용할 수 없습니다."',
-            promptKo:'도서관을 이용할 수 없는 시간은 언제입니까?',
-            promptEn:'When can the library not be used?',
-            answerKo:'토요일 오전 10시부터 오후 2시까지입니다.',
-            answerEn:'From 10 a.m. to 2 p.m. on Saturday.',
-            keyKo:'~부터 ~까지',
-            keyEn:'From ~ to ~.'
-          },
-          {
-            title:'TOPIK-style listening · Reason',
-            situation:'Imagine you hear: "비가 많이 와서 오늘 야외 행사는 실내 체육관에서 진행합니다."',
-            promptKo:'행사 장소가 바뀐 이유는 무엇입니까?',
-            promptEn:'Why was the event location changed?',
-            answerKo:'비가 많이 왔기 때문입니다.',
-            answerEn:'Because it rained heavily.',
-            keyKo:'~기 때문입니다',
-            keyEn:'Because ~.'
-          }
-        ],
-        reading:[
-          {
-            title:'TOPIK-style reading · Notice',
-            situation:'안내: 오늘 도서관 2층 열람실은 오후 3시부터 이용할 수 있습니다. 입장할 때 신분증을 보여 주세요.',
-            promptKo:'장소, 시간, 준비물을 말해 보세요.',
-            promptEn:'Identify the place, time, and what you need to bring.',
-            answerKo:'장소는 도서관 2층 열람실이고, 오후 3시부터 이용할 수 있으며, 신분증이 필요합니다.',
-            answerEn:'It is the reading room on the second floor of the library, it is available from 3 p.m., and you need an ID.',
-            keyKo:'~이 필요합니다',
-            keyEn:'You need ~.'
-          },
-          {
-            title:'TOPIK-style reading · Purpose',
-            situation:'공지: 다음 주 월요일은 건물 점검으로 회사 식당을 운영하지 않습니다. 직원들은 외부 식당을 이용해 주세요.',
-            promptKo:'이 공지의 목적은 무엇입니까?',
-            promptEn:'What is the purpose of this notice?',
-            answerKo:'회사 식당을 운영하지 않는다는 것을 알리기 위한 공지입니다.',
-            answerEn:'It is a notice to inform employees that the company cafeteria will be closed.',
-            keyKo:'~을 알리기 위한',
-            keyEn:'In order to inform about ~.'
-          }
-        ],
-        writing:[
-          {
-            title:'TOPIK-style writing · Short request',
-            situation:'You need to change a meeting time because of another appointment.',
-            promptKo:'회의 시간을 변경해 달라는 짧은 메시지를 2~3문장으로 쓰세요.',
-            promptEn:'Write a 2–3 sentence message asking to change a meeting time.',
-            answerKo:'안녕하세요. 다른 일정이 있어서 내일 세 시 회의 참석이 어렵습니다. 가능하다면 네 시로 변경 부탁드립니다.',
-            answerEn:'Hello. I have another appointment, so it will be difficult to attend tomorrow’s 3 p.m. meeting. If possible, please change it to 4 p.m.',
-            keyKo:'변경 부탁드립니다',
-            keyEn:'I would like to request a change.'
-          },
-          {
-            title:'TOPIK-style writing · Explain a reason',
-            situation:'You are writing about why public transportation is useful.',
-            promptKo:'대중교통의 장점 한 가지와 그 이유를 2~3문장으로 쓰세요.',
-            promptEn:'Write 2–3 sentences about one advantage of public transportation and why.',
-            answerKo:'대중교통은 비용을 절약할 수 있다는 장점이 있습니다. 특히 매일 이동하는 사람에게는 자동차보다 경제적입니다.',
-            answerEn:'Public transportation has the advantage of saving money. It is especially more economical than a car for people who travel every day.',
-            keyKo:'~다는 장점이 있습니다',
-            keyEn:'It has the advantage that ~.'
-          }
-        ],
-        speaking:[
-          {
-            title:'Korean output drill · Opinion',
-            situation:'This is SIK speaking practice, not an official TOPIK question.',
-            promptKo:'한국어를 공부할 때 가장 어려운 점은 무엇입니까?',
-            promptEn:'What is the most difficult part of studying Korean?',
-            answerKo:'저는 자연스럽게 말하는 것이 가장 어렵습니다. 문법은 알아도 바로 말하기가 어렵기 때문입니다.',
-            answerEn:'For me, speaking naturally is the hardest. Even when I know the grammar, it is difficult to speak immediately.',
-            keyKo:'~기 때문입니다',
-            keyEn:'Because ~.'
-          },
-          {
-            title:'Korean output drill · Experience',
-            situation:'This is SIK speaking practice, not an official TOPIK question.',
-            promptKo:'최근에 기억에 남는 경험을 말해 보세요.',
-            promptEn:'Talk about a recent memorable experience.',
-            answerKo:'최근에 가족과 짧은 여행을 다녀왔습니다. 오랜만에 같이 시간을 보내서 특히 기억에 남았습니다.',
-            answerEn:'Recently I took a short trip with my family. It was especially memorable because we spent time together for the first time in a while.',
-            keyKo:'기억에 남았습니다',
-            keyEn:'It was memorable.'
-          }
-        ],
-        unsure:[
-          {
-            title:'TOPIK mini diagnostic · Mixed',
-            situation:'Read this sentence: "회의가 취소되어서 오늘은 일찍 퇴근할 수 있게 되었습니다."',
-            promptKo:'무슨 일이 생겼는지 영어 또는 한국어로 설명해 보세요.',
-            promptEn:'Explain what happened in English or Korean.',
-            answerKo:'회의가 취소돼서 오늘 일찍 퇴근할 수 있게 됐습니다.',
-            answerEn:'The meeting was canceled, so the person can leave work early today.',
-            keyKo:'~게 되었습니다',
-            keyEn:'It came to be / ended up ~.'
-          },
-          {
-            title:'TOPIK mini diagnostic · Short message',
-            situation:'Imagine you are late for an appointment by 10 minutes.',
-            promptKo:'상대방에게 보낼 짧은 메시지를 한 문장으로 만들어 보세요.',
-            promptEn:'Make one short sentence to send to the other person.',
-            answerKo:'죄송하지만 10분 정도 늦을 것 같아요.',
-            answerEn:'I’m sorry, but I think I’ll be about 10 minutes late.',
-            keyKo:'늦을 것 같아요',
-            keyEn:'I think I’ll be late.'
-          }
-        ]
-      }
-    };
+    const practiceScenarioBank={"travel":[{"title":"Restaurant · Order one item","situation":"You are ready to order one dish at a casual restaurant.","promptKo":"주문 도와드릴까요?","promptEn":"Can I take your order?","answerKo":"네, 비빔밥 하나 주세요.","answerEn":"Yes, one bibimbap, please.","keyKo":"하나 주세요","keyEn":"One, please.","difficulty":1},{"title":"Restaurant · Ask if it is spicy","situation":"You want to know whether the dish is spicy before ordering.","promptKo":"이 메뉴로 드릴까요?","promptEn":"Would you like this menu item?","answerKo":"네. 그런데 이거 많이 매워요?","answerEn":"Yes. But is this very spicy?","keyKo":"많이 매워요?","keyEn":"Is it very spicy?","difficulty":2},{"title":"Cafe · Get it to go","situation":"You want your drink to go instead of drinking it in the cafe.","promptKo":"드시고 가세요?","promptEn":"Are you having it here?","answerKo":"아니요, 가지고 갈게요.","answerEn":"No, I’ll take it to go.","keyKo":"가지고 갈게요","keyEn":"I’ll take it to go.","difficulty":1},{"title":"Convenience store · Find an item","situation":"You cannot find bottled water in a convenience store.","promptKo":"찾으시는 거 있으세요?","promptEn":"Are you looking for something?","answerKo":"네, 물 어디 있어요?","answerEn":"Yes. Where is the water?","keyKo":"어디 있어요?","keyEn":"Where is it?","difficulty":1},{"title":"Shopping · Ask for another size","situation":"The clothes you tried on are too small.","promptKo":"사이즈 괜찮으세요?","promptEn":"Is the size okay?","answerKo":"조금 작아요. 한 사이즈 큰 거 있나요?","answerEn":"It’s a little small. Do you have one size bigger?","keyKo":"큰 거 있나요?","keyEn":"Do you have a bigger one?","difficulty":1},{"title":"Shopping · Ask about tax refund","situation":"You are buying something and want to know whether tax refund is available.","promptKo":"결제 도와드릴까요?","promptEn":"Shall I help you with payment?","answerKo":"네. 혹시 택스 리펀드도 돼요?","answerEn":"Yes. Is tax refund available too?","keyKo":"혹시 ~도 돼요?","keyEn":"Is ~ also available?","difficulty":2},{"title":"Taxi · Give your destination","situation":"You get into a taxi and need to tell the driver where you are going.","promptKo":"어디로 가세요?","promptEn":"Where are you going?","answerKo":"홍대입구역으로 가 주세요.","answerEn":"Please take me to Hongik University Station.","keyKo":"~로 가 주세요","keyEn":"Please take me to ~.","difficulty":1},{"title":"Taxi · Ask about card payment","situation":"You want to check whether you can pay by card.","promptKo":"카드로 결제하시겠어요?","promptEn":"Would you like to pay by card?","answerKo":"네. 카드로 결제해도 되죠?","answerEn":"Yes. I can pay by card, right?","keyKo":"~해도 되죠?","keyEn":"It’s okay to ~, right?","difficulty":2},{"title":"Subway · Check the direction","situation":"You are unsure whether this train goes toward Seoul Station.","promptKo":"어디 가세요?","promptEn":"Where are you headed?","answerKo":"서울역에 가요. 이거 타면 돼요?","answerEn":"I’m going to Seoul Station. Can I take this one?","keyKo":"이거 타면 돼요?","keyEn":"Can I take this one?","difficulty":1},{"title":"Bus · Ask where to get off","situation":"You are on a bus and are not sure which stop is closest.","promptKo":"어디 가시는데요?","promptEn":"Where are you going?","answerKo":"경복궁 가려면 어디에서 내려야 해요?","answerEn":"Where should I get off to go to Gyeongbokgung?","keyKo":"어디에서 내려야 해요?","keyEn":"Where should I get off?","difficulty":2},{"title":"Hotel · Check in","situation":"You arrive at your hotel and need to check in.","promptKo":"예약하셨어요?","promptEn":"Do you have a reservation?","answerKo":"네, 김민수 이름으로 예약했어요.","answerEn":"Yes, I have a reservation under Min-su Kim.","keyKo":"~ 이름으로 예약했어요","keyEn":"I have a reservation under the name ~.","difficulty":1},{"title":"Hotel · Ask for late checkout","situation":"You want to know whether you can check out later than the standard time.","promptKo":"체크아웃은 오전 열한 시입니다.","promptEn":"Checkout is at 11 a.m.","answerKo":"혹시 한 시간 늦게 체크아웃할 수 있을까요?","answerEn":"Could I check out one hour later?","keyKo":"~할 수 있을까요?","keyEn":"Could I ~?","difficulty":2},{"title":"Restaurant · Explain an allergy","situation":"You need to tell restaurant staff that you cannot eat peanuts.","promptKo":"알레르기 있으세요?","promptEn":"Do you have any allergies?","answerKo":"네, 땅콩 알레르기가 있어서 땅콩은 못 먹어요.","answerEn":"Yes, I have a peanut allergy, so I can’t eat peanuts.","keyKo":"~ 알레르기가 있어요","keyEn":"I have an allergy to ~.","difficulty":3},{"title":"Hotel · Explain a room problem","situation":"Your room is too noisy and you want to ask whether another room is available.","promptKo":"객실에 불편한 점 있으세요?","promptEn":"Is there any problem with your room?","answerKo":"네, 밤에 너무 시끄러워서 그런데 다른 방으로 바꿀 수 있을까요?","answerEn":"Yes, it’s very noisy at night. Could I change to another room?","keyKo":"다른 ~로 바꿀 수 있을까요?","keyEn":"Could I change to another ~?","difficulty":3},{"title":"Train · Change a reservation","situation":"Your schedule changed and you want to move your train to a later time.","promptKo":"표 변경하시려고요?","promptEn":"Would you like to change your ticket?","answerKo":"네, 일정이 바뀌어서 두 시간 뒤 기차로 변경하고 싶어요.","answerEn":"Yes, my schedule changed, so I’d like to switch to a train two hours later.","keyKo":"~로 변경하고 싶어요","keyEn":"I’d like to change it to ~.","difficulty":3},{"title":"Shopping · Explain a return problem","situation":"You bought an item yesterday, but it is defective and you want to ask about returning it.","promptKo":"어떤 문제 있으세요?","promptEn":"What seems to be the problem?","answerKo":"어제 샀는데 집에서 확인해 보니 제품에 문제가 있더라고요. 환불이나 교환이 가능할까요?","answerEn":"I bought it yesterday, but when I checked it at home, I found a problem with the product. Would a refund or exchange be possible?","keyKo":"환불이나 교환이 가능할까요?","keyEn":"Would a refund or exchange be possible?","difficulty":4}],"life":{"appointments":[{"title":"Appointment · Ask about availability","situation":"You want to know whether there is an appointment available tomorrow morning.","promptKo":"언제 방문 가능하세요?","promptEn":"When are you available to visit?","answerKo":"내일 오전에 가능한 시간이 있을까요?","answerEn":"Is there any time available tomorrow morning?","keyKo":"가능한 시간이 있을까요?","keyEn":"Is there an available time?","difficulty":1},{"title":"Appointment · Change the time","situation":"You need to move an appointment from 2 p.m. to 4 p.m.","promptKo":"예약 시간 변경하시려고요?","promptEn":"Would you like to change your appointment time?","answerKo":"네, 두 시 예약인데 네 시로 바꿀 수 있을까요?","answerEn":"Yes. I have a 2 p.m. appointment. Could I change it to 4 p.m.?","keyKo":"바꿀 수 있을까요?","keyEn":"Could I change it?","difficulty":2},{"title":"Appointment · Cancel politely","situation":"You need to cancel an appointment you can no longer attend.","promptKo":"예약 확인 때문에 연락드렸습니다.","promptEn":"I’m calling to confirm your appointment.","answerKo":"죄송하지만 일정이 생겨서 예약을 취소해야 할 것 같아요.","answerEn":"I’m sorry, but something came up, so I think I need to cancel the appointment.","keyKo":"취소해야 할 것 같아요","keyEn":"I think I need to cancel.","difficulty":2},{"title":"Appointment · Explain that you are late","situation":"You are running about 15 minutes late and want to warn the clinic or salon.","promptKo":"지금 오고 계세요?","promptEn":"Are you on your way now?","answerKo":"네, 가고 있는데 길이 막혀서 15분 정도 늦을 것 같아요.","answerEn":"Yes, I’m on my way, but traffic is bad, so I think I’ll be about 15 minutes late.","keyKo":"늦을 것 같아요","keyEn":"I think I’ll be late.","difficulty":3},{"title":"Appointment · Negotiate another date","situation":"The offered times do not work, so you want to find an alternative date politely.","promptKo":"이번 주에는 금요일 오후만 가능합니다.","promptEn":"This week, only Friday afternoon is available.","answerKo":"금요일은 어려운데 혹시 다음 주 초에 가능한 시간이 있는지 확인해 주실 수 있을까요?","answerEn":"Friday is difficult for me. Could you check whether there is any availability early next week?","keyKo":"확인해 주실 수 있을까요?","keyEn":"Could you check for me?","difficulty":4}],"delivery":[{"title":"Delivery · Ask where the parcel is","situation":"You expected a parcel today but cannot find it.","promptKo":"택배 받으셨어요?","promptEn":"Did you receive the package?","answerKo":"아니요. 배송 완료라고 나오는데 어디에 있는지 모르겠어요.","answerEn":"No. It says delivered, but I don’t know where it is.","keyKo":"어디에 있는지 모르겠어요","keyEn":"I don’t know where it is.","difficulty":1},{"title":"Delivery · Ask about a delay","situation":"Your order has not arrived yet and you want to ask when it will come.","promptKo":"어떤 주문 건 때문에 연락 주셨어요?","promptEn":"Which order are you contacting us about?","answerKo":"어제 도착 예정이었는데 아직 안 왔어요. 언제 받을 수 있을까요?","answerEn":"It was supposed to arrive yesterday, but it hasn’t. When can I receive it?","keyKo":"언제 받을 수 있을까요?","keyEn":"When can I receive it?","difficulty":2},{"title":"Shopping · Wrong item arrived","situation":"The package arrived, but the item is not what you ordered.","promptKo":"상품 받아보셨나요?","promptEn":"Did you receive the product?","answerKo":"네, 그런데 제가 주문한 상품이 아니라 다른 상품이 왔어요.","answerEn":"Yes, but a different item arrived instead of what I ordered.","keyKo":"다른 상품이 왔어요","keyEn":"A different item arrived.","difficulty":2},{"title":"Shopping · Ask for a return","situation":"You want to return an online purchase because the size is wrong.","promptKo":"반품 사유가 어떻게 되세요?","promptEn":"What is the reason for the return?","answerKo":"사이즈가 맞지 않아서 반품하고 싶어요. 반품 절차를 알려 주세요.","answerEn":"The size doesn’t fit, so I’d like to return it. Please tell me the return process.","keyKo":"반품하고 싶어요","keyEn":"I’d like to return it.","difficulty":3},{"title":"Delivery · Explain damaged goods","situation":"A fragile item arrived damaged and you want the seller to resolve it.","promptKo":"제품 상태가 어떤가요?","promptEn":"What condition is the product in?","answerKo":"박스는 괜찮은데 안에 있는 제품이 깨져서 왔어요. 사진도 보내드릴 수 있습니다.","answerEn":"The box is fine, but the product inside arrived broken. I can send photos as well.","keyKo":"~해서 왔어요","keyEn":"It arrived ~.","difficulty":4}],"admin":[{"title":"Service desk · Ask what you need","situation":"You are at a service desk and want to know which documents are required.","promptKo":"어떤 업무 보러 오셨어요?","promptEn":"What are you here to take care of?","answerKo":"이거 신청하려고 왔는데요. 어떤 서류가 필요해요?","answerEn":"I’m here to apply for this. What documents do I need?","keyKo":"어떤 서류가 필요해요?","keyEn":"What documents do I need?","difficulty":1},{"title":"Service desk · Ask where to submit","situation":"You have a completed form but do not know where to submit it.","promptKo":"작성 다 하셨어요?","promptEn":"Have you finished filling it out?","answerKo":"네. 이 서류는 어디에 제출하면 돼요?","answerEn":"Yes. Where should I submit this document?","keyKo":"어디에 제출하면 돼요?","keyEn":"Where should I submit it?","difficulty":2},{"title":"Service desk · Ask about your turn","situation":"You have a waiting number and want to check whether you missed your turn.","promptKo":"번호표 뽑으셨어요?","promptEn":"Did you take a number ticket?","answerKo":"네, 128번인데 혹시 제 번호가 이미 지나갔나요?","answerEn":"Yes, I’m number 128. Has my number already been called?","keyKo":"이미 지나갔나요?","keyEn":"Has it already passed?","difficulty":2},{"title":"Service desk · Explain the task","situation":"A staff member asks what change or request you need to make.","promptKo":"어떤 내용 변경하시려고요?","promptEn":"What information would you like to change?","answerKo":"주소가 바뀌어서 등록된 주소를 새 주소로 변경하고 싶어요.","answerEn":"My address changed, so I’d like to update the registered address to my new one.","keyKo":"~로 변경하고 싶어요","keyEn":"I’d like to change it to ~.","difficulty":3},{"title":"Service desk · Clarify the next step","situation":"You received an explanation but are still unsure what you need to do next.","promptKo":"설명드린 내용 이해되셨나요?","promptEn":"Did you understand the explanation?","answerKo":"대부분 이해했는데요. 제가 오늘 여기서 해야 하는 절차를 순서대로 다시 한번 말씀해 주실 수 있을까요?","answerEn":"I understood most of it. Could you tell me again, in order, what I need to do here today?","keyKo":"순서대로 말씀해 주실 수 있을까요?","keyEn":"Could you tell me in order?","difficulty":4}],"daily":[{"title":"Cafe · Change your order","situation":"You want your drink without ice.","promptKo":"아이스로 드릴까요?","promptEn":"Would you like it iced?","answerKo":"아니요, 얼음 없이 주세요.","answerEn":"No, please make it without ice.","keyKo":"~ 없이 주세요","keyEn":"Please give it to me without ~.","difficulty":1},{"title":"Building · Ask for help","situation":"A machine or door in your building is not working and you need help.","promptKo":"무슨 문제 있으세요?","promptEn":"Is there a problem?","answerKo":"네, 이게 작동을 안 해요. 한번 봐주실 수 있을까요?","answerEn":"Yes, this isn’t working. Could you take a look?","keyKo":"봐주실 수 있을까요?","keyEn":"Could you take a look?","difficulty":1},{"title":"Dry cleaner · Ask when it is ready","situation":"You leave clothes at a dry cleaner and want to know the pickup day.","promptKo":"언제 찾으러 오실 거예요?","promptEn":"When will you come to pick it up?","answerKo":"언제부터 찾을 수 있어요? 금요일 저녁에도 괜찮을까요?","answerEn":"When can I pick it up? Would Friday evening be okay?","keyKo":"언제부터 찾을 수 있어요?","keyEn":"When can I pick it up?","difficulty":2},{"title":"Home repair · Explain a problem","situation":"Something in your home is leaking and you need to explain the problem to maintenance.","promptKo":"어디가 문제예요?","promptEn":"Where is the problem?","answerKo":"싱크대 아래에서 물이 조금씩 새고 있어요. 오늘 확인 가능하실까요?","answerEn":"Water is slowly leaking under the sink. Would you be able to check it today?","keyKo":"물이 새고 있어요","keyEn":"Water is leaking.","difficulty":3},{"title":"Neighbor · Ask politely about noise","situation":"There has been repeated late-night noise and you want to raise it politely.","promptKo":"무슨 일 있으세요?","promptEn":"Is something wrong?","answerKo":"죄송한데 밤늦게 소리가 조금 크게 들려서요. 가능하면 조금만 조용히 해 주실 수 있을까요?","answerEn":"Sorry, but the noise is a little loud late at night. If possible, could you keep it down a little?","keyKo":"조금만 ~해 주실 수 있을까요?","keyEn":"Could you please ~ a little?","difficulty":4}]},"work":{"meetings":[{"title":"Meeting · Give a short update","situation":"A coworker asks where your task currently stands.","promptKo":"지금 진행 상황이 어떻게 돼요?","promptEn":"How is the progress right now?","answerKo":"자료 정리는 거의 끝났고요. 오늘 오후에 초안 공유드릴게요.","answerEn":"The materials are almost organized. I’ll share the draft this afternoon.","keyKo":"공유드릴게요","keyEn":"I’ll share it with you.","difficulty":1},{"title":"Meeting · Ask for clarification","situation":"You understand the general task but one point is unclear.","promptKo":"여기까지 이해되셨죠?","promptEn":"You understand up to this point, right?","answerKo":"네, 대부분 이해했습니다. 그런데 이 부분만 한 번 더 설명해 주실 수 있을까요?","answerEn":"Yes, I understand most of it. Could you explain just this part one more time?","keyKo":"한 번 더 설명해 주실 수 있을까요?","keyEn":"Could you explain it one more time?","difficulty":2},{"title":"Meeting · Agree with a suggestion","situation":"A teammate proposes a change that you think is useful.","promptKo":"이 방향으로 수정하는 건 어떨까요?","promptEn":"How about revising it in this direction?","answerKo":"좋은 것 같습니다. 그렇게 하면 메시지가 더 명확해질 것 같아요.","answerEn":"I think that’s a good idea. That would make the message clearer.","keyKo":"좋은 것 같습니다","keyEn":"I think that sounds good.","difficulty":2},{"title":"Meeting · Negotiate a deadline","situation":"The requested deadline is difficult and you want to propose a realistic alternative.","promptKo":"금요일까지 가능하실까요?","promptEn":"Would you be able to finish by Friday?","answerKo":"금요일까지는 조금 빠듯할 것 같습니다. 월요일 오전까지라면 충분히 마무리할 수 있습니다.","answerEn":"Friday may be a little tight. I can definitely finish it by Monday morning.","keyKo":"~까지는 조금 빠듯할 것 같습니다","keyEn":"~ may be a little tight.","difficulty":3},{"title":"Meeting · Push back diplomatically","situation":"You disagree with part of a proposal and want to explain why without sounding confrontational.","promptKo":"이 안으로 진행하면 될까요?","promptEn":"Should we proceed with this proposal?","answerKo":"전체 방향에는 동의하지만 이 부분은 다시 검토해 보면 좋겠습니다. 비용 대비 효과가 아직 명확하지 않은 것 같습니다.","answerEn":"I agree with the overall direction, but I think it would be good to review this part again. The cost-effectiveness does not seem clear yet.","keyKo":"다시 검토해 보면 좋겠습니다","keyEn":"I think it would be good to review it again.","difficulty":4}],"calls":[{"title":"Phone call · Ask for someone","situation":"You call a company and need to speak with a specific person.","promptKo":"네, 안녕하세요. 어디시죠?","promptEn":"Hello. Who is calling?","answerKo":"안녕하세요. ABC 회사 김민수인데요. 이지현 대리님 계실까요?","answerEn":"Hello. This is Min-su Kim from ABC Company. Is Assistant Manager Lee Ji-hyeon available?","keyKo":"~님 계실까요?","keyEn":"Is ~ available?","difficulty":1},{"title":"Phone call · Leave a message","situation":"The person you called is unavailable, so you want to leave a short message.","promptKo":"지금 자리에 안 계신데 메모 남겨드릴까요?","promptEn":"They’re away from their desk. Would you like to leave a message?","answerKo":"네, 회의 일정 확인 부탁드린다고 전해 주세요.","answerEn":"Yes. Please tell them I’m asking to confirm the meeting schedule.","keyKo":"~라고 전해 주세요","keyEn":"Please tell them that ~.","difficulty":2},{"title":"Phone call · Ask for a callback","situation":"You need the person to call you back when they return.","promptKo":"돌아오시면 연락드리라고 할까요?","promptEn":"Shall I ask them to contact you when they return?","answerKo":"네, 가능하실 때 제게 전화 부탁드린다고 전해 주세요.","answerEn":"Yes. Please tell them to call me when they are available.","keyKo":"전화 부탁드린다고 전해 주세요","keyEn":"Please tell them to call me.","difficulty":2},{"title":"Phone call · Bad connection","situation":"You cannot hear the other person clearly and need to clarify what they said.","promptKo":"제 말 들리세요?","promptEn":"Can you hear me?","answerKo":"네, 그런데 통화 상태가 좋지 않아서요. 방금 말씀하신 내용을 한 번만 다시 말씀해 주실 수 있을까요?","answerEn":"Yes, but the connection is poor. Could you say what you just said one more time?","keyKo":"다시 말씀해 주실 수 있을까요?","keyEn":"Could you say that again?","difficulty":3},{"title":"Phone call · Handle a client issue","situation":"A client is unhappy about a delay and you need to acknowledge it and give a next step.","promptKo":"일정이 또 늦어진 건가요?","promptEn":"Has the schedule been delayed again?","answerKo":"네, 불편을 드려 죄송합니다. 현재 원인을 확인 중이고 오늘 오후까지 진행 상황을 다시 안내드리겠습니다.","answerEn":"Yes, I’m sorry for the inconvenience. We are checking the cause now, and I’ll update you again by this afternoon.","keyKo":"진행 상황을 다시 안내드리겠습니다","keyEn":"I’ll update you on the progress again.","difficulty":4}],"jobsearch":[{"title":"Interview · Introduce yourself","situation":"The interviewer asks for a short self-introduction.","promptKo":"간단하게 자기소개 부탁드립니다.","promptEn":"Please briefly introduce yourself.","answerKo":"안녕하세요. 저는 해외마케팅 분야에서 일해 왔고, 고객과 시장을 연결하는 업무에 관심이 많습니다.","answerEn":"Hello. I have worked in overseas marketing, and I’m very interested in work that connects customers and markets.","keyKo":"~ 분야에서 일해 왔습니다","keyEn":"I have worked in the field of ~.","difficulty":1},{"title":"Interview · Explain why you applied","situation":"The interviewer asks why you applied for the role.","promptKo":"저희 회사에 지원한 이유가 무엇인가요?","promptEn":"Why did you apply to our company?","answerKo":"제가 해 온 경험을 활용할 수 있고, 이 직무에서 더 전문적으로 성장하고 싶어서 지원했습니다.","answerEn":"I applied because I can use my previous experience and want to grow more professionally in this role.","keyKo":"~해서 지원했습니다","keyEn":"I applied because ~.","difficulty":2},{"title":"Interview · Talk about a strength","situation":"The interviewer asks about one of your strengths.","promptKo":"본인의 강점은 무엇이라고 생각하세요?","promptEn":"What do you think is one of your strengths?","answerKo":"저는 새로운 업무를 빠르게 파악하고 필요한 정보를 정리하는 데 강점이 있습니다.","answerEn":"I’m good at understanding new tasks quickly and organizing the information I need.","keyKo":"~에 강점이 있습니다","keyEn":"I have a strength in ~.","difficulty":2},{"title":"Interview · Explain relevant experience","situation":"The interviewer asks for an example that shows you can do this job.","promptKo":"이 직무와 관련된 경험을 말씀해 주세요.","promptEn":"Please tell us about experience related to this role.","answerKo":"이전 회사에서 해외 고객을 담당하면서 문의 대응과 시장 조사를 함께 진행했습니다. 그 경험이 이번 업무에도 도움이 될 수 있다고 생각합니다.","answerEn":"At my previous company, I handled international customers while also conducting market research. I think that experience can help in this role as well.","keyKo":"~ 경험이 도움이 될 수 있다고 생각합니다","keyEn":"I think my experience in ~ can be helpful.","difficulty":3},{"title":"Interview · Explain a career change","situation":"Your background is not identical to the role and the interviewer asks why you want to change direction.","promptKo":"이전 경력과 조금 다른데 왜 이 직무를 선택하셨나요?","promptEn":"This is a little different from your previous experience. Why did you choose this role?","answerKo":"분야는 조금 다르지만 고객을 이해하고 문제를 해결하는 경험은 계속 쌓아 왔습니다. 그 강점을 이 직무에서 더 직접적으로 활용하고 싶습니다.","answerEn":"The field is a little different, but I have continuously built experience understanding customers and solving problems. I want to use that strength more directly in this role.","keyKo":"~을 활용하고 싶습니다","keyEn":"I want to make use of ~.","difficulty":4}],"office":[{"title":"Office · Ask for help","situation":"You need a coworker to check a document before you send it.","promptKo":"도와드릴 일 있어요?","promptEn":"Is there anything I can help you with?","answerKo":"네, 이 파일 보내기 전에 잠깐 확인해 주실 수 있을까요?","answerEn":"Yes. Could you quickly check this file before I send it?","keyKo":"확인해 주실 수 있을까요?","keyEn":"Could you check it for me?","difficulty":1},{"title":"Office · Move a meeting","situation":"You cannot make the current meeting time.","promptKo":"내일 세 시 회의 괜찮으시죠?","promptEn":"Tomorrow’s 3 p.m. meeting works for you, right?","answerKo":"죄송한데 세 시는 어려울 것 같습니다. 네 시로 조정 가능할까요?","answerEn":"Sorry, but 3 p.m. may be difficult for me. Could we move it to 4 p.m.?","keyKo":"조정 가능할까요?","keyEn":"Would it be possible to adjust it?","difficulty":2},{"title":"Office · Ask about taking time off","situation":"You need to ask your manager about taking a day off.","promptKo":"무슨 일 있으세요?","promptEn":"Is something going on?","answerKo":"개인 일정이 있어서 다음 주 금요일에 하루 휴가를 써도 될지 여쭤보려고 합니다.","answerEn":"I have a personal commitment, so I wanted to ask whether I could take next Friday off.","keyKo":"~해도 될지 여쭤보려고 합니다","keyEn":"I wanted to ask whether I could ~.","difficulty":2},{"title":"Office · Follow up on an email","situation":"You sent an email earlier and need a decision before the end of the day.","promptKo":"메일 확인하셨나요?","promptEn":"Did you check the email?","answerKo":"네, 혹시 오늘 안에 방향만 확인해 주실 수 있을까요? 그에 맞춰서 다음 작업을 진행하려고 합니다.","answerEn":"Yes. Could you confirm just the direction by the end of today? I’d like to proceed with the next task based on that.","keyKo":"오늘 안에 ~해 주실 수 있을까요?","keyEn":"Could you ~ by today?","difficulty":3},{"title":"Office · Disagree with feedback","situation":"You received feedback you partly disagree with and want to explain your reasoning professionally.","promptKo":"수정 의견 확인하셨나요?","promptEn":"Did you see the revision feedback?","answerKo":"네, 확인했습니다. 대부분 반영할 수 있는데 이 부분은 원래 목적을 고려하면 현재 안을 유지하는 편이 더 좋을 것 같습니다.","answerEn":"Yes, I saw it. I can apply most of it, but considering the original objective, I think it would be better to keep the current version for this part.","keyKo":"~을 고려하면","keyEn":"Considering ~.","difficulty":4}]},"social":{"friends":[{"title":"Friends · Weekend plans","situation":"Someone you just met asks what you usually do on weekends.","promptKo":"주말에는 보통 뭐 해요?","promptEn":"What do you usually do on weekends?","answerKo":"보통 가족이랑 시간을 보내거나 카페에 가요. 주말에는 뭐 하세요?","answerEn":"I usually spend time with my family or go to a cafe. What do you do on weekends?","keyKo":"보통 ~해요","keyEn":"I usually ~.","difficulty":1},{"title":"Friends · Where you live","situation":"A new friend asks where in Korea you live.","promptKo":"한국에서는 어디에 살아요?","promptEn":"Where do you live in Korea?","answerKo":"일산에 살아요. 서울이랑 가까워서 이동하기 편해요.","answerEn":"I live in Ilsan. It’s close to Seoul, so it’s convenient to get around.","keyKo":"~에 살아요","keyEn":"I live in ~.","difficulty":1},{"title":"Friends · Talk about a hobby","situation":"A friend asks what you have been enjoying lately.","promptKo":"요즘 취미가 뭐예요?","promptEn":"What’s your hobby these days?","answerKo":"요즘은 사진 찍는 걸 좋아해요. 날씨 좋으면 밖에 나가서 자주 찍어요.","answerEn":"These days I like taking photos. When the weather is nice, I often go out and take pictures.","keyKo":"~는 걸 좋아해요","keyEn":"I like doing ~.","difficulty":2},{"title":"Friends · Share an opinion naturally","situation":"A friend recommends something but you have a slightly different opinion.","promptKo":"이 식당 진짜 맛있지 않아요?","promptEn":"Isn’t this restaurant really good?","answerKo":"맛있긴 한데 저는 지난번에 갔던 곳이 조금 더 제 취향이었던 것 같아요.","answerEn":"It is good, but I think the place we went last time was a little more my style.","keyKo":"~긴 한데","keyEn":"It is ~, but...","difficulty":3}],"dating":[{"title":"Dating · Ask about interests","situation":"You are getting to know someone and want to continue the conversation naturally.","promptKo":"요즘 뭐에 제일 관심 있어요?","promptEn":"What are you most interested in these days?","answerKo":"요즘은 여행이랑 맛집 찾는 걸 좋아해요. 혹시 여행 좋아하세요?","answerEn":"These days I like traveling and finding good restaurants. Do you like traveling?","keyKo":"혹시 ~ 좋아하세요?","keyEn":"Do you happen to like ~?","difficulty":1},{"title":"Dating · Suggest coffee","situation":"The conversation went well and you want to suggest another meeting.","promptKo":"오늘 어땠어요?","promptEn":"How was today?","answerKo":"저는 재미있었어요. 다음에 시간 되면 같이 커피 마실래요?","answerEn":"I had a good time. If you’re free next time, would you like to get coffee together?","keyKo":"같이 ~할래요?","keyEn":"Would you like to ~ together?","difficulty":2},{"title":"Dating · Say you want to leave","situation":"You want to end the evening politely without sounding abrupt.","promptKo":"조금 더 있다 갈까요?","promptEn":"Shall we stay a little longer?","answerKo":"오늘은 조금 피곤해서 여기까지 하고 다음에 또 보면 좋을 것 같아요.","answerEn":"I’m a little tired today, so I think it would be good to stop here and meet again another time.","keyKo":"여기까지 하고","keyEn":"Let’s stop here / call it here.","difficulty":2},{"title":"Dating · Express a preference tactfully","situation":"You want to say that you prefer slower, quieter dates without rejecting the person.","promptKo":"다음에는 사람 많은 데 갈까요?","promptEn":"Shall we go somewhere crowded next time?","answerKo":"저는 사람 많은 곳보다는 조용한 곳에서 이야기하는 걸 더 좋아하는 편이에요.","answerEn":"I tend to prefer talking somewhere quiet rather than being in a crowded place.","keyKo":"~하는 걸 더 좋아하는 편이에요","keyEn":"I tend to prefer ~.","difficulty":3}],"casual":[{"title":"Casual · Talk about the weather","situation":"A Korean acquaintance mentions the weather.","promptKo":"오늘 진짜 춥죠?","promptEn":"It’s really cold today, isn’t it?","answerKo":"네, 생각보다 훨씬 추워요. 내일도 춥대요?","answerEn":"Yes, it’s much colder than I expected. Is it supposed to be cold tomorrow too?","keyKo":"생각보다 ~해요","keyEn":"It’s more ~ than I expected.","difficulty":1},{"title":"Casual · Ask for a recommendation","situation":"You are talking about food and want a local recommendation.","promptKo":"한국 음식 잘 드세요?","promptEn":"Do you eat Korean food well?","answerKo":"네, 좋아해요. 이 근처에 맛있는 곳 있으면 추천해 주세요.","answerEn":"Yes, I like it. If there’s a good place around here, please recommend it.","keyKo":"추천해 주세요","keyEn":"Please recommend something.","difficulty":1},{"title":"Casual · Continue small talk","situation":"Someone comments that the area is busy today.","promptKo":"오늘 사람 진짜 많네요.","promptEn":"There are really a lot of people today.","answerKo":"그러게요. 원래 주말에는 항상 이렇게 붐비나요?","answerEn":"I know. Is it always this crowded on weekends?","keyKo":"원래 ~나요?","keyEn":"Is it usually ~?","difficulty":2},{"title":"Casual · Disagree lightly","situation":"Someone says they loved a movie you thought was only okay.","promptKo":"그 영화 진짜 재밌지 않았어요?","promptEn":"Wasn’t that movie really fun?","answerKo":"저는 기대를 너무 많이 했나 봐요. 재미는 있었는데 생각보다는 평범했어요.","answerEn":"Maybe I expected too much. It was fun, but more ordinary than I expected.","keyKo":"~긴 했는데","keyEn":"It was ~, but...","difficulty":3}],"socialall":[{"title":"Social · How long in Korea","situation":"Someone asks how long you have been in Korea.","promptKo":"한국에 온 지 얼마나 됐어요?","promptEn":"How long has it been since you came to Korea?","answerKo":"한 1년 정도 됐어요. 아직 모르는 곳이 많아요.","answerEn":"It’s been about a year. There are still many places I don’t know.","keyKo":"~ 정도 됐어요","keyEn":"It has been about ~.","difficulty":1},{"title":"Social · Share a recent experience","situation":"Someone asks what you did recently.","promptKo":"요즘 뭐 하고 지냈어요?","promptEn":"What have you been up to lately?","answerKo":"최근에는 일이 좀 바빴는데, 주말에 가족이랑 근교에 다녀왔어요.","answerEn":"Work has been a little busy lately, but I went on a short trip nearby with my family over the weekend.","keyKo":"최근에는 ~했어요","keyEn":"Recently, I ~.","difficulty":2},{"title":"Social · Join a group conversation","situation":"A group is discussing where to eat and you want to join naturally.","promptKo":"저녁 뭐 먹을까요?","promptEn":"What should we eat for dinner?","answerKo":"저도 한식 괜찮아요. 근처에 괜찮은 고깃집 하나 아는데 거기 어때요?","answerEn":"Korean food is good for me too. I know a decent barbecue place nearby. How about there?","keyKo":"거기 어때요?","keyEn":"How about there?","difficulty":3},{"title":"Social · Soften a nuanced opinion","situation":"The group asks what you thought about an event, and your opinion is mixed.","promptKo":"오늘 행사 어땠어요?","promptEn":"How was today’s event?","answerKo":"전체적으로는 좋았는데 사람이 너무 많아서 조금 정신없긴 했어요. 그래도 다음에 규모가 작으면 또 가 보고 싶어요.","answerEn":"Overall it was good, but it was a little hectic because there were so many people. Still, I’d go again if it were smaller next time.","keyKo":"전체적으로는 ~했는데","keyEn":"Overall it was ~, but...","difficulty":4}]},"culture":{"drama":[{"title":"Drama · Simple reaction","situation":"A character reveals something unexpected.","promptKo":"진짜? 그걸 지금 말하는 거야?","promptEn":"Really? You’re telling me that now?","answerKo":"나도 방금 알았어.","answerEn":"I just found out too.","keyKo":"방금 알았어","keyEn":"I just found out.","difficulty":1},{"title":"Drama · Explain being late","situation":"A friend in a drama is annoyed because someone arrived late.","promptKo":"또 늦었어? 무슨 일 있었어?","promptEn":"You’re late again? Did something happen?","answerKo":"미안, 길이 너무 막혔어. 오래 기다렸어?","answerEn":"Sorry, traffic was really bad. Did you wait long?","keyKo":"오래 기다렸어?","keyEn":"Did you wait long?","difficulty":2},{"title":"Drama · Understand implied meaning","situation":"A character says something politely, but the context suggests disagreement.","promptKo":"그렇게 하는 것도 나쁘지는 않은데요.","promptEn":"Doing it that way isn’t necessarily bad.","answerKo":"네, 무슨 말씀인지 알겠어요. 다른 방법도 한번 생각해 볼게요.","answerEn":"Yes, I understand what you mean. I’ll think about another way too.","keyKo":"나쁘지는 않은데요","keyEn":"It’s not bad, but... (often signals hesitation).","difficulty":4}],"kpop":[{"title":"K-pop · Favorite song","situation":"Someone asks which song you like most from an album.","promptKo":"이번 앨범에서 어떤 노래가 제일 좋아요?","promptEn":"Which song do you like most on this album?","answerKo":"저는 두 번째 곡이 제일 좋아요. 멜로디가 계속 생각나요.","answerEn":"I like the second track the most. The melody keeps staying in my head.","keyKo":"~가 제일 좋아요","keyEn":"I like ~ the most.","difficulty":1},{"title":"K-pop · Talk about a performance","situation":"Someone asks which performance impressed you most.","promptKo":"어떤 무대가 제일 좋았어요?","promptEn":"Which performance did you like the most?","answerKo":"마지막 무대가 제일 좋았어요. 분위기도 좋았고 라이브도 인상적이었어요.","answerEn":"I liked the final performance the most. The atmosphere was great, and the live performance was impressive.","keyKo":"인상적이었어요","keyEn":"It was impressive.","difficulty":2},{"title":"K-pop · Explain why you follow an artist","situation":"A friend asks why you like a particular artist beyond the music.","promptKo":"그 가수를 왜 그렇게 좋아해요?","promptEn":"Why do you like that artist so much?","answerKo":"음악도 좋아하지만 인터뷰를 보면 자기 생각을 솔직하게 말하는 편이라 그 점이 특히 매력적인 것 같아요.","answerEn":"I like the music, but in interviews they tend to speak honestly about their thoughts, and I find that especially appealing.","keyKo":"~라는 점이 매력적이에요","keyEn":"The fact that ~ is appealing.","difficulty":4}],"variety":[{"title":"Variety · Accept a challenge","situation":"A host asks whether you are confident about today’s challenge.","promptKo":"오늘 미션 자신 있어요?","promptEn":"Are you confident about today’s mission?","answerKo":"솔직히 조금 긴장되는데 한번 해 볼게요.","answerEn":"Honestly, I’m a little nervous, but I’ll give it a try.","keyKo":"한번 해 볼게요","keyEn":"I’ll give it a try.","difficulty":1},{"title":"Variety · React to a surprise","situation":"Something unexpected happens and everyone asks how you feel.","promptKo":"지금 기분이 어때요?","promptEn":"How do you feel right now?","answerKo":"진짜 예상 못 했어요. 아직도 좀 얼떨떨해요.","answerEn":"I really didn’t expect it. I’m still a little stunned.","keyKo":"예상 못 했어요","keyEn":"I didn’t expect it.","difficulty":2},{"title":"Variety · Explain embarrassment","situation":"A host teases you about an awkward moment.","promptKo":"아까 왜 그렇게 당황했어요?","promptEn":"Why were you so flustered earlier?","answerKo":"갑자기 제 얘기가 나올 줄 몰라서 순간적으로 뭐라고 해야 할지 모르겠더라고요.","answerEn":"I didn’t expect them to suddenly talk about me, so for a moment I didn’t know what to say.","keyKo":"뭐라고 해야 할지 모르겠더라고요","keyEn":"I found myself not knowing what to say.","difficulty":4}],"cultureall":[{"title":"Media · Say why you like it","situation":"Someone asks why you like Korean content.","promptKo":"한국 콘텐츠를 왜 좋아해요?","promptEn":"Why do you like Korean content?","answerKo":"이야기 전개가 빠르고 표현이 재미있어서 자주 봐요.","answerEn":"I watch it often because the stories move quickly and the expressions are interesting.","keyKo":"~해서 자주 봐요","keyEn":"I watch it often because ~.","difficulty":1},{"title":"Media · Recommend something","situation":"A friend asks you to recommend one Korean show, song, or channel.","promptKo":"요즘 볼 만한 거 있어요?","promptEn":"Is there anything worth watching these days?","answerKo":"네, 요즘 재미있게 보는 프로그램이 하나 있어요. 가볍게 보기 좋아요.","answerEn":"Yes, there’s a show I’ve been enjoying lately. It’s easy to watch.","keyKo":"볼 만한 거","keyEn":"Something worth watching.","difficulty":2},{"title":"Media · Give a nuanced critique","situation":"Someone asks whether a popular show deserves the hype.","promptKo":"그 작품 그렇게 인기 많을 만해요?","promptEn":"Does that show deserve to be that popular?","answerKo":"배우들 연기는 좋았지만 이야기 전개는 조금 예상 가능했어요. 그래도 전체적인 완성도는 높은 편이라고 생각해요.","answerEn":"The acting was good, but the story was a little predictable. Still, I think the overall quality is fairly high.","keyKo":"~는 높은 편이라고 생각해요","keyEn":"I think ~ is on the high side / fairly high.","difficulty":4}]},"topik":{"listening":[{"title":"TOPIK-style listening · Time","situation":"Imagine you hear: \"이번 주 토요일에는 도서관 공사 때문에 오전 열 시부터 오후 두 시까지 이용할 수 없습니다.\"","promptKo":"도서관을 이용할 수 없는 시간은 언제입니까?","promptEn":"When can the library not be used?","answerKo":"토요일 오전 10시부터 오후 2시까지입니다.","answerEn":"From 10 a.m. to 2 p.m. on Saturday.","keyKo":"~부터 ~까지","keyEn":"From ~ to ~.","difficulty":1},{"title":"TOPIK-style listening · Reason","situation":"Imagine you hear: \"비가 많이 와서 오늘 야외 행사는 실내 체육관에서 진행합니다.\"","promptKo":"행사 장소가 바뀐 이유는 무엇입니까?","promptEn":"Why was the event location changed?","answerKo":"비가 많이 왔기 때문입니다.","answerEn":"Because it rained heavily.","keyKo":"~기 때문입니다","keyEn":"Because ~.","difficulty":2},{"title":"TOPIK-style listening · Speaker intention","situation":"Imagine you hear: \"이번 자료는 오늘까지 보내지 않으셔도 됩니다. 내일 오전 회의 전에만 확인할 수 있게 부탁드립니다.\"","promptKo":"말하는 사람의 의도는 무엇입니까?","promptEn":"What does the speaker want the listener to do?","answerKo":"오늘 안에 보낼 필요는 없지만 내일 오전 회의 전까지 자료를 보내 달라는 뜻입니다.","answerEn":"The speaker means it does not need to be sent today, but it should be sent before tomorrow morning’s meeting.","keyKo":"~전에만","keyEn":"As long as it is before ~.","difficulty":3}],"reading":[{"title":"TOPIK-style reading · Notice","situation":"안내: 오늘 도서관 2층 열람실은 오후 3시부터 이용할 수 있습니다. 입장할 때 신분증을 보여 주세요.","promptKo":"장소, 시간, 준비물을 말해 보세요.","promptEn":"Identify the place, time, and what you need to bring.","answerKo":"장소는 도서관 2층 열람실이고, 오후 3시부터 이용할 수 있으며, 신분증이 필요합니다.","answerEn":"It is the reading room on the second floor of the library, it is available from 3 p.m., and you need an ID.","keyKo":"~이 필요합니다","keyEn":"You need ~.","difficulty":1},{"title":"TOPIK-style reading · Purpose","situation":"공지: 다음 주 월요일은 건물 점검으로 회사 식당을 운영하지 않습니다. 직원들은 외부 식당을 이용해 주세요.","promptKo":"이 공지의 목적은 무엇입니까?","promptEn":"What is the purpose of this notice?","answerKo":"회사 식당을 운영하지 않는다는 것을 알리기 위한 공지입니다.","answerEn":"It is a notice to inform employees that the company cafeteria will be closed.","keyKo":"~을 알리기 위한","keyEn":"In order to inform about ~.","difficulty":2},{"title":"TOPIK-style reading · Inference","situation":"민수는 평소 지하철을 타고 출근하지만 오늘은 평소보다 한 시간 일찍 집에서 나왔다. 지하철역에 도착한 뒤에도 서두르지 않고 근처 카페에 들렀다.","promptKo":"민수가 오늘 평소보다 일찍 나온 이유로 가장 자연스러운 것을 말해 보세요.","promptEn":"Give the most natural reason why Min-su left home earlier than usual today.","answerKo":"출근 전에 다른 일정이나 약속이 있었을 가능성이 있습니다.","answerEn":"He may have had another schedule or appointment before work.","keyKo":"~ 가능성이 있습니다","keyEn":"There is a possibility that ~.","difficulty":3}],"writing":[{"title":"TOPIK-style writing · Short request","situation":"You need to change a meeting time because of another appointment.","promptKo":"회의 시간을 변경해 달라는 짧은 메시지를 2~3문장으로 쓰세요.","promptEn":"Write a 2–3 sentence message asking to change a meeting time.","answerKo":"안녕하세요. 다른 일정이 있어서 내일 세 시 회의 참석이 어렵습니다. 가능하다면 네 시로 변경 부탁드립니다.","answerEn":"Hello. I have another appointment, so it will be difficult to attend tomorrow’s 3 p.m. meeting. If possible, please change it to 4 p.m.","keyKo":"변경 부탁드립니다","keyEn":"I would like to request a change.","difficulty":1},{"title":"TOPIK-style writing · Explain a reason","situation":"You are writing about why public transportation is useful.","promptKo":"대중교통의 장점 한 가지와 그 이유를 2~3문장으로 쓰세요.","promptEn":"Write 2–3 sentences about one advantage of public transportation and why.","answerKo":"대중교통은 비용을 절약할 수 있다는 장점이 있습니다. 특히 매일 이동하는 사람에게는 자동차보다 경제적입니다.","answerEn":"Public transportation has the advantage of saving money. It is especially more economical than a car for people who travel every day.","keyKo":"~다는 장점이 있습니다","keyEn":"It has the advantage that ~.","difficulty":2},{"title":"TOPIK-style writing · Compare viewpoints","situation":"You are writing a short paragraph about working from home and working in an office.","promptKo":"재택근무와 사무실 근무의 장점을 각각 한 가지씩 쓰고 자신의 의견을 덧붙이세요.","promptEn":"Write one advantage of working from home and one advantage of working in an office, then add your opinion.","answerKo":"재택근무는 이동 시간을 줄일 수 있다는 장점이 있고, 사무실 근무는 동료와 바로 소통하기 쉽다는 장점이 있습니다. 저는 업무 성격에 따라 두 방식을 적절히 섞는 것이 좋다고 생각합니다.","answerEn":"Working from home can reduce commuting time, while office work makes immediate communication with coworkers easier. I think it is best to combine the two depending on the nature of the work.","keyKo":"업무 성격에 따라","keyEn":"Depending on the nature of the work.","difficulty":3}],"speaking":[{"title":"Korean output drill · Basic opinion","situation":"This is SIK speaking practice, not an official TOPIK speaking question.","promptKo":"한국어를 공부할 때 가장 어려운 점은 무엇입니까?","promptEn":"What is the most difficult part of studying Korean?","answerKo":"저는 듣기가 가장 어렵습니다. 사람들이 빨리 말하면 잘 못 알아들어요.","answerEn":"Listening is the hardest for me. I have trouble understanding when people speak quickly.","keyKo":"~가 가장 어렵습니다","keyEn":"~ is the most difficult.","difficulty":1},{"title":"Korean output drill · Experience","situation":"This is SIK speaking practice, not an official TOPIK speaking question.","promptKo":"최근에 기억에 남는 경험을 말해 보세요.","promptEn":"Talk about a recent memorable experience.","answerKo":"최근에 가족과 짧은 여행을 다녀왔습니다. 오랜만에 같이 시간을 보내서 특히 기억에 남았습니다.","answerEn":"Recently I took a short trip with my family. It was especially memorable because we spent time together for the first time in a while.","keyKo":"기억에 남았습니다","keyEn":"It was memorable.","difficulty":2},{"title":"Korean output drill · Structured opinion","situation":"This is SIK speaking practice, not an official TOPIK speaking question.","promptKo":"외국어를 배울 때 혼자 공부하는 것과 수업을 듣는 것 중 어떤 방법이 더 효과적이라고 생각합니까?","promptEn":"When learning a foreign language, which do you think is more effective: studying alone or taking classes?","answerKo":"저는 두 방법을 함께 사용하는 것이 가장 효과적이라고 생각합니다. 혼자 공부하면 자신의 속도에 맞출 수 있고, 수업에서는 혼자 해결하기 어려운 부분에 피드백을 받을 수 있기 때문입니다.","answerEn":"I think using both methods together is the most effective. Studying alone lets you work at your own pace, while classes provide feedback on things that are difficult to solve by yourself.","keyKo":"~기 때문입니다","keyEn":"Because ~.","difficulty":3}],"unsure":[{"title":"TOPIK mini diagnostic · Basic sentence","situation":"Read this sentence: \"오늘은 비가 와서 우산을 가져왔어요.\"","promptKo":"왜 우산을 가져왔어요?","promptEn":"Why did the person bring an umbrella?","answerKo":"비가 와서 우산을 가져왔어요.","answerEn":"They brought an umbrella because it is raining.","keyKo":"~아서/어서","keyEn":"Because ~.","difficulty":1},{"title":"TOPIK mini diagnostic · Short message","situation":"Imagine you are late for an appointment by 10 minutes.","promptKo":"상대방에게 보낼 짧은 메시지를 한 문장으로 만들어 보세요.","promptEn":"Make one short sentence to send to the other person.","answerKo":"죄송하지만 10분 정도 늦을 것 같아요.","answerEn":"I’m sorry, but I think I’ll be about 10 minutes late.","keyKo":"늦을 것 같아요","keyEn":"I think I’ll be late.","difficulty":2},{"title":"TOPIK mini diagnostic · Mixed","situation":"Read this sentence: \"회의가 취소되어서 오늘은 일찍 퇴근할 수 있게 되었습니다.\"","promptKo":"무슨 일이 생겼는지 영어 또는 한국어로 설명해 보세요.","promptEn":"Explain what happened in English or Korean.","answerKo":"회의가 취소돼서 오늘 일찍 퇴근할 수 있게 됐습니다.","answerEn":"The meeting was canceled, so the person can leave work early today.","keyKo":"~게 되었습니다","keyEn":"It came to be / ended up ~.","difficulty":3},{"title":"TOPIK mini diagnostic · Inference","situation":"Read: \"지수는 발표 자료를 다 만들었지만 바로 보내지 않고 동료에게 먼저 보여 주었다.\"","promptKo":"지수가 자료를 바로 보내지 않은 이유를 추측해 보세요.","promptEn":"Infer why Ji-su did not send the materials immediately.","answerKo":"보내기 전에 동료에게 확인이나 피드백을 받으려고 했을 가능성이 있습니다.","answerEn":"She may have wanted a coworker to check it or give feedback before sending it.","keyKo":"~려고 했을 가능성이 있습니다","keyEn":"There is a possibility that they intended to ~.","difficulty":4}]}};
 
     const practiceLevelTargets={
       zero:'Use one useful Korean phrase. Reading it aloud counts — do not worry about making a full sentence yet.',
@@ -3733,13 +3217,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       });
     });
 
+    function practiceDifficultyTarget(){
+      return({zero:1,beginner:2,intermediate:3,advanced:4,unsure:2})[selections.level]||2;
+    }
+
     function currentPracticeScenarios(){
-      if(selections.goal==='travel')return practiceScenarioBank.travel;
-      if(selections.goal==='topik'){
-        return practiceScenarioBank.topik[selections.focus]||practiceScenarioBank.topik.unsure;
+      let scenarios=[];
+      if(selections.goal==='travel')scenarios=practiceScenarioBank.travel||[];
+      else if(selections.goal==='topik')scenarios=practiceScenarioBank.topik[selections.focus]||practiceScenarioBank.topik.unsure||[];
+      else{
+        const group=practiceScenarioBank[selections.goal];
+        scenarios=group?.[selections.context]||[];
       }
-      const group=practiceScenarioBank[selections.goal];
-      return group?.[selections.context]||[];
+
+      const target=practiceDifficultyTarget();
+      const close=scenarios.filter((scenario)=>Math.abs((scenario.difficulty||2)-target)<=1);
+      const pool=close.length>=2?close:scenarios;
+
+      return [...pool].sort((a,b)=>{
+        const aGap=Math.abs((a.difficulty||2)-target);
+        const bGap=Math.abs((b.difficulty||2)-target);
+        if(aGap!==bGap)return aGap-bGap;
+        return(a.difficulty||2)-(b.difficulty||2);
+      });
     }
 
     function currentPracticeScenario(){
@@ -3794,7 +3294,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const scenario=currentPracticeScenario();
 
       setText('phase-three-practice-title',scenario?.title||mission?.title||goalPlans[selections.goal].practiceTitle);
-      setText('phase-three-practice-scenario',scenario?.situation||'Use what you learned in one realistic situation.');
+      const scenarioSituation=scenario?.situation||'Use what you learned in one realistic situation.';
+      setText(
+        'phase-three-practice-scenario',
+        selections.goal==='topik'
+          ? `SIK-created practice — not an official TOPIK question. ${scenarioSituation}`
+          : scenarioSituation
+      );
       setText('phase-three-prompt-ko',scenario?.promptKo||'');
       setText('phase-three-prompt-en',scenario?.promptEn||'');
       setText('phase-three-level-target',practiceLevelTargets[selections.level]||practiceLevelTargets.unsure);
