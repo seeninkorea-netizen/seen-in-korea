@@ -159,10 +159,13 @@ const breadcrumbJsonLd = {
 
         {article.heroImageUrl && (
           <img
-            class="article-hero-image"
-            src={article.heroImageUrl}
-            alt={article.heroAlt || article.title}
-          />
+  class="article-hero-image"
+  src={article.heroImageUrl}
+  alt={article.heroAlt || article.title}
+  loading="eager"
+  fetchpriority="high"
+  decoding="async"
+/>
         )}
 
       </div>
