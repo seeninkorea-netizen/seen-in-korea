@@ -6,9 +6,18 @@ import { readableDate } from '../../lib/format';
 
 const { slug } = Astro.params;
 const article = slug ? await getArticle(slug) : null;
+
 if (!article) return Astro.redirect('/404');
-const articleUrl = new URL(`/articles/${article.slug}`, Astro.site || Astro.url.origin).toString();
-const siteUrl = new URL('/', Astro.site || Astro.url.origin).toString();
+
+const articleUrl = new URL(
+  `/articles/${article.slug}`,
+  Astro.site || Astro.url.origin
+).toString();
+
+const siteUrl = new URL(
+  '/',
+  Astro.site || Astro.url.origin
+).toString();
 
 const authorName = article.author || 'Seen in Korea Desk';
 
@@ -68,7 +77,32 @@ const jsonLd = {
       }
     : {})
 };
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'SEEN IN KOREA',
+      item: siteUrl
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'All Stories',
+      item: `${siteUrl}articles`
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: article.title
+    }
+  ]
+};
 ---
+
 <BaseLayout
   title={`${article.title} — SEEN IN KOREA`}
   description={article.dek}
@@ -79,52 +113,123 @@ const jsonLd = {
   modifiedTime={article.updatedAt}
   author={article.author || 'Seen in Korea Desk'}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  ></script>
+
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(breadcrumbJsonLd)}
+  ></script>
+
   <main>
-  <section class="article-hero">
-    <div class="article-wrap">
+    <section class="article-hero">
+      <div class="article-wrap">
 
-      <div class="eyebrow">
-        {article.eyebrow || article.category}
+        <div class="eyebrow">
+          {article.eyebrow || article.category}
+        </div>
+
+        <h1 class="article-title">
+          {article.title}
+        </h1>
+
+        <div class="article-dek">
+          {article.dek}
+        </div>
+
+        <div class="article-meta">
+          {readableDate(article.publishedAt)} ·
+          {
+            authorName === 'Seen in Korea Desk' ? (
+              <a href="/authors/seen-in-korea-desk">
+                Seen in Korea Desk
+              </a>
+            ) : (
+              authorName
+            )
+          }
+
+          {article.verification &&
+          article.verification !== 'Not applicable'
+            ? ` · ${article.verification}`
+            : ''}
+        </div>
+
+        {article.heroImageUrl && (
+          <img
+            class="article-hero-image"
+            src={article.heroImageUrl}
+            alt={article.heroAlt || article.title}
+          />
+        )}
+
       </div>
+    </section>
 
-      <h1 class="article-title">
-        {article.title}
-      </h1>
+    <article class="article-wrap article-body">
 
-      <div class="article-dek">
-        {article.dek}
-      </div>
-
-      <div class="article-meta">
-        {readableDate(article.publishedAt)} ·
-        {
-          authorName === 'Seen in Korea Desk' ? (
-            <a href="/authors/seen-in-korea-desk">Seen in Korea Desk</a>
-          ) : (
-            authorName
-          )
-        }
-        {article.verification && article.verification !== 'Not applicable'
-          ? ` · ${article.verification}`
-          : ''}
-      </div>
-
-      {article.heroImageUrl && (
-        <img
-          class="article-hero-image"
-          src={article.heroImageUrl}
-          alt={article.heroAlt || article.title}
-        />
+      {article.body?.length ? (
+        <PortableBody value={article.body} />
+      ) : (
+        <p>{article.dek}</p>
       )}
 
-    </div>
-  </section>
+      {article.commerceLinks?.length ? (
+        <section class="commerce-box">
+          <div class="eyebrow">Where to buy</div>
+          <h2>Price & retailer check</h2>
 
-  <article class="article-wrap article-body">
-      {article.body?.length ? <PortableBody value={article.body} /> : <p>{article.dek}</p>}
-      {article.commerceLinks?.length ? <section class="commerce-box"><div class="eyebrow">Where to buy</div><h2>Price & retailer check</h2><div class="commerce-list">{article.commerceLinks.map(item => <a class="commerce-row" href={item.url} rel={item.affiliate ? 'sponsored nofollow' : 'noopener'} target="_blank"><span><strong>{item.retailer}</strong>{item.market ? ` · ${item.market}` : ''}</span><span>{item.price || 'Check price'} →</span></a>)}</div><p class="affiliate-note">Some retailer links may be affiliate links. Editorial conclusions are not determined by commissions.</p></section> : null}
-      {article.sources?.length ? <section class="sources-box"><strong>Sources</strong><ol>{article.sources.map(source => <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>)}</ol></section> : null}
+          <div class="commerce-list">
+            {article.commerceLinks.map(item => (
+              <a
+                class="commerce-row"
+                href={item.url}
+                rel={item.affiliate
+                  ? 'sponsored nofollow'
+                  : 'noopener'}
+                target="_blank"
+              >
+                <span>
+                  <strong>{item.retailer}</strong>
+                  {item.market ? ` · ${item.market}` : ''}
+                </span>
+
+                <span>
+                  {item.price || 'Check price'} →
+                </span>
+              </a>
+            ))}
+          </div>
+
+          <p class="affiliate-note">
+            Some retailer links may be affiliate links.
+            Editorial conclusions are not determined by commissions.
+          </p>
+        </section>
+      ) : null}
+
+      {article.sources?.length ? (
+        <section class="sources-box">
+          <strong>Sources</strong>
+
+          <ol>
+            {article.sources.map(source => (
+              <li>
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {source.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ) : null}
+
     </article>
   </main>
 </BaseLayout>
