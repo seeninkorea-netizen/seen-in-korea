@@ -277,16 +277,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <p id="learn-why-now-copy"></p>
             </div>
 
-            <div class="learn-today-steps" aria-labelledby="learn-today-steps-title">
-              <h4 id="learn-today-steps-title">TODAY’S STUDY PLAN</h4>
-              <p class="learn-today-time-note">The time above is your study budget, including practice.</p>
-              <ol>
-                <li id="learn-today-step-one"></li>
-                <li id="learn-today-step-two"></li>
-                <li id="learn-today-step-three"></li>
-              </ol>
-            </div>
-
             <a
               id="learn-today-link"
               class="learn-btn learn-btn-primary"
@@ -298,7 +288,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               START THIS LESSON →
             </a>
 
-
+            <details class="learn-today-steps">
+              <summary>3-STEP PLAN <span>+</span></summary>
+              <ol>
+                <li id="learn-today-step-one"></li>
+                <li id="learn-today-step-two"></li>
+                <li id="learn-today-step-three"></li>
+              </ol>
+            </details>
           </section>
 
           <!-- PHASES -->
@@ -1240,29 +1237,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
 
     .learn-today-steps{
-      display:block;
-      margin-top:14px;
-      padding-top:12px;
-    }
-
-    .learn-today-steps h4{
-      margin:0;
-      color:#333;
-      font-size:10px;
-      font-weight:900;
-      letter-spacing:.05em;
-    }
-
-    .learn-today-time-note{
-      margin:6px 0 0;
-      color:#555;
-      font-size:12px;
-      line-height:1.5;
-    }
-
-    .learn-today-card .learn-today-steps li{
-      font-size:13px;
-      line-height:1.55;
+      display:none;
     }
 
     .learn-path-details{
@@ -2662,11 +2637,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         evidenceNotes:['Current YouTube access checked.','The lesson is explicitly designed for beginners and travel situations.','Independent effectiveness evidence remains limited.']
       },
       {
-        id:'quick-korean-2',difficulty:2,roles:['goal','practice'],provider:'Korea Cyber University',title:'Quick Korean · Level 2',url:'https://qkorean-en.koreacu.ac.kr/cms/FrCon/index.do?MENU_ID=40',type:'course',
+        id:'quick-korean-2',difficulty:2,roles:['goal','practice'],provider:'Korea Cyber University',title:'Quick Korean · Level 2',url:'https://www.youtube.com/watch?v=zpsg4rV_uzU',type:'video course',
         levels:['beginner','intermediate'],safeForUnsure:false,goals:['travel','life','social'],contexts:['daily','friends','casual','socialall','quarter','flexible'],skills:['all'],priority:86,shortFriendly:false,urgentFriendly:false,
-        bestFor:'Learners ready for everyday conversations such as restaurants and shopping.',notFor:'Complete beginners who still cannot read basic Hangul.',reason:'Its everyday conversation scope fits learners who need Korean for practical social situations.',
-        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 1, 2026'},
-        evidenceNotes:['Official Korea Cyber University curriculum checked.','Level 2 explicitly covers simple conversations in places such as supermarkets and restaurants.','Independent outcome evidence remains limited.']
+        bestFor:'Beginners who can read Hangul and make basic sentences, and are ready to follow Korean instruction with English subtitles while practising everyday conversations.',notFor:'Complete beginners who still cannot read basic Hangul, or learners who need English-spoken explanations throughout.',reason:'Level 2 moves into practical everyday conversation. Start at the first Level 2 lesson instead of sending learners to the curriculum overview.',
+        verification:{officialChecked:true,freeAccessChecked:true,levelFitChecked:true,practicalFitChecked:true,independentEvidence:'limited',confidence:'medium',lastChecked:'Oct. 2, 2026'},
+        evidenceNotes:['Official Korea Cyber University curriculum checked on Oct. 2, 2026.','Level 2 has 15 sections × 2 lessons, is taught in Korean, and provides Korean and English subtitles.','Official curriculum says Level 2 covers simple conversations in places such as supermarkets and restaurants and expressing preferences and opinions.','Direct entry lesson checked: [바른 한국어 2급] 1-1 한국말을 할 수 있어요? · https://www.youtube.com/watch?v=zpsg4rV_uzU','The first lesson covers everyday-life vocabulary, -(으)ㄹ 수 있어요/없어요, -아/어야 해요, and suggesting an activity.','Independent learning-outcome evidence remains limited.']
       },
       {
         id:'quick-korean-3',difficulty:3,roles:['foundation','goal','practice'],provider:'Korea Cyber University',title:'Quick Korean · Level 3',url:'https://qkorean-en.koreacu.ac.kr/cms/FrCon/index.do?MENU_ID=40',type:'course',
@@ -3199,7 +3174,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const resource=currentResource('one');if(!resource)return;
       setText('learn-today-title',resource.title);
       setText('learn-today-provider',resource.provider);
-      setText('learn-today-duration',`${timePlans[selections.time].today} STUDY`);
+      setText('learn-today-duration',timePlans[selections.time].today);
       const steps=todaySteps(resource);
       setText('learn-today-step-one',steps[0]);setText('learn-today-step-two',steps[1]);setText('learn-today-step-three',steps[2]);
       const link=document.getElementById('learn-today-link');if(link){link.href=resource.url;link.dataset.resourceId=resource.id;}
@@ -3787,5 +3762,4 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </script>
 
 </BaseLayout>
-
 
