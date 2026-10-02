@@ -234,5 +234,48 @@ const breadcrumbJsonLd = {
       ) : null}
 
     </article>
+<script is:inline define:vars={{ articleSlug: article.slug, articleTitle: article.title }}>
+  (() => {
+    const milestones = [25, 50, 75, 90];
+    const sent = new Set();
+
+    function sendScrollDepth(percent) {
+      if (sent.has(percent)) return;
+
+      sent.add(percent);
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'article_scroll', {
+          article_slug: articleSlug,
+          article_title: articleTitle,
+          scroll_percent: percent
+        });
+      }
+    }
+
+    function checkScrollDepth() {
+      const documentHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      if (documentHeight <= 0) return;
+
+      const percent =
+        (window.scrollY / documentHeight) * 100;
+
+      milestones.forEach((milestone) => {
+        if (percent >= milestone) {
+          sendScrollDepth(milestone);
+        }
+      });
+    }
+
+    window.addEventListener('scroll', checkScrollDepth, {
+      passive: true
+    });
+
+    checkScrollDepth();
+  })();
+</script>
+
   </main>
 </BaseLayout>
