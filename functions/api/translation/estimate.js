@@ -1,6 +1,6 @@
+import type { APIRoute } from 'astro';
+
 const PRICING = {
-  // 현재는 시스템 테스트용 내부 초기값입니다.
-  // 실제 판매가격 확정 전 쉽게 변경할 수 있습니다.
   enKoPerWord: 90,
   koEnPerWord: 110,
 
@@ -15,7 +15,7 @@ const PRICING = {
   urgentMultiplier: 1.5,
 };
 
-const PURPOSE_MULTIPLIER = {
+const PURPOSE_MULTIPLIER: Record<string, number> = {
   BUSINESS: 1.0,
   WEBSITE: 1.05,
   MARKETING: 1.1,
@@ -24,7 +24,6 @@ const PURPOSE_MULTIPLIER = {
   ACADEMIC: 1.1,
   PERSONAL: 1.0,
 
-  // 아래 분야는 자동 결제하지 않고 사람 검토
   LEGAL: 1.2,
   MEDICAL: 1.2,
 
@@ -32,23 +31,38 @@ const PURPOSE_MULTIPLIER = {
 };
 
 
-function json(data, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "no-store",
-    },
-  });
-}
+const json = (
+  data: unknown,
+  status = 200
+) =>
+  new Response(
+    JSON.stringify(data, null, 2),
+    {
+      status,
+      headers: {
+        'content-type':
+          'application/json; charset=utf-8',
+
+        'cache-control':
+          'no-store',
+      },
+    }
+  );
 
 
-function round1000(value) {
-  return Math.round(value / 1000) * 1000;
-}
+const round1000 = (
+  value: number
+) =>
+  Math.max(
+    1000,
+    Math.round(value / 1000) * 1000
+  );
 
 
-function calculateEstimate(input) {
+function calculateEstimate(
+  input: any
+) {
+
   const {
     language_pair,
     service_level,
@@ -60,30 +74,51 @@ function calculateEstimate(input) {
   } = input;
 
 
-  if (!["KO_EN", "EN_KO"].includes(language_pair)) {
-    throw new Error("Invalid language pair.");
+  if (
+    !['KO_EN', 'EN_KO'].includes(
+      language_pair
+    )
+  ) {
+    throw new Error(
+      'Invalid language pair.'
+    );
   }
 
 
   if (
-    !["STANDARD", "REVIEW", "DOUBLE_REVIEW"].includes(
-      service_level
+    ![
+      'STANDARD',
+      'REVIEW',
+      'DOUBLE_REVIEW'
+    ].includes(service_level)
+  ) {
+    throw new Error(
+      'Invalid service level.'
+    );
+  }
+
+
+  if (
+    !['WORDS', 'MINUTES'].includes(
+      unit_type
     )
   ) {
-    throw new Error("Invalid service level.");
-  }
-
-
-  if (!["WORDS", "MINUTES"].includes(unit_type)) {
-    throw new Error("Invalid unit type.");
-  }
-
-
-  const units = Number(unit_count);
-
-  if (!Number.isFinite(units) || units <= 0) {
     throw new Error(
-      "Word count or video duration must be greater than zero."
+      'Invalid unit type.'
+    );
+  }
+
+
+  const units =
+    Number(unit_count);
+
+
+  if (
+    !Number.isFinite(units) ||
+    units <= 0
+  ) {
+    throw new Error(
+      'Word count or video duration must be greater than zero.'
     );
   }
 
@@ -91,175 +126,211 @@ function calculateEstimate(input) {
   let basePrice = 0;
 
 
-  // =========================
-  // WORD-BASED PRICING
-  // =========================
+  /*
+   * WORD-BASED PRICING
+   */
 
-  if (unit_type === "WORDS") {
+  if (
+    unit_type === 'WORDS'
+  ) {
 
     const translationRate =
-      language_pair === "KO_EN"
+      language_pair === 'KO_EN'
         ? PRICING.koEnPerWord
         : PRICING.enKoPerWord;
 
 
-    if (service_level === "STANDARD") {
+    if (
+      service_level === 'STANDARD'
+    ) {
       basePrice =
         units *
         translationRate;
     }
 
 
-    if (service_level === "REVIEW") {
+    if (
+      service_level === 'REVIEW'
+    ) {
       basePrice =
         units *
         PRICING.reviewPerWord;
     }
 
 
-    if (service_level === "DOUBLE_REVIEW") {
+    if (
+      service_level ===
+      'DOUBLE_REVIEW'
+    ) {
       basePrice =
         units *
         (
           translationRate +
-          PRICING.secondEnglishReviewAddPerWord
+          PRICING
+            .secondEnglishReviewAddPerWord
         );
     }
+
   }
 
 
-  // =========================
-  // VIDEO-BASED PRICING
-  // =========================
+  /*
+   * VIDEO PRICING
+   */
 
-  if (unit_type === "MINUTES") {
+  if (
+    unit_type === 'MINUTES'
+  ) {
 
     let serviceMultiplier = 1;
 
-    if (service_level === "REVIEW") {
+
+    if (
+      service_level === 'REVIEW'
+    ) {
       serviceMultiplier = 0.65;
     }
 
-    if (service_level === "DOUBLE_REVIEW") {
+
+    if (
+      service_level ===
+      'DOUBLE_REVIEW'
+    ) {
       serviceMultiplier = 1.3;
     }
+
 
     basePrice =
       units *
       PRICING.videoPerMinute *
       serviceMultiplier;
+
   }
 
 
-  // =========================
-  // CONTENT TYPE
-  // =========================
+  /*
+   * PURPOSE
+   */
 
   const purposeMultiplier =
-    PURPOSE_MULTIPLIER[purpose] || 1;
+    PURPOSE_MULTIPLIER[
+      purpose
+    ] || 1;
 
-  basePrice *= purposeMultiplier;
+
+  basePrice *=
+    purposeMultiplier;
 
 
-  // =========================
-  // DEADLINE
-  // =========================
+  /*
+   * DEADLINE
+   */
 
-  if (deadline === "FAST") {
+  if (
+    deadline === 'FAST'
+  ) {
     basePrice *=
       PRICING.fastMultiplier;
   }
 
 
-  if (deadline === "URGENT") {
+  if (
+    deadline === 'URGENT'
+  ) {
     basePrice *=
       PRICING.urgentMultiplier;
   }
 
 
-  // =========================
-  // MINIMUM ORDER
-  // =========================
+  /*
+   * MINIMUM ORDER
+   */
 
-  basePrice = Math.max(
-    basePrice,
-    PRICING.minimumOrder
-  );
+  basePrice =
+    Math.max(
+      basePrice,
+      PRICING.minimumOrder
+    );
 
 
   const exactPrice =
     round1000(basePrice);
 
 
-  // 처음에는 확정가격이 아니라
-  // ±10% 예상 범위를 보여줍니다.
-
   const estimateMin =
-    round1000(exactPrice * 0.9);
+    round1000(
+      exactPrice * 0.9
+    );
+
 
   const estimateMax =
-    round1000(exactPrice * 1.1);
+    round1000(
+      exactPrice * 1.1
+    );
 
 
-  // =========================
-  // HUMAN REVIEW RULES
-  // =========================
+  /*
+   * HUMAN REVIEW RULES
+   */
 
-  const reasons = [];
+  const reasons: string[] = [];
 
 
   if (
-    purpose === "LEGAL" ||
-    purpose === "MEDICAL"
+    purpose === 'LEGAL' ||
+    purpose === 'MEDICAL'
   ) {
     reasons.push(
-      "specialized legal or medical content"
-    );
-  }
-
-
-  if (source_type === "SCANNED_PDF") {
-    reasons.push(
-      "scanned or image-based document"
+      'specialized legal or medical content'
     );
   }
 
 
   if (
-    unit_type === "WORDS" &&
+    source_type ===
+    'SCANNED_PDF'
+  ) {
+    reasons.push(
+      'scanned or image-based document'
+    );
+  }
+
+
+  if (
+    unit_type === 'WORDS' &&
     units > 15000
   ) {
     reasons.push(
-      "large-volume project"
+      'large-volume project'
     );
   }
 
 
   if (
-    unit_type === "MINUTES" &&
+    unit_type === 'MINUTES' &&
     units > 60
   ) {
     reasons.push(
-      "long-form video project"
+      'long-form video project'
     );
   }
 
 
   if (
-    deadline === "URGENT" &&
+    deadline === 'URGENT' &&
     (
       (
-        unit_type === "WORDS" &&
+        unit_type === 'WORDS' &&
         units > 4000
       ) ||
       (
-        unit_type === "MINUTES" &&
+        unit_type === 'MINUTES' &&
         units > 20
       )
     )
   ) {
     reasons.push(
-      "urgent large-volume project"
+      'urgent large-volume project'
     );
   }
 
@@ -268,17 +339,9 @@ function calculateEstimate(input) {
     reasons.length > 0;
 
 
-  // 자동 결제 허용 여부는
-  // 추후 별도로 켭니다.
-  // 지금은 항상 false.
-
-  const autoPaymentEligible =
-    false;
-
-
   return {
 
-    currency: "KRW",
+    currency: 'KRW',
 
     estimate_min:
       estimateMin,
@@ -296,7 +359,7 @@ function calculateEstimate(input) {
       reasons,
 
     auto_payment_eligible:
-      autoPaymentEligible,
+      false,
 
     pricing_basis: {
       unit_type,
@@ -309,41 +372,75 @@ function calculateEstimate(input) {
 
     message:
       manualReview
-        ? "This project needs a human review before the final price is confirmed."
-        : "This is an estimated price. The final price will be confirmed before payment.",
+        ? 'This project needs a human review before the final price is confirmed.'
+        : 'This is an estimated price. The final price will be confirmed before payment.',
   };
+
 }
 
 
-export async function onRequestPost({
-  request,
-}) {
+/*
+ * GET
+ *
+ * 주소가 정상 작동하는지
+ * 바로 확인하기 위한 health check
+ */
 
-  try {
-
-    const input =
-      await request.json();
-
-
-    const result =
-      calculateEstimate(input);
-
+export const GET: APIRoute =
+  async () => {
 
     return json({
       ok: true,
-      estimate: result,
+      service:
+        'sik-translation-estimate',
+
+      status:
+        'ready',
     });
 
-  } catch (error) {
+  };
 
-    return json(
-      {
-        ok: false,
-        error:
-          error?.message ||
-          "Could not calculate estimate.",
-      },
-      400
-    );
-  }
-}
+
+/*
+ * POST
+ *
+ * 실제 견적 계산
+ */
+
+export const POST: APIRoute =
+  async ({ request }) => {
+
+    try {
+
+      const input =
+        await request.json();
+
+
+      const estimate =
+        calculateEstimate(
+          input
+        );
+
+
+      return json({
+        ok: true,
+        estimate,
+      });
+
+
+    } catch (error: any) {
+
+      return json(
+        {
+          ok: false,
+
+          error:
+            error?.message ||
+            'Could not calculate estimate.',
+        },
+        400
+      );
+
+    }
+
+  };
