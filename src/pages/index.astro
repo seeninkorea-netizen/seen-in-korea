@@ -1,249 +1,1735 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
-import { getArticles, getInterviews, getProducts, sanityEnabled } from '../lib/content';
+import {
+  getArticles,
+  getInterviews,
+  getProducts,
+  sanityEnabled
+} from '../lib/content';
 import { readableDate } from '../lib/format';
 
-const [articles, interviews, products] = await Promise.all([getArticles(40), getInterviews(3), getProducts(3)]);
+const [articles, interviews, products] = await Promise.all([
+  getArticles(40),
+  getInterviews(3),
+  getProducts(3)
+]);
 
 const now = Date.now();
-const isHomepageActive = (article) => !article.homepageUntil || new Date(article.homepageUntil).getTime() > now;
-const priority = (article) => article.homePriority ?? 50;
-const newestFirst = (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
-const editorialSort = (a, b) => priority(a) - priority(b) || newestFirst(a, b);
 
-const homepageArticles = articles.filter(a => a.homepagePlacement !== 'none' && isHomepageActive(a));
-const coverCandidates = homepageArticles
-  .filter(a => a.homepagePlacement === 'cover')
-  .sort(editorialSort);
+const isHomepageActive = (article) =>
+  !article.homepageUntil ||
+  new Date(article.homepageUntil).getTime() > now;
 
-const deskFallback = homepageArticles
-  .filter(a => a.homepagePlacement === 'standard')
-  .sort(newestFirst)[0];
+const priority = (article) =>
+  article.homePriority ?? 50;
 
-const lead = coverCandidates[0] || deskFallback || null;
+const newestFirst = (a, b) =>
+  new Date(b.publishedAt).getTime() -
+  new Date(a.publishedAt).getTime();
 
-const liveDesk = homepageArticles
-  .filter(a => a._id !== lead?._id && a.homepagePlacement === 'liveDesk')
-  .sort(editorialSort)
-  .slice(0, 6);
+const editorialSort = (a, b) =>
+  priority(a) -
+  priority(b) ||
+  newestFirst(a, b);
 
-const rest = homepageArticles
-  .filter(a => a._id !== lead?._id && a.homepagePlacement === 'standard')
-  .sort(editorialSort)
-  .slice(0, 6);
+
+const homepageArticles =
+  articles.filter(
+    a =>
+      a.homepagePlacement !== 'none' &&
+      isHomepageActive(a)
+  );
+
+
+const coverCandidates =
+  homepageArticles
+    .filter(
+      a =>
+        a.homepagePlacement === 'cover'
+    )
+    .sort(editorialSort);
+
+
+const deskFallback =
+  homepageArticles
+    .filter(
+      a =>
+        a.homepagePlacement === 'standard'
+    )
+    .sort(newestFirst)[0];
+
+
+const lead =
+  coverCandidates[0] ||
+  deskFallback ||
+  null;
+
+
+const liveDesk =
+  homepageArticles
+    .filter(
+      a =>
+        a._id !== lead?._id &&
+        a.homepagePlacement === 'liveDesk'
+    )
+    .sort(editorialSort)
+    .slice(0, 6);
+
+
+const rest =
+  homepageArticles
+    .filter(
+      a =>
+        a._id !== lead?._id &&
+        a.homepagePlacement === 'standard'
+    )
+    .sort(editorialSort)
+    .slice(0, 6);
+
 
 const mobileTopStories = [
   ...liveDesk,
   ...rest
 ]
-  .filter((article, index, list) =>
-    list.findIndex(item => item._id === article._id) === index
+  .filter(
+    (article, index, list) =>
+      list.findIndex(
+        item =>
+          item._id === article._id
+      ) === index
   )
   .slice(0, 4);
 
-const seoulDate = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'Asia/Seoul', month: 'short', day: 'numeric'
-}).format(new Date()).toUpperCase();
-const siteUrl = new URL('/', Astro.site || Astro.url.origin).toString();
+
+const seoulDate =
+  new Intl.DateTimeFormat(
+    'en-US',
+    {
+      timeZone: 'Asia/Seoul',
+      month: 'short',
+      day: 'numeric'
+    }
+  )
+    .format(new Date())
+    .toUpperCase();
+
+
+const siteUrl =
+  new URL(
+    '/',
+    Astro.site ||
+    Astro.url.origin
+  ).toString();
+
 
 const siteSchema = {
   "@context": "https://schema.org",
+
   "@graph": [
+
     {
       "@type": "WebSite",
       "@id": `${siteUrl}#website`,
       "url": siteUrl,
       "name": "SEEN IN KOREA",
       "alternateName": "Seen in Korea",
+
       "description":
         "Independent English-language Korea media covering K-culture, real life in Korea, Korean products, consumer trends and practical information.",
+
       "inLanguage": "en",
+
       "publisher": {
-        "@id": `${siteUrl}#organization`
+        "@id":
+          `${siteUrl}#organization`
       }
     },
-  {
-  "@type": "Organization",
-  "@id": `${siteUrl}#organization`,
-  "name": "SEEN IN KOREA",
-  "alternateName": "Seen in Korea",
-  "url": siteUrl,
-  "logo": `${siteUrl}logo.png.svg`,
-  "description":
+
+
+    {
+      "@type": "Organization",
+      "@id":
+        `${siteUrl}#organization`,
+
+      "name":
+        "SEEN IN KOREA",
+
+      "alternateName":
+        "Seen in Korea",
+
+      "url":
+        siteUrl,
+
+      "logo":
+        `${siteUrl}logo.png.svg`,
+
+      "description":
         "Independent English-language media platform covering Korean culture, consumer trends, products and everyday life.",
-      "email": "seeninkorea@gmail.com",
+
+      "email":
+        "seeninkorea@gmail.com",
+
       "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "seeninkorea@gmail.com",
-        "contactType": "editorial and business inquiries",
-        "availableLanguage": ["English", "Korean"],
-        "url": `${siteUrl}contact`
+
+        "@type":
+          "ContactPoint",
+
+        "email":
+          "seeninkorea@gmail.com",
+
+        "contactType":
+          "editorial and business inquiries",
+
+        "availableLanguage": [
+          "English",
+          "Korean"
+        ],
+
+        "url":
+          `${siteUrl}contact`
       },
-      "publishingPrinciples": `${siteUrl}editorial-standards`
+
+      "publishingPrinciples":
+        `${siteUrl}editorial-standards`
     }
+
   ]
 };
-
 ---
+
+
 <BaseLayout>
+
   <Fragment slot="head">
+
     <script
       type="application/ld+json"
       set:html={JSON.stringify(siteSchema)}
     />
+
   </Fragment>
 
+
   <main id="top">
+
+
+    <!-- COVER -->
     <section class="cover-shell">
+
       <div class="wrap cover-grid">
+
         <div class="cover-copy">
-          <div class="eyebrow">Independent Korea Media · Seoul</div>
-          <h1>KOREA,<br /><span>VERIFIED.</span></h1>
-          <p class="cover-dek">What’s trending. What people actually buy. What life in Korea is really like.</p>
+
+          <div class="eyebrow">
+            Independent Korea Media · Seoul
+          </div>
+
+          <h1>
+            KOREA,<br />
+            <span>VERIFIED.</span>
+          </h1>
+
+          <p class="cover-dek">
+            What’s trending.
+            What people actually buy.
+            What life in Korea is really like.
+          </p>
+
           <div class="cover-rule"></div>
-          <div class="cover-manifesto"><b>Seen in Korea</b> follows Korean culture where attention becomes action: products, places, prices, real-life friction and the people experiencing it.</div>
-          {!sanityEnabled && <div class="demo-banner cover-demo"><strong>Preview mode:</strong> connect Sanity to turn on /admin and live publishing.</div>}
+
+          <div class="cover-manifesto">
+            <b>Seen in Korea</b>
+            follows Korean culture where attention becomes action:
+            products, places, prices, real-life friction
+            and the people experiencing it.
+          </div>
+
+
+          {!sanityEnabled && (
+
+            <div class="demo-banner cover-demo">
+
+              <strong>
+                Preview mode:
+              </strong>
+
+              connect Sanity to turn on /admin and live publishing.
+
+            </div>
+
+          )}
+
         </div>
 
-        {lead && <a class="cover-story" href={`/articles/${lead.slug}`}>
-          {lead.heroImageUrl ? <img src={lead.heroImageUrl} alt={lead.heroAlt || lead.title} /> : <div class="cover-fallback"></div>}
-          <div class="cover-shade"></div>
-          <div class="cover-label"><span>TODAY’S COVER</span><span>{lead.category}</span></div>
-          <div class="cover-story-copy">
-            <div class="kicker">{lead.eyebrow || lead.category}</div>
-            <h2>{lead.title}</h2>
-            <p>{lead.dek}</p>
-            <div class="cover-read">READ THE STORY →</div>
-          </div>
-        </a>}
+
+        {lead && (
+
+          <a
+            class="cover-story"
+            href={`/articles/${lead.slug}`}
+          >
+
+            {
+              lead.heroImageUrl
+                ? (
+                  <img
+                    src={lead.heroImageUrl}
+                    alt={
+                      lead.heroAlt ||
+                      lead.title
+                    }
+                  />
+                )
+                : (
+                  <div class="cover-fallback"></div>
+                )
+            }
+
+
+            <div class="cover-shade"></div>
+
+
+            <div class="cover-label">
+
+              <span>
+                TODAY’S COVER
+              </span>
+
+              <span>
+                {lead.category}
+              </span>
+
+            </div>
+
+
+            <div class="cover-story-copy">
+
+              <div class="kicker">
+                {
+                  lead.eyebrow ||
+                  lead.category
+                }
+              </div>
+
+              <h2>
+                {lead.title}
+              </h2>
+
+              <p>
+                {lead.dek}
+              </p>
+
+              <div class="cover-read">
+                READ THE STORY →
+              </div>
+
+            </div>
+
+          </a>
+
+        )}
+
       </div>
+
     </section>
 
-    <section class="mobile-top-stories" aria-labelledby="mobile-top-stories-title">
+
+
+    <!-- MOBILE TOP STORIES -->
+    <section
+      class="mobile-top-stories"
+      aria-labelledby="mobile-top-stories-title"
+    >
+
       <div class="wrap">
 
         <div class="mobile-section-head">
-          <h2 id="mobile-top-stories-title">TOP STORIES</h2>
-          <a href="/articles">See all →</a>
+
+          <h2 id="mobile-top-stories-title">
+            TOP STORIES
+          </h2>
+
+          <a href="/articles">
+            See all →
+          </a>
+
         </div>
+
 
         <div class="mobile-top-list">
-          {mobileTopStories.map(item => (
-            <a
-              class="mobile-top-row"
-              href={`/articles/${item.slug}`}
-            >
-              <div class="mobile-top-thumb">
-                {item.heroImageUrl ? (
-                  <img
-                    src={item.heroImageUrl}
-                    alt={item.heroAlt || item.title}
-                    loading="lazy"
-                  />
-                ) : (
-                  <div class="mobile-top-placeholder"></div>
-                )}
-              </div>
-     
-              <div class="mobile-top-copy">
-                <h3>{item.title}</h3>
 
-                <div class="mobile-top-meta">
-                  <span>
-                    {item.deskTimeLabel ||
-                      (item.publishedAt
-                        ? readableDate(item.publishedAt)
-                        : 'LATEST')}
-                  </span>
-                  <span>·</span>
-                  <span>{item.deskLabel || item.category}</span>
-                </div>
-              </div>
-            </a>
-          ))}
+          {
+            mobileTopStories.map(
+              item => (
+
+                <a
+                  class="mobile-top-row"
+                  href={`/articles/${item.slug}`}
+                >
+
+                  <div class="mobile-top-thumb">
+
+                    {
+                      item.heroImageUrl
+                        ? (
+
+                          <img
+                            src={item.heroImageUrl}
+                            alt={
+                              item.heroAlt ||
+                              item.title
+                            }
+                            loading="lazy"
+                          />
+
+                        )
+                        : (
+
+                          <div class="mobile-top-placeholder"></div>
+
+                        )
+                    }
+
+                  </div>
+
+
+                  <div class="mobile-top-copy">
+
+                    <h3>
+                      {item.title}
+                    </h3>
+
+
+                    <div class="mobile-top-meta">
+
+                      <span>
+                        {
+                          item.deskTimeLabel ||
+                          (
+                            item.publishedAt
+                              ? readableDate(
+                                  item.publishedAt
+                                )
+                              : 'LATEST'
+                          )
+                        }
+                      </span>
+
+                      <span>·</span>
+
+                      <span>
+                        {
+                          item.deskLabel ||
+                          item.category
+                        }
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                </a>
+
+              )
+            )
+          }
+
         </div>
 
       </div>
+
     </section>
 
-    <div class="signal-bar"><div class="wrap signal-inner"><a class="signal-active" href="/desk/seoul">SEOUL DESK</a><a href="/desk/culture">Culture</a><a href="/desk/beauty">Beauty</a><a href="/desk/entertainment">Entertainment</a><a href="/real-korea">Real Korea</a><a href="/shop-korea">Products</a><a href="/korea-help">Practical Help</a></div></div>
 
+
+    <!-- SIGNAL BAR -->
+    <div class="signal-bar">
+
+      <div class="wrap signal-inner">
+
+        <a
+          class="signal-active"
+          href="/desk/seoul"
+        >
+          SEOUL DESK
+        </a>
+
+        <a href="/desk/culture">
+          Culture
+        </a>
+
+        <a href="/desk/beauty">
+          Beauty
+        </a>
+
+        <a href="/desk/entertainment">
+          Entertainment
+        </a>
+
+        <a href="/real-korea">
+          Real Korea
+        </a>
+
+        <a href="/shop-korea">
+          Products
+        </a>
+
+        <a href="/korea-help">
+          Practical Help
+        </a>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- LIVE DESK -->
     <section class="desk-section">
+
       <div class="wrap">
+
         <div class="desk-header">
-          <div><div class="eyebrow">01 · Live Desk</div><h2>What we’re watching now</h2></div>
-          <div class="desk-date">{seoulDate} · SEOUL</div>
+
+          <div>
+
+            <div class="eyebrow">
+              01 · Live Desk
+            </div>
+
+            <h2>
+              What we’re watching now
+            </h2>
+
+          </div>
+
+
+          <div class="desk-date">
+            {seoulDate} · SEOUL
+          </div>
+
         </div>
+
+
         <div class="desk-feed">
-          {liveDesk.length ? liveDesk.map((item, i) => <a class="desk-row" href={`/articles/${item.slug}`}>
-            <div class="desk-index">{String(i + 1).padStart(2, '0')}</div>
-            <div class="desk-stamp"><b>{item.deskTimeLabel || 'NOW'}</b><span>{item.deskLabel || item.category}</span></div>
-            <div class="desk-headline"><h3>{item.title}</h3><p>{item.deskNote || item.dek}</p></div>
-            <div class="desk-arrow">→</div>
-          </a>) : <div class="desk-empty">No Live Desk stories are pinned right now. Publish an article with <b>Homepage placement → Live Desk</b> to place it here.</div>}
+
+          {
+            liveDesk.length
+              ? liveDesk.map(
+                  (item, i) => (
+
+                    <a
+                      class="desk-row"
+                      href={`/articles/${item.slug}`}
+                    >
+
+                      <div class="desk-index">
+                        {
+                          String(i + 1)
+                            .padStart(2, '0')
+                        }
+                      </div>
+
+
+                      <div class="desk-stamp">
+
+                        <b>
+                          {
+                            item.deskTimeLabel ||
+                            'NOW'
+                          }
+                        </b>
+
+                        <span>
+                          {
+                            item.deskLabel ||
+                            item.category
+                          }
+                        </span>
+
+                      </div>
+
+
+                      <div class="desk-headline">
+
+                        <h3>
+                          {item.title}
+                        </h3>
+
+                        <p>
+                          {
+                            item.deskNote ||
+                            item.dek
+                          }
+                        </p>
+
+                      </div>
+
+
+                      <div class="desk-arrow">
+                        →
+                      </div>
+
+                    </a>
+
+                  )
+                )
+              : (
+
+                <div class="desk-empty">
+
+                  No Live Desk stories are pinned right now.
+
+                  Publish an article with
+
+                  <b>
+                    Homepage placement → Live Desk
+                  </b>
+
+                  to place it here.
+
+                </div>
+
+              )
+          }
+
         </div>
+
+
         <div class="desk-secondary">
-          <div class="secondary-head"><div class="secondary-label">FROM OUR DESK</div><a href="/articles">VIEW ALL STORIES →</a></div>
-          <div class="secondary-grid">{rest.map(article => <ArticleCard article={article} compact />)}</div>
+
+          <div class="secondary-head">
+
+            <div class="secondary-label">
+              FROM OUR DESK
+            </div>
+
+            <a href="/articles">
+              VIEW ALL STORIES →
+            </a>
+
+          </div>
+
+
+          <div class="secondary-grid">
+
+            {
+              rest.map(
+                article => (
+                  <ArticleCard
+                    article={article}
+                    compact
+                  />
+                )
+              )
+            }
+
+          </div>
+
         </div>
+
       </div>
+
     </section>
 
+
+
+    <!-- SEEN ON -->
     <section class="seen-section">
+
       <div class="wrap">
-        <div class="section-head"><div><div class="eyebrow">02 · Seen On</div><h2>See the look. Check the evidence. Find the product.</h2></div><p>This is where celebrity attention becomes useful commerce. Campaign, confirmed use and fan speculation are labeled differently.</p></div>
-        <div class="seen-grid">
-          <article class="seen-card seen-feature">
-            <div class="seen-photo"><img src="https://images.pexels.com/photos/31132240/pexels-photo-31132240/free-photo-of-elegant-fashion-portrait-in-milan.jpeg?auto=compress&dpr=1&h=750&w=1260" alt="Editorial fashion portrait used as a demo placeholder" /><span class="photo-note">DEMO EDITORIAL IMAGE</span></div>
-            <div class="seen-content"><div class="seen-top"><span class="badge verified">VERIFIED CAMPAIGN</span><span>2026</span></div><div class="seen-person">KATSEYE × LANEIGE</div><h3>JuicePop Box Lip Tint</h3><p>LANEIGE officially named KATSEYE its global partner for the JuicePop Box Lip Tint campaign. We report the commercial relationship without implying private everyday use.</p><div class="seen-bottom"><div><small>U.S. official price</small><strong>$23</strong></div><a href="/shop-korea">CHECK PRODUCT →</a></div></div>
-          </article>
-          <article class="seen-card">
-            <div class="seen-photo product-photo"><img src="https://www.ciee.org/sites/default/files/styles/686w/public/blog/2023-11/IMG_4909.jpg?itok=xUcvhOBj" alt="Korean skincare products on shelves" /><span class="photo-note">K-BEAUTY RETAIL</span></div>
-            <div class="seen-content"><div class="seen-top"><span class="badge verified">VERIFIED CAMPAIGN</span><span>2026</span></div><div class="seen-person">Kendall Jenner × ANUA</div><h3>PDRN Collagen Glow Facial Serum Spray</h3><p>ANUA's official global campaign is centered on this serum spray. The brand relationship is confirmed and the product can be price-checked separately.</p><div class="seen-bottom"><div><small>U.S. official price</small><strong>$29</strong></div><a href="/shop-korea">CHECK PRODUCT →</a></div></div>
-          </article>
-          <article class="seen-card method-card">
-            <div class="method-visual"><span>01</span><b>Campaign</b><span>02</span><b>Confirmed use</b><span>03</span><b>Unconfirmed</b></div>
-            <div class="seen-content"><div class="seen-top"><span class="badge">OUR RULE</span><span>EDITORIAL</span></div><h3>We don't turn fan guesses into facts.</h3><p>Every Seen On card must show what kind of evidence exists before a product link appears.</p><a class="link" href="/about">READ OUR METHOD →</a></div>
-          </article>
+
+        <div class="section-head">
+
+          <div>
+
+            <div class="eyebrow">
+              02 · Seen On
+            </div>
+
+            <h2>
+              See the look.
+              Check the evidence.
+              Find the product.
+            </h2>
+
+          </div>
+
+
+          <p>
+            This is where celebrity attention becomes
+            useful commerce. Campaign, confirmed use
+            and fan speculation are labeled differently.
+          </p>
+
         </div>
-        <div class="asset-note">Demo photography uses free stock/press imagery. Before public launch, celebrity imagery should be licensed or supplied by an official press/brand source.</div>
+
+
+        <div class="seen-grid">
+
+
+          <!-- KATSEYE -->
+          <article class="seen-card seen-feature">
+
+            <div class="seen-photo">
+
+              <img
+                src="https://images.pexels.com/photos/31132240/pexels-photo-31132240/free-photo-of-elegant-fashion-portrait-in-milan.jpeg?auto=compress&dpr=1&h=750&w=1260"
+                alt="Editorial fashion portrait used as a demo placeholder"
+              />
+
+              <span class="photo-note">
+                DEMO EDITORIAL IMAGE
+              </span>
+
+            </div>
+
+
+            <div class="seen-content">
+
+              <div class="seen-top">
+
+                <span class="badge verified">
+                  VERIFIED CAMPAIGN
+                </span>
+
+                <span>
+                  2026
+                </span>
+
+              </div>
+
+
+              <div class="seen-person">
+                KATSEYE × LANEIGE
+              </div>
+
+
+              <h3>
+                JuicePop Box Lip Tint
+              </h3>
+
+
+              <p>
+                LANEIGE officially named KATSEYE
+                its global partner for the JuicePop
+                Box Lip Tint campaign. We report
+                the commercial relationship without
+                implying private everyday use.
+              </p>
+
+
+              <div class="seen-bottom">
+
+                <div>
+
+                  <small>
+                    U.S. official price
+                  </small>
+
+                  <strong>
+                    $23
+                  </strong>
+
+                </div>
+
+                <a href="/shop-korea">
+                  CHECK PRODUCT →
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- ANUA -->
+          <article class="seen-card">
+
+            <div class="seen-photo product-photo">
+
+              <img
+                src="https://www.ciee.org/sites/default/files/styles/686w/public/blog/2023-11/IMG_4909.jpg?itok=xUcvhOBj"
+                alt="Korean skincare products on shelves"
+              />
+
+              <span class="photo-note">
+                K-BEAUTY RETAIL
+              </span>
+
+            </div>
+
+
+            <div class="seen-content">
+
+              <div class="seen-top">
+
+                <span class="badge verified">
+                  VERIFIED CAMPAIGN
+                </span>
+
+                <span>
+                  2026
+                </span>
+
+              </div>
+
+
+              <div class="seen-person">
+                Kendall Jenner × ANUA
+              </div>
+
+
+              <h3>
+                PDRN Collagen Glow Facial Serum Spray
+              </h3>
+
+
+              <p>
+                ANUA's official global campaign is centered
+                on this serum spray. The brand relationship
+                is confirmed and the product can be
+                price-checked separately.
+              </p>
+
+
+              <div class="seen-bottom">
+
+                <div>
+
+                  <small>
+                    U.S. official price
+                  </small>
+
+                  <strong>
+                    $29
+                  </strong>
+
+                </div>
+
+                <a href="/shop-korea">
+                  CHECK PRODUCT →
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- METHOD -->
+          <article class="seen-card method-card">
+
+            <div class="method-visual">
+
+              <span>
+                01
+              </span>
+
+              <b>
+                Campaign
+              </b>
+
+
+              <span>
+                02
+              </span>
+
+              <b>
+                Confirmed use
+              </b>
+
+
+              <span>
+                03
+              </span>
+
+              <b>
+                Unconfirmed
+              </b>
+
+            </div>
+
+
+            <div class="seen-content">
+
+              <div class="seen-top">
+
+                <span class="badge">
+                  OUR RULE
+                </span>
+
+                <span>
+                  EDITORIAL
+                </span>
+
+              </div>
+
+
+              <h3>
+                We don't turn fan guesses into facts.
+              </h3>
+
+
+              <p>
+                Every Seen On card must show
+                what kind of evidence exists
+                before a product link appears.
+              </p>
+
+
+              <a
+                class="link"
+                href="/about"
+              >
+                READ OUR METHOD →
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <div class="asset-note">
+          Demo photography uses free stock/press imagery.
+          Before public launch, celebrity imagery should be
+          licensed or supplied by an official press/brand source.
+        </div>
+
       </div>
+
     </section>
 
+
+
+    <!-- REAL KOREA -->
     <section>
-      <div class="wrap"><div class="section-head"><div><div class="eyebrow">03 · 100 Voices: Korea</div><h2>Real people, not translated assumptions</h2></div><p>Published interviews become original reporting and a growing foreign-consumer insight layer.</p></div>
-      <div class="grid-3">{interviews.map(item => <article class="voice"><span class="tag">REAL KOREA</span><div class="quote">“{item.quote || item.headline}”</div><div class="voice-foot">{item.country || 'Korea'}{item.biggestProblem ? ` · ${item.biggestProblem}` : ''}</div></article>)}</div>
-      <div class="data-strip"><div class="stat"><b>100</b><small>first research target</small></div><div class="stat"><b>10</b><small>deep interviews in month one</small></div><div class="stat"><b>300</b><small>next-stage proprietary dataset</small></div></div>
-      <div class="section-link"><a class="link" href="/real-korea">EXPLORE REAL KOREA →</a></div></div>
+
+      <div class="wrap">
+
+        <div class="section-head">
+
+          <div>
+
+            <div class="eyebrow">
+              03 · 100 Voices: Korea
+            </div>
+
+            <h2>
+              Real people,
+              not translated assumptions
+            </h2>
+
+          </div>
+
+
+          <p>
+            Published interviews become original reporting
+            and a growing foreign-consumer insight layer.
+          </p>
+
+        </div>
+
+
+        <div class="grid-3">
+
+          {
+            interviews.map(
+              item => (
+
+                <article class="voice">
+
+                  <span class="tag">
+                    REAL KOREA
+                  </span>
+
+
+                  <div class="quote">
+                    “{item.quote || item.headline}”
+                  </div>
+
+
+                  <div class="voice-foot">
+
+                    {
+                      item.country ||
+                      'Korea'
+                    }
+
+                    {
+                      item.biggestProblem
+                        ? ` · ${item.biggestProblem}`
+                        : ''
+                    }
+
+                  </div>
+
+                </article>
+
+              )
+            )
+          }
+
+        </div>
+
+
+        <div class="data-strip">
+
+          <div class="stat">
+
+            <b>
+              100
+            </b>
+
+            <small>
+              first research target
+            </small>
+
+          </div>
+
+
+          <div class="stat">
+
+            <b>
+              10
+            </b>
+
+            <small>
+              deep interviews in month one
+            </small>
+
+          </div>
+
+
+          <div class="stat">
+
+            <b>
+              300
+            </b>
+
+            <small>
+              next-stage proprietary dataset
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-link">
+
+          <a
+            class="link"
+            href="/real-korea"
+          >
+            EXPLORE REAL KOREA →
+          </a>
+
+        </div>
+
+      </div>
+
     </section>
 
+
+
+    <!-- SHOP KOREA -->
     <section>
-      <div class="wrap"><div class="section-head"><div><div class="eyebrow">04 · Shop Korea</div><h2>Discovery that can become commerce</h2></div><p>Affiliate-first. Only products with observed interest become Won Global sourcing candidates.</p></div>
-      <div class="shop-grid">{products.map(product => <article class="shop-card"><div class="product-art">{product.imageUrl ? <img src={product.imageUrl} alt={`${product.brand} ${product.name}`} /> : '↗'}</div><div class="meta"><span>{product.category || 'K-Product'}</span><span>{product.verification || ''}</span></div><h3>{product.name}</h3><p>{product.summary}</p><div class="verify">{product.exportCandidate ? 'Won Global candidate' : 'Product intelligence'}</div></article>)}</div>
-      <div class="section-link"><a class="link" href="/shop-korea">SHOP KOREA →</a></div></div>
+
+      <div class="wrap">
+
+        <div class="section-head">
+
+          <div>
+
+            <div class="eyebrow">
+              04 · Shop Korea
+            </div>
+
+            <h2>
+              Discovery that can become commerce
+            </h2>
+
+          </div>
+
+
+          <p>
+            Affiliate-first.
+            Only products with observed interest
+            become Won Global sourcing candidates.
+          </p>
+
+        </div>
+
+
+        <div class="shop-grid">
+
+          {
+            products.map(
+              product => (
+
+                <article class="shop-card">
+
+                  <div class="product-art">
+
+                    {
+                      product.imageUrl
+                        ? (
+
+                          <img
+                            src={product.imageUrl}
+                            alt={`${product.brand} ${product.name}`}
+                          />
+
+                        )
+                        : '↗'
+                    }
+
+                  </div>
+
+
+                  <div class="meta">
+
+                    <span>
+                      {
+                        product.category ||
+                        'K-Product'
+                      }
+                    </span>
+
+                    <span>
+                      {
+                        product.verification ||
+                        ''
+                      }
+                    </span>
+
+                  </div>
+
+
+                  <h3>
+                    {product.name}
+                  </h3>
+
+
+                  <p>
+                    {product.summary}
+                  </p>
+
+
+                  <div class="verify">
+
+                    {
+                      product.exportCandidate
+                        ? 'Won Global candidate'
+                        : 'Product intelligence'
+                    }
+
+                  </div>
+
+                </article>
+
+              )
+            )
+          }
+
+        </div>
+
+
+        <div class="section-link">
+
+          <a
+            class="link"
+            href="/shop-korea"
+          >
+            SHOP KOREA →
+          </a>
+
+        </div>
+
+      </div>
+
     </section>
 
+
+
+    <!-- KOREA HELP -->
     <section class="home-help-section">
-  <div class="wrap">
-    <div class="cta home-help-cta">
-      <div>
-        <div class="eyebrow">05 · Korea Help</div>
-        <h2>Stuck in Korea?<br />We’ll handle the Korean.</h2>
-<p>Lost item, booking problem, phone call, refund or something else? Tell us what happened.</p>
+
+      <div class="wrap">
+
+
+        <div class="home-help-head">
+
+          <div>
+
+            <div class="eyebrow">
+              05 · KOREA HELP
+            </div>
+
+
+            <h2>
+              Need help in Korea?
+            </h2>
+
+
+            <p>
+              From making a Korean phone call
+              to translating business documents,
+              choose the help you need.
+            </p>
+
+          </div>
+
+
+          <a
+            href="/korea-help"
+            class="home-help-all"
+          >
+            VIEW KOREA HELP →
+          </a>
+
+        </div>
+
+
+
+        <div class="home-help-grid">
+
+
+          <!-- CALL KOREA -->
+          <a
+            href="/korea-help/call-korea"
+            class="home-help-card home-help-call"
+          >
+
+            <div class="home-help-card-top">
+
+              <span class="home-help-number">
+                01
+              </span>
+
+              <span class="home-help-status">
+                BETA
+              </span>
+
+            </div>
+
+
+            <div class="home-help-card-copy">
+
+              <div class="home-help-label">
+                PRACTICAL HELP
+              </div>
+
+
+              <h3>
+                Call Korea
+              </h3>
+
+
+              <p>
+                Need someone to call a hotel,
+                restaurant, hospital, shop
+                or customer service in Korean?
+                Tell us what happened.
+                We handle the Korean.
+              </p>
+
+
+              <div class="home-help-usecases">
+
+                <span>
+                  Bookings
+                </span>
+
+                <span>
+                  Refunds
+                </span>
+
+                <span>
+                  Lost items
+                </span>
+
+                <span>
+                  Customer service
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="home-help-card-action">
+              GET HELP →
+            </div>
+
+          </a>
+
+
+
+          <!-- TRANSLATION -->
+          <a
+            href="/korea-help/translation"
+            class="home-help-card home-help-translation"
+          >
+
+            <div class="home-help-card-top">
+
+              <span class="home-help-number">
+                02
+              </span>
+
+              <span class="home-help-status home-help-status-live">
+                ESTIMATE ONLINE
+              </span>
+
+            </div>
+
+
+            <div class="home-help-card-copy">
+
+              <div class="home-help-label">
+                KOREAN ↔ ENGLISH
+              </div>
+
+
+              <h3>
+                Translation
+              </h3>
+
+
+              <p>
+                Documents, websites, videos
+                and Korean-market content
+                translated, localized and reviewed
+                for real readers.
+              </p>
+
+
+              <div class="home-help-usecases">
+
+                <span>
+                  Documents
+                </span>
+
+                <span>
+                  Websites
+                </span>
+
+                <span>
+                  Subtitles
+                </span>
+
+                <span>
+                  Localization
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="home-help-card-action">
+              GET ESTIMATE →
+            </div>
+
+          </a>
+
+        </div>
+
+
+
+        <div class="disclosure">
+
+          <strong>
+            Editorial & commerce policy:
+          </strong>
+
+          Reporting and commercial services are separated.
+          Commercial relationships do not influence
+          Seen in Korea editorial coverage.
+
+        </div>
+
       </div>
 
-      <div class="cta-actions">
-  <a href="/korea-help/call-korea">GET HELP NOW</a>
-  <a href="/real-korea" class="secondary">REAL KOREA</a>
-</div>
-    </div>
+    </section>
 
-    <div class="disclosure">
-      <strong>Editorial & commerce policy:</strong>
-      Reporting and commercial links are separated. Celebrity-product relationships are not implied without evidence. Affiliate relationships are disclosed.
-    </div>
-  </div>
-</section>
+
   </main>
+
 </BaseLayout>
+
+
+
+<style>
+
+  .home-help-section {
+    padding: 58px 0;
+    background: #ece6dc;
+  }
+
+
+  .home-help-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 24px;
+  }
+
+
+  .home-help-head h2 {
+    margin: 8px 0 10px;
+
+    font-size:
+      clamp(
+        40px,
+        5vw,
+        62px
+      );
+
+    line-height: .93;
+    letter-spacing: -.06em;
+  }
+
+
+  .home-help-head p {
+    max-width: 650px;
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+
+  .home-help-all {
+    flex: 0 0 auto;
+
+    padding-bottom: 4px;
+
+    color: var(--accent);
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .07em;
+  }
+
+
+  .home-help-grid {
+    display: grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 14px;
+  }
+
+
+  .home-help-card {
+    min-height: 390px;
+
+    padding: 28px;
+
+    display: flex;
+    flex-direction: column;
+
+    border:
+      1px solid
+      var(--line);
+
+    transition:
+      transform .18s ease,
+      box-shadow .18s ease;
+  }
+
+
+  .home-help-card:hover {
+    transform:
+      translateY(-3px);
+
+    box-shadow:
+      0 18px 42px
+      rgba(0,0,0,.08);
+  }
+
+
+  .home-help-call {
+    background: #111;
+    color: #fff;
+
+    border-color: #111;
+  }
+
+
+  .home-help-translation {
+    background: #fffdfa;
+    color: #111;
+  }
+
+
+  .home-help-card-top {
+    display: flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      space-between;
+
+    gap: 20px;
+  }
+
+
+  .home-help-number {
+    color:
+      var(--accent);
+
+    font-size:
+      11px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+  .home-help-status {
+    padding:
+      5px 8px;
+
+    border-radius:
+      999px;
+
+    background:
+      var(--accent);
+
+    color:
+      #fff;
+
+    font-size:
+      8px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+  .home-help-status-live {
+    background:
+      #111;
+  }
+
+
+  .home-help-card-copy {
+    margin-top:
+      48px;
+  }
+
+
+  .home-help-label {
+    margin-bottom:
+      8px;
+
+    color:
+      var(--accent);
+
+    font-size:
+      9px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .1em;
+  }
+
+
+  .home-help-card h3 {
+    margin:
+      0 0 15px;
+
+    font-size:
+      clamp(
+        38px,
+        4vw,
+        54px
+      );
+
+    line-height:
+      .95;
+
+    letter-spacing:
+      -.055em;
+  }
+
+
+  .home-help-card p {
+    max-width:
+      500px;
+
+    margin:
+      0;
+
+    font-size:
+      13px;
+
+    line-height:
+      1.55;
+  }
+
+
+  .home-help-call p {
+    color:
+      #aaa;
+  }
+
+
+  .home-help-translation p {
+    color:
+      var(--muted);
+  }
+
+
+  .home-help-usecases {
+    display:
+      flex;
+
+    flex-wrap:
+      wrap;
+
+    gap:
+      6px;
+
+    margin-top:
+      24px;
+  }
+
+
+  .home-help-usecases span {
+    padding:
+      7px 9px;
+
+    border:
+      1px solid
+      rgba(
+        255,
+        255,
+        255,
+        .22
+      );
+
+    font-size:
+      9px;
+
+    font-weight:
+      800;
+  }
+
+
+  .home-help-translation
+  .home-help-usecases span {
+    border-color:
+      var(--line);
+
+    background:
+      #f3eee7;
+  }
+
+
+  .home-help-card-action {
+    margin-top:
+      auto;
+
+    padding-top:
+      28px;
+
+    color:
+      var(--accent);
+
+    font-size:
+      10px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+  .home-help-section
+  .disclosure {
+    margin-top:
+      18px;
+  }
+
+
+  @media (
+    max-width: 850px
+  ) {
+
+    .home-help-section {
+      padding:
+        42px 0;
+    }
+
+
+    .home-help-head {
+      display:
+        block;
+    }
+
+
+    .home-help-head h2 {
+      font-size:
+        42px;
+    }
+
+
+    .home-help-all {
+      display:
+        inline-block;
+
+      margin-top:
+        16px;
+    }
+
+
+    .home-help-grid {
+      grid-template-columns:
+        1fr;
+    }
+
+
+    .home-help-card {
+      min-height:
+        330px;
+
+      padding:
+        23px 20px;
+    }
+
+
+    .home-help-card-copy {
+      margin-top:
+        36px;
+    }
+
+  }
+
+</style>
