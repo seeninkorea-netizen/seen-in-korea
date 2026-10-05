@@ -1,0 +1,1396 @@
+<div class="sik-estimator">
+
+  <div class="sik-estimator-tabs">
+    <button
+      type="button"
+      class="is-active"
+      data-estimate-tab="document"
+    >
+      Upload File
+    </button>
+
+    <button
+      type="button"
+      data-estimate-tab="text"
+    >
+      Paste Text
+    </button>
+
+    <button
+      type="button"
+      data-estimate-tab="video"
+    >
+      Video URL
+    </button>
+  </div>
+
+
+  <form id="sik-estimate-form">
+
+    <input
+      type="hidden"
+      id="sik-source-type"
+      value="DOCUMENT"
+    />
+
+
+    <!-- FILE -->
+    <div
+      class="sik-source-panel"
+      data-estimate-panel="document"
+    >
+
+      <label class="sik-file-box">
+
+        <input
+          type="file"
+          id="sik-estimate-file"
+          accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.srt,.vtt"
+        />
+
+        <span class="sik-file-icon">
+          ↑
+        </span>
+
+        <strong>
+          Choose your source file
+        </strong>
+
+        <small id="sik-file-name">
+          PDF, DOCX, PPTX, TXT, SRT or VTT
+        </small>
+
+      </label>
+
+
+      <label class="sik-field">
+        <span>
+          Approximate source word count
+        </span>
+
+        <input
+          type="number"
+          id="sik-word-count"
+          min="1"
+          step="1"
+          placeholder="e.g. 2800"
+        />
+
+        <small>
+          TXT, SRT and VTT files can be counted automatically.
+          For PDF, DOCX and PPTX, enter the approximate source word count.
+        </small>
+      </label>
+
+    </div>
+
+
+    <!-- TEXT -->
+    <div
+      class="sik-source-panel"
+      data-estimate-panel="text"
+      hidden
+    >
+
+      <label class="sik-field">
+
+        <span>
+          Paste your source text
+        </span>
+
+        <textarea
+          id="sik-pasted-text"
+          rows="9"
+          placeholder="Paste the text you want translated here..."
+        ></textarea>
+
+      </label>
+
+      <div class="sik-word-detected">
+        <strong id="sik-text-word-count">
+          0
+        </strong>
+        words detected
+      </div>
+
+    </div>
+
+
+    <!-- VIDEO -->
+    <div
+      class="sik-source-panel"
+      data-estimate-panel="video"
+      hidden
+    >
+
+      <label class="sik-field">
+
+        <span>
+          Video URL
+        </span>
+
+        <input
+          type="url"
+          id="sik-video-url"
+          placeholder="https://youtube.com/..."
+        />
+
+      </label>
+
+
+      <label class="sik-field">
+
+        <span>
+          Video length
+        </span>
+
+        <div class="sik-input-unit">
+
+          <input
+            type="number"
+            id="sik-video-minutes"
+            min="0.1"
+            step="0.1"
+            placeholder="10"
+          />
+
+          <span>
+            minutes
+          </span>
+
+        </div>
+
+      </label>
+
+    </div>
+
+
+    <!-- OPTIONS -->
+    <div class="sik-estimate-grid">
+
+      <label class="sik-field">
+
+        <span>
+          Language pair
+        </span>
+
+        <select id="sik-language-pair">
+          <option value="KO_EN">
+            Korean → English
+          </option>
+
+          <option value="EN_KO">
+            English → Korean
+          </option>
+        </select>
+
+      </label>
+
+
+      <label class="sik-field">
+
+        <span>
+          Service
+        </span>
+
+        <select id="sik-service">
+
+          <option value="STANDARD">
+            Translation + QA
+          </option>
+
+          <option value="REVIEW">
+            Review existing translation
+          </option>
+
+          <option value="DOUBLE_REVIEW">
+            Translation + Second English Review
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <label class="sik-field">
+
+        <span>
+          Purpose
+        </span>
+
+        <select id="sik-purpose">
+
+          <option value="BUSINESS">
+            Business / Corporate
+          </option>
+
+          <option value="WEBSITE">
+            Website / App
+          </option>
+
+          <option value="MARKETING">
+            Marketing / Public-facing
+          </option>
+
+          <option value="VIDEO">
+            Video / Creator
+          </option>
+
+          <option value="TECHNICAL">
+            Technical / IT
+          </option>
+
+          <option value="ACADEMIC">
+            Academic / Research
+          </option>
+
+          <option value="LEGAL">
+            Legal
+          </option>
+
+          <option value="MEDICAL">
+            Medical / Healthcare
+          </option>
+
+          <option value="PERSONAL">
+            Personal
+          </option>
+
+          <option value="OTHER">
+            Other
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <label class="sik-field">
+
+        <span>
+          Deadline
+        </span>
+
+        <select id="sik-deadline">
+
+          <option value="STANDARD">
+            Standard
+          </option>
+
+          <option value="FAST">
+            Fast
+          </option>
+
+          <option value="URGENT">
+            Urgent
+          </option>
+
+        </select>
+
+      </label>
+
+    </div>
+
+
+    <div
+      class="sik-estimate-error"
+      id="sik-estimate-error"
+      hidden
+    ></div>
+
+
+    <button
+      type="submit"
+      class="sik-estimate-submit"
+    >
+      GET MY ESTIMATE →
+    </button>
+
+
+    <!-- RESULT -->
+    <div
+      class="sik-estimate-result"
+      id="sik-estimate-result"
+      hidden
+    >
+
+      <div class="sik-estimate-result-top">
+
+        <div>
+
+          <small>
+            ESTIMATED PRICE
+          </small>
+
+          <strong id="sik-estimate-price">
+            —
+          </strong>
+
+        </div>
+
+
+        <span
+          class="sik-estimate-review"
+          id="sik-estimate-review"
+          hidden
+        >
+          HUMAN REVIEW
+        </span>
+
+      </div>
+
+
+      <div
+        class="sik-estimate-summary"
+        id="sik-estimate-summary"
+      ></div>
+
+
+      <p id="sik-estimate-message"></p>
+
+
+      <button
+        type="button"
+        class="sik-estimate-order"
+        disabled
+      >
+        CONTINUE TO ORDER — NEXT STEP
+      </button>
+
+      <small class="sik-estimate-disclaimer">
+        This is an estimate. The final price is confirmed
+        before payment.
+      </small>
+
+    </div>
+
+  </form>
+
+</div>
+
+
+<script>
+
+  const money =
+    new Intl.NumberFormat('ko-KR');
+
+
+  const tabs =
+    document.querySelectorAll(
+      '[data-estimate-tab]'
+    );
+
+
+  const panels =
+    document.querySelectorAll(
+      '[data-estimate-panel]'
+    );
+
+
+  const sourceType =
+    document.getElementById(
+      'sik-source-type'
+    );
+
+
+  const wordInput =
+    document.getElementById(
+      'sik-word-count'
+    );
+
+
+  const pastedText =
+    document.getElementById(
+      'sik-pasted-text'
+    );
+
+
+  const textWordCount =
+    document.getElementById(
+      'sik-text-word-count'
+    );
+
+
+  const videoMinutes =
+    document.getElementById(
+      'sik-video-minutes'
+    );
+
+
+  const fileInput =
+    document.getElementById(
+      'sik-estimate-file'
+    );
+
+
+  const fileName =
+    document.getElementById(
+      'sik-file-name'
+    );
+
+
+  const form =
+    document.getElementById(
+      'sik-estimate-form'
+    );
+
+
+  const errorBox =
+    document.getElementById(
+      'sik-estimate-error'
+    );
+
+
+  const resultBox =
+    document.getElementById(
+      'sik-estimate-result'
+    );
+
+
+  const priceBox =
+    document.getElementById(
+      'sik-estimate-price'
+    );
+
+
+  const messageBox =
+    document.getElementById(
+      'sik-estimate-message'
+    );
+
+
+  const summaryBox =
+    document.getElementById(
+      'sik-estimate-summary'
+    );
+
+
+  const reviewBadge =
+    document.getElementById(
+      'sik-estimate-review'
+    );
+
+
+  function countWords(text) {
+
+    const value =
+      text.trim();
+
+    if (!value) {
+      return 0;
+    }
+
+    return value
+      .split(/\s+/)
+      .filter(Boolean)
+      .length;
+
+  }
+
+
+  tabs.forEach((tab) => {
+
+    tab.addEventListener(
+      'click',
+      () => {
+
+        tabs.forEach(
+          (item) =>
+            item.classList.remove(
+              'is-active'
+            )
+        );
+
+
+        tab.classList.add(
+          'is-active'
+        );
+
+
+        const selected =
+          tab.dataset.estimateTab;
+
+
+        panels.forEach(
+          (panel) => {
+
+            panel.hidden =
+              panel.dataset.estimatePanel
+              !== selected;
+
+          }
+        );
+
+
+        if (
+          selected === 'text'
+        ) {
+          sourceType.value =
+            'TEXT';
+        }
+
+
+        if (
+          selected === 'video'
+        ) {
+          sourceType.value =
+            'VIDEO';
+        }
+
+
+        if (
+          selected === 'document'
+        ) {
+          sourceType.value =
+            'DOCUMENT';
+        }
+
+
+        resultBox.hidden =
+          true;
+
+      }
+    );
+
+  });
+
+
+  pastedText?.addEventListener(
+    'input',
+    () => {
+
+      const count =
+        countWords(
+          pastedText.value
+        );
+
+
+      textWordCount.textContent =
+        String(count);
+
+    }
+  );
+
+
+  fileInput?.addEventListener(
+    'change',
+    async () => {
+
+      const file =
+        fileInput.files?.[0];
+
+
+      if (!file) {
+        return;
+      }
+
+
+      fileName.textContent =
+        file.name;
+
+
+      const lower =
+        file.name
+          .toLowerCase();
+
+
+      if (
+        lower.endsWith('.txt') ||
+        lower.endsWith('.srt') ||
+        lower.endsWith('.vtt')
+      ) {
+
+        try {
+
+          const text =
+            await file.text();
+
+
+          const count =
+            countWords(text);
+
+
+          wordInput.value =
+            String(count);
+
+        } catch {
+
+          // manual word count remains available
+
+        }
+
+      }
+
+    }
+  );
+
+
+  function buildPayload() {
+
+    let unitType =
+      'WORDS';
+
+
+    let unitCount =
+      Number(
+        wordInput.value
+      );
+
+
+    if (
+      sourceType.value ===
+      'TEXT'
+    ) {
+
+      unitCount =
+        countWords(
+          pastedText.value
+        );
+
+    }
+
+
+    if (
+      sourceType.value ===
+      'VIDEO'
+    ) {
+
+      unitType =
+        'MINUTES';
+
+
+      unitCount =
+        Number(
+          videoMinutes.value
+        );
+
+    }
+
+
+    return {
+
+      language_pair:
+        document.getElementById(
+          'sik-language-pair'
+        ).value,
+
+      service_level:
+        document.getElementById(
+          'sik-service'
+        ).value,
+
+      purpose:
+        document.getElementById(
+          'sik-purpose'
+        ).value,
+
+      deadline:
+        document.getElementById(
+          'sik-deadline'
+        ).value,
+
+      source_type:
+        sourceType.value,
+
+      unit_type:
+        unitType,
+
+      unit_count:
+        unitCount,
+
+    };
+
+  }
+
+
+  form?.addEventListener(
+    'submit',
+    async (event) => {
+
+      event.preventDefault();
+
+
+      errorBox.hidden =
+        true;
+
+
+      resultBox.hidden =
+        true;
+
+
+      const payload =
+        buildPayload();
+
+
+      if (
+        !payload.unit_count ||
+        payload.unit_count <= 0
+      ) {
+
+        errorBox.textContent =
+          payload.unit_type ===
+          'MINUTES'
+            ? 'Please enter the video length.'
+            : 'Please enter or provide the source word count.';
+
+
+        errorBox.hidden =
+          false;
+
+
+        return;
+
+      }
+
+
+      const submit =
+        form.querySelector(
+          '.sik-estimate-submit'
+        );
+
+
+      submit.disabled =
+        true;
+
+
+      submit.textContent =
+        'CALCULATING…';
+
+
+      try {
+
+        const response =
+          await fetch(
+            '/api/translation/estimate',
+            {
+              method: 'POST',
+
+              headers: {
+                'content-type':
+                  'application/json',
+              },
+
+              body:
+                JSON.stringify(
+                  payload
+                ),
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        if (
+          !response.ok ||
+          !data.ok
+        ) {
+
+          throw new Error(
+            data.error ||
+            'Could not calculate estimate.'
+          );
+
+        }
+
+
+        const estimate =
+          data.estimate;
+
+
+        priceBox.textContent =
+          `₩${money.format(
+            estimate.estimate_min
+          )} – ₩${money.format(
+            estimate.estimate_max
+          )}`;
+
+
+        const unit =
+          payload.unit_type ===
+          'WORDS'
+            ? `${Number(
+                payload.unit_count
+              ).toLocaleString()} words`
+            : `${payload.unit_count} min`;
+
+
+        const pair =
+          payload.language_pair ===
+          'KO_EN'
+            ? 'Korean → English'
+            : 'English → Korean';
+
+
+        summaryBox.innerHTML =
+          `
+            <span>${pair}</span>
+            <span>${unit}</span>
+            <span>${
+              document.getElementById(
+                'sik-service'
+              ).selectedOptions[0]
+                .textContent
+            }</span>
+            <span>${
+              document.getElementById(
+                'sik-deadline'
+              ).selectedOptions[0]
+                .textContent
+            }</span>
+          `;
+
+
+        messageBox.textContent =
+          estimate.message;
+
+
+        reviewBadge.hidden =
+          !estimate.manual_review;
+
+
+        resultBox.hidden =
+          false;
+
+
+        resultBox.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+        });
+
+
+      } catch (error) {
+
+        errorBox.textContent =
+          error?.message ||
+          'Something went wrong.';
+
+
+        errorBox.hidden =
+          false;
+
+      } finally {
+
+        submit.disabled =
+          false;
+
+
+        submit.textContent =
+          'GET MY ESTIMATE →';
+
+      }
+
+    }
+  );
+
+</script>
+
+
+<style>
+
+  .sik-estimator {
+    color: #18314b;
+  }
+
+
+  .sik-estimator-tabs {
+    display: grid;
+    grid-template-columns:
+      repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+
+
+  .sik-estimator-tabs button {
+    border: 1px solid #d8e3e9;
+    background: #f5f8fa;
+    color: #53677a;
+    border-radius: 10px;
+    padding: 11px 8px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+
+  .sik-estimator-tabs button.is-active {
+    border-color: #079095;
+    background: #e9f9f9;
+    color: #06777a;
+  }
+
+
+  .sik-source-panel {
+    display: grid;
+    gap: 16px;
+  }
+
+
+  .sik-file-box {
+    min-height: 140px;
+    border: 1px dashed #9dbbc8;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    text-align: center;
+    cursor: pointer;
+    background: #fbfdfe;
+  }
+
+
+  .sik-file-box input {
+    display: none;
+  }
+
+
+  .sik-file-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #e7f8f9;
+    color: #078d91;
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+
+
+  .sik-file-box strong {
+    color: #0b2645;
+  }
+
+
+  .sik-file-box small {
+    color: #708090;
+    margin-top: 5px;
+  }
+
+
+  .sik-field {
+    display: grid;
+    gap: 7px;
+  }
+
+
+  .sik-field > span {
+    font-size: 12px;
+    font-weight: 900;
+    color: #18314b;
+  }
+
+
+  .sik-field input,
+  .sik-field textarea,
+  .sik-field select {
+
+    width: 100%;
+    box-sizing: border-box;
+
+    border:
+      1px solid #d5e0e7;
+
+    border-radius:
+      10px;
+
+    padding:
+      12px 13px;
+
+    background:
+      #fff;
+
+    color:
+      #18314b;
+
+    font:
+      inherit;
+
+  }
+
+
+  .sik-field textarea {
+    resize:
+      vertical;
+  }
+
+
+  .sik-field small {
+    color:
+      #748493;
+
+    line-height:
+      1.5;
+
+    font-size:
+      11px;
+  }
+
+
+  .sik-word-detected {
+    background:
+      #f1f6f8;
+
+    border-radius:
+      10px;
+
+    padding:
+      10px 12px;
+
+    color:
+      #667888;
+
+    font-size:
+      12px;
+  }
+
+
+  .sik-word-detected strong {
+    color:
+      #078d91;
+  }
+
+
+  .sik-input-unit {
+    position:
+      relative;
+  }
+
+
+  .sik-input-unit input {
+    padding-right:
+      80px;
+  }
+
+
+  .sik-input-unit span {
+    position:
+      absolute;
+
+    right:
+      13px;
+
+    top:
+      50%;
+
+    transform:
+      translateY(-50%);
+
+    color:
+      #778794;
+
+    font-size:
+      12px;
+  }
+
+
+  .sik-estimate-grid {
+
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap:
+      14px;
+
+    margin-top:
+      20px;
+
+  }
+
+
+  .sik-estimate-submit {
+
+    width:
+      100%;
+
+    border:
+      0;
+
+    border-radius:
+      999px;
+
+    padding:
+      15px 20px;
+
+    margin-top:
+      20px;
+
+    background:
+      #078d91;
+
+    color:
+      #fff;
+
+    font-weight:
+      900;
+
+    cursor:
+      pointer;
+
+  }
+
+
+  .sik-estimate-submit:disabled {
+    opacity:
+      .65;
+  }
+
+
+  .sik-estimate-error {
+
+    margin-top:
+      15px;
+
+    padding:
+      12px;
+
+    border-radius:
+      10px;
+
+    background:
+      #fff1f1;
+
+    color:
+      #9c2727;
+
+    font-size:
+      12px;
+
+  }
+
+
+  .sik-estimate-result {
+
+    margin-top:
+      20px;
+
+    padding:
+      20px;
+
+    border-radius:
+      16px;
+
+    background:
+      #eefafa;
+
+    border:
+      1px solid #cbe8e8;
+
+  }
+
+
+  .sik-estimate-result-top {
+
+    display:
+      flex;
+
+    justify-content:
+      space-between;
+
+    gap:
+      15px;
+
+    align-items:
+      flex-start;
+
+  }
+
+
+  .sik-estimate-result-top small {
+
+    display:
+      block;
+
+    color:
+      #6d808c;
+
+    font-size:
+      10px;
+
+    font-weight:
+      900;
+
+  }
+
+
+  #sik-estimate-price {
+
+    display:
+      block;
+
+    margin-top:
+      4px;
+
+    color:
+      #067a7d;
+
+    font-size:
+      27px;
+
+    letter-spacing:
+      -.03em;
+
+  }
+
+
+  .sik-estimate-review {
+
+    display:
+      inline-flex;
+
+    padding:
+      7px 9px;
+
+    border-radius:
+      999px;
+
+    background:
+      #fff0d8;
+
+    color:
+      #9b6000;
+
+    font-size:
+      9px;
+
+    font-weight:
+      900;
+
+  }
+
+
+  .sik-estimate-summary {
+
+    display:
+      flex;
+
+    flex-wrap:
+      wrap;
+
+    gap:
+      7px;
+
+    margin-top:
+      15px;
+
+  }
+
+
+  .sik-estimate-summary span {
+
+    padding:
+      6px 9px;
+
+    border-radius:
+      999px;
+
+    background:
+      #fff;
+
+    color:
+      #4e6476;
+
+    font-size:
+      10px;
+
+    font-weight:
+      800;
+
+  }
+
+
+  #sik-estimate-message {
+
+    color:
+      #5f7382;
+
+    font-size:
+      12px;
+
+    line-height:
+      1.55;
+
+    margin:
+      15px 0;
+
+  }
+
+
+  .sik-estimate-order {
+
+    width:
+      100%;
+
+    border:
+      0;
+
+    border-radius:
+      999px;
+
+    padding:
+      14px;
+
+    background:
+      #d5e0e5;
+
+    color:
+      #75828d;
+
+    font-weight:
+      900;
+
+  }
+
+
+  .sik-estimate-disclaimer {
+
+    display:
+      block;
+
+    text-align:
+      center;
+
+    margin-top:
+      10px;
+
+    color:
+      #718391;
+
+    font-size:
+      10px;
+
+  }
+
+
+  @media (
+    max-width: 560px
+  ) {
+
+    .sik-estimate-grid {
+      grid-template-columns:
+        1fr;
+    }
+
+
+    .sik-estimator-tabs button {
+      font-size:
+        10px;
+    }
+
+
+    #sik-estimate-price {
+      font-size:
+        23px;
+    }
+
+  }
+
+</style>
