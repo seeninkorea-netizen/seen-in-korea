@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TranslationEstimate from '../../components/TranslationEstimate.astro';
 
 const projectExperience = [
   'NH NongHyup',
@@ -802,34 +803,7 @@ const agencyExperience = [
         </div>
 
         <div class="estimate-preview">
-
-          <div class="estimate-placeholder">
-            <div class="estimate-upload-icon">
-              ↑
-            </div>
-
-            <strong>
-              Translation estimate
-            </strong>
-
-            <p>
-              Upload File · Paste Text · Video URL
-            </p>
-
-            <button
-              type="button"
-              class="estimate-next-btn"
-              disabled
-            >
-              ESTIMATE SYSTEM — NEXT STEP
-            </button>
-
-            <small>
-              The transaction system will be connected
-              after this page is confirmed live.
-            </small>
-          </div>
-
+          <TranslationEstimate />
         </div>
 
       </div>
@@ -1493,8 +1467,13 @@ const agencyExperience = [
   }
 
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1553,50 +1532,6 @@ const agencyExperience = [
     border-radius: 22px;
     padding: 28px;
     color: var(--text);
-  }
-
-  .estimate-placeholder {
-    border: 1px dashed #adc5d3;
-    border-radius: 16px;
-    padding: 35px;
-    text-align: center;
-  }
-
-  .estimate-upload-icon {
-    width: 55px;
-    height: 55px;
-    display: grid;
-    place-items: center;
-    margin: 0 auto 15px;
-    border-radius: 50%;
-    background: #e8f8fb;
-    color: var(--teal);
-    font-size: 28px;
-  }
-
-  .estimate-placeholder strong {
-    color: var(--navy);
-    font-size: 20px;
-  }
-
-  .estimate-placeholder p {
-    color: var(--muted);
-  }
-
-  .estimate-next-btn {
-    border: 0;
-    border-radius: 999px;
-    padding: 13px 20px;
-    background: #dce5ea;
-    color: #71808c;
-    font-weight: 900;
-  }
-
-  .estimate-placeholder small {
-    display: block;
-    max-width: 380px;
-    margin: 14px auto 0;
-    color: #71808c;
   }
 
 
