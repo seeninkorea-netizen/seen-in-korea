@@ -237,6 +237,12 @@ const breadcrumbJsonLd = {
 <script is:inline define:vars={{ articleSlug: article.slug, articleTitle: article.title }}>
   (() => {
     const milestones = [25, 50, 75, 90];
+if (typeof window.gtag === 'function') {
+  window.gtag('event', 'article_view', {
+    article_slug: articleSlug,
+    article_title: articleTitle
+  });
+}
     const sent = new Set();
 
     function sendScrollDepth(percent) {
