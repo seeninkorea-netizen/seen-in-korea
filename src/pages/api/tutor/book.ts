@@ -86,6 +86,14 @@ function paymentOrderId() {
     .slice(0, 10)}`;
 }
 
+/*
+  Paid tutor sessions are sold in USD.
+
+  This allows the same international-payment
+  setup to support both:
+  - International credit/debit cards
+  - PayPal
+*/
 function getPrice(
   sessionType: SessionType
 ) {
@@ -95,8 +103,8 @@ function getPrice(
 
   const raw =
     sessionType === 'paid30'
-      ? runtimeEnv.TUTOR_PAID_30_PRICE_KRW
-      : runtimeEnv.TUTOR_PAID_50_PRICE_KRW;
+      ? runtimeEnv.TUTOR_PAID_30_PRICE_USD
+      : runtimeEnv.TUTOR_PAID_50_PRICE_USD;
 
   const amount = Number(raw);
 
@@ -107,30 +115,46 @@ function getPrice(
     return null;
   }
 
-  return Math.round(amount);
+  /*
+    Toss USD payments support
+    up to 2 decimal places.
+  */
+  return Math.round(amount * 100) / 100;
 }
 
 export const GET: APIRoute = async () => {
   return json({
     ok: true,
     service: 'sik-tutor-booking',
+
+    paymentOptions: [
+      'international_card',
+      'paypal',
+    ],
+
     sessions: {
       trial10: {
         durationMinutes: 10,
         price: 0,
-        currency: 'KRW',
+        currency: 'USD',
       },
+
       paid30: {
         durationMinutes: 30,
-        priceConfigured: Boolean(
-          getPrice('paid30')
-        ),
+        price:
+          getPrice('paid30'),
+        currency: 'USD',
+        priceConfigured:
+          getPrice('paid30') !== null,
       },
+
       paid50: {
         durationMinutes: 50,
-        priceConfigured: Boolean(
-          getPrice('paid50')
-        ),
+        price:
+          getPrice('paid50'),
+        currency: 'USD',
+        priceConfigured:
+          getPrice('paid50') !== null,
       },
     },
   });
@@ -156,7 +180,8 @@ export const POST: APIRoute = async ({
   let input: any;
 
   try {
-    input = await request.json();
+    input =
+      await request.json();
   } catch {
     return json(
       {
@@ -169,7 +194,10 @@ export const POST: APIRoute = async ({
   }
 
   const slotId =
-    cleanString(input.slotId, 150);
+    cleanString(
+      input.slotId,
+      150
+    );
 
   const sessionType =
     cleanString(
@@ -294,7 +322,9 @@ export const POST: APIRoute = async ({
   }
 
   const session =
-    SESSION_CONFIG[sessionType];
+    SESSION_CONFIG[
+      sessionType
+    ];
 
   const amount =
     getPrice(sessionType);
@@ -313,40 +343,38 @@ export const POST: APIRoute = async ({
     );
   }
 
-  const client = createClient({
-    projectId,
-    dataset,
-    apiVersion: '2026-10-01',
-    useCdn: false,
-    token:
-      runtimeEnv.SANITY_API_TOKEN,
-  });
+  const client =
+    createClient({
+      projectId,
+      dataset,
+      apiVersion:
+        '2026-10-01',
+      useCdn: false,
+      token:
+        runtimeEnv.SANITY_API_TOKEN,
+    });
 
   try {
-    /*
-      _rev까지 가져와서
-      동시에 두 사람이 같은 시간을
-      예약하는 것을 방지합니다.
-    */
-    const slot = await client.fetch(
-      `
-      *[
-        _type == "tutorSlot" &&
-        _id == $slotId
-      ][0]{
-        _id,
-        _rev,
-        startsAt,
-        endsAt,
-        status,
-        trialAllowed,
-        paidAllowed
-      }
-      `,
-      {
-        slotId,
-      }
-    );
+    const slot =
+      await client.fetch(
+        `
+        *[
+          _type == "tutorSlot" &&
+          _id == $slotId
+        ][0]{
+          _id,
+          _rev,
+          startsAt,
+          endsAt,
+          status,
+          trialAllowed,
+          paidAllowed
+        }
+        `,
+        {
+          slotId,
+        }
+      );
 
     if (!slot) {
       return json(
@@ -373,14 +401,22 @@ export const POST: APIRoute = async ({
     }
 
     const start =
-      new Date(slot.startsAt);
+      new Date(
+        slot.startsAt
+      );
 
     const end =
-      new Date(slot.endsAt);
+      new Date(
+        slot.endsAt
+      );
 
     if (
-      Number.isNaN(start.getTime()) ||
-      Number.isNaN(end.getTime())
+      Number.isNaN(
+        start.getTime()
+      ) ||
+      Number.isNaN(
+        end.getTime()
+      )
     ) {
       return json(
         {
@@ -393,7 +429,8 @@ export const POST: APIRoute = async ({
     }
 
     if (
-      start.getTime() <= Date.now()
+      start.getTime() <=
+      Date.now()
     ) {
       return json(
         {
@@ -429,8 +466,10 @@ export const POST: APIRoute = async ({
     }
 
     if (
-      sessionType === 'trial10' &&
-      slot.trialAllowed !== true
+      sessionType ===
+        'trial10' &&
+      slot.trialAllowed !==
+        true
     ) {
       return json(
         {
@@ -444,7 +483,8 @@ export const POST: APIRoute = async ({
 
     if (
       session.paid &&
-      slot.paidAllowed !== true
+      slot.paidAllowed !==
+        true
     ) {
       return json(
         {
@@ -457,7 +497,8 @@ export const POST: APIRoute = async ({
     }
 
     const now =
-      new Date().toISOString();
+      new Date()
+        .toISOString();
 
     const code =
       bookingCode();
@@ -471,11 +512,14 @@ export const POST: APIRoute = async ({
         : undefined;
 
     /*
-      무료 Trial:
-      바로 Confirmed + Booked
+      FREE TRIAL
+      → Confirmed immediately
 
-      유료 Lesson:
-      Awaiting Payment + Held
+      PAID LESSON
+      → Slot is held
+      → User chooses International Card or PayPal
+      → Payment confirmation
+      → Booking becomes confirmed
     */
     const bookingStatus =
       session.paid
@@ -494,9 +538,12 @@ export const POST: APIRoute = async ({
 
     const document = {
       _id: id,
-      _type: 'tutorBooking',
 
-      bookingCode: code,
+      _type:
+        'tutorBooking',
+
+      bookingCode:
+        code,
 
       sessionType,
 
@@ -505,8 +552,10 @@ export const POST: APIRoute = async ({
       paymentStatus,
 
       slot: {
-        _type: 'reference',
-        _ref: slot._id,
+        _type:
+          'reference',
+        _ref:
+          slot._id,
       },
 
       startsAt:
@@ -540,28 +589,33 @@ export const POST: APIRoute = async ({
       amount:
         amount ?? 0,
 
-      currency: 'KRW',
+      /*
+        International Card + PayPal
+        use USD.
+      */
+      currency:
+        'USD',
 
       orderId,
 
-      createdAt: now,
+      createdAt:
+        now,
     };
 
     /*
-      Optimistic locking.
-
-      우리가 읽은 이후 누군가 같은 슬롯을
-      먼저 예약했다면 _rev가 바뀌므로
-      전체 transaction이 실패합니다.
-
-      따라서 중복예약이 방지됩니다.
+      Prevent two people from
+      booking the same tutor slot.
     */
-    const slotPatch = client
-      .patch(slot._id)
-      .ifRevisionId(slot._rev)
-      .set({
-        status: slotStatus,
-      });
+    const slotPatch =
+      client
+        .patch(slot._id)
+        .ifRevisionId(
+          slot._rev
+        )
+        .set({
+          status:
+            slotStatus,
+        });
 
     await client
       .transaction()
@@ -575,7 +629,9 @@ export const POST: APIRoute = async ({
 
         booking: {
           id,
-          bookingCode: code,
+
+          bookingCode:
+            code,
 
           sessionType,
 
@@ -592,13 +648,23 @@ export const POST: APIRoute = async ({
           amount:
             amount ?? 0,
 
-          currency: 'KRW',
+          currency:
+            'USD',
 
           orderId:
-            orderId || null,
+            orderId ||
+            null,
 
           paymentRequired:
             session.paid,
+
+          paymentOptions:
+            session.paid
+              ? [
+                  'international_card',
+                  'paypal',
+                ]
+              : [],
         },
 
         next:
@@ -610,17 +676,17 @@ export const POST: APIRoute = async ({
     );
   } catch (error: any) {
     const message =
-      error?.message || '';
+      error?.message ||
+      '';
 
-    /*
-      동일 슬롯을 거의 동시에
-      예약한 경우 revision conflict 발생.
-    */
     if (
       message
         .toLowerCase()
-        .includes('revision') ||
-      error?.statusCode === 409
+        .includes(
+          'revision'
+        ) ||
+      error?.statusCode ===
+        409
     ) {
       return json(
         {
