@@ -1,0 +1,2013 @@
+---
+const tutorVideoUrl =
+  import.meta.env.PUBLIC_TUTOR_VIDEO_URL || '';
+---
+
+<section
+  class="tutor-booking"
+  id="practice-with-tutor"
+  data-tutor-booking
+  data-video-url={tutorVideoUrl}
+>
+  <div class="tutor-wrap">
+
+    <div class="tutor-heading">
+      <span class="tutor-eyebrow">
+        PRACTICE WITH A KOREAN TUTOR
+      </span>
+
+      <h2>
+        Stop studying.<br />
+        Start speaking Korean.
+      </h2>
+
+      <p>
+        Practice a real situation with a Korean tutor,
+        get immediate feedback, and learn what to improve next.
+      </p>
+    </div>
+
+    <div class="tutor-intro-grid">
+
+      <div class="tutor-video-card">
+        {
+          tutorVideoUrl ? (
+            <video
+              class="tutor-video"
+              controls
+              playsinline
+              preload="metadata"
+            >
+              <source
+                src={tutorVideoUrl}
+                type="video/mp4"
+              />
+            </video>
+          ) : (
+            <div class="tutor-video-placeholder">
+              <div class="play-icon">▶</div>
+
+              <strong>
+                Meet your Korean tutor
+              </strong>
+
+              <span>
+                Tutor introduction video will appear here.
+              </span>
+            </div>
+          )
+        }
+      </div>
+
+      <div class="tutor-intro-copy">
+        <span class="mini-label">
+          REAL KOREAN · REAL FEEDBACK
+        </span>
+
+        <h3>
+          Practice the Korean you actually need.
+        </h3>
+
+        <div class="tutor-benefits">
+          <div>
+            <span>01</span>
+            <p>
+              Choose a real-life situation you want to practice.
+            </p>
+          </div>
+
+          <div>
+            <span>02</span>
+            <p>
+              Speak live with a Korean tutor.
+            </p>
+          </div>
+
+          <div>
+            <span>03</span>
+            <p>
+              Get feedback on what sounded natural and what to improve.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="booking-panel">
+
+      <div class="booking-step">
+        <div class="step-number">1</div>
+
+        <div>
+          <span class="step-label">
+            CHOOSE YOUR SESSION
+          </span>
+
+          <h3>
+            How would you like to start?
+          </h3>
+        </div>
+      </div>
+
+      <div class="session-options">
+
+        <button
+          type="button"
+          class="session-card active"
+          data-session="trial10"
+        >
+          <span class="session-badge">
+            FREE
+          </span>
+
+          <strong>
+            10-Min Trial
+          </strong>
+
+          <span class="session-copy">
+            Meet your tutor and try one short real-life Korean practice.
+          </span>
+
+          <span class="session-price">
+            $0
+          </span>
+        </button>
+
+        <button
+          type="button"
+          class="session-card"
+          data-session="paid30"
+        >
+          <span class="session-badge">
+            PRACTICE
+          </span>
+
+          <strong>
+            30-Min Session
+          </strong>
+
+          <span class="session-copy">
+            Focused practice for one situation or speaking problem.
+          </span>
+
+          <span
+            class="session-price"
+            data-price="paid30"
+          >
+            —
+          </span>
+        </button>
+
+        <button
+          type="button"
+          class="session-card"
+          data-session="paid50"
+        >
+          <span class="session-badge">
+            DEEP PRACTICE
+          </span>
+
+          <strong>
+            50-Min Session
+          </strong>
+
+          <span class="session-copy">
+            More conversation, role-play and detailed feedback.
+          </span>
+
+          <span
+            class="session-price"
+            data-price="paid50"
+          >
+            —
+          </span>
+        </button>
+
+      </div>
+
+      <div class="booking-step second-step">
+        <div class="step-number">2</div>
+
+        <div>
+          <span class="step-label">
+            PICK A TIME
+          </span>
+
+          <h3>
+            Choose an available date and time.
+          </h3>
+
+          <p
+            class="timezone-note"
+            data-timezone-note
+          >
+            Loading available times…
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="availability-area"
+        data-availability
+      >
+        <div class="availability-loading">
+          Loading available times…
+        </div>
+      </div>
+
+      <div
+        class="student-form-wrap"
+        data-student-form-wrap
+        hidden
+      >
+        <div class="booking-step third-step">
+          <div class="step-number">3</div>
+
+          <div>
+            <span class="step-label">
+              TELL YOUR TUTOR
+            </span>
+
+            <h3>
+              What do you want to practice?
+            </h3>
+          </div>
+        </div>
+
+        <form
+          class="student-form"
+          data-student-form
+        >
+
+          <div class="form-grid">
+
+            <label>
+              <span>Your name</span>
+
+              <input
+                type="text"
+                name="studentName"
+                autocomplete="name"
+                required
+              />
+            </label>
+
+            <label>
+              <span>Email</span>
+
+              <input
+                type="email"
+                name="studentEmail"
+                autocomplete="email"
+                required
+              />
+            </label>
+
+          </div>
+
+          <div class="form-grid">
+
+            <label>
+              <span>Your Korean level</span>
+
+              <select name="level">
+                <option value="unsure">
+                  I’m not sure
+                </option>
+
+                <option value="zero">
+                  Complete beginner
+                </option>
+
+                <option value="beginner">
+                  Beginner
+                </option>
+
+                <option value="intermediate">
+                  Intermediate
+                </option>
+
+                <option value="advanced">
+                  Advanced
+                </option>
+              </select>
+            </label>
+
+            <label>
+              <span>What do you want to practice?</span>
+
+              <select name="practiceGoal">
+                <option value="travel">
+                  Travel
+                </option>
+
+                <option value="life">
+                  Daily life in Korea
+                </option>
+
+                <option value="work">
+                  Work / Business
+                </option>
+
+                <option value="social">
+                  Friends / Dating
+                </option>
+
+                <option value="culture">
+                  K-pop / Drama
+                </option>
+
+                <option value="topik">
+                  TOPIK
+                </option>
+
+                <option value="free_talk">
+                  Free conversation
+                </option>
+              </select>
+            </label>
+
+          </div>
+
+          <label>
+            <span>
+              Anything specific you want to practice?
+            </span>
+
+            <textarea
+              name="studentNote"
+              rows="3"
+              placeholder="Example: I want to practice ordering at a restaurant without switching to English."
+            ></textarea>
+          </label>
+
+          <details class="contact-more">
+            <summary>
+              Optional contact preference
+            </summary>
+
+            <div class="form-grid contact-grid">
+
+              <label>
+                <span>Contact method</span>
+
+                <select name="contactMethod">
+                  <option value="email">
+                    Email
+                  </option>
+
+                  <option value="whatsapp">
+                    WhatsApp
+                  </option>
+
+                  <option value="kakao">
+                    KakaoTalk
+                  </option>
+                </select>
+              </label>
+
+              <label>
+                <span>
+                  WhatsApp number / KakaoTalk ID
+                </span>
+
+                <input
+                  type="text"
+                  name="contactId"
+                />
+              </label>
+
+            </div>
+          </details>
+
+          <div
+            class="selected-summary"
+            data-selected-summary
+          ></div>
+
+          <button
+            type="submit"
+            class="book-button"
+            data-book-button
+          >
+            BOOK MY FREE TRIAL
+          </button>
+
+          <p class="booking-note">
+            Free trial sessions do not require payment.
+            Paid sessions will continue to secure international
+            card or PayPal payment.
+          </p>
+
+          <div
+            class="booking-message"
+            data-booking-message
+            hidden
+          ></div>
+
+        </form>
+      </div>
+
+      <div
+        class="payment-preview"
+        data-payment-preview
+        hidden
+      >
+        <span class="step-label">
+          SECURE PAYMENT
+        </span>
+
+        <h3>
+          Choose how you want to pay.
+        </h3>
+
+        <div class="payment-options-preview">
+
+          <div class="payment-preview-card">
+            <strong>
+              Credit / Debit Card
+            </strong>
+
+            <span>
+              International cards
+            </span>
+
+            <small>
+              Visa · Mastercard · JCB and supported cards
+            </small>
+          </div>
+
+          <div class="payment-preview-card">
+            <strong>
+              PayPal
+            </strong>
+
+            <span>
+              Pay with your PayPal account
+            </span>
+
+            <small>
+              Secure USD payment
+            </small>
+          </div>
+
+        </div>
+
+        <p>
+          Payment setup will activate after the Toss
+          international-payment keys are connected.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const root =
+    document.querySelector(
+      '[data-tutor-booking]'
+    );
+
+  if (root) {
+    const sessionButtons =
+      Array.from(
+        root.querySelectorAll(
+          '[data-session]'
+        )
+      );
+
+    const availabilityEl =
+      root.querySelector(
+        '[data-availability]'
+      );
+
+    const timezoneNote =
+      root.querySelector(
+        '[data-timezone-note]'
+      );
+
+    const formWrap =
+      root.querySelector(
+        '[data-student-form-wrap]'
+      );
+
+    const form =
+      root.querySelector(
+        '[data-student-form]'
+      );
+
+    const bookButton =
+      root.querySelector(
+        '[data-book-button]'
+      );
+
+    const summary =
+      root.querySelector(
+        '[data-selected-summary]'
+      );
+
+    const message =
+      root.querySelector(
+        '[data-booking-message]'
+      );
+
+    const paymentPreview =
+      root.querySelector(
+        '[data-payment-preview]'
+      );
+
+    let selectedSession =
+      'trial10';
+
+    let selectedSlot =
+      null;
+
+    const sessionLabels = {
+      trial10:
+        '10-Min Free Trial',
+
+      paid30:
+        '30-Min Session',
+
+      paid50:
+        '50-Min Session',
+    };
+
+    const localTimeZone =
+      Intl.DateTimeFormat()
+        .resolvedOptions()
+        .timeZone ||
+      'your local time';
+
+    if (timezoneNote) {
+      timezoneNote.textContent =
+        `Times shown in ${localTimeZone}.`;
+    }
+
+    function formatDate(
+      iso
+    ) {
+      return new Intl.DateTimeFormat(
+        undefined,
+        {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric',
+        }
+      ).format(
+        new Date(iso)
+      );
+    }
+
+    function formatTime(
+      iso
+    ) {
+      return new Intl.DateTimeFormat(
+        undefined,
+        {
+          hour: 'numeric',
+          minute: '2-digit',
+        }
+      ).format(
+        new Date(iso)
+      );
+    }
+
+    function dateKey(
+      iso
+    ) {
+      const date =
+        new Date(iso);
+
+      return [
+        date.getFullYear(),
+        String(
+          date.getMonth() + 1
+        ).padStart(
+          2,
+          '0'
+        ),
+        String(
+          date.getDate()
+        ).padStart(
+          2,
+          '0'
+        ),
+      ].join('-');
+    }
+
+    async function loadPrices() {
+      try {
+        const response =
+          await fetch(
+            '/api/tutor/book',
+            {
+              cache:
+                'no-store',
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (
+          !response.ok ||
+          !data?.ok
+        ) {
+          return;
+        }
+
+        [
+          'paid30',
+          'paid50',
+        ].forEach(
+          (
+            session
+          ) => {
+            const priceEl =
+              root.querySelector(
+                `[data-price="${session}"]`
+              );
+
+            const info =
+              data.sessions?.[
+                session
+              ];
+
+            if (
+              priceEl &&
+              info?.price
+            ) {
+              priceEl.textContent =
+                `$${Number(
+                  info.price
+                ).toFixed(2)}`;
+            }
+          }
+        );
+      } catch {
+        // Price labels remain unavailable
+        // until server pricing is configured.
+      }
+    }
+
+    function renderAvailability(
+      slots
+    ) {
+      if (!availabilityEl) {
+        return;
+      }
+
+      availabilityEl.innerHTML =
+        '';
+
+      if (
+        !Array.isArray(
+          slots
+        ) ||
+        slots.length === 0
+      ) {
+        availabilityEl.innerHTML =
+          `
+          <div class="no-slots">
+            <strong>No open times yet.</strong>
+            <span>
+              New tutor availability will appear here.
+            </span>
+          </div>
+          `;
+
+        return;
+      }
+
+      const groups =
+        new Map();
+
+      slots.forEach(
+        (
+          slot
+        ) => {
+          const key =
+            dateKey(
+              slot.startsAt
+            );
+
+          if (
+            !groups.has(
+              key
+            )
+          ) {
+            groups.set(
+              key,
+              []
+            );
+          }
+
+          groups
+            .get(key)
+            .push(slot);
+        }
+      );
+
+      for (
+        const [
+          key,
+          daySlots,
+        ] of groups
+      ) {
+        const day =
+          document.createElement(
+            'div'
+          );
+
+        day.className =
+          'availability-day';
+
+        const heading =
+          document.createElement(
+            'strong'
+          );
+
+        heading.className =
+          'availability-date';
+
+        heading.textContent =
+          formatDate(
+            daySlots[0]
+              .startsAt
+          );
+
+        const times =
+          document.createElement(
+            'div'
+          );
+
+        times.className =
+          'availability-times';
+
+        daySlots.forEach(
+          (
+            slot
+          ) => {
+            const button =
+              document.createElement(
+                'button'
+              );
+
+            button.type =
+              'button';
+
+            button.className =
+              'time-button';
+
+            button.textContent =
+              formatTime(
+                slot.startsAt
+              );
+
+            button.addEventListener(
+              'click',
+              () => {
+                root
+                  .querySelectorAll(
+                    '.time-button'
+                  )
+                  .forEach(
+                    (
+                      el
+                    ) => {
+                      el.classList
+                        .remove(
+                          'active'
+                        );
+                    }
+                  );
+
+                button
+                  .classList
+                  .add(
+                    'active'
+                  );
+
+                selectedSlot =
+                  slot;
+
+                if (
+                  formWrap
+                ) {
+                  formWrap.hidden =
+                    false;
+                }
+
+                if (
+                  paymentPreview
+                ) {
+                  paymentPreview.hidden =
+                    true;
+                }
+
+                updateSummary();
+
+                formWrap
+                  ?.scrollIntoView({
+                    behavior:
+                      'smooth',
+                    block:
+                      'start',
+                  });
+              }
+            );
+
+            times.appendChild(
+              button
+            );
+          }
+        );
+
+        day.appendChild(
+          heading
+        );
+
+        day.appendChild(
+          times
+        );
+
+        availabilityEl
+          .appendChild(
+            day
+          );
+      }
+    }
+
+    async function loadAvailability() {
+      selectedSlot =
+        null;
+
+      if (
+        formWrap
+      ) {
+        formWrap.hidden =
+          true;
+      }
+
+      if (
+        paymentPreview
+      ) {
+        paymentPreview.hidden =
+          true;
+      }
+
+      if (
+        availabilityEl
+      ) {
+        availabilityEl.innerHTML =
+          `
+          <div class="availability-loading">
+            Loading available times…
+          </div>
+          `;
+      }
+
+      try {
+        const response =
+          await fetch(
+            `/api/tutor/availability?sessionType=${encodeURIComponent(
+              selectedSession
+            )}`,
+            {
+              cache:
+                'no-store',
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (
+          !response.ok ||
+          !data?.ok
+        ) {
+          throw new Error(
+            data?.error ||
+            'Could not load availability.'
+          );
+        }
+
+        renderAvailability(
+          data.slots
+        );
+      } catch (
+        error
+      ) {
+        if (
+          availabilityEl
+        ) {
+          availabilityEl.innerHTML =
+            `
+            <div class="no-slots">
+              <strong>
+                Availability could not be loaded.
+              </strong>
+              <span>
+                Please try again shortly.
+              </span>
+            </div>
+            `;
+        }
+      }
+    }
+
+    function updateSummary() {
+      if (
+        !summary ||
+        !selectedSlot
+      ) {
+        return;
+      }
+
+      summary.innerHTML =
+        `
+        <span>
+          ${sessionLabels[
+            selectedSession
+          ]}
+        </span>
+
+        <strong>
+          ${formatDate(
+            selectedSlot
+              .startsAt
+          )}
+          ·
+          ${formatTime(
+            selectedSlot
+              .startsAt
+          )}
+        </strong>
+        `;
+
+      if (
+        bookButton
+      ) {
+        bookButton.textContent =
+          selectedSession ===
+          'trial10'
+            ? 'BOOK MY FREE TRIAL'
+            : 'CONTINUE TO PAYMENT';
+      }
+    }
+
+    sessionButtons.forEach(
+      (
+        button
+      ) => {
+        button.addEventListener(
+          'click',
+          () => {
+            const session =
+              button.getAttribute(
+                'data-session'
+              );
+
+            if (!session) {
+              return;
+            }
+
+            selectedSession =
+              session;
+
+            sessionButtons.forEach(
+              (
+                item
+              ) =>
+                item.classList
+                  .remove(
+                    'active'
+                  )
+            );
+
+            button.classList
+              .add(
+                'active'
+              );
+
+            loadAvailability();
+          }
+        );
+      }
+    );
+
+    form?.addEventListener(
+      'submit',
+      async (
+        event
+      ) => {
+        event.preventDefault();
+
+        if (
+          !selectedSlot
+        ) {
+          return;
+        }
+
+        if (
+          message
+        ) {
+          message.hidden =
+            true;
+
+          message.textContent =
+            '';
+        }
+
+        if (
+          bookButton
+        ) {
+          bookButton.disabled =
+            true;
+
+          bookButton.textContent =
+            'PLEASE WAIT…';
+        }
+
+        const formData =
+          new FormData(
+            form
+          );
+
+        const payload = {
+          slotId:
+            selectedSlot.id,
+
+          sessionType:
+            selectedSession,
+
+          studentName:
+            formData.get(
+              'studentName'
+            ),
+
+          studentEmail:
+            formData.get(
+              'studentEmail'
+            ),
+
+          level:
+            formData.get(
+              'level'
+            ),
+
+          practiceGoal:
+            formData.get(
+              'practiceGoal'
+            ),
+
+          studentNote:
+            formData.get(
+              'studentNote'
+            ),
+
+          contactMethod:
+            formData.get(
+              'contactMethod'
+            ),
+
+          contactId:
+            formData.get(
+              'contactId'
+            ),
+        };
+
+        try {
+          const response =
+            await fetch(
+              '/api/tutor/book',
+              {
+                method:
+                  'POST',
+
+                headers: {
+                  'Content-Type':
+                    'application/json',
+                },
+
+                body:
+                  JSON.stringify(
+                    payload
+                  ),
+              }
+            );
+
+          const data =
+            await response.json();
+
+          if (
+            !response.ok ||
+            !data?.ok
+          ) {
+            throw new Error(
+              data?.error ||
+              'Could not create your booking.'
+            );
+          }
+
+          if (
+            data.next ===
+            'confirmed'
+          ) {
+            if (
+              message
+            ) {
+              message.hidden =
+                false;
+
+              message.className =
+                'booking-message success';
+
+              message.innerHTML =
+                `
+                <strong>
+                  Your free trial is booked.
+                </strong>
+
+                <span>
+                  Booking code:
+                  ${data.booking.bookingCode}
+                </span>
+                `;
+            }
+
+            if (
+              bookButton
+            ) {
+              bookButton.textContent =
+                'BOOKED';
+
+              bookButton.disabled =
+                true;
+            }
+
+            return;
+          }
+
+          /*
+            Paid booking has now
+            been safely held in Sanity.
+
+            The actual international
+            card + PayPal widget will
+            be connected in the next step.
+          */
+          if (
+            paymentPreview
+          ) {
+            paymentPreview.hidden =
+              false;
+
+            paymentPreview
+              .scrollIntoView({
+                behavior:
+                  'smooth',
+                block:
+                  'start',
+              });
+          }
+
+          if (
+            bookButton
+          ) {
+            bookButton.disabled =
+              true;
+
+            bookButton.textContent =
+              'TIME RESERVED';
+          }
+
+          if (
+            message
+          ) {
+            message.hidden =
+              false;
+
+            message.className =
+              'booking-message success';
+
+            message.innerHTML =
+              `
+              <strong>
+                Your lesson time is reserved.
+              </strong>
+
+              <span>
+                Continue with international card or PayPal payment.
+              </span>
+              `;
+          }
+        } catch (
+          error
+        ) {
+          if (
+            message
+          ) {
+            message.hidden =
+              false;
+
+            message.className =
+              'booking-message error';
+
+            message.textContent =
+              error instanceof Error
+                ? error.message
+                : 'Could not create your booking.';
+          }
+
+          if (
+            bookButton
+          ) {
+            bookButton.disabled =
+              false;
+
+            bookButton.textContent =
+              selectedSession ===
+              'trial10'
+                ? 'BOOK MY FREE TRIAL'
+                : 'CONTINUE TO PAYMENT';
+          }
+        }
+      }
+    );
+
+    loadPrices();
+    loadAvailability();
+  }
+</script>
+
+<style>
+  .tutor-booking {
+    padding: 72px 20px;
+    background:
+      #f8f5ef;
+    color:
+      #151515;
+  }
+
+  .tutor-wrap {
+    max-width:
+      1080px;
+    margin:
+      0 auto;
+  }
+
+  .tutor-heading {
+    max-width:
+      720px;
+    margin-bottom:
+      36px;
+  }
+
+  .tutor-eyebrow,
+  .mini-label,
+  .step-label {
+    display:
+      block;
+    font-size:
+      12px;
+    font-weight:
+      800;
+    letter-spacing:
+      .12em;
+    color:
+      #e7652c;
+  }
+
+  .tutor-heading h2 {
+    margin:
+      10px 0 14px;
+    font-size:
+      clamp(
+        38px,
+        6vw,
+        68px
+      );
+    line-height:
+      .98;
+    letter-spacing:
+      -.045em;
+  }
+
+  .tutor-heading p {
+    margin:
+      0;
+    max-width:
+      620px;
+    font-size:
+      18px;
+    line-height:
+      1.6;
+    color:
+      #606060;
+  }
+
+  .tutor-intro-grid {
+    display:
+      grid;
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(300px, .85fr);
+    gap:
+      22px;
+    margin-bottom:
+      32px;
+  }
+
+  .tutor-video-card,
+  .tutor-intro-copy,
+  .booking-panel {
+    background:
+      #fff;
+    border:
+      1px solid
+      #e8e3dc;
+    border-radius:
+      22px;
+  }
+
+  .tutor-video-card {
+    min-height:
+      360px;
+    overflow:
+      hidden;
+  }
+
+  .tutor-video {
+    width:
+      100%;
+    height:
+      100%;
+    min-height:
+      360px;
+    object-fit:
+      cover;
+    display:
+      block;
+  }
+
+  .tutor-video-placeholder {
+    min-height:
+      360px;
+    padding:
+      36px;
+    display:
+      flex;
+    flex-direction:
+      column;
+    align-items:
+      center;
+    justify-content:
+      center;
+    text-align:
+      center;
+    background:
+      #191919;
+    color:
+      #fff;
+  }
+
+  .play-icon {
+    width:
+      62px;
+    height:
+      62px;
+    border-radius:
+      50%;
+    display:
+      grid;
+    place-items:
+      center;
+    margin-bottom:
+      20px;
+    background:
+      #fff;
+    color:
+      #111;
+    padding-left:
+      3px;
+  }
+
+  .tutor-video-placeholder strong {
+    font-size:
+      22px;
+    margin-bottom:
+      7px;
+  }
+
+  .tutor-video-placeholder span {
+    color:
+      #aaa;
+    font-size:
+      14px;
+  }
+
+  .tutor-intro-copy {
+    padding:
+      34px;
+  }
+
+  .tutor-intro-copy h3 {
+    margin:
+      10px 0 26px;
+    font-size:
+      30px;
+    line-height:
+      1.15;
+    letter-spacing:
+      -.025em;
+  }
+
+  .tutor-benefits {
+    display:
+      grid;
+    gap:
+      18px;
+  }
+
+  .tutor-benefits div {
+    display:
+      grid;
+    grid-template-columns:
+      34px 1fr;
+    gap:
+      10px;
+    align-items:
+      start;
+  }
+
+  .tutor-benefits span {
+    font-size:
+      12px;
+    font-weight:
+      800;
+    color:
+      #e7652c;
+  }
+
+  .tutor-benefits p {
+    margin:
+      0;
+    line-height:
+      1.5;
+    color:
+      #555;
+  }
+
+  .booking-panel {
+    padding:
+      34px;
+  }
+
+  .booking-step {
+    display:
+      flex;
+    gap:
+      15px;
+    align-items:
+      flex-start;
+    margin-bottom:
+      22px;
+  }
+
+  .booking-step h3 {
+    margin:
+      5px 0 0;
+    font-size:
+      26px;
+    letter-spacing:
+      -.02em;
+  }
+
+  .step-number {
+    flex:
+      0 0 auto;
+    width:
+      34px;
+    height:
+      34px;
+    border-radius:
+      50%;
+    display:
+      grid;
+    place-items:
+      center;
+    background:
+      #151515;
+    color:
+      #fff;
+    font-size:
+      13px;
+    font-weight:
+      800;
+  }
+
+  .session-options {
+    display:
+      grid;
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      );
+    gap:
+      12px;
+  }
+
+  .session-card {
+    appearance:
+      none;
+    border:
+      1px solid
+      #ddd8d0;
+    background:
+      #fff;
+    border-radius:
+      16px;
+    padding:
+      21px;
+    text-align:
+      left;
+    cursor:
+      pointer;
+    display:
+      flex;
+    flex-direction:
+      column;
+    min-height:
+      215px;
+    color:
+      inherit;
+  }
+
+  .session-card:hover,
+  .session-card.active {
+    border-color:
+      #e7652c;
+  }
+
+  .session-card.active {
+    box-shadow:
+      inset 0 0 0 1px
+      #e7652c;
+    background:
+      #fffaf7;
+  }
+
+  .session-badge {
+    align-self:
+      flex-start;
+    padding:
+      5px 8px;
+    border-radius:
+      999px;
+    background:
+      #f5eee7;
+    color:
+      #b84c20;
+    font-size:
+      10px;
+    font-weight:
+      800;
+    letter-spacing:
+      .06em;
+  }
+
+  .session-card strong {
+    margin-top:
+      16px;
+    font-size:
+      20px;
+  }
+
+  .session-copy {
+    margin-top:
+      8px;
+    color:
+      #696969;
+    line-height:
+      1.45;
+    font-size:
+      14px;
+  }
+
+  .session-price {
+    margin-top:
+      auto;
+    padding-top:
+      18px;
+    font-size:
+      24px;
+    font-weight:
+      850;
+  }
+
+  .second-step,
+  .third-step {
+    margin-top:
+      42px;
+  }
+
+  .timezone-note {
+    margin:
+      6px 0 0;
+    color:
+      #777;
+    font-size:
+      13px;
+  }
+
+  .availability-area {
+    min-height:
+      88px;
+  }
+
+  .availability-loading,
+  .no-slots {
+    border:
+      1px dashed
+      #d9d4cb;
+    border-radius:
+      14px;
+    padding:
+      22px;
+    color:
+      #777;
+  }
+
+  .no-slots {
+    display:
+      flex;
+    flex-direction:
+      column;
+    gap:
+      5px;
+  }
+
+  .availability-day {
+    display:
+      grid;
+    grid-template-columns:
+      150px 1fr;
+    gap:
+      16px;
+    align-items:
+      start;
+    padding:
+      16px 0;
+    border-top:
+      1px solid
+      #eee9e3;
+  }
+
+  .availability-day:first-child {
+    border-top:
+      0;
+  }
+
+  .availability-date {
+    padding-top:
+      10px;
+    font-size:
+      14px;
+  }
+
+  .availability-times {
+    display:
+      flex;
+    gap:
+      8px;
+    flex-wrap:
+      wrap;
+  }
+
+  .time-button {
+    appearance:
+      none;
+    border:
+      1px solid
+      #d8d3cc;
+    background:
+      #fff;
+    padding:
+      10px 14px;
+    border-radius:
+      10px;
+    cursor:
+      pointer;
+    font-weight:
+      700;
+  }
+
+  .time-button:hover,
+  .time-button.active {
+    border-color:
+      #e7652c;
+    background:
+      #e7652c;
+    color:
+      #fff;
+  }
+
+  .student-form {
+    display:
+      grid;
+    gap:
+      16px;
+  }
+
+  .form-grid {
+    display:
+      grid;
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+    gap:
+      14px;
+  }
+
+  .student-form label {
+    display:
+      grid;
+    gap:
+      7px;
+  }
+
+  .student-form label > span {
+    font-size:
+      13px;
+    font-weight:
+      750;
+  }
+
+  .student-form input,
+  .student-form select,
+  .student-form textarea {
+    width:
+      100%;
+    box-sizing:
+      border-box;
+    border:
+      1px solid
+      #d9d4cd;
+    border-radius:
+      11px;
+    background:
+      #fff;
+    padding:
+      13px 14px;
+    font:
+      inherit;
+    color:
+      #171717;
+  }
+
+  .student-form textarea {
+    resize:
+      vertical;
+  }
+
+  .contact-more {
+    border-top:
+      1px solid
+      #eee9e3;
+    padding-top:
+      12px;
+  }
+
+  .contact-more summary {
+    cursor:
+      pointer;
+    font-weight:
+      700;
+    font-size:
+      14px;
+  }
+
+  .contact-grid {
+    margin-top:
+      14px;
+  }
+
+  .selected-summary {
+    margin-top:
+      4px;
+    padding:
+      16px;
+    border-radius:
+      12px;
+    background:
+      #f7f4ef;
+    display:
+      flex;
+    justify-content:
+      space-between;
+    gap:
+      15px;
+  }
+
+  .selected-summary span {
+    color:
+      #686868;
+  }
+
+  .book-button {
+    border:
+      0;
+    border-radius:
+      12px;
+    padding:
+      16px 20px;
+    width:
+      100%;
+    background:
+      #e7652c;
+    color:
+      #fff;
+    font-size:
+      15px;
+    font-weight:
+      850;
+    cursor:
+      pointer;
+  }
+
+  .book-button:disabled {
+    cursor:
+      default;
+    opacity:
+      .65;
+  }
+
+  .booking-note {
+    margin:
+      -4px 0 0;
+    text-align:
+      center;
+    font-size:
+      12px;
+    color:
+      #858585;
+  }
+
+  .booking-message {
+    padding:
+      14px 16px;
+    border-radius:
+      11px;
+    display:
+      flex;
+    flex-direction:
+      column;
+    gap:
+      4px;
+  }
+
+  .booking-message.success {
+    background:
+      #edf7ef;
+    color:
+      #245d31;
+  }
+
+  .booking-message.error {
+    background:
+      #fff0ed;
+    color:
+      #9f2f20;
+  }
+
+  .payment-preview {
+    margin-top:
+      32px;
+    border-top:
+      1px solid
+      #e9e4dd;
+    padding-top:
+      30px;
+  }
+
+  .payment-preview h3 {
+    margin:
+      7px 0 16px;
+    font-size:
+      26px;
+  }
+
+  .payment-options-preview {
+    display:
+      grid;
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+    gap:
+      12px;
+  }
+
+  .payment-preview-card {
+    border:
+      1px solid
+      #ddd8d0;
+    border-radius:
+      14px;
+    padding:
+      18px;
+    display:
+      flex;
+    flex-direction:
+      column;
+    gap:
+      5px;
+  }
+
+  .payment-preview-card strong {
+    font-size:
+      17px;
+  }
+
+  .payment-preview-card span {
+    color:
+      #555;
+  }
+
+  .payment-preview-card small {
+    color:
+      #888;
+  }
+
+  .payment-preview > p {
+    margin:
+      15px 0 0;
+    color:
+      #777;
+    font-size:
+      13px;
+  }
+
+  @media (
+    max-width:
+      760px
+  ) {
+    .tutor-booking {
+      padding:
+        48px 14px;
+    }
+
+    .tutor-intro-grid,
+    .session-options,
+    .form-grid,
+    .payment-options-preview {
+      grid-template-columns:
+        1fr;
+    }
+
+    .tutor-video-card,
+    .tutor-video,
+    .tutor-video-placeholder {
+      min-height:
+        250px;
+    }
+
+    .booking-panel {
+      padding:
+        22px 16px;
+    }
+
+    .session-card {
+      min-height:
+        auto;
+    }
+
+    .availability-day {
+      grid-template-columns:
+        1fr;
+      gap:
+        8px;
+    }
+
+    .availability-date {
+      padding-top:
+        0;
+    }
+
+    .selected-summary {
+      flex-direction:
+        column;
+      gap:
+        4px;
+    }
+  }
+</style>
