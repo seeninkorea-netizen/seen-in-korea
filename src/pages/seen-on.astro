@@ -1,0 +1,2212 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const evidenceLegend = [
+  {
+    key: 'confirmed',
+    label: 'Confirmed use',
+    description:
+      'Actual use verified in a public photo, video or first-party statement.'
+  },
+  {
+    key: 'campaign',
+    label: 'Official campaign',
+    description:
+      'A brand campaign or ambassador relationship is confirmed.'
+  },
+  {
+    key: 'reported',
+    label: 'Reported',
+    description:
+      'Seen in media, social posts or other reliable reporting.'
+  },
+  {
+    key: 'unconfirmed',
+    label: 'Unconfirmed',
+    description:
+      'Fan speculation only. No purchase recommendation.'
+  }
+];
+
+
+const hotNow = [
+  {
+    evidence: 'campaign',
+    evidenceLabel: 'OFFICIAL CAMPAIGN',
+
+    eyebrow:
+      'K-BEAUTY · VERIFIED PRODUCT',
+
+    title:
+      'JUICEPOP BOX LIP TINT',
+
+    brand:
+      'LANEIGE',
+
+    note:
+      'Product details and Korea pricing are checked separately from campaign claims. Campaign participation does not automatically mean everyday personal use.',
+
+    koreaPrice:
+      '₩23,000',
+
+    globalPrice:
+      'COMPARE',
+
+    image:
+      'https://www.ciee.org/sites/default/files/styles/686w/public/blog/2023-11/IMG_4909.jpg?itok=xUcvhOBj',
+
+    imageAlt:
+      'Korean beauty retail shelves used as an editorial image',
+
+    action:
+      'SEE EVIDENCE & PRICE →'
+  },
+
+
+  {
+    evidence: 'reported',
+    evidenceLabel: 'REPORTED',
+
+    eyebrow:
+      'FRAGRANCE · HAND CARE',
+
+    title:
+      'O HAND CREAM · CHAMO',
+
+    brand:
+      'TAMBURINS',
+
+    note:
+      'The product exists on the official brand store. Celebrity-use claims should remain separate until a clearly attributable source is attached.',
+
+    koreaPrice:
+      'PRICE CHECK',
+
+    globalPrice:
+      'COMPARE',
+
+    image:
+      'https://images.pexels.com/photos/31132240/pexels-photo-31132240/free-photo-of-elegant-fashion-portrait-in-milan.jpeg?auto=compress&dpr=1&h=750&w=1260',
+
+    imageAlt:
+      'Editorial fashion image used as a non-evidence visual',
+
+    action:
+      'CHECK PRODUCT →'
+  },
+
+
+  {
+    evidence: 'unconfirmed',
+    evidenceLabel: 'VERIFICATION PENDING',
+
+    eyebrow:
+      'SEEN ON · QUEUE',
+
+    title:
+      'NEXT VERIFIED PRODUCT',
+
+    brand:
+      'SEEN IN KOREA',
+
+    note:
+      'This slot is reserved for a product only after the evidence record, exact product identity and buying options are checked.',
+
+    koreaPrice:
+      '—',
+
+    globalPrice:
+      '—',
+
+    image:
+      '',
+
+    imageAlt:
+      '',
+
+    action:
+      'HOW WE VERIFY →'
+  }
+];
+
+
+const catalog = [
+  {
+    evidence: 'confirmed',
+    brand: 'Beauty',
+    title: 'Verified-use product',
+    price: 'Price check',
+    category: 'Beauty'
+  },
+
+  {
+    evidence: 'campaign',
+    brand: 'Beauty',
+    title: 'Official campaign product',
+    price: 'Compare prices',
+    category: 'Beauty'
+  },
+
+  {
+    evidence: 'reported',
+    brand: 'Fashion',
+    title: 'Reported fashion item',
+    price: 'Price check',
+    category: 'Fashion'
+  },
+
+  {
+    evidence: 'confirmed',
+    brand: 'Accessories',
+    title: 'Verified accessory',
+    price: 'Compare prices',
+    category: 'Accessories'
+  },
+
+  {
+    evidence: 'campaign',
+    brand: 'Lifestyle',
+    title: 'Official campaign item',
+    price: 'Price check',
+    category: 'Lifestyle'
+  },
+
+  {
+    evidence: 'reported',
+    brand: 'Food & Drinks',
+    title: 'Reported product',
+    price: 'Compare prices',
+    category: 'Food & Drinks'
+  },
+
+  {
+    evidence: 'confirmed',
+    brand: 'Beauty',
+    title: 'Verified skincare item',
+    price: 'Price check',
+    category: 'Beauty'
+  },
+
+  {
+    evidence: 'unconfirmed',
+    brand: 'Queue',
+    title: 'Awaiting verification',
+    price: 'No buy link',
+    category: 'Pending'
+  }
+];
+
+
+const categories = [
+  'All',
+  'Beauty',
+  'Fashion',
+  'Accessories',
+  'Food & Drinks',
+  'Lifestyle',
+  'K-pop',
+  'Actors',
+  'New This Week'
+];
+---
+
+
+<BaseLayout
+  title="Seen On — Verified Korea Products | SEEN IN KOREA"
+  description="Products seen in Korean culture, checked by evidence level, Korea price and buying options before we recommend where to buy."
+>
+
+  <main class="seen-on-page">
+
+
+    <!-- HERO -->
+    <section class="seen-on-hero">
+
+      <div class="wrap">
+
+        <div class="seen-on-hero-grid">
+
+
+          <div class="seen-on-hero-copy">
+
+            <div class="eyebrow">
+              02 · SEEN ON
+            </div>
+
+            <h1>
+              See the look.<br />
+              Check the evidence.<br />
+              Find the product.
+            </h1>
+
+            <p>
+              We verify what’s real,
+              separate campaigns from actual use,
+              and help you compare Korea and global
+              buying options before you buy.
+            </p>
+
+          </div>
+
+
+
+          <div class="seen-on-verify-panel">
+
+            <a
+              class="seen-on-verify-title"
+              href="/how-we-verify"
+            >
+              HOW WE VERIFY
+
+              <span>
+                →
+              </span>
+            </a>
+
+
+            <div class="seen-on-legend">
+
+              {
+                evidenceLegend.map(
+                  item => (
+
+                    <div class="seen-on-legend-item">
+
+                      <span
+                        class:list={[
+                          'seen-on-dot',
+                          item.key
+                        ]}
+                      ></span>
+
+
+                      <div>
+
+                        <strong>
+                          {item.label}
+                        </strong>
+
+                        <p>
+                          {item.description}
+                        </p>
+
+                      </div>
+
+                    </div>
+
+                  )
+                )
+              }
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- HOT NOW -->
+    <section class="seen-on-hot-section">
+
+      <div class="wrap">
+
+
+        <div class="seen-on-section-head">
+
+          <div>
+
+            <div class="seen-on-section-kicker">
+              🔥 HOT NOW
+            </div>
+
+            <p>
+              The most useful verified products
+              to check right now.
+            </p>
+
+          </div>
+
+
+          <a href="#browse">
+            VIEW ALL →
+          </a>
+
+        </div>
+
+
+
+        <div class="seen-on-hot-grid">
+
+          {
+            hotNow.map(
+              item => (
+
+                <article class="seen-on-feature-card">
+
+
+                  <div class="seen-on-feature-media">
+
+                    {
+                      item.image
+                        ? (
+
+                          <img
+                            src={item.image}
+                            alt={item.imageAlt}
+                            loading="lazy"
+                          />
+
+                        )
+                        : (
+
+                          <div class="seen-on-feature-placeholder">
+                            VERIFIED PRODUCT SLOT
+                          </div>
+
+                        )
+                    }
+
+
+                    <span
+                      class:list={[
+                        'seen-on-evidence-badge',
+                        item.evidence
+                      ]}
+                    >
+
+                      <span
+                        class:list={[
+                          'seen-on-dot',
+                          item.evidence
+                        ]}
+                      ></span>
+
+                      {item.evidenceLabel}
+
+                    </span>
+
+
+                    {
+                      item.image && (
+
+                        <span class="seen-on-image-note">
+                          EDITORIAL IMAGE · NOT EVIDENCE
+                        </span>
+
+                      )
+                    }
+
+                  </div>
+
+
+
+                  <div class="seen-on-feature-body">
+
+                    <div class="seen-on-product-eyebrow">
+                      {item.eyebrow}
+                    </div>
+
+
+                    <div class="seen-on-brand">
+                      {item.brand}
+                    </div>
+
+
+                    <h2>
+                      {item.title}
+                    </h2>
+
+
+                    <p class="seen-on-product-note">
+                      {item.note}
+                    </p>
+
+
+
+                    <div class="seen-on-price-strip">
+
+                      <div>
+
+                        <span>
+                          KOREA
+                        </span>
+
+                        <strong>
+                          {item.koreaPrice}
+                        </strong>
+
+                      </div>
+
+
+                      <div>
+
+                        <span>
+                          GLOBAL
+                        </span>
+
+                        <strong>
+                          {item.globalPrice}
+                        </strong>
+
+                      </div>
+
+                    </div>
+
+
+
+                    <a
+                      class="seen-on-primary-action"
+                      href={
+                        item.evidence === 'unconfirmed'
+                          ? '/how-we-verify'
+                          : '/shop-korea'
+                      }
+                    >
+                      {item.action}
+                    </a>
+
+                  </div>
+
+                </article>
+
+              )
+            )
+          }
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- BROWSE -->
+    <section
+      class="seen-on-browse-section"
+      id="browse"
+    >
+
+      <div class="wrap">
+
+
+        <!-- CATEGORY -->
+        <div
+          class="seen-on-category-tabs"
+          aria-label="Seen On categories"
+        >
+
+          {
+            categories.map(
+              (category, index) => (
+
+                <button
+                  class:list={{
+                    'seen-on-category-tab': true,
+                    active: index === 0
+                  }}
+                  type="button"
+                >
+                  {category}
+                </button>
+
+              )
+            )
+          }
+
+        </div>
+
+
+
+        <div class="seen-on-browse-grid">
+
+
+          <!-- FILTER -->
+          <aside class="seen-on-filter">
+
+
+            <label class="seen-on-sort">
+
+              <span>
+                Sort by
+              </span>
+
+              <select>
+                <option>
+                  Most useful
+                </option>
+
+                <option>
+                  Most viewed
+                </option>
+
+                <option>
+                  Newest
+                </option>
+
+                <option>
+                  Lowest Korea price
+                </option>
+              </select>
+
+            </label>
+
+
+
+            <div class="seen-on-filter-group">
+
+              <strong>
+                Filter by evidence
+              </strong>
+
+
+              <label>
+
+                <input
+                  type="checkbox"
+                  checked
+                />
+
+                <span class="seen-on-dot confirmed"></span>
+
+                Confirmed use
+
+              </label>
+
+
+              <label>
+
+                <input
+                  type="checkbox"
+                  checked
+                />
+
+                <span class="seen-on-dot campaign"></span>
+
+                Official campaign
+
+              </label>
+
+
+              <label>
+
+                <input
+                  type="checkbox"
+                  checked
+                />
+
+                <span class="seen-on-dot reported"></span>
+
+                Reported
+
+              </label>
+
+
+              <label>
+
+                <input type="checkbox" />
+
+                <span class="seen-on-dot unconfirmed"></span>
+
+                Unconfirmed
+
+              </label>
+
+            </div>
+
+
+
+            <div class="seen-on-filter-group">
+
+              <strong>
+                Price range · Korea
+              </strong>
+
+
+              <label>
+                <input type="checkbox" />
+                Under ₩30,000
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                ₩30,000 – ₩60,000
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                ₩60,000 – ₩100,000
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                Over ₩100,000
+              </label>
+
+            </div>
+
+
+
+            <div class="seen-on-filter-group">
+
+              <strong>
+                What are you looking for?
+              </strong>
+
+              <a href="#browse">
+                Beauty
+              </a>
+
+              <a href="#browse">
+                Fashion
+              </a>
+
+              <a href="#browse">
+                Accessories
+              </a>
+
+              <a href="#browse">
+                Food & Drinks
+              </a>
+
+              <a href="#browse">
+                Lifestyle
+              </a>
+
+            </div>
+
+
+          </aside>
+
+
+
+          <!-- CATALOG -->
+          <div class="seen-on-catalog">
+
+            {
+              catalog.map(
+                (item, index) => (
+
+                  <article class="seen-on-product-card">
+
+
+                    <div
+                      class:list={[
+                        'seen-on-card-art',
+                        item.evidence
+                      ]}
+                    >
+
+                      <span
+                        class:list={[
+                          'seen-on-mini-badge',
+                          item.evidence
+                        ]}
+                      >
+
+                        <span
+                          class:list={[
+                            'seen-on-dot',
+                            item.evidence
+                          ]}
+                        ></span>
+
+
+                        {
+                          item.evidence === 'confirmed'
+                            ? 'CONFIRMED USE'
+
+                            : item.evidence === 'campaign'
+                              ? 'OFFICIAL CAMPAIGN'
+
+                              : item.evidence === 'reported'
+                                ? 'REPORTED'
+
+                                : 'UNCONFIRMED'
+                        }
+
+                      </span>
+
+
+                      <div class="seen-on-art-mark">
+                        {
+                          String(index + 1)
+                            .padStart(2, '0')
+                        }
+                      </div>
+
+                    </div>
+
+
+
+                    <div class="seen-on-card-body">
+
+
+                      <div class="seen-on-card-brand">
+                        {item.brand}
+                      </div>
+
+
+                      <h3>
+                        {item.title}
+                      </h3>
+
+
+                      <strong class="seen-on-card-price">
+                        {item.price}
+                      </strong>
+
+
+
+                      <div class="seen-on-card-bottom">
+
+                        <span>
+                          {item.category}
+                        </span>
+
+
+                        <a
+                          href={
+                            item.evidence === 'unconfirmed'
+                              ? '/how-we-verify'
+                              : '/shop-korea'
+                          }
+                        >
+
+                          {
+                            item.evidence === 'unconfirmed'
+                              ? 'VERIFY →'
+                              : 'COMPARE →'
+                          }
+
+                        </a>
+
+                      </div>
+
+
+                    </div>
+
+                  </article>
+
+                )
+              )
+            }
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- TRUST -->
+    <section class="seen-on-trust-section">
+
+      <div class="wrap seen-on-trust-grid">
+
+
+        <div>
+
+          <div class="eyebrow">
+            WHY THIS EXISTS
+          </div>
+
+          <h2>
+            A buying link should come after the evidence.
+          </h2>
+
+        </div>
+
+
+
+        <div class="seen-on-trust-copy">
+
+          <p>
+            Seen in Korea separates editorial verification
+            from commercial links.
+            A product can be interesting without being verified,
+            and a campaign does not automatically mean
+            personal everyday use.
+          </p>
+
+
+          <p>
+            When affiliate links are added,
+            the recommended retailer should be based on
+            price, delivery, availability and reader value —
+            not simply the highest commission.
+          </p>
+
+
+          <a href="/how-we-verify">
+            READ THE VERIFICATION METHOD →
+          </a>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+</BaseLayout>
+
+
+
+<style>
+
+  .seen-on-page {
+    background: #f3f0ea;
+  }
+
+
+
+  /* HERO */
+
+  .seen-on-hero {
+    padding: 54px 0 34px;
+    border-bottom: 1px solid var(--line);
+  }
+
+
+  .seen-on-hero-grid {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1.08fr)
+      minmax(400px, .92fr);
+
+    gap: 52px;
+
+    align-items: end;
+  }
+
+
+  .seen-on-hero-copy h1 {
+    max-width: 760px;
+
+    margin: 11px 0 17px;
+
+    font-size:
+      clamp(
+        54px,
+        5.8vw,
+        80px
+      );
+
+    line-height: .91;
+
+    letter-spacing: -.065em;
+  }
+
+
+  .seen-on-hero-copy > p {
+    max-width: 720px;
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 17px;
+
+    line-height: 1.45;
+  }
+
+
+
+  /* VERIFY LEGEND */
+
+  .seen-on-verify-panel {
+    padding-left: 30px;
+
+    border-left:
+      1px solid
+      var(--line);
+  }
+
+
+  .seen-on-verify-title {
+    display: flex;
+
+    justify-content:
+      space-between;
+
+    gap: 20px;
+
+    margin-bottom:
+      21px;
+
+    font-size:
+      11px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+  .seen-on-legend {
+    display: grid;
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      20px 18px;
+  }
+
+
+  .seen-on-legend-item {
+    display: grid;
+
+    grid-template-columns:
+      12px 1fr;
+
+    gap: 9px;
+
+    align-items:
+      start;
+  }
+
+
+  .seen-on-dot {
+    width: 9px;
+    height: 9px;
+
+    display:
+      inline-block;
+
+    flex:
+      0 0 auto;
+
+    border-radius:
+      999px;
+
+    background:
+      #aaa;
+  }
+
+
+  .seen-on-dot.confirmed {
+    background: #147a22;
+  }
+
+
+  .seen-on-dot.campaign {
+    background: #2768ce;
+  }
+
+
+  .seen-on-dot.reported {
+    background: var(--accent);
+  }
+
+
+  .seen-on-dot.unconfirmed {
+    background: #aaa;
+  }
+
+
+  .seen-on-legend-item strong {
+    display: block;
+
+    margin:
+      -2px 0 3px;
+
+    font-size:
+      12px;
+  }
+
+
+  .seen-on-legend-item p {
+    margin: 0;
+
+    color:
+      var(--muted);
+
+    font-size:
+      10px;
+
+    line-height:
+      1.4;
+  }
+
+
+
+  /* HOT NOW */
+
+  .seen-on-hot-section {
+    padding:
+      30px 0 42px;
+
+    background:
+      #f8f5ef;
+  }
+
+
+  .seen-on-section-head {
+    display: flex;
+
+    justify-content:
+      space-between;
+
+    align-items:
+      end;
+
+    gap: 24px;
+
+    margin-bottom:
+      14px;
+  }
+
+
+  .seen-on-section-kicker {
+    font-size:
+      22px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      -.04em;
+  }
+
+
+  .seen-on-section-head p {
+    margin:
+      3px 0 0;
+
+    color:
+      var(--muted);
+
+    font-size:
+      11px;
+  }
+
+
+  .seen-on-section-head > a {
+    color:
+      var(--accent);
+
+    font-size:
+      9px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+
+  /* HOT GRID */
+
+  .seen-on-hot-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(
+        3,
+        1fr
+      );
+
+    gap:
+      12px;
+  }
+
+
+  .seen-on-feature-card {
+    overflow:
+      hidden;
+
+    background:
+      #fffdfa;
+
+    border:
+      1px solid
+      var(--line);
+  }
+
+
+  .seen-on-feature-media {
+    position:
+      relative;
+
+    height:
+      330px;
+
+    overflow:
+      hidden;
+
+    background:
+      #ded8ce;
+  }
+
+
+  .seen-on-feature-media img {
+    width:
+      100%;
+
+    height:
+      100%;
+
+    display:
+      block;
+
+    object-fit:
+      cover;
+
+    filter:
+      saturate(.82)
+      contrast(1.03);
+  }
+
+
+  .seen-on-feature-placeholder {
+    width:
+      100%;
+
+    height:
+      100%;
+
+    display:
+      grid;
+
+    place-items:
+      center;
+
+    background:
+      radial-gradient(
+        circle at 70% 30%,
+        rgba(255,77,0,.17),
+        transparent 28%
+      ),
+      linear-gradient(
+        140deg,
+        #d8d1c6,
+        #bfb5a8
+      );
+
+    color:
+      #fff;
+
+    font-size:
+      11px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+
+  /* BADGES */
+
+  .seen-on-evidence-badge,
+  .seen-on-mini-badge {
+    display:
+      inline-flex;
+
+    align-items:
+      center;
+
+    gap:
+      7px;
+
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        .96
+      );
+
+    border:
+      1px solid
+      rgba(
+        0,
+        0,
+        0,
+        .08
+      );
+
+    color:
+      #111;
+
+    font-size:
+      8px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .05em;
+  }
+
+
+  .seen-on-evidence-badge {
+    position:
+      absolute;
+
+    top:
+      13px;
+
+    left:
+      13px;
+
+    padding:
+      8px 10px;
+  }
+
+
+  .seen-on-image-note {
+    position:
+      absolute;
+
+    left:
+      13px;
+
+    bottom:
+      13px;
+
+    padding:
+      6px 8px;
+
+    background:
+      rgba(
+        17,
+        17,
+        17,
+        .86
+      );
+
+    color:
+      #fff;
+
+    font-size:
+      7px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .07em;
+  }
+
+
+
+  /* FEATURE BODY */
+
+  .seen-on-feature-body {
+    padding:
+      19px;
+  }
+
+
+  .seen-on-product-eyebrow,
+  .seen-on-card-brand {
+    color:
+      var(--accent);
+
+    font-size:
+      8px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+  .seen-on-brand {
+    margin-top:
+      8px;
+
+    font-size:
+      11px;
+
+    font-weight:
+      900;
+  }
+
+
+  .seen-on-feature-body h2 {
+    min-height:
+      50px;
+
+    margin:
+      4px 0 9px;
+
+    font-size:
+      25px;
+
+    line-height:
+      1;
+
+    letter-spacing:
+      -.045em;
+  }
+
+
+  .seen-on-product-note {
+    min-height:
+      66px;
+
+    margin:
+      0;
+
+    color:
+      var(--muted);
+
+    font-size:
+      11px;
+
+    line-height:
+      1.48;
+  }
+
+
+
+  /* PRICE */
+
+  .seen-on-price-strip {
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    margin-top:
+      18px;
+
+    border-top:
+      1px solid
+      var(--line);
+
+    border-bottom:
+      1px solid
+      var(--line);
+  }
+
+
+  .seen-on-price-strip > div {
+    padding:
+      12px 0;
+  }
+
+
+  .seen-on-price-strip > div + div {
+    padding-left:
+      15px;
+
+    border-left:
+      1px solid
+      var(--line);
+  }
+
+
+  .seen-on-price-strip span {
+    display:
+      block;
+
+    color:
+      var(--muted);
+
+    font-size:
+      7px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+  .seen-on-price-strip strong {
+    display:
+      block;
+
+    margin-top:
+      4px;
+
+    font-size:
+      19px;
+
+    letter-spacing:
+      -.03em;
+  }
+
+
+
+  /* PRIMARY ACTION */
+
+  .seen-on-primary-action {
+    min-height:
+      45px;
+
+    margin-top:
+      14px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      center;
+
+    background:
+      var(--accent);
+
+    color:
+      #fff;
+
+    font-size:
+      9px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .06em;
+  }
+
+
+
+  /* BROWSE */
+
+  .seen-on-browse-section {
+    padding:
+      24px 0 58px;
+
+    background:
+      #f3f0ea;
+  }
+
+
+
+  /* CATEGORY TABS */
+
+  .seen-on-category-tabs {
+    display:
+      flex;
+
+    flex-wrap:
+      wrap;
+
+    gap:
+      7px;
+
+    margin-bottom:
+      24px;
+  }
+
+
+  .seen-on-category-tab {
+    min-height:
+      34px;
+
+    padding:
+      0 17px;
+
+    border:
+      1px solid
+      var(--line);
+
+    border-radius:
+      999px;
+
+    background:
+      #fffdfa;
+
+    font:
+      inherit;
+
+    font-size:
+      9px;
+
+    font-weight:
+      800;
+
+    cursor:
+      pointer;
+  }
+
+
+  .seen-on-category-tab.active {
+    background:
+      #111;
+
+    border-color:
+      #111;
+
+    color:
+      #fff;
+  }
+
+
+
+  /* BROWSE LAYOUT */
+
+  .seen-on-browse-grid {
+    display:
+      grid;
+
+    grid-template-columns:
+      210px 1fr;
+
+    gap:
+      18px;
+
+    align-items:
+      start;
+  }
+
+
+
+  /* FILTER */
+
+  .seen-on-filter {
+    position:
+      sticky;
+
+    top:
+      112px;
+
+    padding:
+      17px;
+
+    background:
+      #fffdfa;
+
+    border:
+      1px solid
+      var(--line);
+  }
+
+
+  .seen-on-sort > span,
+  .seen-on-filter-group > strong {
+    display:
+      block;
+
+    margin-bottom:
+      9px;
+
+    font-size:
+      9px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .04em;
+  }
+
+
+  .seen-on-sort select {
+    width:
+      100%;
+
+    height:
+      38px;
+
+    padding:
+      0 10px;
+
+    border:
+      1px solid
+      var(--line);
+
+    background:
+      #fff;
+
+    font:
+      inherit;
+
+    font-size:
+      10px;
+  }
+
+
+  .seen-on-filter-group {
+    margin-top:
+      20px;
+
+    padding-top:
+      17px;
+
+    border-top:
+      1px solid
+      var(--line);
+  }
+
+
+  .seen-on-filter-group label,
+  .seen-on-filter-group a {
+    min-height:
+      27px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    gap:
+      7px;
+
+    color:
+      #47433e;
+
+    font-size:
+      10px;
+  }
+
+
+  .seen-on-filter-group input {
+    margin:
+      0;
+  }
+
+
+  .seen-on-filter-group a {
+    color:
+      var(--accent);
+
+    font-weight:
+      800;
+  }
+
+
+
+  /* CATALOG */
+
+  .seen-on-catalog {
+    display:
+      grid;
+
+    grid-template-columns:
+      repeat(
+        4,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      11px;
+  }
+
+
+  .seen-on-product-card {
+    overflow:
+      hidden;
+
+    background:
+      #fffdfa;
+
+    border:
+      1px solid
+      var(--line);
+  }
+
+
+  .seen-on-card-art {
+    position:
+      relative;
+
+    height:
+      180px;
+
+    overflow:
+      hidden;
+
+    background:
+      #e8e1d7;
+  }
+
+
+  .seen-on-card-art.confirmed {
+    background:
+      radial-gradient(
+        circle at 70% 20%,
+        rgba(20,122,34,.18),
+        transparent 25%
+      ),
+      linear-gradient(
+        145deg,
+        #ddd4c8,
+        #b9afa2
+      );
+  }
+
+
+  .seen-on-card-art.campaign {
+    background:
+      radial-gradient(
+        circle at 75% 20%,
+        rgba(39,104,206,.17),
+        transparent 25%
+      ),
+      linear-gradient(
+        145deg,
+        #ead8da,
+        #c8b4b8
+      );
+  }
+
+
+  .seen-on-card-art.reported {
+    background:
+      radial-gradient(
+        circle at 75% 20%,
+        rgba(255,77,0,.16),
+        transparent 25%
+      ),
+      linear-gradient(
+        145deg,
+        #e4dacf,
+        #bdafa1
+      );
+  }
+
+
+  .seen-on-card-art.unconfirmed {
+    background:
+      linear-gradient(
+        145deg,
+        #ddd,
+        #bababa
+      );
+  }
+
+
+  .seen-on-mini-badge {
+    position:
+      absolute;
+
+    top:
+      10px;
+
+    left:
+      10px;
+
+    padding:
+      6px 7px;
+  }
+
+
+  .seen-on-art-mark {
+    position:
+      absolute;
+
+    right:
+      12px;
+
+    bottom:
+      -13px;
+
+    color:
+      rgba(
+        255,
+        255,
+        255,
+        .84
+      );
+
+    font-size:
+      78px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      -.09em;
+  }
+
+
+
+  /* CARD BODY */
+
+  .seen-on-card-body {
+    padding:
+      13px;
+  }
+
+
+  .seen-on-card-body h3 {
+    min-height:
+      38px;
+
+    margin:
+      5px 0 11px;
+
+    font-size:
+      15px;
+
+    line-height:
+      1.08;
+
+    letter-spacing:
+      -.03em;
+  }
+
+
+  .seen-on-card-price {
+    display:
+      block;
+
+    font-size:
+      13px;
+  }
+
+
+  .seen-on-card-bottom {
+    margin-top:
+      13px;
+
+    padding-top:
+      10px;
+
+    display:
+      flex;
+
+    justify-content:
+      space-between;
+
+    gap:
+      8px;
+
+    border-top:
+      1px solid
+      var(--line);
+
+    font-size:
+      8px;
+  }
+
+
+  .seen-on-card-bottom span {
+    color:
+      var(--muted);
+  }
+
+
+  .seen-on-card-bottom a {
+    color:
+      var(--accent);
+
+    font-weight:
+      900;
+  }
+
+
+
+  /* TRUST */
+
+  .seen-on-trust-section {
+    padding:
+      48px 0;
+
+    background:
+      #111;
+
+    color:
+      #fff;
+
+    border:
+      0;
+  }
+
+
+  .seen-on-trust-grid {
+    display:
+      grid;
+
+    grid-template-columns:
+      .8fr 1.2fr;
+
+    gap:
+      70px;
+  }
+
+
+  .seen-on-trust-section .eyebrow {
+    color:
+      var(--accent);
+  }
+
+
+  .seen-on-trust-section h2 {
+    max-width:
+      500px;
+
+    margin:
+      8px 0 0;
+
+    font-size:
+      45px;
+
+    line-height:
+      .96;
+
+    letter-spacing:
+      -.055em;
+  }
+
+
+  .seen-on-trust-copy p {
+    margin:
+      0 0 14px;
+
+    color:
+      #bbb;
+
+    font-size:
+      13px;
+
+    line-height:
+      1.55;
+  }
+
+
+  .seen-on-trust-copy a {
+    display:
+      inline-block;
+
+    margin-top:
+      10px;
+
+    color:
+      var(--accent);
+
+    font-size:
+      9px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .07em;
+  }
+
+
+
+  /* TABLET */
+
+  @media (
+    max-width: 1050px
+  ) {
+
+    .seen-on-hero-grid {
+      grid-template-columns:
+        1fr;
+
+      gap:
+        30px;
+    }
+
+
+    .seen-on-verify-panel {
+      padding:
+        24px 0 0;
+
+      border-left:
+        0;
+
+      border-top:
+        1px solid
+        var(--line);
+    }
+
+
+    .seen-on-catalog {
+      grid-template-columns:
+        repeat(
+          3,
+          minmax(0, 1fr)
+        );
+    }
+
+  }
+
+
+
+  /* MOBILE */
+
+  @media (
+    max-width: 850px
+  ) {
+
+    .seen-on-hero {
+      padding:
+        36px 0 26px;
+    }
+
+
+    .seen-on-hero-copy h1 {
+      font-size:
+        52px;
+    }
+
+
+    .seen-on-hero-copy > p {
+      font-size:
+        14px;
+    }
+
+
+    .seen-on-legend {
+      grid-template-columns:
+        1fr 1fr;
+    }
+
+
+    .seen-on-hot-grid {
+      grid-template-columns:
+        1fr;
+    }
+
+
+    .seen-on-feature-media {
+      height:
+        310px;
+    }
+
+
+    .seen-on-browse-grid {
+      grid-template-columns:
+        1fr;
+    }
+
+
+    .seen-on-filter {
+      position:
+        static;
+    }
+
+
+    .seen-on-catalog {
+      grid-template-columns:
+        repeat(
+          2,
+          minmax(0, 1fr)
+        );
+    }
+
+
+    .seen-on-trust-grid {
+      grid-template-columns:
+        1fr;
+
+      gap:
+        28px;
+    }
+
+
+    .seen-on-trust-section h2 {
+      font-size:
+        37px;
+    }
+
+  }
+
+
+
+  @media (
+    max-width: 520px
+  ) {
+
+    .seen-on-hero-copy h1 {
+      font-size:
+        44px;
+    }
+
+
+    .seen-on-legend {
+      grid-template-columns:
+        1fr;
+    }
+
+
+    .seen-on-category-tabs {
+      flex-wrap:
+        nowrap;
+
+      overflow-x:
+        auto;
+
+      padding-bottom:
+        4px;
+
+      scrollbar-width:
+        none;
+    }
+
+
+    .seen-on-category-tabs::-webkit-scrollbar {
+      display:
+        none;
+    }
+
+
+    .seen-on-category-tab {
+      flex:
+        0 0 auto;
+    }
+
+
+    .seen-on-catalog {
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        8px;
+    }
+
+
+    .seen-on-card-art {
+      height:
+        145px;
+    }
+
+
+    .seen-on-card-body {
+      padding:
+        11px;
+    }
+
+
+    .seen-on-card-body h3 {
+      font-size:
+        14px;
+    }
+
+  }
+
+</style>
