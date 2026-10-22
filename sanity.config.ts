@@ -1,6 +1,8 @@
+
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { schemaTypes } from './sanity/schemaTypes';
+import AiDraftBulkManager from './sanity/components/AiDraftBulkManager';
 
 export default defineConfig({
   name: 'seen-in-korea',
@@ -19,19 +21,36 @@ export default defineConfig({
               .title('AI Draft Inbox')
               .child(
                 S.documentList()
-  .title('AI Draft Inbox')
-  .schemaType('article')
-  .apiVersion('2026-09-01')
-  .filter('_type == "article" && draftOrigin == "ai" && _originalId match "drafts.*"')
-  .defaultOrdering([{ field: 'draftGeneratedAt', direction: 'desc' }])
+                  .title('AI Draft Inbox')
+                  .schemaType('article')
+                  .apiVersion('2026-09-01')
+                  .filter(
+                    '_type == "article" && draftOrigin == "ai" && _originalId match "drafts.*"'
+                  )
+                  .defaultOrdering([
+                    {
+                      field: 'draftGeneratedAt',
+                      direction: 'desc'
+                    }
+                  ])
               ),
+
+            S.listItem()
+              .title('AI Draft Bulk Manager')
+              .child(
+                S.component(AiDraftBulkManager)
+                  .id('ai-draft-bulk-manager')
+                  .title('AI Draft Bulk Manager')
+              ),
+
             S.divider(),
-            ...S.documentTypeListItems(),
-          ]),
-    }),
+
+            ...S.documentTypeListItems()
+          ])
+    })
   ],
 
   schema: {
-    types: schemaTypes,
-  },
+    types: schemaTypes
+  }
 });
