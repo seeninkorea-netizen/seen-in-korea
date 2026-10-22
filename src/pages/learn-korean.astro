@@ -14,20 +14,22 @@ import TutorBooking from '../components/TutorBooking.astro';
       <div class="wrap learn-hero-grid">
         <div class="learn-hero-copy">
           <div class="eyebrow">LEARN KOREAN</div>
-          <h1>Find your next<br /><span class="learn-accent-text">Korean lesson.</span></h1>
+          <h1>Learn Korean.<br /><span class="learn-accent-text">Start speaking.</span></h1>
           <p class="learn-hero-dek">
-            Tell us your goal and situation.
-            We’ll show you what to learn next.
+            Practice real-life Korean with a tutor, or find free lessons that match your level.
           </p>
           <div class="learn-hero-actions">
-            <a href="#study-plan" class="learn-btn learn-btn-primary">FIND MY NEXT KOREAN LESSON →</a>
+            <a href="#tutor" class="learn-btn learn-btn-primary">BOOK A FREE 10-MIN TRIAL →</a>
+            <a href="#study-plan" class="learn-btn learn-btn-light">FIND FREE LESSONS →</a>
           </div>
           <div class="learn-trust-row">
-            <span>Only 5 questions</span>
-            <span>Personalized to you</span>
-            <span>Free verified resources</span>
+            <span>Live 1:1 conversation</span>
+            <span>Real-life practice</span>
+            <span>Free learning resources</span>
           </div>
-          <div class="learn-hero-time">About 30 seconds</div>
+          <div class="learn-hero-time">
+            <a href="#practice-with-tutor">MEET YOUR TUTOR · WATCH INTRO VIDEO ↓</a>
+          </div>
 
           <div class="learn-hero-visual" aria-label="Korean city and traditional architecture">
             <img
@@ -48,6 +50,11 @@ import TutorBooking from '../components/TutorBooking.astro';
           <p>Use it when pointing to something you want to order or buy.</p>
         </div>
       </div>
+    </section>
+
+    <!-- TUTOR: available without completing the study questionnaire -->
+    <section id="tutor" class="learn-tutor-section">
+      <TutorBooking />
     </section>
 
     <!-- PERSONALIZED STUDY PLAN -->
@@ -596,11 +603,6 @@ import TutorBooking from '../components/TutorBooking.astro';
           <article><span>06</span><h3>Work</h3><p>Practice useful workplace and business Korean.</p></article>
         </div>
       </div>
-    </section>
-
-    <!-- TUTOR -->
-    <section id="tutor" class="learn-tutor-section" hidden>
-      <TutorBooking />
     </section>
 
     <!-- FINAL CTA -->
