@@ -29,5 +29,8 @@
     "@astrojs/check": "latest",
     "typescript": "latest",
     "wrangler": "latest"
+  },
+  "overrides": {
+    "@volar/typescript": "2.4.28"
   }
 }
