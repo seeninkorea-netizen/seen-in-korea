@@ -1,369 +1,1896 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const levels = [
+  {
+    number: '01',
+    key: 'confirmed',
+    title: 'CONFIRMED USE',
+    short: 'Actual use is supported by attributable evidence.',
+    description:
+      'We found public evidence showing the person actually using, wearing or directly referring to the exact product.',
+    examples:
+      'Examples: attributable photo or video, first-party interview, direct statement.',
+    buyRule:
+      'Buying links may be shown after the exact product and current offer are checked.'
+  },
+  {
+    number: '02',
+    key: 'campaign',
+    title: 'OFFICIAL CAMPAIGN',
+    short: 'A commercial relationship is confirmed.',
+    description:
+      'The brand officially confirms an ambassador relationship, advertisement, campaign or sponsored collaboration.',
+    examples:
+      'This proves the campaign relationship. It does not automatically prove private everyday use.',
+    buyRule:
+      'Buying links may be shown, but the page must remain labeled Official Campaign.'
+  },
+  {
+    number: '03',
+    key: 'reported',
+    title: 'REPORTED',
+    short: 'A credible source connects the person and product.',
+    description:
+      'The claim is supported by credible reporting or attributable public material, but we do not have enough primary evidence to call it confirmed personal use.',
+    examples:
+      'Reported does not mean false. It means the evidence is weaker or more indirect.',
+    buyRule:
+      'Buying links are added cautiously and the evidence source should remain visible.'
+  },
+  {
+    number: '04',
+    key: 'unconfirmed',
+    title: 'UNCONFIRMED',
+    short: 'The claim is not strong enough to recommend as fact.',
+    description:
+      'The product identification relies mainly on fan speculation, reposts, vague images or sources that cannot be reliably traced.',
+    examples:
+      'We may show the claim for context, but we do not present it as verified.',
+    buyRule:
+      'No purchase recommendation should be attached solely to an unconfirmed claim.'
+  }
+];
+
+const process = [
+  {
+    number: '01',
+    title: 'Identify the exact claim',
+    description:
+      'What exactly are we trying to verify — the person, the product, the shade, the campaign, the price or actual personal use?'
+  },
+  {
+    number: '02',
+    title: 'Find the strongest source',
+    description:
+      'We prioritize original brand announcements, first-party statements, attributable photos or videos and official product information.'
+  },
+  {
+    number: '03',
+    title: 'Separate relationship from use',
+    description:
+      'Being a model or ambassador does not prove that someone personally uses the product outside the campaign.'
+  },
+  {
+    number: '04',
+    title: 'Identify the exact product',
+    description:
+      'A similar-looking item is not enough. Model, product name, variant and relevant details must match where possible.'
+  },
+  {
+    number: '05',
+    title: 'Check current price and availability',
+    description:
+      'Prices and buying options are checked separately from the celebrity or campaign evidence.'
+  },
+  {
+    number: '06',
+    title: 'Publish the limitation',
+    description:
+      'If something cannot be established, we say what remains unknown instead of filling the gap with an assumption.'
+  }
+];
+
+const sourcePriority = [
+  {
+    level: 'STRONGEST',
+    title: 'Primary evidence',
+    copy:
+      'Official documents, brand announcements, direct interviews, attributable first-party statements, original photos or videos and official product pages.'
+  },
+  {
+    level: 'SUPPORTING',
+    title: 'Independent reporting',
+    copy:
+      'Established reporting, reputable media coverage and other attributable secondary sources.'
+  },
+  {
+    level: 'CONTEXT',
+    title: 'Community evidence',
+    copy:
+      'Social posts, community discussions, blogs and reviews may help identify a lead but generally do not prove a claim on their own.'
+  },
+  {
+    level: 'NOT ENOUGH',
+    title: 'Untraceable claims',
+    copy:
+      'Reposts without an original source, anonymous claims, vague screenshots and fan speculation are not treated as verification.'
+  }
+];
 ---
 
 <BaseLayout
   title="How We Verify — SEEN IN KOREA"
-  description="How SEEN IN KOREA checks evidence, reviews, claims and real-world fit before making recommendations about Korea."
+  description="How SEEN IN KOREA verifies celebrity-product claims, campaigns, reported sightings, prices and buying recommendations."
 >
-  <main>
+
+  <main class="verify-page">
+
 
     <!-- HERO -->
-    <section class="listing-hero">
-      <div class="wrap">
+    <section class="verify-hero">
 
-        <div class="eyebrow">
-          KOREA, VERIFIED.
+      <div class="wrap verify-hero-grid">
+
+
+        <div>
+
+          <div class="eyebrow">
+            KOREA, VERIFIED.
+          </div>
+
+          <h1>
+            HOW WE<br />
+            VERIFY
+          </h1>
+
         </div>
 
-        <h1>HOW WE VERIFY</h1>
 
-        <p>
-          We do not trust ratings, popularity or marketing claims at face value.
-          We check the evidence behind them — and tell you what we could not verify.
-        </p>
+        <div class="verify-intro">
 
-      </div>
-    </section>
+          <p class="verify-intro-lead">
+            A campaign is not the same as personal use.
+            A viral post is not automatically evidence.
+            A buying link should come after the claim is checked.
+          </p>
 
+          <p>
+            SEEN IN KOREA separates what we know,
+            what the evidence actually proves,
+            and what still remains uncertain.
+          </p>
 
-    <!-- BODY -->
-    <section>
+          <a href="/seen-on">
+            SEE VERIFIED PRODUCTS →
+          </a>
 
-      <div class="article-wrap article-body">
+        </div>
 
-        <h2>What “verified” means</h2>
-
-        <p>
-          SEEN IN KOREA helps readers make better decisions about Korea —
-          what to learn, where to go, what to buy and which information to trust.
-        </p>
-
-        <p>
-          Verification does not mean that every question has one objectively
-          correct answer. It means that our conclusions are tied to evidence,
-          the limits of that evidence are made clear, and recommendations are
-          based on who something actually fits.
-        </p>
-
-
-        <h2>We start with evidence, not rankings</h2>
-
-        <p>
-          Popularity alone does not determine our recommendations.
-          Before deciding whether something is worth recommending, we look for
-          evidence that can support the claims being made.
-        </p>
-
-        <p>
-          Depending on the subject, that may include official information,
-          government data, current prices, terms and conditions, direct testing,
-          first-hand reporting, independent user experiences, interviews and
-          other relevant sources.
-        </p>
-
-
-        <h2>What we check</h2>
-
-        <p>
-          Our verification process may examine:
-        </p>
-
-        <p>
-          <strong>Official information</strong><br />
-          Current prices, opening hours, specifications, policies, curriculum,
-          eligibility requirements and other factual claims.
-        </p>
-
-        <p>
-          <strong>Independent evidence</strong><br />
-          Experiences and reporting that are not controlled by the company,
-          product or service being evaluated.
-        </p>
-
-        <p>
-          <strong>Review patterns</strong><br />
-          We look beyond average ratings and examine recurring praise,
-          recurring complaints, timing, specificity and unusual patterns.
-        </p>
-
-        <p>
-          <strong>Contradictions</strong><br />
-          We compare marketing claims with independent evidence and actively
-          look for information that could challenge our initial conclusion.
-        </p>
-
-        <p>
-          <strong>Real-world fit</strong><br />
-          Something can be good without being right for everyone.
-          We ask who it is best for — and who may be better off choosing
-          something else.
-        </p>
-
-        <p>
-          <strong>Freshness</strong><br />
-          Prices, policies, products and services change.
-          Where relevant, we show when information was last checked.
-        </p>
-
-
-        <h2>Not all sources are equal</h2>
-
-        <p>
-          We generally give more weight to primary and directly verifiable
-          evidence than to anonymous, promotional or repeatedly copied claims.
-        </p>
-
-        <p>
-          Official documents, government information, direct testing,
-          first-hand reporting and original interviews can provide stronger
-          evidence for factual claims.
-        </p>
-
-        <p>
-          Blogs, social posts, influencer content and general online reviews
-          may still be useful, but they are considered in context rather than
-          treated as proof on their own.
-        </p>
-
-
-        <h2>We verify claims individually</h2>
-
-        <p>
-          We do not automatically label an entire product, course, destination
-          or service as verified simply because some information about it is
-          confirmed.
-        </p>
-
-        <p>
-          Different claims may have different levels of evidence.
-          For example, we may be able to confirm a course curriculum but have
-          limited evidence about long-term learning outcomes.
-        </p>
-
-
-        <h2>We look for evidence against our conclusion</h2>
-
-        <p>
-          A useful recommendation should survive more than supportive reviews.
-          During deeper checks, we intentionally look for contradictory evidence,
-          recurring complaints and realistic alternatives.
-        </p>
-
-        <p>
-          When important evidence does not add up, we may highlight the
-          contradiction instead of forcing a positive or negative conclusion.
-        </p>
-
-
-        <h2>Verdict and confidence are different</h2>
-
-        <p>
-          When SEEN IN KOREA publishes a recommendation or Navigator result,
-          the conclusion and the strength of the evidence are treated separately.
-        </p>
-
-        <p>
-          A recommendation may fit a particular user while the available
-          evidence is still limited. In those cases, confidence should be
-          shown accordingly.
-        </p>
-
-        <p>
-          Where used, confidence is expressed simply as:
-          <strong> High, Medium or Low.</strong>
-        </p>
-
-        <p>
-          We avoid artificial precision such as arbitrary 92/100 scores when
-          the underlying evidence cannot support that level of certainty.
-        </p>
-
-
-        <h2>Sometimes the answer is “More Evidence Needed”</h2>
-
-        <p>
-          We do not force a recommendation when the available evidence is too
-          limited, outdated, contradictory or difficult to verify.
-        </p>
-
-        <p>
-          In those cases, the most accurate conclusion may simply be:
-          <strong> More Evidence Needed.</strong>
-        </p>
-
-
-        <h2>Best for whom?</h2>
-
-        <p>
-          SEEN IN KOREA is moving away from generic “best” lists.
-          A highly rated option may still be wrong for a particular person.
-        </p>
-
-        <p>
-          Our Navigator-style recommendations therefore focus on questions such as:
-          what is your goal, level, budget, available time and real-life situation?
-        </p>
-
-        <p>
-          Where relevant, we show:
-          <strong> Best For</strong> and <strong>Skip If</strong>
-          so readers can see the trade-off instead of only seeing a ranking.
-        </p>
-
-
-        <h2>Reviews are evidence — not the verdict</h2>
-
-        <p>
-          Online reviews can reveal useful patterns, but they can also be
-          incomplete, outdated, incentivized or difficult to authenticate.
-        </p>
-
-        <p>
-          We do not call individual reviews “fake” without evidence.
-          If we observe unusual patterns — such as highly repetitive language,
-          sudden concentrations of reviews or unclear sponsorship —
-          we may reduce the weight given to that evidence and explain why.
-        </p>
-
-
-        <h2>Different decisions require different levels of checking</h2>
-
-        <p>
-          A restaurant opening hour does not require the same level of research
-          as an expensive course, housing decision or medical service.
-        </p>
-
-        <p>
-          Our research depth therefore depends on the cost, time commitment,
-          reversibility and potential impact of the decision.
-        </p>
-
-        <p>
-          For higher-stakes areas such as medical treatment, legal matters,
-          visas, housing contracts or financial decisions, SEEN IN KOREA
-          focuses on verified information, options and questions to ask rather
-          than presenting consumer-style “best” verdicts.
-        </p>
-
-
-        <h2>What we could not verify matters too</h2>
-
-        <p>
-          Missing evidence is part of the result.
-        </p>
-
-        <p>
-          When an important claim cannot be independently verified,
-          we should identify that limitation rather than quietly treating the
-          claim as established fact.
-        </p>
-
-
-        <h2>Information changes</h2>
-
-        <p>
-          Korea changes quickly. Prices, policies, availability, products and
-          services may change after publication.
-        </p>
-
-        <p>
-          Where appropriate, SEEN IN KOREA records when information was last
-          checked and updates conclusions when material new evidence becomes
-          available.
-        </p>
-
-        <p>
-          If our conclusion changes, significant changes should be explained
-          rather than silently rewritten.
-        </p>
-
-
-        <h2>Commercial relationships do not determine the verdict</h2>
-
-        <p>
-          SEEN IN KOREA may earn revenue through advertising, affiliate links,
-          partnerships or other commercial activities.
-        </p>
-
-        <p>
-          Our intended order is:
-          <strong> research → evidence → conclusion → publication → commercial link.</strong>
-        </p>
-
-        <p>
-          A product or service should not receive a more favorable editorial
-          conclusion because it offers a commission or commercial relationship.
-          Relevant commercial relationships are disclosed where appropriate.
-        </p>
-
-
-        <h2>Businesses can respond</h2>
-
-        <p>
-          A company, institution or service provider may contact SEEN IN KOREA
-          if it believes information is inaccurate, outdated or missing
-          important context.
-        </p>
-
-        <p>
-          A provider response may be added as relevant context, but a company
-          statement is not automatically treated as independent verification.
-        </p>
-
-
-        <h2>Readers can challenge our findings</h2>
-
-        <p>
-          Readers with recent first-hand experience can help us identify
-          outdated information, missing evidence or experiences that differ
-          from the patterns we found.
-        </p>
-
-        <p>
-          New information is reviewed as evidence.
-          One individual report does not automatically overturn an existing
-          conclusion, but meaningful new evidence can trigger a re-check.
-        </p>
-
-
-        <h2>Our methodology will evolve</h2>
-
-        <p>
-          SEEN IN KOREA is building this verification system progressively.
-          Not every article or recommendation currently uses the same depth
-          of research.
-        </p>
-
-        <p>
-          As we collect more original interviews, direct testing and
-          user-reported outcomes, our goal is to rely increasingly on
-          first-party evidence rather than simply repeating information
-          available elsewhere.
-        </p>
-
-
-        <h2>Editorial standards</h2>
-
-        <p>
-          This page explains how our recommendation and verification process works.
-          For our broader rules on sourcing, corrections, interviews,
-          artificial intelligence and editorial independence, read our
-          <a href="/editorial-standards">Editorial Standards →</a>
-        </p>
-
-
-        <h2>Corrections and evidence</h2>
-
-        <p>
-          To report outdated information, provide additional evidence or
-          raise an editorial concern:
-          <a href="mailto:seeninkorea@gmail.com">seeninkorea@gmail.com</a>
-        </p>
 
       </div>
 
     </section>
+
+
+
+    <!-- CORE RULE -->
+    <section class="verify-rule-section">
+
+      <div class="wrap">
+
+        <div class="verify-rule">
+
+          <div class="verify-rule-label">
+            THE CORE RULE
+          </div>
+
+          <blockquote>
+            We verify the claim first.
+            We classify the evidence second.
+            We add the buying option last.
+          </blockquote>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- EVIDENCE LEVELS -->
+    <section class="verify-levels-section">
+
+      <div class="wrap">
+
+
+        <div class="verify-section-head">
+
+          <div>
+
+            <div class="eyebrow">
+              SEEN ON · EVIDENCE LEVELS
+            </div>
+
+            <h2>
+              Four labels.<br />
+              Four different meanings.
+            </h2>
+
+          </div>
+
+
+          <p>
+            These labels describe the strength
+            and type of evidence behind a claim.
+            They are not product-quality scores.
+          </p>
+
+        </div>
+
+
+
+        <div class="verify-level-grid">
+
+          {
+            levels.map(
+              item => (
+
+                <article
+                  class:list={[
+                    'verify-level-card',
+                    item.key
+                  ]}
+                >
+
+                  <div class="verify-level-top">
+
+                    <span>
+                      {item.number}
+                    </span>
+
+                    <span
+                      class:list={[
+                        'verify-dot',
+                        item.key
+                      ]}
+                    ></span>
+
+                  </div>
+
+
+                  <h3>
+                    {item.title}
+                  </h3>
+
+
+                  <strong>
+                    {item.short}
+                  </strong>
+
+
+                  <p>
+                    {item.description}
+                  </p>
+
+
+                  <div class="verify-example">
+                    {item.examples}
+                  </div>
+
+
+                  <div class="verify-buy-rule">
+
+                    <span>
+                      BUYING RULE
+                    </span>
+
+                    <p>
+                      {item.buyRule}
+                    </p>
+
+                  </div>
+
+                </article>
+
+              )
+            )
+          }
+
+        </div>
+
+
+        <div class="verify-warning">
+
+          <strong>
+            Important:
+          </strong>
+
+          An official campaign confirms a commercial relationship.
+          It does <b>not</b> automatically mean the celebrity
+          privately uses that product in everyday life.
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- PROCESS -->
+    <section class="verify-process-section">
+
+      <div class="wrap">
+
+
+        <div class="verify-section-head">
+
+          <div>
+
+            <div class="eyebrow">
+              THE PROCESS
+            </div>
+
+            <h2>
+              From viral claim<br />
+              to verified page.
+            </h2>
+
+          </div>
+
+
+          <p>
+            The amount of research can vary,
+            but the order should stay the same.
+          </p>
+
+        </div>
+
+
+
+        <div class="verify-process-list">
+
+          {
+            process.map(
+              item => (
+
+                <div class="verify-process-row">
+
+                  <span class="verify-process-number">
+                    {item.number}
+                  </span>
+
+
+                  <strong>
+                    {item.title}
+                  </strong>
+
+
+                  <p>
+                    {item.description}
+                  </p>
+
+                </div>
+
+              )
+            )
+          }
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- SOURCE HIERARCHY -->
+    <section class="verify-source-section">
+
+      <div class="wrap verify-source-grid">
+
+
+        <div>
+
+          <div class="eyebrow">
+            SOURCE PRIORITY
+          </div>
+
+          <h2>
+            Not every source
+            carries the same weight.
+          </h2>
+
+        </div>
+
+
+
+        <div class="verify-source-list">
+
+          {
+            sourcePriority.map(
+              item => (
+
+                <div class="verify-source-row">
+
+                  <span>
+                    {item.level}
+                  </span>
+
+
+                  <div>
+
+                    <strong>
+                      {item.title}
+                    </strong>
+
+                    <p>
+                      {item.copy}
+                    </p>
+
+                  </div>
+
+                </div>
+
+              )
+            )
+          }
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- PRODUCT ID -->
+    <section class="verify-detail-section">
+
+      <div class="wrap verify-detail-grid">
+
+
+        <div>
+
+          <div class="eyebrow">
+            EXACT PRODUCT MATTERS
+          </div>
+
+          <h2>
+            “Looks similar”
+            is not verification.
+          </h2>
+
+        </div>
+
+
+        <div>
+
+          <p>
+            A celebrity may appear with a lipstick,
+            bag, skincare product or food item
+            that resembles several products.
+          </p>
+
+          <p>
+            We should not identify the product solely
+            because it looks similar.
+            Where possible, we verify the exact brand,
+            product name, model, shade, size or variant.
+          </p>
+
+          <p>
+            If the exact item cannot be established,
+            the uncertainty should remain visible.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- PRICE -->
+    <section class="verify-detail-section price-section">
+
+      <div class="wrap verify-detail-grid">
+
+
+        <div>
+
+          <div class="eyebrow">
+            PRICE VERIFICATION
+          </div>
+
+          <h2>
+            Evidence and price
+            are checked separately.
+          </h2>
+
+        </div>
+
+
+        <div>
+
+          <p>
+            Confirming that someone appeared in a campaign
+            does not tell us whether the product is
+            fairly priced or where readers should buy it.
+          </p>
+
+          <p>
+            We may separately check official Korea pricing,
+            overseas pricing, retailer availability,
+            shipping and other relevant buying conditions.
+          </p>
+
+          <p>
+            Where useful, Seen in Korea can compare
+            multiple buying options instead of automatically
+            linking to the first store we find.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- COMMERCE -->
+    <section class="verify-commerce-section">
+
+      <div class="wrap verify-commerce-grid">
+
+
+        <div>
+
+          <div class="eyebrow">
+            EDITORIAL × COMMERCE
+          </div>
+
+          <h2>
+            Verification
+            is not for sale.
+          </h2>
+
+        </div>
+
+
+
+        <div class="verify-commerce-copy">
+
+          <p>
+            SEEN IN KOREA may earn revenue through
+            affiliate links, advertising,
+            retailer partnerships,
+            sponsored offers or other commercial services.
+          </p>
+
+          <p>
+            Commercial relationships do not change
+            the evidence classification.
+          </p>
+
+
+          <div class="verify-commerce-rule">
+
+            <span>
+              OFFICIAL CAMPAIGN
+            </span>
+
+            <b>
+              ≠
+            </b>
+
+            <span>
+              CONFIRMED USE
+            </span>
+
+          </div>
+
+
+          <p>
+            A commission cannot convert
+            “Reported” into “Confirmed Use.”
+            A sponsorship cannot convert
+            an unverified claim into a verified one.
+          </p>
+
+          <p>
+            When affiliate relationships are active,
+            they should be disclosed.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- UPDATES -->
+    <section class="verify-update-section">
+
+      <div class="wrap verify-update-grid">
+
+
+        <div>
+
+          <div class="eyebrow">
+            INFORMATION CHANGES
+          </div>
+
+          <h2>
+            Verification is
+            a timestamp, not eternity.
+          </h2>
+
+        </div>
+
+
+        <div>
+
+          <p>
+            Prices change.
+            Campaigns end.
+            Products are discontinued.
+            New evidence can appear.
+          </p>
+
+          <p>
+            Where relevant,
+            Seen in Korea records when information
+            was checked and updates a page
+            when material new evidence changes the conclusion.
+          </p>
+
+          <p>
+            Significant corrections should be explained
+            rather than silently changing the meaning
+            of the original conclusion.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- BROADER VERIFICATION -->
+    <section class="verify-broader-section">
+
+      <div class="wrap">
+
+
+        <div class="verify-section-head">
+
+          <div>
+
+            <div class="eyebrow">
+              BEYOND SEEN ON
+            </div>
+
+            <h2>
+              The same principle applies
+              across Seen in Korea.
+            </h2>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="verify-broader-grid">
+
+
+          <article>
+
+            <span>
+              TRAVEL & PLACES
+            </span>
+
+            <h3>
+              Check the facts that affect the visit.
+            </h3>
+
+            <p>
+              Hours, prices, access rules,
+              reservation requirements and other
+              practical information can change quickly.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <span>
+              PRODUCTS
+            </span>
+
+            <h3>
+              Marketing claims are not conclusions.
+            </h3>
+
+            <p>
+              Specifications, ingredients,
+              official claims, pricing and
+              independent evidence should be separated.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <span>
+              REAL KOREA
+            </span>
+
+            <h3>
+              Individual experiences need context.
+            </h3>
+
+            <p>
+              Interviews and first-hand experiences
+              are valuable evidence,
+              but one person does not automatically
+              represent everyone.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <span>
+              HIGH-STAKES INFORMATION
+            </span>
+
+            <h3>
+              Higher impact requires stronger caution.
+            </h3>
+
+            <p>
+              Medical, legal, visa,
+              housing and financial decisions
+              require stronger sourcing and
+              clearer limits than ordinary shopping content.
+            </p>
+
+          </article>
+
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CHALLENGE -->
+    <section class="verify-challenge-section">
+
+      <div class="wrap verify-challenge-grid">
+
+
+        <div>
+
+          <div class="eyebrow">
+            CHALLENGE OUR EVIDENCE
+          </div>
+
+          <h2>
+            Found something
+            we missed?
+          </h2>
+
+        </div>
+
+
+        <div>
+
+          <p>
+            Readers, brands and organizations
+            can send newer evidence,
+            corrections or missing context.
+          </p>
+
+          <p>
+            A company statement may be useful context,
+            but it is not automatically treated
+            as independent verification.
+          </p>
+
+
+          <a
+            href="mailto:seeninkorea@gmail.com"
+            class="verify-contact"
+          >
+            seeninkorea@gmail.com →
+          </a>
+
+
+          <a
+            href="/editorial-standards"
+            class="verify-editorial"
+          >
+            READ EDITORIAL STANDARDS →
+          </a>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
 
   </main>
+
 </BaseLayout>
+
+
+
+<style>
+
+  .verify-page {
+    background:
+      #f3f0ea;
+  }
+
+
+  /* HERO */
+
+  .verify-hero {
+    padding:
+      64px 0 48px;
+
+    border-bottom:
+      1px solid
+      var(--line);
+  }
+
+
+  .verify-hero-grid {
+    display:
+      grid;
+
+    grid-template-columns:
+      1.08fr .92fr;
+
+    gap:
+      70px;
+
+    align-items:
+      end;
+  }
+
+
+  .verify-hero h1 {
+    margin:
+      11px 0 0;
+
+    font-size:
+      clamp(
+        64px,
+        8vw,
+        108px
+      );
+
+    line-height:
+      .82;
+
+    letter-spacing:
+      -.075em;
+  }
+
+
+  .verify-intro {
+    padding-left:
+      30px;
+
+    border-left:
+      1px solid
+      var(--line);
+  }
+
+
+  .verify-intro-lead {
+    margin:
+      0 0 16px;
+
+    color:
+      #111 !important;
+
+    font-size:
+      21px !important;
+
+    font-weight:
+      800;
+
+    line-height:
+      1.25 !important;
+
+    letter-spacing:
+      -.025em;
+  }
+
+
+  .verify-intro p {
+    max-width:
+      560px;
+
+    margin:
+      0 0 17px;
+
+    color:
+      var(--muted);
+
+    font-size:
+      13px;
+
+    line-height:
+      1.55;
+  }
+
+
+  .verify-intro a {
+    color:
+      var(--accent);
+
+    font-size:
+      9px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .07em;
+  }
+
+
+  /* CORE RULE */
+
+  .verify-rule-section {
+    padding:
+      22px 0;
+
+    background:
+      #111;
+
+    color:
+      #fff;
+  }
+
+
+  .verify-rule {
+    display:
+      grid;
+
+    grid-template-columns:
+      170px 1fr;
+
+    gap:
+      30px;
+
+    align-items:
+      center;
+  }
+
+
+  .verify-rule-label {
+    color:
+      var(--accent);
+
+    font-size:
+      8px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .1em;
+  }
+
+
+  .verify-rule blockquote {
+    margin:
+      0;
+
+    font-size:
+      clamp(
+        18px,
+        2.3vw,
+        28px
+      );
+
+    font-weight:
+      800;
+
+    line-height:
+      1.15;
+
+    letter-spacing:
+      -.035em;
+  }
+
+
+  /* SECTION HEAD */
+
+  .verify-section-head {
+    display:
+      flex;
+
+    justify-content:
+      space-between;
+
+    align-items:
+      end;
+
+    gap:
+      40px;
+
+    margin-bottom:
+      26px;
+  }
+
+
+  .verify-section-head h2,
+  .verify-source-grid h2,
+  .verify-detail-grid h2,
+  .verify-commerce-grid h2,
+  .verify-update-grid h2,
+  .verify-challenge-grid h2 {
+    max-width:
+      650px;
+
+    margin:
+      8px 0 0;
+
+    font-size:
+      clamp(
+        40px,
+        4.8vw,
+        62px
+      );
+
+    line-height:
+      .93;
+
+    letter-spacing:
+      -.06em;
+  }
+
+
+  .verify-section-head > p {
+    max-width:
+      430px;
+
+    margin:
+      0;
+
+    color:
+      var(--muted);
+
+    font-size:
+      12px;
+
+    line-height:
+      1.5;
+  }
+
+
+  /* LEVELS */
+
+  .verify-levels-section {
+    padding:
+      60px 0;
+  }
+
+
+  .verify-level-grid {
+    display:
+      grid;
+
+    grid-template-columns:
+      repeat(
+        4,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      10px;
+  }
+
+
+  .verify-level-card {
+    padding:
+      22px 18px;
+
+    background:
+      #fffdfa;
+
+    border:
+      1px solid
+      var(--line);
+  }
+
+
+  .verify-level-top {
+    display:
+      flex;
+
+    justify-content:
+      space-between;
+
+    align-items:
+      center;
+
+    margin-bottom:
+      44px;
+  }
+
+
+  .verify-level-top > span:first-child {
+    color:
+      var(--muted);
+
+    font-size:
+      10px;
+
+    font-weight:
+      900;
+  }
+
+
+  .verify-dot {
+    width:
+      10px;
+
+    height:
+      10px;
+
+    border-radius:
+      999px;
+
+    background:
+      #aaa;
+  }
+
+
+  .verify-dot.confirmed {
+    background:
+      #167629;
+  }
+
+
+  .verify-dot.campaign {
+    background:
+      #2768ce;
+  }
+
+
+  .verify-dot.reported {
+    background:
+      var(--accent);
+  }
+
+
+  .verify-level-card h3 {
+    min-height:
+      42px;
+
+    margin:
+      0 0 10px;
+
+    font-size:
+      20px;
+
+    line-height:
+      1;
+
+    letter-spacing:
+      -.04em;
+  }
+
+
+  .verify-level-card > strong {
+    display:
+      block;
+
+    min-height:
+      46px;
+
+    margin-bottom:
+      12px;
+
+    font-size:
+      11px;
+
+    line-height:
+      1.4;
+  }
+
+
+  .verify-level-card > p,
+  .verify-example {
+    color:
+      var(--muted);
+
+    font-size:
+      10px;
+
+    line-height:
+      1.5;
+  }
+
+
+  .verify-example {
+    min-height:
+      78px;
+
+    margin-top:
+      13px;
+
+    padding-top:
+      13px;
+
+    border-top:
+      1px solid
+      var(--line);
+  }
+
+
+  .verify-buy-rule {
+    margin-top:
+      15px;
+
+    padding:
+      12px;
+
+    background:
+      #f0ebe3;
+  }
+
+
+  .verify-buy-rule > span {
+    display:
+      block;
+
+    margin-bottom:
+      5px;
+
+    color:
+      var(--accent);
+
+    font-size:
+      7px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+  .verify-buy-rule p {
+    margin:
+      0;
+
+    font-size:
+      9px;
+
+    line-height:
+      1.45;
+  }
+
+
+  .verify-warning {
+    margin-top:
+      14px;
+
+    padding:
+      16px 18px;
+
+    background:
+      #111;
+
+    color:
+      #bbb;
+
+    font-size:
+      11px;
+
+    line-height:
+      1.5;
+  }
+
+
+  .verify-warning strong,
+  .verify-warning b {
+    color:
+      #fff;
+  }
+
+
+  /* PROCESS */
+
+  .verify-process-section {
+    padding:
+      58px 0;
+
+    background:
+      #ece6dc;
+  }
+
+
+  .verify-process-list {
+    border-top:
+      1px solid
+      var(--line);
+  }
+
+
+  .verify-process-row {
+    display:
+      grid;
+
+    grid-template-columns:
+      70px 280px 1fr;
+
+    gap:
+      28px;
+
+    padding:
+      19px 0;
+
+    border-bottom:
+      1px solid
+      var(--line);
+
+    align-items:
+      start;
+  }
+
+
+  .verify-process-number {
+    color:
+      var(--accent);
+
+    font-size:
+      10px;
+
+    font-weight:
+      900;
+  }
+
+
+  .verify-process-row strong {
+    font-size:
+      13px;
+  }
+
+
+  .verify-process-row p {
+    max-width:
+      650px;
+
+    margin:
+      0;
+
+    color:
+      var(--muted);
+
+    font-size:
+      11px;
+
+    line-height:
+      1.5;
+  }
+
+
+  /* SOURCES */
+
+  .verify-source-section,
+  .verify-detail-section,
+  .verify-update-section,
+  .verify-challenge-section {
+    padding:
+      60px 0;
+  }
+
+
+  .verify-source-grid,
+  .verify-detail-grid,
+  .verify-commerce-grid,
+  .verify-update-grid,
+  .verify-challenge-grid {
+    display:
+      grid;
+
+    grid-template-columns:
+      .8fr 1.2fr;
+
+    gap:
+      70px;
+  }
+
+
+  .verify-source-list {
+    border-top:
+      1px solid
+      var(--line);
+  }
+
+
+  .verify-source-row {
+    display:
+      grid;
+
+    grid-template-columns:
+      110px 1fr;
+
+    gap:
+      24px;
+
+    padding:
+      18px 0;
+
+    border-bottom:
+      1px solid
+      var(--line);
+  }
+
+
+  .verify-source-row > span {
+    color:
+      var(--accent);
+
+    font-size:
+      8px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+  .verify-source-row strong {
+    display:
+      block;
+
+    margin-bottom:
+      5px;
+
+    font-size:
+      13px;
+  }
+
+
+  .verify-source-row p,
+  .verify-detail-grid > div:last-child p,
+  .verify-update-grid > div:last-child p,
+  .verify-challenge-grid > div:last-child p {
+    margin:
+      0 0 14px;
+
+    color:
+      var(--muted);
+
+    font-size:
+      12px;
+
+    line-height:
+      1.58;
+  }
+
+
+  /* DETAIL */
+
+  .price-section {
+    background:
+      #f8f5ef;
+
+    border-top:
+      1px solid
+      var(--line);
+
+    border-bottom:
+      1px solid
+      var(--line);
+  }
+
+
+  /* COMMERCE */
+
+  .verify-commerce-section {
+    padding:
+      60px 0;
+
+    background:
+      #111;
+
+    color:
+      #fff;
+  }
+
+
+  .verify-commerce-section .eyebrow {
+    color:
+      var(--accent);
+  }
+
+
+  .verify-commerce-copy p {
+    margin:
+      0 0 16px;
+
+    color:
+      #bbb;
+
+    font-size:
+      12px;
+
+    line-height:
+      1.58;
+  }
+
+
+  .verify-commerce-rule {
+    margin:
+      24px 0;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr auto 1fr;
+
+    gap:
+      18px;
+
+    align-items:
+      center;
+  }
+
+
+  .verify-commerce-rule span {
+    padding:
+      17px;
+
+    border:
+      1px solid
+      rgba(
+        255,
+        255,
+        255,
+        .2
+      );
+
+    text-align:
+      center;
+
+    font-size:
+      9px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .06em;
+  }
+
+
+  .verify-commerce-rule b {
+    color:
+      var(--accent);
+
+    font-size:
+      25px;
+  }
+
+
+  /* BROADER */
+
+  .verify-broader-section {
+    padding:
+      60px 0;
+
+    background:
+      #ece6dc;
+  }
+
+
+  .verify-broader-grid {
+    display:
+      grid;
+
+    grid-template-columns:
+      repeat(
+        4,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      10px;
+  }
+
+
+  .verify-broader-grid article {
+    padding:
+      20px;
+
+    background:
+      #fffdfa;
+
+    border:
+      1px solid
+      var(--line);
+  }
+
+
+  .verify-broader-grid article > span {
+    color:
+      var(--accent);
+
+    font-size:
+      7px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .08em;
+  }
+
+
+  .verify-broader-grid h3 {
+    min-height:
+      65px;
+
+    margin:
+      18px 0 10px;
+
+    font-size:
+      19px;
+
+    line-height:
+      1.05;
+
+    letter-spacing:
+      -.035em;
+  }
+
+
+  .verify-broader-grid p {
+    margin:
+      0;
+
+    color:
+      var(--muted);
+
+    font-size:
+      10px;
+
+    line-height:
+      1.5;
+  }
+
+
+  /* CHALLENGE */
+
+  .verify-challenge-section {
+    background:
+      #f8f5ef;
+  }
+
+
+  .verify-contact,
+  .verify-editorial {
+    display:
+      inline-block;
+
+    margin:
+      10px 18px 0 0;
+
+    color:
+      var(--accent);
+
+    font-size:
+      9px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .06em;
+  }
+
+
+  /* TABLET */
+
+  @media (
+    max-width: 1050px
+  ) {
+
+    .verify-level-grid,
+    .verify-broader-grid {
+      grid-template-columns:
+        repeat(
+          2,
+          minmax(0, 1fr)
+        );
+    }
+
+
+    .verify-process-row {
+      grid-template-columns:
+        50px 220px 1fr;
+    }
+
+  }
+
+
+  /* MOBILE */
+
+  @media (
+    max-width: 850px
+  ) {
+
+    .verify-hero {
+      padding:
+        40px 0 32px;
+    }
+
+
+    .verify-hero-grid,
+    .verify-source-grid,
+    .verify-detail-grid,
+    .verify-commerce-grid,
+    .verify-update-grid,
+    .verify-challenge-grid {
+      grid-template-columns:
+        1fr;
+
+      gap:
+        30px;
+    }
+
+
+    .verify-hero h1 {
+      font-size:
+        66px;
+    }
+
+
+    .verify-intro {
+      padding:
+        22px 0 0;
+
+      border-left:
+        0;
+
+      border-top:
+        1px solid
+        var(--line);
+    }
+
+
+    .verify-rule {
+      grid-template-columns:
+        1fr;
+
+      gap:
+        9px;
+    }
+
+
+    .verify-section-head {
+      display:
+        block;
+    }
+
+
+    .verify-section-head > p {
+      margin-top:
+        16px;
+    }
+
+
+    .verify-process-row {
+      grid-template-columns:
+        44px 1fr;
+
+      gap:
+        12px;
+    }
+
+
+    .verify-process-row p {
+      grid-column:
+        2;
+    }
+
+  }
+
+
+  @media (
+    max-width: 560px
+  ) {
+
+    .verify-hero h1 {
+      font-size:
+        54px;
+    }
+
+
+    .verify-intro-lead {
+      font-size:
+        18px !important;
+    }
+
+
+    .verify-level-grid,
+    .verify-broader-grid {
+      grid-template-columns:
+        1fr;
+    }
+
+
+    .verify-level-top {
+      margin-bottom:
+        28px;
+    }
+
+
+    .verify-level-card h3,
+    .verify-level-card > strong,
+    .verify-example {
+      min-height:
+        0;
+    }
+
+
+    .verify-source-row {
+      grid-template-columns:
+        80px 1fr;
+    }
+
+
+    .verify-commerce-rule {
+      grid-template-columns:
+        1fr;
+    }
+
+
+    .verify-commerce-rule b {
+      text-align:
+        center;
+    }
+
+  }
+
+</style>
