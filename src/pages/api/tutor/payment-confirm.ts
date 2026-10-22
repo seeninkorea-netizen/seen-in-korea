@@ -36,579 +36,731 @@ function cleanString(
     return '';
   }
 
-  return value.trim().slice(0, max);
+  return value
+    .trim()
+    .slice(0, max);
 }
 
-export const GET: APIRoute = async () => {
-  return json({
-    ok: true,
-    service:
-      'sik-tutor-payment-confirm',
-    configured: {
-      sanity: Boolean(
-        projectId &&
-        runtimeEnv.SANITY_API_TOKEN
-      ),
-      tossPayments: Boolean(
-        runtimeEnv.TOSS_SECRET_KEY
-      ),
-    },
-  });
-};
+function toCents(
+  value: unknown
+) {
+  const number =
+    Number(value);
 
-export const POST: APIRoute = async ({
-  request,
-}) => {
   if (
-    !projectId ||
-    !runtimeEnv.SANITY_API_TOKEN
+    !Number.isFinite(number)
   ) {
-    return json(
-      {
-        ok: false,
-        error:
-          'Tutor booking service is not configured.',
-      },
-      503
-    );
+    return null;
   }
 
-  if (!runtimeEnv.TOSS_SECRET_KEY) {
-    return json(
-      {
-        ok: false,
-        error:
-          'Payment service is not configured.',
+  return Math.round(
+    number * 100
+  );
+}
+
+export const GET: APIRoute =
+  async () => {
+    return json({
+      ok: true,
+
+      service:
+        'sik-tutor-payment-confirm',
+
+      currency:
+        'USD',
+
+      supportedPayments: [
+        'international_card',
+        'paypal',
+      ],
+
+      configured: {
+        sanity:
+          Boolean(
+            projectId &&
+            runtimeEnv.SANITY_API_TOKEN
+          ),
+
+        tossPayments:
+          Boolean(
+            runtimeEnv.TOSS_SECRET_KEY
+          ),
       },
-      503
-    );
-  }
+    });
+  };
 
-  let input: any;
-
-  try {
-    input = await request.json();
-  } catch {
-    return json(
-      {
-        ok: false,
-        error:
-          'Request body must be valid JSON.',
-      },
-      400
-    );
-  }
-
-  const paymentKey =
-    cleanString(
-      input.paymentKey,
-      200
-    );
-
-  const orderId =
-    cleanString(
-      input.orderId,
-      64
-    );
-
-  if (!paymentKey || !orderId) {
-    return json(
-      {
-        ok: false,
-        error:
-          'paymentKey and orderId are required.',
-      },
-      400
-    );
-  }
-
-  const client = createClient({
-    projectId,
-    dataset,
-    apiVersion: '2026-10-01',
-    useCdn: false,
-    token:
-      runtimeEnv.SANITY_API_TOKEN,
-  });
-
-  try {
-    /*
-      IMPORTANT:
-      결제창에서 넘어온 amount를
-      그대로 신뢰하지 않습니다.
-
-      Sanity에 예약할 때 저장해둔
-      amount를 다시 가져와서
-      그 금액으로만 승인합니다.
-    */
-    const booking =
-      await client.fetch(
-        `
-        *[
-          _type == "tutorBooking" &&
-          orderId == $orderId
-        ][0]{
-          _id,
-          _rev,
-
-          bookingCode,
-          sessionType,
-
-          bookingStatus,
-          paymentStatus,
-
-          amount,
-          currency,
-
-          orderId,
-          paymentKey,
-
-          "slot": slot->{
-            _id,
-            _rev,
-            status,
-            startsAt
-          }
-        }
-        `,
-        {
-          orderId,
-        }
-      );
-
-    if (!booking) {
-      return json(
-        {
-          ok: false,
-          error:
-            'Booking could not be found.',
-        },
-        404
-      );
-    }
-
-    /*
-      이미 결제가 완료된 예약을
-      success URL 새로고침 등으로
-      다시 승인하지 않게 합니다.
-    */
+export const POST: APIRoute =
+  async ({
+    request,
+  }) => {
     if (
-      booking.paymentStatus ===
-        'paid' &&
-      booking.bookingStatus ===
-        'confirmed'
-    ) {
-      if (
-        booking.paymentKey ===
-        paymentKey
-      ) {
-        return json({
-          ok: true,
-          alreadyConfirmed: true,
-
-          booking: {
-            bookingCode:
-              booking.bookingCode,
-
-            bookingStatus:
-              booking.bookingStatus,
-
-            paymentStatus:
-              booking.paymentStatus,
-
-            startsAt:
-              booking.slot?.startsAt,
-          },
-        });
-      }
-
-      return json(
-        {
-          ok: false,
-          error:
-            'This booking has already been paid with another payment.',
-        },
-        409
-      );
-    }
-
-    if (
-      booking.bookingStatus !==
-        'awaiting_payment' ||
-      booking.paymentStatus !==
-        'pending'
+      !projectId ||
+      !runtimeEnv.SANITY_API_TOKEN
     ) {
       return json(
         {
           ok: false,
-          error:
-            'This booking is not awaiting payment.',
-        },
-        409
-      );
-    }
 
-    if (!booking.slot) {
-      return json(
-        {
-          ok: false,
           error:
-            'The reserved lesson time could not be found.',
+            'Tutor booking service is not configured.',
         },
-        409
+        503
       );
     }
 
     if (
-      booking.slot.status !==
-      'held'
+      !runtimeEnv.TOSS_SECRET_KEY
     ) {
       return json(
         {
           ok: false,
+
           error:
-            'This lesson time is no longer being held.',
+            'Payment service is not configured.',
         },
-        409
+        503
       );
     }
 
-    const amount =
-      Number(booking.amount);
+    let input: any;
 
-    if (
-      !Number.isFinite(amount) ||
-      amount <= 0
-    ) {
+    try {
+      input =
+        await request.json();
+    } catch {
       return json(
         {
           ok: false,
-          error:
-            'Invalid booking amount.',
-        },
-        500
-      );
-    }
 
-    if (
-      booking.currency !== 'KRW'
-    ) {
-      return json(
-        {
-          ok: false,
           error:
-            'Unsupported booking currency.',
+            'Request body must be valid JSON.',
         },
         400
       );
     }
 
-    /*
-      Toss Payments 서버 API 인증
-
-      반드시:
-      SECRET_KEY + ":"
-
-      를 Base64 인코딩해야 합니다.
-
-      Secret key는 브라우저에
-      절대 보내지 않습니다.
-    */
-    const encodedSecret =
-      btoa(
-        `${runtimeEnv.TOSS_SECRET_KEY}:`
+    const paymentKey =
+      cleanString(
+        input.paymentKey,
+        200
       );
 
-    const tossResponse =
-      await fetch(
-        'https://api.tosspayments.com/v1/payments/confirm',
+    const orderId =
+      cleanString(
+        input.orderId,
+        64
+      );
+
+    if (
+      !paymentKey ||
+      !orderId
+    ) {
+      return json(
         {
-          method: 'POST',
+          ok: false,
 
-          headers: {
-            Authorization:
-              `Basic ${encodedSecret}`,
-
-            'Content-Type':
-              'application/json',
-
-            'Accept-Language':
-              'en-US',
-
-            /*
-              같은 orderId 승인 요청이
-              네트워크 문제로 반복돼도
-              중복 처리 위험을 줄입니다.
-            */
-            'Idempotency-Key':
-              orderId,
-          },
-
-          body: JSON.stringify({
-            paymentKey,
-            orderId,
-
-            /*
-              브라우저가 보낸 amount가 아니라
-              서버 저장 금액 사용
-            */
-            amount,
-          }),
-        }
+          error:
+            'paymentKey and orderId are required.',
+        },
+        400
       );
+    }
 
-    let payment: any;
+    const client =
+      createClient({
+        projectId,
+
+        dataset,
+
+        apiVersion:
+          '2026-10-01',
+
+        useCdn:
+          false,
+
+        token:
+          runtimeEnv.SANITY_API_TOKEN,
+      });
 
     try {
-      payment =
-        await tossResponse.json();
-    } catch {
-      payment = null;
-    }
+      /*
+        Never trust the amount
+        returned from the browser.
 
-    if (!tossResponse.ok) {
-      return json(
-        {
-          ok: false,
+        The booking amount stored
+        on the server is the source
+        of truth.
+      */
+      const booking =
+        await client.fetch(
+          `
+          *[
+            _type == "tutorBooking" &&
+            orderId == $orderId
+          ][0]{
+            _id,
+            _rev,
 
-          error:
-            payment?.message ||
-            'Payment could not be confirmed.',
+            bookingCode,
+            sessionType,
 
-          code:
-            payment?.code ||
-            'PAYMENT_CONFIRM_FAILED',
-        },
-        tossResponse.status >= 400
-          ? tossResponse.status
-          : 400
-      );
-    }
+            bookingStatus,
+            paymentStatus,
 
-    /*
-      Toss 응답도 한 번 더 검증합니다.
-    */
-    if (
-      payment?.orderId !==
-      orderId
-    ) {
-      return json(
-        {
-          ok: false,
-          error:
-            'Payment order verification failed.',
-        },
-        409
-      );
-    }
+            amount,
+            currency,
 
-    if (
-      Number(
-        payment?.totalAmount
-      ) !== amount
-    ) {
-      return json(
-        {
-          ok: false,
-          error:
-            'Payment amount verification failed.',
-        },
-        409
-      );
-    }
+            orderId,
+            paymentKey,
 
-    /*
-      현재 Tutor 결제에서는
-      즉시 결제 완료되는 방식만 사용합니다.
+            "slot": slot->{
+              _id,
+              _rev,
+              status,
+              startsAt
+            }
+          }
+          `,
+          {
+            orderId,
+          }
+        );
 
-      DONE이 아닌 결제는
-      수업 예약을 Confirm하지 않습니다.
-    */
-    if (
-      payment?.status !== 'DONE'
-    ) {
-      return json(
-        {
-          ok: false,
-          error:
-            'Payment has not been completed.',
-          paymentStatus:
-            payment?.status || null,
-        },
-        409
-      );
-    }
+      if (!booking) {
+        return json(
+          {
+            ok: false,
 
-    /*
-      Toss 승인 성공
+            error:
+              'Booking could not be found.',
+          },
+          404
+        );
+      }
 
-      Booking:
-      awaiting_payment → confirmed
-      pending → paid
+      /*
+        Prevent duplicate confirmation
+        when the customer refreshes
+        the success page.
+      */
+      if (
+        booking.paymentStatus ===
+          'paid' &&
+        booking.bookingStatus ===
+          'confirmed'
+      ) {
+        if (
+          booking.paymentKey ===
+          paymentKey
+        ) {
+          return json({
+            ok: true,
 
-      Slot:
-      held → booked
-    */
-    const bookingPatch =
-      client
-        .patch(booking._id)
-        .ifRevisionId(
-          booking._rev
-        )
-        .set({
+            alreadyConfirmed:
+              true,
+
+            booking: {
+              bookingCode:
+                booking.bookingCode,
+
+              bookingStatus:
+                booking.bookingStatus,
+
+              paymentStatus:
+                booking.paymentStatus,
+
+              startsAt:
+                booking.slot
+                  ?.startsAt,
+
+              amount:
+                booking.amount,
+
+              currency:
+                booking.currency,
+            },
+          });
+        }
+
+        return json(
+          {
+            ok: false,
+
+            error:
+              'This booking has already been paid with another payment.',
+          },
+          409
+        );
+      }
+
+      if (
+        booking.bookingStatus !==
+          'awaiting_payment' ||
+        booking.paymentStatus !==
+          'pending'
+      ) {
+        return json(
+          {
+            ok: false,
+
+            error:
+              'This booking is not awaiting payment.',
+          },
+          409
+        );
+      }
+
+      if (!booking.slot) {
+        return json(
+          {
+            ok: false,
+
+            error:
+              'The reserved lesson time could not be found.',
+          },
+          409
+        );
+      }
+
+      if (
+        booking.slot.status !==
+        'held'
+      ) {
+        return json(
+          {
+            ok: false,
+
+            error:
+              'This lesson time is no longer being held.',
+          },
+          409
+        );
+      }
+
+      const amount =
+        Number(
+          booking.amount
+        );
+
+      if (
+        !Number.isFinite(
+          amount
+        ) ||
+        amount <= 0
+      ) {
+        return json(
+          {
+            ok: false,
+
+            error:
+              'Invalid booking amount.',
+          },
+          500
+        );
+      }
+
+      /*
+        Seen in Korea tutor
+        international payments
+        use USD.
+
+        USD MID:
+        - International Card
+        - PayPal
+      */
+      if (
+        booking.currency !==
+        'USD'
+      ) {
+        return json(
+          {
+            ok: false,
+
+            error:
+              'Unsupported booking currency.',
+          },
+          400
+        );
+      }
+
+      /*
+        Toss Payments API authentication.
+
+        Base64:
+        SECRET_KEY + ":"
+
+        The Secret Key never goes
+        to the browser.
+      */
+      const encodedSecret =
+        btoa(
+          `${runtimeEnv.TOSS_SECRET_KEY}:`
+        );
+
+      const tossResponse =
+        await fetch(
+          'https://api.tosspayments.com/v1/payments/confirm',
+          {
+            method:
+              'POST',
+
+            headers: {
+              Authorization:
+                `Basic ${encodedSecret}`,
+
+              'Content-Type':
+                'application/json',
+
+              'Accept-Language':
+                'en-US',
+
+              'Idempotency-Key':
+                orderId,
+            },
+
+            body:
+              JSON.stringify({
+                paymentKey,
+
+                orderId,
+
+                /*
+                  Server-stored
+                  USD amount.
+                */
+                amount,
+              }),
+          }
+        );
+
+      let payment: any;
+
+      try {
+        payment =
+          await tossResponse.json();
+      } catch {
+        payment =
+          null;
+      }
+
+      if (
+        !tossResponse.ok
+      ) {
+        return json(
+          {
+            ok: false,
+
+            error:
+              payment?.message ||
+              'Payment could not be confirmed.',
+
+            code:
+              payment?.code ||
+              'PAYMENT_CONFIRM_FAILED',
+          },
+
+          tossResponse.status >=
+          400
+            ? tossResponse.status
+            : 400
+        );
+      }
+
+      /*
+        Verify order ID.
+      */
+      if (
+        payment?.orderId !==
+        orderId
+      ) {
+        return json(
+          {
+            ok: false,
+
+            error:
+              'Payment order verification failed.',
+          },
+          409
+        );
+      }
+
+      /*
+        Verify USD currency.
+      */
+      if (
+        payment?.currency !==
+        'USD'
+      ) {
+        return json(
+          {
+            ok: false,
+
+            error:
+              'Payment currency verification failed.',
+          },
+          409
+        );
+      }
+
+      /*
+        USD supports decimals.
+
+        Convert both values to cents
+        before comparing to avoid
+        floating-point errors.
+      */
+      const expectedCents =
+        toCents(amount);
+
+      const paidCents =
+        toCents(
+          payment?.totalAmount
+        );
+
+      if (
+        expectedCents === null ||
+        paidCents === null ||
+        expectedCents !==
+          paidCents
+      ) {
+        return json(
+          {
+            ok: false,
+
+            error:
+              'Payment amount verification failed.',
+          },
+          409
+        );
+      }
+
+      /*
+        Only completed payments
+        confirm the tutor booking.
+      */
+      if (
+        payment?.status !==
+        'DONE'
+      ) {
+        return json(
+          {
+            ok: false,
+
+            error:
+              'Payment has not been completed.',
+
+            paymentStatus:
+              payment?.status ||
+              null,
+          },
+          409
+        );
+      }
+
+      /*
+        Payment confirmed.
+
+        Booking:
+        awaiting_payment
+        → confirmed
+
+        Payment:
+        pending
+        → paid
+
+        Slot:
+        held
+        → booked
+      */
+      const bookingPatch =
+        client
+          .patch(
+            booking._id
+          )
+          .ifRevisionId(
+            booking._rev
+          )
+          .set({
+            bookingStatus:
+              'confirmed',
+
+            paymentStatus:
+              'paid',
+
+            paymentKey,
+          });
+
+      const slotPatch =
+        client
+          .patch(
+            booking.slot._id
+          )
+          .ifRevisionId(
+            booking.slot._rev
+          )
+          .set({
+            status:
+              'booked',
+          });
+
+      try {
+        await client
+          .transaction()
+          .patch(
+            bookingPatch
+          )
+          .patch(
+            slotPatch
+          )
+          .commit();
+      } catch {
+        /*
+          Toss payment may already
+          be successfully completed
+          even if Sanity encounters
+          a revision conflict.
+
+          Re-read the booking first.
+        */
+        const latest =
+          await client.fetch(
+            `
+            *[
+              _type == "tutorBooking" &&
+              _id == $id
+            ][0]{
+              _id,
+
+              paymentStatus,
+              bookingStatus,
+              paymentKey,
+
+              "slotId":
+                slot._ref
+            }
+            `,
+            {
+              id:
+                booking._id,
+            }
+          );
+
+        if (
+          !(
+            latest
+              ?.paymentStatus ===
+              'paid' &&
+
+            latest
+              ?.bookingStatus ===
+              'confirmed' &&
+
+            latest
+              ?.paymentKey ===
+              paymentKey
+          )
+        ) {
+          /*
+            Payment is already
+            approved at Toss.
+
+            Synchronize our booking
+            record with that payment.
+          */
+          await client
+            .transaction()
+            .patch(
+              booking._id,
+              (
+                patch
+              ) =>
+                patch.set({
+                  bookingStatus:
+                    'confirmed',
+
+                  paymentStatus:
+                    'paid',
+
+                  paymentKey,
+                })
+            )
+            .patch(
+              booking.slot._id,
+              (
+                patch
+              ) =>
+                patch.set({
+                  status:
+                    'booked',
+                })
+            )
+            .commit();
+        }
+      }
+
+      return json({
+        ok: true,
+
+        booking: {
+          bookingCode:
+            booking.bookingCode,
+
           bookingStatus:
             'confirmed',
 
           paymentStatus:
             'paid',
 
-          paymentKey,
-        });
+          sessionType:
+            booking.sessionType,
 
-    const slotPatch =
-      client
-        .patch(
-          booking.slot._id
-        )
-        .ifRevisionId(
-          booking.slot._rev
-        )
-        .set({
-          status: 'booked',
-        });
+          startsAt:
+            booking.slot
+              .startsAt,
 
-    try {
-      await client
-        .transaction()
-        .patch(bookingPatch)
-        .patch(slotPatch)
-        .commit();
-    } catch {
-      /*
-        결제는 이미 Toss에서 완료됐는데
-        Sanity revision conflict 등이
-        발생할 수 있습니다.
+          amount,
 
-        이 경우 결제 상태가
-        DB에서 누락되지 않도록
-        한 번 더 현재 상태를 확인합니다.
-      */
-      const latest =
-        await client.fetch(
-          `
-          *[
-            _type == "tutorBooking" &&
-            _id == $id
-          ][0]{
-            _id,
-            paymentStatus,
-            bookingStatus,
-            paymentKey,
-            "slotId": slot._ref
-          }
-          `,
-          {
-            id: booking._id,
-          }
-        );
+          currency:
+            'USD',
+        },
 
-      if (
-        !(
-          latest?.paymentStatus ===
-            'paid' &&
-          latest?.bookingStatus ===
-            'confirmed' &&
-          latest?.paymentKey ===
-            paymentKey
-        )
-      ) {
-        /*
-          Toss 결제는 완료됐으므로
-          예약 상태를 최종적으로
-          결제 완료 상태와 맞춥니다.
-        */
-        await client
-          .transaction()
-          .patch(
-            booking._id,
-            (patch) =>
-              patch.set({
-                bookingStatus:
-                  'confirmed',
+        payment: {
+          paymentKey:
+            payment.paymentKey,
 
-                paymentStatus:
-                  'paid',
+          orderId:
+            payment.orderId,
 
-                paymentKey,
-              })
-          )
-          .patch(
-            booking.slot._id,
-            (patch) =>
-              patch.set({
-                status:
-                  'booked',
-              })
-          )
-          .commit();
-      }
+          currency:
+            payment.currency,
+
+          method:
+            payment.method ||
+            null,
+
+          status:
+            payment.status,
+
+          approvedAt:
+            payment.approvedAt ||
+            null,
+        },
+
+        next:
+          'booking_confirmed',
+      });
+    } catch (
+      error: any
+    ) {
+      return json(
+        {
+          ok: false,
+
+          error:
+            error?.message ||
+            'Could not confirm payment.',
+        },
+        500
+      );
     }
-
-    return json({
-      ok: true,
-
-      booking: {
-        bookingCode:
-          booking.bookingCode,
-
-        bookingStatus:
-          'confirmed',
-
-        paymentStatus:
-          'paid',
-
-        sessionType:
-          booking.sessionType,
-
-        startsAt:
-          booking.slot.startsAt,
-
-        amount,
-
-        currency: 'KRW',
-      },
-
-      payment: {
-        paymentKey:
-          payment.paymentKey,
-
-        orderId:
-          payment.orderId,
-
-        method:
-          payment.method || null,
-
-        status:
-          payment.status,
-
-        approvedAt:
-          payment.approvedAt ||
-          null,
-      },
-
-      next:
-        'booking_confirmed',
-    });
-  } catch (error: any) {
-    return json(
-      {
-        ok: false,
-
-        error:
-          error?.message ||
-          'Could not confirm payment.',
-      },
-      500
-    );
-  }
-};
+  };
