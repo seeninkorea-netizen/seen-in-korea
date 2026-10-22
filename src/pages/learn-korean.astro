@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TutorBooking from '../components/TutorBooking.astro';
 ---
 
 <BaseLayout
@@ -599,45 +600,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <!-- TUTOR -->
     <section id="tutor" class="learn-tutor-section" hidden>
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">REAL-LIFE KOREAN TEST</div>
-            <h2>Test what you can actually use.</h2>
-          </div>
-          <p>
-            Use what you studied in realistic role-play and get clear feedback.
-          </p>
-        </div>
-
-        <div class="learn-tutor-card">
-          <div class="learn-tutor-placeholder">TUTOR PROFILE</div>
-          <div class="learn-tutor-copy">
-            <div class="learn-resource-type">1:1 REAL-LIFE PRACTICE</div>
-            <h3>Practice with a Korean tutor</h3>
-            <p>
-              Your tutor follows your study path and recreates real situations —
-              restaurants, shopping, bookings, workplace conversations and more.
-            </p>
-            <div class="learn-resource-tags">
-              <span>1:1 ONLINE</span>
-              <span>ROLE-PLAY</span>
-              <span>FEEDBACK</span>
-            </div>
-            <a
-              href="mailto:seeninkorea@gmail.com?subject=Korean%20Real-Life%20Test"
-              class="learn-btn learn-btn-primary"
-              data-test-booking
-            >
-              ASK ABOUT A REAL-LIFE TEST →
-            </a>
-            <small>
-              One tutor is currently available.
-              Additional tutors will be added as the program grows.
-            </small>
-          </div>
-        </div>
-      </div>
+      <TutorBooking />
     </section>
 
     <!-- FINAL CTA -->
@@ -3662,7 +3625,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     });
 
     document.getElementById('print-korean-plan')?.addEventListener('click',()=>{if(!renderPlan({scroll:false}))return;window.print();});
-    document.querySelectorAll('[data-test-booking]').forEach((link)=>link.addEventListener('click',()=>track('real_life_test_clicked',{goal:selections.goal||''})));
+    document.querySelectorAll('#tutor [data-book-button]').forEach((link)=>link.addEventListener('click',()=>track('real_life_test_clicked',{goal:selections.goal||''})));
 
     function restorePlan(values,{source='unknown'}={}){
       if(!values?.goal||!labels.goal[values.goal])return false;
