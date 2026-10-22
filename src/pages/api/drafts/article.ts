@@ -528,8 +528,19 @@ export const POST: APIRoute = async ({ request }) => {
           : '',
         ...imageNotes
       ].filter(Boolean).join('\n\n'),
-      homepagePlacement: 'none',
-      homePriority: 50,
+      
+homepagePlacement:
+  ['cover', 'liveDesk', 'standard', 'none'].includes(input.homepagePlacement)
+    ? input.homepagePlacement
+    : 'none',
+
+homePriority:
+  Number.isInteger(Number(input.homePriority)) &&
+  Number(input.homePriority) >= 1 &&
+  Number(input.homePriority) <= 999
+    ? Number(input.homePriority)
+    : 50,
+
       deskLabel:
         typeof input.deskLabel === 'string'
           ? input.deskLabel.slice(0, 40)
