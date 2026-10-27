@@ -4,7 +4,8 @@ import { getSiteSettings } from '../lib/content';
 
 const {
   title = 'SEEN IN KOREA — Korea, verified',
-  description = 'K-culture trends, real stories from foreigners in Korea, Korean products, and practical help.',
+  description =
+    'K-culture, real life in Korea, Korean products, economy, language and localization.',
   image,
   canonical,
   ogType = 'website',
@@ -15,11 +16,19 @@ const {
 
 const currentUrl =
   canonical ||
-  new URL(Astro.url.pathname, Astro.site || Astro.url.origin).toString();
+  new URL(
+    Astro.url.pathname,
+    Astro.site || Astro.url.origin
+  ).toString();
 
-const siteSettings = await getSiteSettings();
-const footerCopy = siteSettings?.footerCopy ?? '';
-const currentPath = Astro.url.pathname;
+const siteSettings =
+  await getSiteSettings();
+
+const footerCopy =
+  siteSettings?.footerCopy ?? '';
+
+const currentPath =
+  Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -104,20 +113,24 @@ const currentPath = Astro.url.pathname;
       content={title}
     />
 
+
     <meta
       property="og:description"
       content={description}
     />
+
 
     <meta
       property="og:type"
       content={ogType}
     />
 
+
     <meta
       property="og:url"
       content={currentUrl}
     />
+
 
     <meta
       property="og:site_name"
@@ -246,117 +259,91 @@ const currentPath = Astro.url.pathname;
 
 
 
-        <nav class="desktop-nav">
+        <nav
+          class="desktop-nav"
+          aria-label="Main navigation"
+        >
 
 
-          <a href="/category/trending">
+          <a
+            href="/category/trending"
+            class:list={{
+              active:
+                currentPath.startsWith(
+                  '/category/trending'
+                )
+            }}
+          >
             TRENDING
           </a>
 
 
-          <a href="/seen-on">
+          <a
+            href="/seen-on"
+            class:list={{
+              active:
+                currentPath.startsWith(
+                  '/seen-on'
+                )
+            }}
+          >
             SEEN ON
           </a>
 
 
-          <a href="/real-korea">
+          <a
+            href="/real-korea"
+            class:list={{
+              active:
+                currentPath.startsWith(
+                  '/real-korea'
+                )
+            }}
+          >
             REAL KOREA
           </a>
 
 
-          <a href="/learn-korean">
+          <a
+            href="/economy"
+            class:list={{
+              active:
+                currentPath.startsWith(
+                  '/economy'
+                )
+            }}
+          >
+            ECONOMY
+          </a>
+
+
+          <a
+            href="/learn-korean"
+            class:list={{
+              active:
+                currentPath.startsWith(
+                  '/learn-korean'
+                )
+            }}
+          >
             LEARN KOREAN
           </a>
 
 
-        </nav>
-
-
-
-        <!-- KOREA HELP DROPDOWN -->
-        <div class="help-menu">
-
-
           <a
-            class="help-btn"
-            href="/korea-help"
-            aria-haspopup="true"
+            href="/korea-help/translation"
+            class:list={{
+              active:
+                currentPath.startsWith(
+                  '/korea-help/translation'
+                )
+            }}
           >
-
-            KOREA HELP
-
-            <span class="help-chevron">
-              ▾
-            </span>
-
+            TRANSLATION
           </a>
 
 
-
-          <div class="help-dropdown-shell">
-
-
-            <div class="help-dropdown">
-
-
-              <a
-                href="/korea-help/call-korea"
-                class="help-dropdown-item"
-              >
-
-                <div>
-
-                  <strong>
-                    CALL KOREA
-                  </strong>
-
-                  <small>
-                    Calls, bookings,
-                    refunds & practical help
-                  </small>
-
-                </div>
-
-                <span>
-                  →
-                </span>
-
-              </a>
-
-
-
-              <a
-                href="/korea-help/translation"
-                class="help-dropdown-item"
-              >
-
-                <div>
-
-                  <strong>
-                    TRANSLATION
-                  </strong>
-
-                  <small>
-                    Korean ↔ English
-                    translation & localization
-                  </small>
-
-                </div>
-
-                <span>
-                  →
-                </span>
-
-              </a>
-
-
-            </div>
-
-
-          </div>
-
-
-        </div>
+        </nav>
 
 
       </div>
@@ -427,7 +414,6 @@ const currentPath = Astro.url.pathname;
           </a>
 
 
-
           <a
             href="/category/trending"
             class:list={{
@@ -439,7 +425,6 @@ const currentPath = Astro.url.pathname;
           >
             TRENDING
           </a>
-
 
 
           <a
@@ -455,7 +440,6 @@ const currentPath = Astro.url.pathname;
           </a>
 
 
-
           <a
             href="/real-korea"
             class:list={{
@@ -469,6 +453,18 @@ const currentPath = Astro.url.pathname;
           </a>
 
 
+          <a
+            href="/economy"
+            class:list={{
+              active:
+                currentPath.startsWith(
+                  '/economy'
+                )
+            }}
+          >
+            ECONOMY
+          </a>
+
 
           <a
             href="/learn-korean"
@@ -480,6 +476,19 @@ const currentPath = Astro.url.pathname;
             }}
           >
             LEARN
+          </a>
+
+
+          <a
+            href="/korea-help/translation"
+            class:list={{
+              active:
+                currentPath.startsWith(
+                  '/korea-help/translation'
+                )
+            }}
+          >
+            TRANSLATION
           </a>
 
 
@@ -567,6 +576,11 @@ const currentPath = Astro.url.pathname;
         </a>
 
 
+        <a href="/economy">
+          ECONOMY
+        </a>
+
+
         <a href="/articles">
           ALL STORIES
         </a>
@@ -580,51 +594,18 @@ const currentPath = Astro.url.pathname;
 
 
 
-      <!-- LEARN -->
+      <!-- LANGUAGE & SERVICES -->
       <div class="mobile-menu-service">
 
 
         <div class="mobile-menu-service-title">
-          LEARN &amp; DECIDE
+          LANGUAGE &amp; SERVICES
         </div>
 
 
         <a href="/learn-korean">
           Learn Korean
         </a>
-
-
-      </div>
-
-
-
-      <div class="mobile-menu-divider"></div>
-
-
-
-      <!-- KOREA HELP -->
-      <div class="mobile-menu-service">
-
-
-        <div class="mobile-menu-service-title">
-          KOREA HELP
-        </div>
-
-
-
-        <a
-          href="/korea-help/call-korea"
-          class="mobile-menu-service-beta"
-        >
-
-          Call Korea
-
-          <small>
-            BETA
-          </small>
-
-        </a>
-
 
 
         <a href="/korea-help/translation">
@@ -725,6 +706,26 @@ const currentPath = Astro.url.pathname;
 
           <div class="footer-copy">
 
+            <a href="/economy">
+              Economy
+            </a>
+
+            ·
+
+            <a href="/learn-korean">
+              Learn Korean
+            </a>
+
+            ·
+
+            <a href="/korea-help/translation">
+              Translation
+            </a>
+
+          </div>
+
+
+          <div class="footer-copy">
 
             <a href="/about">
               About
@@ -747,7 +748,6 @@ const currentPath = Astro.url.pathname;
             <a href="/contact">
               Contact
             </a>
-
 
           </div>
 
@@ -878,14 +878,12 @@ const currentPath = Astro.url.pathname;
 
 
       closeButtons.forEach(
-        (button) => {
-
+        button => {
 
           button.addEventListener(
             'click',
             closeMobileMenu
           );
-
 
         }
       );
@@ -893,18 +891,14 @@ const currentPath = Astro.url.pathname;
 
 
       menuDrawer
-        ?.querySelectorAll(
-          'a'
-        )
+        ?.querySelectorAll('a')
         .forEach(
-          (link) => {
-
+          link => {
 
             link.addEventListener(
               'click',
               closeMobileMenu
             );
-
 
           }
         );
@@ -913,8 +907,7 @@ const currentPath = Astro.url.pathname;
 
       document.addEventListener(
         'keydown',
-        (event) => {
-
+        event => {
 
           if (
             event.key === 'Escape'
@@ -924,7 +917,6 @@ const currentPath = Astro.url.pathname;
 
           }
 
-
         }
       );
 
@@ -933,311 +925,61 @@ const currentPath = Astro.url.pathname;
 
 
 
-    <!-- DESKTOP KOREA HELP DROPDOWN STYLE -->
+    <!-- ACTIVE DESKTOP NAV -->
     <style is:global>
 
-
-      .help-menu {
-
-        position:
-          relative;
-
-        flex:
-          0 0 auto;
-
-      }
-
-
-
-      .help-menu
-      .help-btn {
-
-        display:
-          inline-flex;
-
-        align-items:
-          center;
-
-        gap:
-          7px;
-
-      }
-
-
-
-      .help-chevron {
-
-        font-size:
-          10px;
-
-        line-height:
-          1;
-
-        transition:
-          transform .18s ease;
-
-      }
-
-
-
-      .help-dropdown-shell {
-
-        position:
-          absolute;
-
-        top:
-          100%;
-
-        right:
-          0;
-
-        width:
-          310px;
-
-        padding-top:
-          10px;
-
-
-        opacity:
-          0;
-
-        visibility:
-          hidden;
-
-        pointer-events:
-          none;
-
-
-        transform:
-          translateY(-5px);
-
-
-        transition:
-          opacity .16s ease,
-          visibility .16s ease,
-          transform .16s ease;
-
-      }
-
-
-
-      .help-menu:hover
-      .help-dropdown-shell,
-
-      .help-menu:focus-within
-      .help-dropdown-shell {
-
-        opacity:
-          1;
-
-        visibility:
-          visible;
-
-        pointer-events:
-          auto;
-
-        transform:
-          translateY(0);
-
-      }
-
-
-
-      .help-menu:hover
-      .help-chevron,
-
-      .help-menu:focus-within
-      .help-chevron {
-
-        transform:
-          rotate(180deg);
-
-      }
-
-
-
-      .help-dropdown {
-
-        overflow:
-          hidden;
-
-
-        background:
-          #fffdfa;
-
-
-        border:
-          1px solid #cbc6bd;
-
-
-        box-shadow:
-          0 18px 45px
-          rgba(
-            0,
-            0,
-            0,
-            .14
-          );
-
-      }
-
-
-
-      .help-dropdown-item {
-
-        min-height:
-          82px;
-
-
-        padding:
-          17px 18px;
-
-
-        display:
-          flex;
-
-
-        justify-content:
-          space-between;
-
-
-        align-items:
-          center;
-
-
-        gap:
-          16px;
-
-
-        border-bottom:
-          1px solid #e3ded6;
-
-
-        transition:
-          background .15s ease,
-          padding-left .15s ease;
-
-      }
-
-
-
-      .help-dropdown-item:last-child {
-
-        border-bottom:
-          0;
-
-      }
-
-
-
-      .help-dropdown-item:hover,
-
-      .help-dropdown-item:focus {
-
-        background:
-          #f4efe7;
-
-        padding-left:
-          22px;
-
-      }
-
-
-
-      .help-dropdown-item strong {
-
-        display:
-          block;
-
-
-        margin-bottom:
-          4px;
-
-
-        font-size:
-          11px;
-
-
-        font-weight:
-          900;
-
-
-        letter-spacing:
-          .06em;
-
-      }
-
-
-
-      .help-dropdown-item small {
-
-        display:
-          block;
-
-
-        max-width:
-          220px;
-
-
+      .desktop-nav a.active {
         color:
-          #66635f;
-
-
-        font-size:
-          10px;
-
-
-        line-height:
-          1.4;
-
-
-        font-weight:
-          500;
-
-
-        letter-spacing:
-          0;
-
+          var(--accent);
       }
-
-
-
-      .help-dropdown-item > span {
-
-        flex:
-          0 0 auto;
-
-
-        color:
-          #ff4d00;
-
-
-        font-size:
-          18px;
-
-
-        font-weight:
-          900;
-
-      }
-
 
 
       @media (
-        max-width: 850px
+        min-width: 851px
       ) {
 
+        .desktop-nav {
+          align-items:
+            center;
 
-        .help-menu {
-
-          display:
-            none;
-
+          gap:
+            18px;
         }
 
 
-      }
+        .desktop-nav a {
+          position:
+            relative;
 
+          white-space:
+            nowrap;
+        }
+
+
+        .desktop-nav a.active::after {
+          content:
+            '';
+
+          position:
+            absolute;
+
+          left:
+            0;
+
+          right:
+            0;
+
+          bottom:
+            -10px;
+
+          height:
+            2px;
+
+          background:
+            var(--accent);
+        }
+
+      }
 
     </style>
 
