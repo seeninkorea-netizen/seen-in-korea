@@ -1,22 +1,25 @@
 ---
-
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TranslationEstimate from '../../components/TranslationEstimate.astro';
 
-const projectExperience = [
-  'NH NongHyup',
+const fullPortfolioUrl =
+  '/portfolio/Dokyun_Kim_Translation_Localization_Portfolio_FINAL_v19.pdf';
+
+const inquiryMailto =
+  'mailto:seeninkorea@gmail.com?subject=Creator%20Localization%20Inquiry';
+
+const selectedExperience = [
+  'NH NongHyup Bank',
   'HYOSUNG',
   'LG Electronics USA',
   'National Cancer Center',
   'Wonkwang Univ. Medical Center',
   'Sejong University',
-  'VISTACOMICS',
-  'Jakgadabang',
   'BERNAMA TV',
   'The Korea Post Media',
   'The Epoch Times',
+  'VISTACOMICS',
   'Jandisoft',
-  'Korean Fine Arts Association',
+  'Jakgadabang'
 ];
 
 const agencyExperience = [
@@ -29,1795 +32,982 @@ const agencyExperience = [
   'E4Net',
   'ONASIA',
   'Evertran',
-  'Voithru',
+  'Voithru'
 ];
-
-const fullPortfolioUrl =
-  '/portfolio/Dokyun_Kim_Translation_Localization_Portfolio_FINAL_v19.pdf';
-
-const creatorSampleMailto =
-  'mailto:seeninkorea@gmail.com?subject=Free%2030-second%20Creator%20Localization%20Sample';
 ---
 
 <BaseLayout
-  title="Korean ↔ English Translation & Localization | SEEN IN KOREA"
-  description="Korean ↔ English translation, localization, subtitles and linguistic QA for businesses, creators and Korean-market content."
+  title="Korean ↔ English Creator Localization | SEEN IN KOREA"
+  description="Korean ↔ English creator localization, subtitles and linguistic QA led by one dedicated translator who learns your channel's voice."
 >
   <main class="translation-page">
-<!-- portfolio asset deploy trigger -->
 
     <!-- HERO -->
-    <section class="translation-hero">
-      <div class="translation-wrap hero-grid">
-
+    <section class="hero">
+      <div class="wrap hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">
-            KOREA HELP · TRANSLATION
-          </div>
+          <div class="eyebrow">CREATOR LOCALIZATION · KOREAN ↔ ENGLISH</div>
 
           <h1>
-            Korean ↔ English<br />
-            translation that works<br />
-            in the real world.
+            Take your channel global.<br />
+            <span>Keep your voice.</span>
           </h1>
 
           <p class="hero-dek">
-            Documents, websites, videos and Korean-market content —
-            translated, localized and reviewed for the people
-            who will actually read it.
+            English localization for Korean creators — and Korean localization
+            for global creators. One dedicated translator learns your channel’s
+            tone, recurring language and audience instead of treating every
+            video like a new assignment.
           </p>
 
           <div class="hero-actions">
-            <a href="#estimate" class="btn-primary">
-              GET MY ESTIMATE →
+            <a href={inquiryMailto} class="btn btn-primary">
+              SEND A VIDEO FOR A QUOTE →
             </a>
 
             <a
               href={fullPortfolioUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="btn-secondary"
+              class="btn btn-secondary"
             >
-              VIEW FULL PORTFOLIO →
+              VIEW FULL PORTFOLIO
             </a>
           </div>
 
-          <div class="hero-stats">
-            <div>
-              <strong>8+</strong>
-              <span>YEARS<br />EXPERIENCE</span>
-            </div>
-
-            <div>
-              <strong>1M+</strong>
-              <span>WORDS<br />TRANSLATED</span>
-            </div>
-
-            <div>
-              <strong>50+</strong>
-              <span>YOUTUBE<br />CREATORS</span>
-            </div>
-
-            <div>
-              <strong>10+</strong>
-              <span>AGENCY<br />COLLABORATIONS</span>
-            </div>
-          </div>
+          <p class="hero-note">
+            Share a recent video URL and target language. We’ll review the scope
+            and reply by email with a tailored quote.
+          </p>
         </div>
 
-        <aside class="hero-proof">
-          <div class="hero-proof-label">
-            WHAT YOU GET
+        <aside class="hero-card">
+          <div class="hero-card-label">WHY THIS IS DIFFERENT</div>
+
+          <div class="hero-card-big">
+            One channel.<br />
+            One lead translator.
           </div>
+
+          <p>
+            The same person stays with the channel, building familiarity with
+            character voice, running jokes, terminology, names and preferred
+            phrasing over time.
+          </p>
+
+          <div class="hero-card-rule"></div>
 
           <ul>
-            <li>Accurate Korean ↔ English translation</li>
-            <li>Audience-ready localization</li>
-            <li>Human linguistic QA</li>
-            <li>Subtitle & on-screen text support</li>
-            <li>AI / MTPE review available</li>
-            <li>Second English-language review available</li>
+            <li>Channel-specific tone continuity</li>
+            <li>Dialogue + subtitles + on-screen text</li>
+            <li>Cultural adaptation, not word-for-word output</li>
+            <li>Final linguistic QA before delivery</li>
           </ul>
-
-          <div class="hero-proof-note">
-            Accuracy first.<br />
-            Naturalness where it matters.
-          </div>
         </aside>
+      </div>
 
+      <div class="wrap stats">
+        <div>
+          <strong>50+</strong>
+          <span>YouTube creators</span>
+        </div>
+        <div>
+          <strong>10</strong>
+          <span>Active creator channels</span>
+        </div>
+        <div>
+          <strong>140+</strong>
+          <span>Legacy video assignments</span>
+        </div>
+        <div>
+          <strong>8+</strong>
+          <span>Years in localization</span>
+        </div>
       </div>
     </section>
 
-
-    <!-- TRUST STRIP -->
-    <section class="trust-strip">
-      <div class="translation-wrap trust-strip-inner">
-        <span>✓ ACCURATE & NATURAL</span>
-        <span>✓ CULTURALLY LOCALIZED</span>
-        <span>✓ HUMAN QUALITY REVIEW</span>
-        <span>✓ CONFIDENTIAL WORKFLOW</span>
-      </div>
-    </section>
-
-
-    <!-- CREATOR LOCALIZATION -->
-    <section class="creator-section" id="creator-localization">
-      <div class="translation-wrap creator-grid">
-
-        <div class="creator-copy">
-          <div class="section-kicker">
-            CREATOR LOCALIZATION
-          </div>
-
+    <!-- POSITIONING -->
+    <section class="section section-dark">
+      <div class="wrap statement-grid">
+        <div>
+          <div class="eyebrow eyebrow-light">NOT JUST SUBTITLES</div>
           <h2>
-            Korean ↔ Global<br />
-            Creator Localization
+            Translation is only one part
+            of how a video travels.
           </h2>
+        </div>
 
+        <div class="statement-copy">
           <p>
-            For Korean creators going global and international creators
-            reaching Korean viewers. We localize the full viewing experience —
-            not just the spoken words.
+            A technically correct subtitle can still flatten a creator’s
+            personality. We localize for the viewer who will actually watch
+            the video — while protecting the meaning of the original.
           </p>
 
-          <div class="creator-deliverables">
+          <div class="deliverables">
             <span>Dialogue</span>
-            <span>Subtitles</span>
+            <span>Subtitle adaptation</span>
             <span>On-screen text</span>
             <span>Titles & descriptions</span>
-            <span>Cultural adaptation</span>
-            <span>Final linguistic QA</span>
+            <span>Cultural context</span>
+            <span>Final QA</span>
           </div>
-
-          <div class="creator-actions">
-            <a href={creatorSampleMailto} class="btn-primary">
-              REQUEST A FREE 30-SECOND SAMPLE →
-            </a>
-
-            <a
-              href={fullPortfolioUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-secondary"
-            >
-              VIEW FULL PORTFOLIO →
-            </a>
-          </div>
-
-          <small class="creator-direction-note">
-            Current ongoing creator program: primarily EN → KO.
-            KO → EN creator localization is available based on project scope.
-          </small>
         </div>
-
-
-        <aside class="creator-proof-card">
-          <div class="creator-proof-label">
-            CREATOR EXPERIENCE
-          </div>
-
-          <div class="creator-proof-stats">
-            <div>
-              <strong>50+</strong>
-              <span>YOUTUBE<br />CREATORS</span>
-            </div>
-
-            <div>
-              <strong>140+</strong>
-              <span>VIDEO<br />ASSIGNMENTS</span>
-            </div>
-
-            <div>
-              <strong>10</strong>
-              <span>ACTIVE<br />CHANNELS</span>
-            </div>
-          </div>
-
-          <div class="creator-proof-copy">
-            <strong>
-              Human localization for creator content.
-            </strong>
-
-            <p>
-              Tone, context, subtitle readability, on-screen text,
-              terminology and omissions are reviewed before delivery.
-            </p>
-          </div>
-        </aside>
-
       </div>
     </section>
 
-
-    <!-- CASE STUDIES -->
-    <section class="translation-section" id="work">
-      <div class="translation-wrap">
-
+    <!-- COMPARISON -->
+    <section class="section">
+      <div class="wrap">
         <div class="section-head">
-          <div>
-            <div class="section-kicker">
-              REAL PROJECT EXPERIENCE
-            </div>
-
-            <h2>
-              Featured case studies
-            </h2>
-
-            <p>
-              Real project scopes across finance, video and localization.
-            </p>
-          </div>
-        </div>
-
-        <div class="case-grid">
-
-          <article class="case-card">
-            <div class="case-tag">
-              FINANCIAL · UX
-            </div>
-
-            <h3>
-              Digital banking localization
-            </h3>
-
-            <p>
-              Website, mobile service and kiosk / ATM interface localization
-              with terminology and interface-consistency review.
-            </p>
-
-            <div class="case-meta">
-              <span>KO ↔ EN</span>
-              <span>UX · FINANCE</span>
-            </div>
-
-            <div class="case-qa">
-              <strong>QA FOCUS</strong>
-              Terminology · UI consistency · user-facing clarity
-            </div>
-          </article>
-
-
-          <article class="case-card">
-            <div class="case-tag">
-              VIDEO · SUBTITLES
-            </div>
-
-            <h3>
-              50+ YouTube creators
-            </h3>
-
-            <p>
-              Cumulative work across 50+ YouTube creators, with
-              10 channels currently supported through ongoing EN → KO
-              translation, review and localization.
-            </p>
-
-            <div class="case-meta">
-              <span>EN → KO</span>
-              <span>VIDEO · MEDIA</span>
-            </div>
-
-            <div class="case-qa">
-              <strong>QA FOCUS</strong>
-              Tone · context · readability · omissions
-            </div>
-          </article>
-
-
-          <article class="case-card">
-            <div class="case-tag">
-              GAME · LOCALIZATION
-            </div>
-
-            <h3>
-              98K-word game project
-            </h3>
-
-            <p>
-              UI translation, localization and QA across
-              a long-form game project.
-            </p>
-
-            <div class="case-meta">
-              <span>KO ↔ EN</span>
-              <span>GAME</span>
-            </div>
-
-            <div class="case-qa">
-              <strong>QA FOCUS</strong>
-              Terminology · consistency · character voice
-            </div>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- SERVICES -->
-    <section class="translation-section section-soft">
-      <div class="translation-wrap">
-
-        <div class="section-head">
-          <div>
-            <div class="section-kicker">
-              SERVICES
-            </div>
-
-            <h2>
-              What we do
-            </h2>
-
-            <p>
-              Three core services for real-world Korean ↔ English content.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-grid">
-
-          <article class="service-card">
-            <div class="service-icon">文</div>
-
-            <h3>
-              Translation & Localization
-            </h3>
-
-            <p>
-              Business documents, websites, marketing content
-              and Korean-market materials.
-            </p>
-
-            <ul>
-              <li>Terminology consistency</li>
-              <li>Cultural and contextual adaptation</li>
-              <li>Final QA and proofreading</li>
-            </ul>
-          </article>
-
-
-          <article class="service-card">
-            <div class="service-icon">▶</div>
-
-            <h3>
-              Video & Subtitle Localization
-            </h3>
-
-            <p>
-              YouTube, interviews, subtitles,
-              on-screen text and creator content.
-            </p>
-
-            <ul>
-              <li>Dialogue & on-screen text</li>
-              <li>Natural subtitle adaptation</li>
-              <li>Entity and background notes</li>
-            </ul>
-          </article>
-
-
-          <article class="service-card">
-            <div class="service-icon">✓</div>
-
-            <h3>
-              Review & AI Post-editing
-            </h3>
-
-            <p>
-              Review and improve existing translations,
-              including AI-generated content.
-            </p>
-
-            <ul>
-              <li>Meaning and omission checks</li>
-              <li>Tone and terminology correction</li>
-              <li>Naturalness and clarity review</li>
-            </ul>
-          </article>
-
-        </div>
-
-
-        <div class="specialized">
-
-          <strong>
-            Other specialized project experience
-          </strong>
-
-          <div class="specialized-list">
-            <span>Medical & Healthcare</span>
-            <span>Legal & Finance</span>
-            <span>Technical & IT</span>
-            <span>Game & Web Novel</span>
-            <span>Academic & Research</span>
-            <span>Media & Journalism</span>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- SAMPLE -->
-    <section class="translation-section sample-section">
-      <div class="translation-wrap">
-
-        <div class="section-head">
-          <div>
-            <div class="section-kicker">
-              ILLUSTRATIVE SIK SAMPLE
-            </div>
-
-            <h2>
-              See the difference
-            </h2>
-
-            <p>
-              The same meaning. A more natural and audience-ready result.
-            </p>
-          </div>
-        </div>
-
-
-        <div class="sample-grid">
-
-          <div class="sample-card">
-            <small>
-              ORIGINAL KOREAN
-            </small>
-
-            <p class="sample-korean">
-              본 제품은 고객님의 편의를 위하여
-              다양한 기능을 제공합니다.
-            </p>
-          </div>
-
-
-          <div class="sample-card">
-            <small>
-              LITERAL TRANSLATION
-            </small>
-
-            <p>
-              This product provides various functions
-              for the convenience of customers.
-            </p>
-          </div>
-
-
-          <div class="sample-card sample-highlight">
-            <small>
-              SIK LOCALIZED TRANSLATION
-            </small>
-
-            <p>
-              Designed to make your experience simpler
-              and more convenient, this product offers
-              a range of useful features.
-            </p>
-          </div>
-
-
-          <aside class="sample-reason">
-            <strong>
-              WHY WE CHANGED IT
-            </strong>
-
-            <ul>
-              <li>More natural English</li>
-              <li>Clearer for the reader</li>
-              <li>Preserves the original meaning</li>
-              <li>Fits public-facing content better</li>
-            </ul>
-          </aside>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- QUALITY -->
-    <section class="translation-section quality-section">
-      <div class="translation-wrap quality-grid">
-
-        <div>
-          <div class="section-kicker">
-            QUALITY ASSURANCE
-          </div>
-
-          <h2>
-            Not just translated.<br />
-            Checked.
-          </h2>
-
+          <div class="eyebrow">CONTINUITY MATTERS</div>
+          <h2>Why a dedicated translator matters.</h2>
           <p>
-            A translation can be technically correct and still sound wrong.
-            We review the areas that create the most expensive mistakes.
+            Creator content depends on personality. Consistency becomes more
+            valuable as a channel publishes more videos.
           </p>
         </div>
 
-        <div class="quality-items">
+        <div class="compare-grid">
+          <article class="compare-card compare-muted">
+            <div class="compare-label">ROTATING WORKFLOW</div>
+            <h3>Every video starts from zero.</h3>
+            <ul>
+              <li>Different translator depending on availability</li>
+              <li>Channel tone must be re-learned repeatedly</li>
+              <li>Recurring phrases can drift across videos</li>
+              <li>Character voice depends on each individual assignment</li>
+            </ul>
+          </article>
 
-          <div>
-            <strong>Meaning</strong>
-            <span>Original meaning, conditions, negation and cause/effect.</span>
-          </div>
-
-          <div>
-            <strong>Omissions</strong>
-            <span>Dialogue, numbers, units and missing on-screen text.</span>
-          </div>
-
-          <div>
-            <strong>Terminology</strong>
-            <span>Product names, technical terms, people and organizations.</span>
-          </div>
-
-          <div>
-            <strong>Tone</strong>
-            <span>Formal / informal register and intended audience.</span>
-          </div>
-
-          <div>
-            <strong>Numbers & Facts</strong>
-            <span>Dates, percentages, units and proper nouns.</span>
-          </div>
-
-          <div>
-            <strong>Final Proof</strong>
-            <span>Spelling, formatting, consistency and final delivery check.</span>
-          </div>
-
+          <article class="compare-card compare-featured">
+            <div class="compare-label">SEEN IN KOREA WORKFLOW</div>
+            <h3>The channel context accumulates.</h3>
+            <ul>
+              <li>One lead translator follows the channel over time</li>
+              <li>Voice, terminology and recurring references stay consistent</li>
+              <li>Previous decisions inform future episodes</li>
+              <li>Final QA checks meaning, tone, names and omissions</li>
+            </ul>
+          </article>
         </div>
-
       </div>
     </section>
 
-
-    <!-- PEOPLE -->
-    <section class="translation-section section-soft">
-      <div class="translation-wrap">
-
+    <!-- SAMPLE -->
+    <section class="section sample-section">
+      <div class="wrap">
         <div class="section-head">
-          <div>
-            <div class="section-kicker">
-              WHO IS BEHIND THE WORK
-            </div>
+          <div class="eyebrow">ILLUSTRATIVE CREATOR SAMPLE</div>
+          <h2>Correct English is not always natural English.</h2>
+          <p>
+            A simple example of how tone changes when copy is localized for
+            an actual viewer rather than translated sentence by sentence.
+          </p>
+        </div>
 
-            <h2>
-              Human responsibility,
-              not anonymous output.
-            </h2>
+        <div class="sample-shell">
+          <div class="sample-source">
+            <small>ORIGINAL KOREAN</small>
+            <p>
+              이번 주 내내 식단 잘 지켰는데 오늘 너무 먹었어요.
+              이러다 바로 살찌는 거 아니야?
+            </p>
+          </div>
+
+          <div class="sample-row">
+            <div class="sample-label">LITERAL</div>
+            <div>
+              I kept my diet well all week, but I ate too much today.
+              Won’t I gain weight right away?
+            </div>
+          </div>
+
+          <div class="sample-row sample-final">
+            <div class="sample-label">LOCALIZED</div>
+            <div>
+              I was so good with my diet all week… and then I completely
+              overdid it today. Watch me gain it all back overnight.
+            </div>
+          </div>
+
+          <div class="sample-reason">
+            <strong>WHY IT CHANGED</strong>
+            <p>
+              The meaning stays intact, but the phrasing is reshaped into a
+              more natural creator-style line with the same self-aware,
+              conversational tone.
+            </p>
           </div>
         </div>
 
-
-        <div class="people-grid">
-
-          <article class="profile-card">
-
-            <div class="profile-initial">
-              DK
-            </div>
-
-            <div>
-              <h3>
-                Dokyun Kim
-              </h3>
-
-              <strong>
-                Lead Translator & Localization Specialist
-              </strong>
-
-              <p>
-                8+ years across translation, localization,
-                video subtitles and linguistic QA, with experience
-                spanning finance, medical, legal, media,
-                games and Korean-market content.
-              </p>
-
-              <a
-                href={fullPortfolioUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-link"
-              >
-                VIEW FULL PORTFOLIO →
-              </a>
-            </div>
-
-          </article>
-
-
-          <article class="profile-card">
-
-            <div class="profile-initial">
-              EN
-            </div>
-
-            <div>
-              <h3>
-                Additional English-language review
-              </h3>
-
-              <strong>
-                Available for selected projects
-              </strong>
-
-              <p>
-                Public-facing Korean → English projects can receive
-                an additional independent review for clarity,
-                naturalness and reader-facing quality.
-              </p>
-
-            </div>
-
-          </article>
-
-        </div>
-
+        <small class="sample-disclaimer">
+          Illustrative sample created for portfolio demonstration; not client source material.
+        </small>
       </div>
     </section>
 
-
-    <!-- HOW -->
-    <section class="translation-section">
-      <div class="translation-wrap">
-
+    <!-- WORKFLOW -->
+    <section class="section">
+      <div class="wrap">
         <div class="section-head">
-          <div>
-            <div class="section-kicker">
-              SIMPLE FROM START TO FINISH
-            </div>
-
-            <h2>
-              How it works
-            </h2>
-          </div>
+          <div class="eyebrow">WORKFLOW</div>
+          <h2>Simple on your side.</h2>
         </div>
-
 
         <div class="steps">
-
           <article>
             <span>01</span>
-            <strong>Upload</strong>
-            <p>
-              Upload a file, paste text or share a video URL.
-            </p>
+            <strong>Send the video</strong>
+            <p>Share the YouTube URL or source file and target language.</p>
           </article>
 
           <article>
             <span>02</span>
-            <strong>Estimate</strong>
-            <p>
-              See an estimated price and project scope.
-            </p>
+            <strong>Scope & quote</strong>
+            <p>We review length, subtitle needs, on-screen text and deadline.</p>
           </article>
 
           <article>
             <span>03</span>
-            <strong>Approve & pay</strong>
-            <p>
-              Review the final quote before payment.
-            </p>
+            <strong>Localization</strong>
+            <p>Dialogue, subtitles and creator-specific language are adapted.</p>
           </article>
 
           <article>
             <span>04</span>
-            <strong>We get to work</strong>
-            <p>
-              Translation, localization and QA begin.
-            </p>
+            <strong>Final QA</strong>
+            <p>Meaning, omissions, names, terminology and tone are checked.</p>
           </article>
 
           <article>
             <span>05</span>
-            <strong>Receive your file</strong>
-            <p>
-              Download the completed project from your order page.
-            </p>
+            <strong>Delivery</strong>
+            <p>Receive the agreed format, including SRT/TXT when required.</p>
           </article>
-
         </div>
-
       </div>
     </section>
-
-
-    <!-- SECURITY -->
-    <section class="security-section">
-      <div class="translation-wrap security-grid">
-
-        <div>
-          <div class="security-icon">
-            🔒
-          </div>
-
-          <div>
-            <strong>
-              Your files stay private.
-            </strong>
-
-            <p>
-              Files are used only for your project.
-              NDA available upon request for applicable projects.
-            </p>
-          </div>
-        </div>
-
-
-        <div>
-          <div class="security-icon">
-            ↺
-          </div>
-
-          <div>
-            <strong>
-              1 revision included.
-            </strong>
-
-            <p>
-              Wording, tone and terminology adjustments
-              within the original source scope.
-            </p>
-          </div>
-        </div>
-
-
-        <div>
-          <div class="security-icon">
-            ✓
-          </div>
-
-          <div>
-            <strong>
-              Final price before payment.
-            </strong>
-
-            <p>
-              No translation work starts until
-              the final scope and price are approved.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
 
     <!-- EXPERIENCE -->
-    <section
-      class="experience-section"
-      id="experience"
-    >
-      <div class="translation-wrap">
+    <section class="section experience-section">
+      <div class="wrap experience-grid">
+        <div>
+          <div class="eyebrow">SELECTED EXPERIENCE</div>
+          <h2>Creator work backed by broader localization experience.</h2>
+          <p>
+            Video is the focus here, but the working method is supported by
+            experience across media, finance, legal, medical, technical,
+            game and corporate localization.
+          </p>
 
-        <div class="experience-head">
-          <div>
-            <div class="section-kicker">
-              SELECTED PROJECT & COLLABORATION EXPERIENCE
-            </div>
+          <a
+            href={fullPortfolioUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-link"
+          >
+            OPEN FULL PORTFOLIO →
+          </a>
+        </div>
 
-            <p>
-              Experience across companies, institutions,
-              media organizations and language-service agencies.
-            </p>
+        <div>
+          <div class="experience-label">PROJECT EXPERIENCE</div>
+          <div class="name-grid">
+            {selectedExperience.map((item) => (
+              <span>{item}</span>
+            ))}
           </div>
 
-          <small>
-            Logos / names indicate project or collaboration experience
-            and do not imply endorsement.
+          <div class="experience-label agency-label">AGENCY COLLABORATIONS</div>
+          <div class="agency-list">
+            {agencyExperience.map((item) => (
+              <span>{item}</span>
+            ))}
+          </div>
+
+          <small class="experience-note">
+            Names indicate project or collaboration experience and do not imply endorsement or an ongoing partnership.
           </small>
         </div>
-
-
-        <div class="marquee-block">
-
-          <div class="marquee-label">
-            PROJECT EXPERIENCE
-          </div>
-
-          <div class="marquee">
-            <div class="marquee-track">
-              {[...projectExperience, ...projectExperience].map((item) => (
-                <span>{item}</span>
-              ))}
-            </div>
-          </div>
-
-        </div>
-
-
-        <div class="marquee-block">
-
-          <div class="marquee-label">
-            AGENCY COLLABORATIONS
-          </div>
-
-          <div class="marquee marquee-reverse">
-            <div class="marquee-track">
-              {[...agencyExperience, ...agencyExperience].map((item) => (
-                <span>{item}</span>
-              ))}
-            </div>
-          </div>
-
-        </div>
-
       </div>
     </section>
 
-
-    <!-- AGENCY -->
-    <section class="partner-section">
-      <div class="translation-wrap partner-grid">
+    <!-- HUMAN -->
+    <section class="section human-section">
+      <div class="wrap human-grid">
+        <div class="human-mark">DK</div>
 
         <div>
-          <div class="section-kicker">
-            AGENCIES · COMPANIES · RECURRING PROJECTS
-          </div>
-
-          <h2>
-            Need a long-term Korean partner?
-          </h2>
+          <div class="eyebrow">WHO IS BEHIND THE WORK</div>
+          <h2>Dokyun Kim</h2>
+          <strong>Lead Translator & Localization Specialist</strong>
 
           <p>
-            For language-service agencies, companies
-            and recurring localization workflows.
+            8+ years across Korean ↔ English translation, creator video
+            localization and linguistic QA. Experience includes 1M+ cumulative
+            words and work across 50+ YouTube creators, with 10 channels
+            currently supported on an ongoing basis.
           </p>
+
+          <div class="human-links">
+            <a href="mailto:seeninkorea@gmail.com">seeninkorea@gmail.com</a>
+            <a
+              href={fullPortfolioUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Full portfolio
+            </a>
+          </div>
         </div>
-
-        <a href="mailto:seeninkorea@gmail.com" class="btn-primary">
-          WORK WITH US →
-        </a>
-
       </div>
     </section>
 
-
-    <!-- ESTIMATE -->
-    <section
-      class="estimate-section"
-      id="estimate"
-    >
-      <div class="translation-wrap estimate-grid">
-
+    <!-- FINAL CTA -->
+    <section class="cta-section">
+      <div class="wrap cta-grid">
         <div>
-          <div class="section-kicker">
-            START HERE
-          </div>
-
-          <h2>
-            Get an estimate in seconds.
-          </h2>
-
+          <div class="eyebrow eyebrow-light">START WITH ONE VIDEO</div>
+          <h2>Have a video in mind?</h2>
           <p>
-            Upload your content, choose the service
-            and see the estimated price before ordering.
+            Send the URL, target language and preferred deadline.
+            We’ll review the actual scope and reply with a tailored quote.
           </p>
-
-          <div class="estimate-points">
-            <span>✓ No sign-up required</span>
-            <span>✓ Final price before payment</span>
-            <span>✓ Human review for complex projects</span>
-          </div>
         </div>
 
-        <div class="estimate-preview">
-          <TranslationEstimate />
-        </div>
+        <div class="cta-actions">
+          <a href={inquiryMailto} class="btn btn-white">
+            EMAIL PROJECT DETAILS →
+          </a>
 
+          <a
+            href={fullPortfolioUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >
+            VIEW PORTFOLIO
+          </a>
+        </div>
+      </div>
+
+      <div class="wrap trust-row">
+        <span>NDA available upon request</span>
+        <span>Confidential files handled only for project delivery</span>
+        <span>Scope and price confirmed before work begins</span>
       </div>
     </section>
 
   </main>
 </BaseLayout>
 
-
 <style>
-
   :global(body) {
     margin: 0;
   }
 
   .translation-page {
-    --navy: #0b2645;
-    --teal: #078d91;
-    --teal-dark: #05777a;
-    --soft: #f4f9fc;
-    --line: #dfe8ee;
-    --text: #1d334c;
-    --muted: #627287;
-    color: var(--text);
+    --ink: #111111;
+    --paper: #f4f0e8;
+    --orange: #ff4f12;
+    --line: #ded8cf;
+    --muted: #65615b;
+    --soft: #faf8f3;
+    color: var(--ink);
     background: #fff;
   }
 
-  .translation-wrap {
+  .wrap {
     width: min(1180px, calc(100% - 40px));
     margin: 0 auto;
   }
 
-  .translation-hero {
-    padding: 80px 0 70px;
-    background:
-      radial-gradient(circle at 80% 20%, rgba(7,141,145,.15), transparent 30%),
-      linear-gradient(135deg, #f8fbfe 0%, #edf6fb 55%, #fbf4e8 100%);
-    overflow: hidden;
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .13em;
+    color: var(--orange);
+  }
+
+  .eyebrow-light {
+    color: #ff8154;
+  }
+
+  .hero {
+    padding: 84px 0 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
   }
 
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.35fr .65fr;
-    gap: 70px;
-    align-items: center;
-  }
-
-  .eyebrow,
-  .section-kicker {
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: .1em;
-    color: var(--teal);
+    grid-template-columns: 1.25fr .75fr;
+    gap: 72px;
+    align-items: start;
   }
 
   .hero-copy h1 {
-    margin: 14px 0 20px;
-    font-size: clamp(48px, 6vw, 78px);
-    line-height: .97;
-    letter-spacing: -.055em;
-    color: var(--navy);
+    margin: 17px 0 22px;
+    max-width: 800px;
+    font-size: clamp(52px, 6.5vw, 88px);
+    line-height: .92;
+    letter-spacing: -.065em;
+  }
+
+  .hero-copy h1 span {
+    color: var(--orange);
   }
 
   .hero-dek {
+    max-width: 735px;
+    margin: 0;
+    color: #3f3c37;
     font-size: 19px;
     line-height: 1.65;
-    max-width: 720px;
-    color: #354d66;
+  }
+
+  .hero-actions,
+  .cta-actions,
+  .human-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .hero-actions {
-    display: flex;
-    gap: 12px;
     margin-top: 30px;
-    flex-wrap: wrap;
   }
 
-  .btn-primary,
-  .btn-secondary {
+  .btn {
+    min-height: 50px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 48px;
-    padding: 0 24px;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 14px;
+    padding: 0 23px;
+    border-radius: 2px;
+    font-size: 12px;
     font-weight: 900;
+    letter-spacing: .04em;
+    text-decoration: none;
+    box-sizing: border-box;
   }
 
   .btn-primary {
-    background: var(--teal);
+    background: var(--ink);
     color: #fff;
   }
 
   .btn-primary:hover {
-    background: var(--teal-dark);
+    background: var(--orange);
   }
 
   .btn-secondary {
-    border: 1px solid #b7c7d4;
-    color: var(--navy);
-    background: rgba(255,255,255,.8);
+    border: 1px solid #aaa39a;
+    color: var(--ink);
+    background: transparent;
   }
 
-  .hero-stats {
-    margin-top: 48px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  .hero-note {
+    margin: 15px 0 0;
+    color: #76716a;
+    font-size: 12px;
+    line-height: 1.55;
   }
 
-  .hero-stats > div {
-    padding: 0 18px;
-    border-left: 1px solid #cad6df;
+  .hero-card {
+    background: var(--ink);
+    color: #fff;
+    padding: 34px;
   }
 
-  .hero-stats > div:first-child {
-    padding-left: 0;
-    border-left: 0;
-  }
-
-  .hero-stats strong {
-    display: block;
-    color: var(--navy);
-    font-size: 36px;
-    line-height: 1;
-  }
-
-  .hero-stats span {
-    display: block;
-    margin-top: 7px;
+  .hero-card-label {
+    color: #ff8154;
     font-size: 10px;
     font-weight: 900;
-    line-height: 1.25;
+    letter-spacing: .12em;
   }
 
-  .hero-proof {
-    border: 1px solid rgba(255,255,255,.8);
-    background: rgba(255,255,255,.86);
-    backdrop-filter: blur(14px);
-    border-radius: 22px;
-    padding: 28px;
-    box-shadow: 0 16px 45px rgba(16,43,66,.10);
-  }
-
-  .hero-proof-label {
-    font-size: 11px;
+  .hero-card-big {
+    margin-top: 22px;
+    font-size: 36px;
     font-weight: 900;
-    color: var(--teal);
+    line-height: 1.05;
+    letter-spacing: -.04em;
   }
 
-  .hero-proof ul {
-    padding: 0;
-    margin: 20px 0;
-    list-style: none;
-  }
-
-  .hero-proof li {
-    padding: 10px 0 10px 28px;
-    border-bottom: 1px solid #edf2f5;
-    position: relative;
+  .hero-card p {
+    color: #c8c4bd;
     font-size: 14px;
-  }
-
-  .hero-proof li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--teal);
-    font-weight: 900;
-  }
-
-  .hero-proof-note {
-    color: var(--navy);
-    font-size: 23px;
-    line-height: 1.2;
-    font-weight: 900;
-  }
-
-
-  .trust-strip {
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    background: #fff;
-  }
-
-  .trust-strip-inner {
-    display: flex;
-    justify-content: space-between;
-    gap: 22px;
-    padding: 17px 0;
-    font-size: 11px;
-    font-weight: 900;
-    color: var(--navy);
-  }
-
-
-  .creator-section {
-    padding: 72px 0;
-    background:
-      linear-gradient(135deg, #f3fbfc 0%, #eef6fb 58%, #ffffff 100%);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .creator-grid {
-    display: grid;
-    grid-template-columns: 1.15fr .85fr;
-    gap: 50px;
-    align-items: center;
-  }
-
-  .creator-copy h2 {
-    margin: 8px 0 16px;
-    color: var(--navy);
-    font-size: clamp(36px, 4.5vw, 56px);
-    line-height: 1;
-    letter-spacing: -.045em;
-  }
-
-  .creator-copy > p {
-    max-width: 690px;
-    margin: 0;
-    color: var(--muted);
-    line-height: 1.7;
-    font-size: 16px;
-  }
-
-  .creator-deliverables {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 24px;
-  }
-
-  .creator-deliverables span {
-    padding: 8px 11px;
-    border: 1px solid #cfe1e7;
-    border-radius: 999px;
-    background: rgba(255,255,255,.8);
-    color: #365067;
-    font-size: 12px;
-    font-weight: 800;
-  }
-
-  .creator-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 28px;
-  }
-
-  .creator-direction-note {
-    display: block;
-    margin-top: 16px;
-    max-width: 690px;
-    color: #6c7f90;
-    font-size: 11px;
-    line-height: 1.6;
-  }
-
-  .creator-proof-card {
-    border: 1px solid #d8e6eb;
-    border-radius: 22px;
-    background: #fff;
-    padding: 28px;
-    box-shadow: 0 16px 45px rgba(16,43,66,.08);
-  }
-
-  .creator-proof-label {
-    color: var(--teal);
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: .08em;
-  }
-
-  .creator-proof-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 24px;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .creator-proof-stats > div {
-    padding: 20px 14px;
-    border-left: 1px solid var(--line);
-  }
-
-  .creator-proof-stats > div:first-child {
-    border-left: 0;
-    padding-left: 0;
-  }
-
-  .creator-proof-stats strong {
-    display: block;
-    color: var(--navy);
-    font-size: 32px;
-    line-height: 1;
-  }
-
-  .creator-proof-stats span {
-    display: block;
-    margin-top: 7px;
-    color: #4d6277;
-    font-size: 9px;
-    font-weight: 900;
-    line-height: 1.3;
-  }
-
-  .creator-proof-copy {
-    padding-top: 22px;
-  }
-
-  .creator-proof-copy strong {
-    color: var(--navy);
-    font-size: 18px;
-  }
-
-  .creator-proof-copy p {
-    margin: 8px 0 0;
-    color: var(--muted);
-    font-size: 13px;
     line-height: 1.65;
   }
 
-
-  .translation-section {
-    padding: 72px 0;
+  .hero-card-rule {
+    height: 1px;
+    margin: 25px 0 14px;
+    background: #343434;
   }
 
-  .section-soft {
-    background: var(--soft);
+  .hero-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-card li {
+    padding: 10px 0 10px 22px;
+    border-bottom: 1px solid #2c2c2c;
+    position: relative;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .hero-card li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+  }
+
+  .stats {
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #cfc8bf;
+  }
+
+  .stats > div {
+    padding: 26px 22px 30px;
+    border-left: 1px solid #cfc8bf;
+  }
+
+  .stats > div:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .stats strong {
+    display: block;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -.04em;
+  }
+
+  .stats span {
+    display: block;
+    margin-top: 7px;
+    color: #6b665f;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .section {
+    padding: 82px 0;
+  }
+
+  .section-dark {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .statement-grid {
+    display: grid;
+    grid-template-columns: .95fr 1.05fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .statement-grid h2,
+  .section-head h2,
+  .experience-grid h2,
+  .human-grid h2,
+  .cta-grid h2 {
+    margin: 10px 0 0;
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: .98;
+    letter-spacing: -.05em;
+  }
+
+  .statement-copy > p {
+    margin: 0;
+    color: #c7c3bc;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .deliverables {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .deliverables span {
+    padding: 9px 12px;
+    border: 1px solid #3b3b3b;
+    font-size: 11px;
+    font-weight: 800;
   }
 
   .section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 30px;
-    margin-bottom: 30px;
-  }
-
-  .section-head h2,
-  .quality-grid h2,
-  .partner-grid h2,
-  .estimate-grid h2 {
-    margin: 7px 0;
-    color: var(--navy);
-    font-size: clamp(34px, 4vw, 48px);
-    letter-spacing: -.045em;
-    line-height: 1;
+    max-width: 820px;
+    margin-bottom: 34px;
   }
 
   .section-head p,
-  .quality-grid p,
-  .partner-grid p,
-  .estimate-grid p {
+  .experience-grid p,
+  .human-grid p,
+  .cta-grid p {
     color: var(--muted);
-    margin: 7px 0 0;
-    line-height: 1.6;
-  }
-
-
-  .case-grid,
-  .service-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-
-  .case-card,
-  .service-card {
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    background: #fff;
-    padding: 25px;
-  }
-
-  .case-card h3,
-  .service-card h3,
-  .profile-card h3 {
-    margin: 8px 0;
-    font-size: 21px;
-    color: var(--navy);
-  }
-
-  .case-card p,
-  .service-card p,
-  .profile-card p {
-    color: var(--muted);
-    line-height: 1.6;
-    font-size: 14px;
-  }
-
-  .case-tag {
-    font-size: 10px;
-    font-weight: 900;
-    color: var(--teal);
-  }
-
-  .case-meta {
-    display: flex;
-    gap: 7px;
-    margin-top: 20px;
-  }
-
-  .case-meta span {
-    background: #ebf7f7;
-    color: var(--teal-dark);
-    padding: 6px 9px;
-    border-radius: 999px;
-    font-size: 10px;
-    font-weight: 900;
-  }
-
-  .case-qa {
-    border-top: 1px solid var(--line);
-    margin-top: 18px;
-    padding-top: 16px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: var(--muted);
-  }
-
-  .case-qa strong {
-    display: block;
-    color: var(--navy);
-    font-size: 10px;
-  }
-
-
-  .service-icon {
-    width: 45px;
-    height: 45px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: #e7f6fb;
-    color: #087d8d;
-    font-size: 20px;
-    font-weight: 900;
-  }
-
-  .service-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 18px 0 0;
-  }
-
-  .service-card li {
-    padding: 6px 0 6px 21px;
-    font-size: 13px;
-    position: relative;
-  }
-
-  .service-card li::before {
-    content: "✓";
-    color: var(--teal);
-    position: absolute;
-    left: 0;
-    font-weight: 900;
-  }
-
-  .specialized {
-    margin-top: 22px;
-    padding: 24px;
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    background: #fff;
-  }
-
-  .specialized > strong {
-    color: var(--navy);
-  }
-
-  .specialized-list {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 14px;
-  }
-
-  .specialized-list span {
-    padding: 8px 11px;
-    border-radius: 999px;
-    background: #f1f5f7;
-    font-size: 12px;
-  }
-
-
-  .sample-section {
-    background: #f7fbfd;
-  }
-
-  .sample-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1.2fr .85fr;
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    overflow: hidden;
-    background: #fff;
-  }
-
-  .sample-card,
-  .sample-reason {
-    padding: 25px;
-    border-right: 1px solid var(--line);
-  }
-
-  .sample-card:last-child {
-    border-right: 0;
-  }
-
-  .sample-card small {
-    font-size: 10px;
-    font-weight: 900;
-    color: var(--navy);
-  }
-
-  .sample-card p {
     line-height: 1.7;
   }
 
-  .sample-korean {
-    font-size: 17px;
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 
-  .sample-highlight {
-    background: #eefafa;
+  .compare-card {
+    min-height: 330px;
+    padding: 32px;
+    border: 1px solid var(--line);
   }
 
-  .sample-highlight p {
+  .compare-muted {
+    background: #f7f5f0;
+  }
+
+  .compare-featured {
+    background: var(--paper);
+    border-top: 5px solid var(--orange);
+  }
+
+  .compare-label,
+  .experience-label {
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .11em;
+  }
+
+  .compare-card h3 {
+    margin: 14px 0 24px;
+    font-size: 27px;
+    letter-spacing: -.03em;
+  }
+
+  .compare-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .compare-card li {
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .sample-section {
+    background: var(--soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .sample-shell {
+    border: 1px solid #ccc5bb;
+    background: #fff;
+  }
+
+  .sample-source {
+    padding: 26px;
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .sample-source small,
+  .sample-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .1em;
+  }
+
+  .sample-source small {
+    color: #ff8154;
+  }
+
+  .sample-source p {
+    margin: 12px 0 0;
+    max-width: 850px;
+    font-size: 19px;
+    line-height: 1.65;
+  }
+
+  .sample-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+    padding: 24px 26px;
+    border-bottom: 1px solid var(--line);
+    line-height: 1.7;
+  }
+
+  .sample-label {
+    color: #7d7770;
+  }
+
+  .sample-final {
+    background: #fff3ed;
     font-weight: 800;
-    color: #08757b;
+  }
+
+  .sample-final .sample-label {
+    color: var(--orange);
   }
 
   .sample-reason {
-    background: #eaf8fb;
+    padding: 24px 26px;
   }
 
   .sample-reason strong {
-    color: var(--teal-dark);
-    font-size: 11px;
+    color: var(--orange);
+    font-size: 10px;
+    letter-spacing: .1em;
   }
 
-  .sample-reason ul {
-    padding-left: 20px;
-    color: #506479;
-    font-size: 12px;
-    line-height: 1.7;
+  .sample-reason p {
+    margin: 8px 0 0;
+    color: var(--muted);
+    line-height: 1.65;
+    font-size: 13px;
   }
 
-
-  .quality-section {
-    background: var(--navy);
-    color: #fff;
-  }
-
-  .quality-grid {
-    display: grid;
-    grid-template-columns: .65fr 1.35fr;
-    gap: 60px;
-  }
-
-  .quality-grid h2 {
-    color: #fff;
-  }
-
-  .quality-grid > div:first-child p {
-    color: #b8c7d3;
-  }
-
-  .quality-items {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .quality-items > div {
-    padding: 20px;
-    border-left: 1px solid rgba(255,255,255,.15);
-    border-bottom: 1px solid rgba(255,255,255,.15);
-  }
-
-  .quality-items strong {
+  .sample-disclaimer {
     display: block;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    color: #8a857e;
+    font-size: 10px;
   }
-
-  .quality-items span {
-    color: #b9c9d4;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-
-  .people-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-
-  .profile-card {
-    display: grid;
-    grid-template-columns: 84px 1fr;
-    gap: 22px;
-    align-items: start;
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 25px;
-  }
-
-  .profile-initial {
-    width: 84px;
-    height: 84px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--navy);
-    color: #fff;
-    font-size: 25px;
-    font-weight: 900;
-  }
-
-  .profile-card > div > strong {
-    color: var(--teal-dark);
-    font-size: 13px;
-  }
-
-  .text-link {
-    color: var(--teal);
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 12px;
-  }
-
 
   .steps {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
   }
 
   .steps article {
-    padding: 22px;
-    border-radius: 16px;
-    background: #f6f9fb;
+    padding: 26px 20px 28px;
+    border-left: 1px solid var(--line);
+  }
+
+  .steps article:first-child {
+    border-left: 0;
+    padding-left: 0;
   }
 
   .steps span {
-    display: block;
+    color: var(--orange);
     font-size: 11px;
-    color: var(--teal);
     font-weight: 900;
   }
 
   .steps strong {
     display: block;
-    margin-top: 8px;
-    color: var(--navy);
+    margin-top: 15px;
+    font-size: 16px;
   }
 
   .steps p {
     color: var(--muted);
     font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .experience-section {
+    background: var(--paper);
+  }
+
+  .experience-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 70px;
+    align-items: start;
+  }
+
+  .text-link {
+    display: inline-flex;
+    margin-top: 18px;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 900;
+    text-decoration: none;
+    border-bottom: 2px solid var(--orange);
+  }
+
+  .name-grid {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid #cfc8bf;
+    border-left: 1px solid #cfc8bf;
+  }
+
+  .name-grid span {
+    min-height: 62px;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-right: 1px solid #cfc8bf;
+    border-bottom: 1px solid #cfc8bf;
+    background: rgba(255,255,255,.35);
+    font-size: 11px;
+    font-weight: 800;
+    box-sizing: border-box;
+  }
+
+  .agency-label {
+    margin-top: 30px;
+  }
+
+  .agency-list {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .agency-list span {
+    padding: 7px 9px;
+    background: #fff;
+    border: 1px solid #d7d0c8;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .experience-note {
+    display: block;
+    margin-top: 14px;
+    color: #807a72;
+    font-size: 9px;
     line-height: 1.5;
   }
 
-
-  .security-section {
-    padding: 0 0 70px;
+  .human-section {
+    border-bottom: 1px solid var(--line);
   }
 
-  .security-grid {
+  .human-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #dce7ed;
-    border: 1px solid #dce7ed;
-    border-radius: 18px;
-    overflow: hidden;
+    grid-template-columns: 130px 1fr;
+    gap: 35px;
+    max-width: 920px;
   }
 
-  .security-grid > div {
-    background: #eff9fb;
-    padding: 24px;
-    display: grid;
-    grid-template-columns: 45px 1fr;
-    gap: 16px;
-  }
-
-  .security-grid strong {
-    color: var(--navy);
-  }
-
-  .security-grid p {
-    margin: 5px 0 0;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.55;
-  }
-
-  .security-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+  .human-mark {
+    width: 110px;
+    height: 110px;
     display: grid;
     place-items: center;
-    background: #fff;
-  }
-
-
-  .experience-section {
-    padding: 65px 0;
-    border-top: 1px solid var(--line);
-  }
-
-  .experience-head {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 25px;
-  }
-
-  .experience-head p,
-  .experience-head small {
-    color: var(--muted);
-    font-size: 12px;
-  }
-
-  .experience-head small {
-    max-width: 420px;
-    text-align: right;
-  }
-
-  .marquee-block {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    align-items: center;
-    margin-top: 12px;
-    background: #f8fafb;
-    border-radius: 14px;
-    overflow: hidden;
-  }
-
-  .marquee-label {
-    padding: 18px;
-    background: #eef4f7;
-    height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    font-size: 10px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 32px;
     font-weight: 900;
-    color: var(--navy);
-    z-index: 2;
   }
 
-  .marquee {
-    overflow: hidden;
-    position: relative;
+  .human-grid h2 {
+    font-size: 44px;
   }
 
-  .marquee-track {
-    width: max-content;
-    display: flex;
-    align-items: center;
-    animation: marquee 55s linear infinite;
+  .human-grid > div > strong {
+    display: block;
+    margin-top: 8px;
+    color: var(--orange);
+    font-size: 13px;
   }
 
-  .marquee-reverse .marquee-track {
-    animation-direction: reverse;
-    animation-duration: 62s;
+  .human-links {
+    margin-top: 18px;
   }
 
-  .marquee:hover .marquee-track {
-    animation-play-state: paused;
-  }
-
-  .marquee-track span {
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    margin: 0 28px;
-    min-height: 58px;
-    color: #32485f;
+  .human-links a {
+    color: var(--ink);
+    font-size: 12px;
     font-weight: 800;
-    font-size: 13px;
-    opacity: .75;
   }
 
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation: none;
-      flex-wrap: wrap;
-      width: auto;
-    }
-  }
-
-
-  .partner-section {
-    padding: 60px 0;
-    background: #eaf7f9;
-  }
-
-  .partner-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    align-items: center;
-  }
-
-
-  .estimate-section {
-    padding: 80px 0;
-    background: var(--navy);
+  .cta-section {
+    padding: 82px 0 38px;
+    background: var(--ink);
     color: #fff;
   }
 
-  .estimate-grid {
+  .cta-grid {
     display: grid;
-    grid-template-columns: .8fr 1.2fr;
-    gap: 60px;
-    align-items: center;
+    grid-template-columns: 1fr auto;
+    gap: 50px;
+    align-items: end;
   }
 
-  .estimate-grid h2 {
-    color: #fff;
+  .cta-grid p {
+    max-width: 700px;
+    color: #bdb9b2;
   }
 
-  .estimate-grid > div:first-child p {
-    color: #b7c7d4;
-  }
-
-  .estimate-points {
-    display: grid;
-    gap: 9px;
-    margin-top: 25px;
-    color: #d4e0e8;
-    font-size: 13px;
-  }
-
-  .estimate-preview {
+  .btn-white {
     background: #fff;
-    border-radius: 22px;
-    padding: 28px;
-    color: var(--text);
+    color: var(--ink);
   }
 
+  .btn-outline {
+    border: 1px solid #555;
+    color: #fff;
+  }
+
+  .trust-row {
+    margin-top: 55px;
+    padding-top: 22px;
+    border-top: 1px solid #2d2d2d;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 35px;
+    color: #8f8b84;
+    font-size: 10px;
+  }
 
   @media (max-width: 900px) {
-
-    .translation-hero {
-      padding-top: 50px;
+    .hero {
+      padding-top: 56px;
     }
 
     .hero-grid,
-    .creator-grid,
-    .quality-grid,
-    .estimate-grid {
+    .statement-grid,
+    .experience-grid,
+    .cta-grid {
       grid-template-columns: 1fr;
     }
 
-    .hero-proof {
-      margin-top: 15px;
+    .hero-grid {
+      gap: 38px;
     }
 
-    .hero-stats {
+    .hero-copy h1 {
+      font-size: clamp(48px, 12vw, 70px);
+    }
+
+    .stats {
       grid-template-columns: 1fr 1fr;
-      gap: 20px 0;
     }
 
-    .hero-stats > div:nth-child(3) {
+    .stats > div:nth-child(3) {
       border-left: 0;
       padding-left: 0;
     }
 
-    .trust-strip-inner {
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-
-    .case-grid,
-    .service-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sample-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sample-card,
-    .sample-reason {
-      border-right: 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .quality-items,
-    .people-grid {
+    .compare-grid {
       grid-template-columns: 1fr;
     }
 
@@ -1825,89 +1015,74 @@ const creatorSampleMailto =
       grid-template-columns: 1fr 1fr;
     }
 
-    .security-grid {
-      grid-template-columns: 1fr;
+    .steps article:nth-child(3),
+    .steps article:nth-child(5) {
+      border-left: 0;
+      padding-left: 0;
     }
 
-    .experience-head,
-    .partner-grid {
-      display: block;
+    .name-grid {
+      grid-template-columns: 1fr 1fr;
     }
-
-    .experience-head small {
-      display: block;
-      text-align: left;
-      margin-top: 12px;
-    }
-
-    .marquee-block {
-      grid-template-columns: 1fr;
-    }
-
-    .marquee-label {
-      height: auto;
-    }
-
-    .partner-grid .btn-primary {
-      margin-top: 20px;
-    }
-
   }
 
-
   @media (max-width: 560px) {
-
-    .translation-wrap {
+    .wrap {
       width: min(100% - 28px, 1180px);
     }
 
     .hero-copy h1 {
-      font-size: 46px;
+      font-size: 50px;
     }
 
     .hero-dek {
       font-size: 16px;
     }
 
-    .hero-actions a {
+    .hero-actions .btn,
+    .cta-actions .btn {
       width: 100%;
-      box-sizing: border-box;
     }
 
-    .hero-stats strong {
-      font-size: 30px;
+    .stats strong {
+      font-size: 32px;
     }
 
-    .creator-proof-stats {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .creator-proof-stats > div {
-      padding: 16px 9px;
-    }
-
-    .creator-proof-stats strong {
-      font-size: 26px;
-    }
-
-    .creator-actions a {
-      width: 100%;
-      box-sizing: border-box;
+    .sample-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
     }
 
     .steps {
       grid-template-columns: 1fr;
     }
 
-    .profile-card {
+    .steps article {
+      border-left: 0;
+      border-top: 1px solid var(--line);
+      padding-left: 0;
+    }
+
+    .steps article:first-child {
+      border-top: 0;
+    }
+
+    .name-grid {
       grid-template-columns: 1fr;
     }
 
-    .profile-initial {
-      width: 66px;
-      height: 66px;
+    .human-grid {
+      grid-template-columns: 1fr;
     }
 
-  }
+    .human-mark {
+      width: 78px;
+      height: 78px;
+      font-size: 24px;
+    }
 
+    .cta-actions {
+      width: 100%;
+    }
+  }
 </style>
