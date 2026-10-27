@@ -30,6 +30,12 @@ const agencyExperience = [
   'Evertran',
   'Voithru',
 ];
+
+const fullPortfolioUrl =
+  '/portfolio/Dokyun_Kim_Translation_Localization_Portfolio_FINAL_v19.pdf';
+
+const creatorSampleMailto =
+  'mailto:seeninkorea@gmail.com?subject=Free%2030-second%20Creator%20Localization%20Sample';
 ---
 
 <BaseLayout
@@ -64,8 +70,13 @@ const agencyExperience = [
               GET MY ESTIMATE →
             </a>
 
-            <a href="#work" class="btn-secondary">
-              SEE OUR WORK →
+            <a
+              href={fullPortfolioUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary"
+            >
+              VIEW FULL PORTFOLIO →
             </a>
           </div>
 
@@ -127,6 +138,95 @@ const agencyExperience = [
     </section>
 
 
+    <!-- CREATOR LOCALIZATION -->
+    <section class="creator-section" id="creator-localization">
+      <div class="translation-wrap creator-grid">
+
+        <div class="creator-copy">
+          <div class="section-kicker">
+            CREATOR LOCALIZATION
+          </div>
+
+          <h2>
+            Korean ↔ Global<br />
+            Creator Localization
+          </h2>
+
+          <p>
+            For Korean creators going global and international creators
+            reaching Korean viewers. We localize the full viewing experience —
+            not just the spoken words.
+          </p>
+
+          <div class="creator-deliverables">
+            <span>Dialogue</span>
+            <span>Subtitles</span>
+            <span>On-screen text</span>
+            <span>Titles & descriptions</span>
+            <span>Cultural adaptation</span>
+            <span>Final linguistic QA</span>
+          </div>
+
+          <div class="creator-actions">
+            <a href={creatorSampleMailto} class="btn-primary">
+              REQUEST A FREE 30-SECOND SAMPLE →
+            </a>
+
+            <a
+              href={fullPortfolioUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary"
+            >
+              VIEW FULL PORTFOLIO →
+            </a>
+          </div>
+
+          <small class="creator-direction-note">
+            Current ongoing creator program: primarily EN → KO.
+            KO → EN creator localization is available based on project scope.
+          </small>
+        </div>
+
+
+        <aside class="creator-proof-card">
+          <div class="creator-proof-label">
+            CREATOR EXPERIENCE
+          </div>
+
+          <div class="creator-proof-stats">
+            <div>
+              <strong>50+</strong>
+              <span>YOUTUBE<br />CREATORS</span>
+            </div>
+
+            <div>
+              <strong>140+</strong>
+              <span>VIDEO<br />ASSIGNMENTS</span>
+            </div>
+
+            <div>
+              <strong>10</strong>
+              <span>ACTIVE<br />CHANNELS</span>
+            </div>
+          </div>
+
+          <div class="creator-proof-copy">
+            <strong>
+              Human localization for creator content.
+            </strong>
+
+            <p>
+              Tone, context, subtitle readability, on-screen text,
+              terminology and omissions are reviewed before delivery.
+            </p>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+
     <!-- CASE STUDIES -->
     <section class="translation-section" id="work">
       <div class="translation-wrap">
@@ -181,12 +281,13 @@ const agencyExperience = [
             </div>
 
             <h3>
-              50+ creator channels
+              50+ YouTube creators
             </h3>
 
             <p>
-              Dialogue translation, subtitles, on-screen text,
-              contextual notes and final linguistic QA.
+              Cumulative work across 50+ YouTube creators, with
+              10 channels currently supported through ongoing EN → KO
+              translation, review and localization.
             </p>
 
             <div class="case-meta">
@@ -517,10 +618,12 @@ const agencyExperience = [
               </p>
 
               <a
-                href="#experience"
+                href={fullPortfolioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 class="text-link"
               >
-                VIEW EXPERIENCE →
+                VIEW FULL PORTFOLIO →
               </a>
             </div>
 
@@ -639,7 +742,7 @@ const agencyExperience = [
 
             <p>
               Files are used only for your project.
-              NDA support will be available for applicable projects.
+              NDA available upon request for applicable projects.
             </p>
           </div>
         </div>
@@ -998,6 +1101,135 @@ const agencyExperience = [
     font-size: 11px;
     font-weight: 900;
     color: var(--navy);
+  }
+
+
+  .creator-section {
+    padding: 72px 0;
+    background:
+      linear-gradient(135deg, #f3fbfc 0%, #eef6fb 58%, #ffffff 100%);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .creator-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 50px;
+    align-items: center;
+  }
+
+  .creator-copy h2 {
+    margin: 8px 0 16px;
+    color: var(--navy);
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1;
+    letter-spacing: -.045em;
+  }
+
+  .creator-copy > p {
+    max-width: 690px;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  .creator-deliverables {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .creator-deliverables span {
+    padding: 8px 11px;
+    border: 1px solid #cfe1e7;
+    border-radius: 999px;
+    background: rgba(255,255,255,.8);
+    color: #365067;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .creator-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .creator-direction-note {
+    display: block;
+    margin-top: 16px;
+    max-width: 690px;
+    color: #6c7f90;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .creator-proof-card {
+    border: 1px solid #d8e6eb;
+    border-radius: 22px;
+    background: #fff;
+    padding: 28px;
+    box-shadow: 0 16px 45px rgba(16,43,66,.08);
+  }
+
+  .creator-proof-label {
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .08em;
+  }
+
+  .creator-proof-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 24px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .creator-proof-stats > div {
+    padding: 20px 14px;
+    border-left: 1px solid var(--line);
+  }
+
+  .creator-proof-stats > div:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .creator-proof-stats strong {
+    display: block;
+    color: var(--navy);
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .creator-proof-stats span {
+    display: block;
+    margin-top: 7px;
+    color: #4d6277;
+    font-size: 9px;
+    font-weight: 900;
+    line-height: 1.3;
+  }
+
+  .creator-proof-copy {
+    padding-top: 22px;
+  }
+
+  .creator-proof-copy strong {
+    color: var(--navy);
+    font-size: 18px;
+  }
+
+  .creator-proof-copy p {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
   }
 
 
@@ -1542,6 +1774,7 @@ const agencyExperience = [
     }
 
     .hero-grid,
+    .creator-grid,
     .quality-grid,
     .estimate-grid {
       grid-template-columns: 1fr;
@@ -1641,6 +1874,23 @@ const agencyExperience = [
 
     .hero-stats strong {
       font-size: 30px;
+    }
+
+    .creator-proof-stats {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .creator-proof-stats > div {
+      padding: 16px 9px;
+    }
+
+    .creator-proof-stats strong {
+      font-size: 26px;
+    }
+
+    .creator-actions a {
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .steps {
