@@ -8,31 +8,97 @@ const inquiryMailto =
   'mailto:seeninkorea@gmail.com?subject=Creator%20Localization%20Inquiry';
 
 const selectedExperience = [
-  'NH NongHyup Bank',
-  'HYOSUNG',
-  'LG Electronics USA',
-  'National Cancer Center',
-  'Wonkwang Univ. Medical Center',
-  'Sejong University',
-  'BERNAMA TV',
-  'The Korea Post Media',
-  'The Epoch Times',
-  'VISTACOMICS',
-  'Jandisoft',
-  'Jakgadabang'
+  {
+    mark: 'NH',
+    name: 'NH NongHyup Bank'
+  },
+  {
+    mark: 'HYOSUNG',
+    name: 'HYOSUNG'
+  },
+  {
+    mark: 'LG',
+    name: 'LG Electronics USA'
+  },
+  {
+    mark: 'NCC',
+    name: 'National Cancer Center'
+  },
+  {
+    mark: 'WUMC',
+    name: 'Wonkwang Univ. Medical Center'
+  },
+  {
+    mark: 'SJ',
+    name: 'Sejong University'
+  },
+  {
+    mark: 'BERNAMA',
+    name: 'BERNAMA TV'
+  },
+  {
+    mark: 'KP',
+    name: 'The Korea Post Media'
+  },
+  {
+    mark: 'EPOCH',
+    name: 'The Epoch Times'
+  },
+  {
+    mark: 'VC',
+    name: 'VISTACOMICS'
+  },
+  {
+    mark: 'JANDI',
+    name: 'Jandisoft'
+  },
+  {
+    mark: 'JAKGADA',
+    name: 'Jakgadabang'
+  }
 ];
 
 const agencyExperience = [
-  'DayTranslations',
-  'D&T Translations',
-  'GTE Localize',
-  'Taika Translations',
-  'Transparent',
-  '1-Stop Asia',
-  'E4Net',
-  'ONASIA',
-  'Evertran',
-  'Voithru'
+  {
+    mark: 'DT',
+    name: 'DayTranslations'
+  },
+  {
+    mark: 'D&T',
+    name: 'D&T Translations'
+  },
+  {
+    mark: 'GTE',
+    name: 'GTE Localize'
+  },
+  {
+    mark: 'TAIKA',
+    name: 'Taika Translations'
+  },
+  {
+    mark: 'TR',
+    name: 'Transparent'
+  },
+  {
+    mark: '1STOP',
+    name: '1-Stop Asia'
+  },
+  {
+    mark: 'E4',
+    name: 'E4Net'
+  },
+  {
+    mark: 'ON',
+    name: 'ONASIA'
+  },
+  {
+    mark: 'EV',
+    name: 'Evertran'
+  },
+  {
+    mark: 'VT',
+    name: 'Voithru'
+  }
 ];
 ---
 
@@ -40,30 +106,49 @@ const agencyExperience = [
   title="Korean ↔ English Creator Localization | SEEN IN KOREA"
   description="Korean ↔ English creator localization, subtitles and linguistic QA led by one dedicated translator who learns your channel's voice."
 >
+
   <main class="translation-page">
+
 
     <!-- HERO -->
     <section class="hero">
+
       <div class="wrap hero-grid">
+
+
         <div class="hero-copy">
-          <div class="eyebrow">CREATOR LOCALIZATION · KOREAN ↔ ENGLISH</div>
+
+          <div class="eyebrow">
+            CREATOR LOCALIZATION · KOREAN ↔ ENGLISH
+          </div>
+
 
           <h1>
             Take your channel global.<br />
-            <span>Keep your voice.</span>
+            <span>
+              Keep your voice.
+            </span>
           </h1>
 
+
           <p class="hero-dek">
-            English localization for Korean creators — and Korean localization
-            for global creators. One dedicated translator learns your channel’s
-            tone, recurring language and audience instead of treating every
-            video like a new assignment.
+            English localization for Korean creators —
+            and Korean localization for global creators.
+            One dedicated translator learns your channel’s
+            tone, recurring language and audience instead
+            of treating every video like a new assignment.
           </p>
 
+
           <div class="hero-actions">
-            <a href={inquiryMailto} class="btn btn-primary">
+
+            <a
+              href={inquiryMailto}
+              class="btn btn-primary"
+            >
               SEND A VIDEO FOR A QUOTE →
             </a>
+
 
             <a
               href={fullPortfolioUrl}
@@ -73,232 +158,606 @@ const agencyExperience = [
             >
               VIEW FULL PORTFOLIO
             </a>
+
           </div>
 
+
           <p class="hero-note">
-            Share a recent video URL and target language. We’ll review the scope
-            and reply by email with a tailored quote.
+            Share a recent video URL and target language.
+            We’ll review the scope and reply by email
+            with a tailored quote.
           </p>
+
         </div>
 
+
+
         <aside class="hero-card">
-          <div class="hero-card-label">WHY THIS IS DIFFERENT</div>
+
+          <div class="hero-card-label">
+            WHY THIS IS DIFFERENT
+          </div>
+
 
           <div class="hero-card-big">
             One channel.<br />
             One lead translator.
           </div>
 
+
           <p>
-            The same person stays with the channel, building familiarity with
-            character voice, running jokes, terminology, names and preferred
-            phrasing over time.
+            The same person stays with the channel,
+            building familiarity with character voice,
+            running jokes, terminology, names and
+            preferred phrasing over time.
           </p>
+
 
           <div class="hero-card-rule"></div>
 
+
           <ul>
-            <li>Channel-specific tone continuity</li>
-            <li>Dialogue + subtitles + on-screen text</li>
-            <li>Cultural adaptation, not word-for-word output</li>
-            <li>Final linguistic QA before delivery</li>
+
+            <li>
+              Channel-specific tone continuity
+            </li>
+
+            <li>
+              Dialogue + subtitles + on-screen text
+            </li>
+
+            <li>
+              Cultural adaptation, not word-for-word output
+            </li>
+
+            <li>
+              Final linguistic QA before delivery
+            </li>
+
           </ul>
+
         </aside>
+
+
       </div>
 
-      <div class="wrap stats">
-        <div>
-          <strong>50+</strong>
-          <span>YouTube creators</span>
+
+      <!-- PROOF STRIP -->
+      <div class="proof-strip">
+
+        <div class="wrap">
+
+          <div class="proof-head">
+
+            <span>
+              PROVEN AT SCALE
+            </span>
+
+            <p>
+              Creator-focused localization backed by
+              years of real production experience.
+            </p>
+
+          </div>
+
+
+          <div class="stats">
+
+
+            <div class="stat stat-featured">
+
+              <strong>
+                50<span>+</span>
+              </strong>
+
+              <div>
+                YOUTUBE CREATORS
+              </div>
+
+              <small>
+                Cumulative creator work
+              </small>
+
+            </div>
+
+
+            <div class="stat">
+
+              <strong>
+                10
+              </strong>
+
+              <div>
+                ACTIVE CREATOR CHANNELS
+              </div>
+
+              <small>
+                Ongoing channel support
+              </small>
+
+            </div>
+
+
+            <div class="stat">
+
+              <strong>
+                140<span>+</span>
+              </strong>
+
+              <div>
+                LEGACY VIDEO ASSIGNMENTS
+              </div>
+
+              <small>
+                Across earlier video programs
+              </small>
+
+            </div>
+
+
+            <div class="stat">
+
+              <strong>
+                8<span>+</span>
+              </strong>
+
+              <div>
+                YEARS IN LOCALIZATION
+              </div>
+
+              <small>
+                Korean ↔ English
+              </small>
+
+            </div>
+
+
+          </div>
+
         </div>
-        <div>
-          <strong>10</strong>
-          <span>Active creator channels</span>
-        </div>
-        <div>
-          <strong>140+</strong>
-          <span>Legacy video assignments</span>
-        </div>
-        <div>
-          <strong>8+</strong>
-          <span>Years in localization</span>
-        </div>
+
       </div>
+
+
     </section>
+
+
 
     <!-- POSITIONING -->
     <section class="section section-dark">
+
       <div class="wrap statement-grid">
+
+
         <div>
-          <div class="eyebrow eyebrow-light">NOT JUST SUBTITLES</div>
+
+          <div class="eyebrow eyebrow-light">
+            NOT JUST SUBTITLES
+          </div>
+
           <h2>
             Translation is only one part
             of how a video travels.
           </h2>
+
         </div>
+
+
 
         <div class="statement-copy">
+
           <p>
-            A technically correct subtitle can still flatten a creator’s
-            personality. We localize for the viewer who will actually watch
-            the video — while protecting the meaning of the original.
+            A technically correct subtitle can still
+            flatten a creator’s personality.
+            We localize for the viewer who will actually
+            watch the video — while protecting the meaning
+            of the original.
           </p>
 
+
           <div class="deliverables">
-            <span>Dialogue</span>
-            <span>Subtitle adaptation</span>
-            <span>On-screen text</span>
-            <span>Titles & descriptions</span>
-            <span>Cultural context</span>
-            <span>Final QA</span>
+
+            <span>
+              Dialogue
+            </span>
+
+            <span>
+              Subtitle adaptation
+            </span>
+
+            <span>
+              On-screen text
+            </span>
+
+            <span>
+              Titles &amp; descriptions
+            </span>
+
+            <span>
+              Cultural context
+            </span>
+
+            <span>
+              Final QA
+            </span>
+
           </div>
+
         </div>
+
+
       </div>
+
     </section>
+
+
 
     <!-- COMPARISON -->
     <section class="section">
+
       <div class="wrap">
+
+
         <div class="section-head">
-          <div class="eyebrow">CONTINUITY MATTERS</div>
-          <h2>Why a dedicated translator matters.</h2>
+
+          <div class="eyebrow">
+            CONTINUITY MATTERS
+          </div>
+
+          <h2>
+            Why a dedicated translator matters.
+          </h2>
+
           <p>
-            Creator content depends on personality. Consistency becomes more
-            valuable as a channel publishes more videos.
+            Creator content depends on personality.
+            Consistency becomes more valuable as a
+            channel publishes more videos.
           </p>
+
         </div>
+
+
 
         <div class="compare-grid">
+
+
           <article class="compare-card compare-muted">
-            <div class="compare-label">ROTATING WORKFLOW</div>
-            <h3>Every video starts from zero.</h3>
+
+            <div class="compare-label">
+              ROTATING WORKFLOW
+            </div>
+
+            <h3>
+              Every video starts from zero.
+            </h3>
+
             <ul>
-              <li>Different translator depending on availability</li>
-              <li>Channel tone must be re-learned repeatedly</li>
-              <li>Recurring phrases can drift across videos</li>
-              <li>Character voice depends on each individual assignment</li>
+
+              <li>
+                Different translator depending on availability
+              </li>
+
+              <li>
+                Channel tone must be re-learned repeatedly
+              </li>
+
+              <li>
+                Recurring phrases can drift across videos
+              </li>
+
+              <li>
+                Character voice depends on each individual assignment
+              </li>
+
             </ul>
+
           </article>
 
+
+
           <article class="compare-card compare-featured">
-            <div class="compare-label">SEEN IN KOREA WORKFLOW</div>
-            <h3>The channel context accumulates.</h3>
+
+            <div class="compare-label">
+              SEEN IN KOREA WORKFLOW
+            </div>
+
+            <h3>
+              The channel context accumulates.
+            </h3>
+
             <ul>
-              <li>One lead translator follows the channel over time</li>
-              <li>Voice, terminology and recurring references stay consistent</li>
-              <li>Previous decisions inform future episodes</li>
-              <li>Final QA checks meaning, tone, names and omissions</li>
+
+              <li>
+                One lead translator follows the channel over time
+              </li>
+
+              <li>
+                Voice, terminology and recurring references stay consistent
+              </li>
+
+              <li>
+                Previous decisions inform future episodes
+              </li>
+
+              <li>
+                Final QA checks meaning, tone, names and omissions
+              </li>
+
             </ul>
+
           </article>
+
+
         </div>
+
+
       </div>
+
     </section>
+
+
 
     <!-- SAMPLE -->
     <section class="section sample-section">
+
       <div class="wrap">
+
+
         <div class="section-head">
-          <div class="eyebrow">ILLUSTRATIVE CREATOR SAMPLE</div>
-          <h2>Correct English is not always natural English.</h2>
+
+          <div class="eyebrow">
+            ILLUSTRATIVE CREATOR SAMPLE
+          </div>
+
+          <h2>
+            Correct English is not always natural English.
+          </h2>
+
           <p>
-            A simple example of how tone changes when copy is localized for
-            an actual viewer rather than translated sentence by sentence.
+            A simple example of how tone changes when
+            copy is localized for an actual viewer rather
+            than translated sentence by sentence.
           </p>
+
         </div>
 
+
+
         <div class="sample-shell">
+
+
           <div class="sample-source">
-            <small>ORIGINAL KOREAN</small>
+
+            <small>
+              ORIGINAL KOREAN
+            </small>
+
             <p>
               이번 주 내내 식단 잘 지켰는데 오늘 너무 먹었어요.
               이러다 바로 살찌는 거 아니야?
             </p>
+
           </div>
+
+
 
           <div class="sample-row">
-            <div class="sample-label">LITERAL</div>
+
+            <div class="sample-label">
+              LITERAL
+            </div>
+
             <div>
-              I kept my diet well all week, but I ate too much today.
+              I kept my diet well all week,
+              but I ate too much today.
               Won’t I gain weight right away?
             </div>
+
           </div>
+
+
 
           <div class="sample-row sample-final">
-            <div class="sample-label">LOCALIZED</div>
-            <div>
-              I was so good with my diet all week… and then I completely
-              overdid it today. Watch me gain it all back overnight.
+
+            <div class="sample-label">
+              LOCALIZED
             </div>
+
+            <div>
+              I was so good with my diet all week…
+              and then I completely overdid it today.
+              Watch me gain it all back overnight.
+            </div>
+
           </div>
+
+
 
           <div class="sample-reason">
-            <strong>WHY IT CHANGED</strong>
+
+            <strong>
+              WHY IT CHANGED
+            </strong>
+
             <p>
-              The meaning stays intact, but the phrasing is reshaped into a
-              more natural creator-style line with the same self-aware,
-              conversational tone.
+              The meaning stays intact,
+              but the phrasing is reshaped into a
+              more natural creator-style line with
+              the same self-aware, conversational tone.
             </p>
+
           </div>
+
+
         </div>
 
+
         <small class="sample-disclaimer">
-          Illustrative sample created for portfolio demonstration; not client source material.
+          Illustrative sample created for portfolio demonstration;
+          not client source material.
         </small>
+
+
       </div>
+
     </section>
+
+
 
     <!-- WORKFLOW -->
     <section class="section">
+
       <div class="wrap">
+
+
         <div class="section-head">
-          <div class="eyebrow">WORKFLOW</div>
-          <h2>Simple on your side.</h2>
+
+          <div class="eyebrow">
+            WORKFLOW
+          </div>
+
+          <h2>
+            Simple on your side.
+          </h2>
+
         </div>
+
+
 
         <div class="steps">
-          <article>
-            <span>01</span>
-            <strong>Send the video</strong>
-            <p>Share the YouTube URL or source file and target language.</p>
-          </article>
+
 
           <article>
-            <span>02</span>
-            <strong>Scope & quote</strong>
-            <p>We review length, subtitle needs, on-screen text and deadline.</p>
+
+            <span>
+              01
+            </span>
+
+            <strong>
+              Send the video
+            </strong>
+
+            <p>
+              Share the YouTube URL or source file
+              and target language.
+            </p>
+
           </article>
 
-          <article>
-            <span>03</span>
-            <strong>Localization</strong>
-            <p>Dialogue, subtitles and creator-specific language are adapted.</p>
-          </article>
+
 
           <article>
-            <span>04</span>
-            <strong>Final QA</strong>
-            <p>Meaning, omissions, names, terminology and tone are checked.</p>
+
+            <span>
+              02
+            </span>
+
+            <strong>
+              Scope &amp; quote
+            </strong>
+
+            <p>
+              We review length, subtitle needs,
+              on-screen text and deadline.
+            </p>
+
           </article>
 
+
+
           <article>
-            <span>05</span>
-            <strong>Delivery</strong>
-            <p>Receive the agreed format, including SRT/TXT when required.</p>
+
+            <span>
+              03
+            </span>
+
+            <strong>
+              Localization
+            </strong>
+
+            <p>
+              Dialogue, subtitles and creator-specific
+              language are adapted.
+            </p>
+
           </article>
+
+
+
+          <article>
+
+            <span>
+              04
+            </span>
+
+            <strong>
+              Final QA
+            </strong>
+
+            <p>
+              Meaning, omissions, names,
+              terminology and tone are checked.
+            </p>
+
+          </article>
+
+
+
+          <article>
+
+            <span>
+              05
+            </span>
+
+            <strong>
+              Delivery
+            </strong>
+
+            <p>
+              Receive the agreed format,
+              including SRT/TXT when required.
+            </p>
+
+          </article>
+
+
         </div>
+
+
       </div>
+
     </section>
+
+
 
     <!-- EXPERIENCE -->
     <section class="section experience-section">
-      <div class="wrap experience-grid">
+
+
+      <div class="wrap experience-intro">
+
         <div>
-          <div class="eyebrow">SELECTED EXPERIENCE</div>
-          <h2>Creator work backed by broader localization experience.</h2>
+
+          <div class="eyebrow">
+            SELECTED EXPERIENCE
+          </div>
+
+          <h2>
+            Creator work backed by
+            broader localization experience.
+          </h2>
+
+        </div>
+
+
+        <div class="experience-copy">
+
           <p>
-            Video is the focus here, but the working method is supported by
-            experience across media, finance, legal, medical, technical,
-            game and corporate localization.
+            Video is the focus here,
+            but the working method is supported
+            by experience across media, finance,
+            legal, medical, technical, game
+            and corporate localization.
           </p>
 
           <a
@@ -309,77 +768,363 @@ const agencyExperience = [
           >
             OPEN FULL PORTFOLIO →
           </a>
+
         </div>
 
-        <div>
-          <div class="experience-label">PROJECT EXPERIENCE</div>
-          <div class="name-grid">
-            {selectedExperience.map((item) => (
-              <span>{item}</span>
-            ))}
+      </div>
+
+
+
+      <!-- PROJECT MARQUEE -->
+      <div class="marquee-section">
+
+        <div class="wrap marquee-heading">
+
+          <span>
+            PROJECT EXPERIENCE
+          </span>
+
+          <small>
+            SELECTED PROJECTS &amp; CLIENT EXPERIENCE
+          </small>
+
+        </div>
+
+
+        <div class="marquee marquee-left">
+
+
+          <div class="marquee-track">
+
+
+            <div class="marquee-group">
+
+              {
+                selectedExperience.map(
+                  item => (
+
+                    <div class="brand-chip">
+
+                      <div class="brand-mark">
+                        {item.mark}
+                      </div>
+
+                      <div class="brand-name">
+                        {item.name}
+                      </div>
+
+                    </div>
+
+                  )
+                )
+              }
+
+            </div>
+
+
+
+            <div
+              class="marquee-group"
+              aria-hidden="true"
+            >
+
+              {
+                selectedExperience.map(
+                  item => (
+
+                    <div class="brand-chip">
+
+                      <div class="brand-mark">
+                        {item.mark}
+                      </div>
+
+                      <div class="brand-name">
+                        {item.name}
+                      </div>
+
+                    </div>
+
+                  )
+                )
+              }
+
+            </div>
+
+
           </div>
 
-          <div class="experience-label agency-label">AGENCY COLLABORATIONS</div>
-          <div class="agency-list">
-            {agencyExperience.map((item) => (
-              <span>{item}</span>
-            ))}
+
+        </div>
+
+
+
+        <!-- AGENCY MARQUEE -->
+        <div class="wrap marquee-heading agency-heading">
+
+          <span>
+            AGENCY COLLABORATIONS
+          </span>
+
+          <small>
+            TRANSLATION &amp; LOCALIZATION PARTNERS
+          </small>
+
+        </div>
+
+
+        <div class="marquee marquee-right">
+
+
+          <div class="marquee-track">
+
+
+            <div class="marquee-group">
+
+              {
+                agencyExperience.map(
+                  item => (
+
+                    <div class="brand-chip agency-chip">
+
+                      <div class="brand-mark agency-mark">
+                        {item.mark}
+                      </div>
+
+                      <div class="brand-name">
+                        {item.name}
+                      </div>
+
+                    </div>
+
+                  )
+                )
+              }
+
+            </div>
+
+
+
+            <div
+              class="marquee-group"
+              aria-hidden="true"
+            >
+
+              {
+                agencyExperience.map(
+                  item => (
+
+                    <div class="brand-chip agency-chip">
+
+                      <div class="brand-mark agency-mark">
+                        {item.mark}
+                      </div>
+
+                      <div class="brand-name">
+                        {item.name}
+                      </div>
+
+                    </div>
+
+                  )
+                )
+              }
+
+            </div>
+
+
           </div>
+
+
+        </div>
+
+
+
+        <div class="wrap">
 
           <small class="experience-note">
-            Names indicate project or collaboration experience and do not imply endorsement or an ongoing partnership.
+            Names indicate project or collaboration experience
+            and do not imply endorsement or an ongoing partnership.
           </small>
+
         </div>
+
+
       </div>
+
+
     </section>
+
+
 
     <!-- HUMAN -->
     <section class="section human-section">
-      <div class="wrap human-grid">
-        <div class="human-mark">DK</div>
 
-        <div>
-          <div class="eyebrow">WHO IS BEHIND THE WORK</div>
-          <h2>Dokyun Kim</h2>
-          <strong>Lead Translator & Localization Specialist</strong>
+      <div class="wrap human-grid">
+
+
+        <div class="human-photo-wrap">
+
+          <div class="human-photo">
+
+            <img
+              src="/images/dokyun-kim-profile.jpg"
+              alt="Dokyun Kim, Lead Translator and Localization Specialist"
+              loading="lazy"
+            />
+
+          </div>
+
+
+          <div class="photo-caption">
+
+            <strong>
+              DOKYUN KIM
+            </strong>
+
+            <span>
+              SEOUL · KOREA
+            </span>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="human-copy">
+
+          <div class="eyebrow">
+            WHO IS BEHIND THE WORK
+          </div>
+
+
+          <h2>
+            Dokyun Kim
+          </h2>
+
+
+          <strong class="human-role">
+            Lead Translator &amp; Localization Specialist
+          </strong>
+
 
           <p>
-            8+ years across Korean ↔ English translation, creator video
-            localization and linguistic QA. Experience includes 1M+ cumulative
-            words and work across 50+ YouTube creators, with 10 channels
-            currently supported on an ongoing basis.
+            8+ years across Korean ↔ English translation,
+            creator video localization and linguistic QA.
+            Experience includes 1M+ cumulative words and
+            work across 50+ YouTube creators,
+            with 10 channels currently supported
+            on an ongoing basis.
           </p>
 
+
+          <div class="human-proof">
+
+
+            <div>
+
+              <b>
+                1M+
+              </b>
+
+              <span>
+                CUMULATIVE WORDS
+              </span>
+
+            </div>
+
+
+            <div>
+
+              <b>
+                50+
+              </b>
+
+              <span>
+                YOUTUBE CREATORS
+              </span>
+
+            </div>
+
+
+            <div>
+
+              <b>
+                10
+              </b>
+
+              <span>
+                ACTIVE CHANNELS
+              </span>
+
+            </div>
+
+
+          </div>
+
+
+
           <div class="human-links">
-            <a href="mailto:seeninkorea@gmail.com">seeninkorea@gmail.com</a>
+
+            <a href="mailto:seeninkorea@gmail.com">
+              seeninkorea@gmail.com
+            </a>
+
             <a
               href={fullPortfolioUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Full portfolio
+              Full portfolio →
             </a>
+
           </div>
+
+
         </div>
+
+
       </div>
+
     </section>
+
+
 
     <!-- FINAL CTA -->
     <section class="cta-section">
+
       <div class="wrap cta-grid">
+
+
         <div>
-          <div class="eyebrow eyebrow-light">START WITH ONE VIDEO</div>
-          <h2>Have a video in mind?</h2>
+
+          <div class="eyebrow eyebrow-light">
+            START WITH ONE VIDEO
+          </div>
+
+          <h2>
+            Have a video in mind?
+          </h2>
+
           <p>
             Send the URL, target language and preferred deadline.
-            We’ll review the actual scope and reply with a tailored quote.
+            We’ll review the actual scope and reply
+            with a tailored quote.
           </p>
+
         </div>
 
+
+
         <div class="cta-actions">
-          <a href={inquiryMailto} class="btn btn-white">
+
+          <a
+            href={inquiryMailto}
+            class="btn btn-white"
+          >
             EMAIL PROJECT DETAILS →
           </a>
+
 
           <a
             href={fullPortfolioUrl}
@@ -389,700 +1134,2640 @@ const agencyExperience = [
           >
             VIEW PORTFOLIO
           </a>
+
         </div>
+
+
       </div>
+
+
 
       <div class="wrap trust-row">
-        <span>NDA available upon request</span>
-        <span>Confidential files handled only for project delivery</span>
-        <span>Scope and price confirmed before work begins</span>
+
+        <span>
+          NDA available upon request
+        </span>
+
+        <span>
+          Confidential files handled only for project delivery
+        </span>
+
+        <span>
+          Scope and price confirmed before work begins
+        </span>
+
       </div>
+
+
     </section>
 
+
   </main>
+
 </BaseLayout>
 
+
+
 <style>
+
   :global(body) {
     margin: 0;
   }
 
+
+
   .translation-page {
-    --ink: #111111;
-    --paper: #f4f0e8;
-    --orange: #ff4f12;
-    --line: #ded8cf;
-    --muted: #65615b;
-    --soft: #faf8f3;
-    color: var(--ink);
-    background: #fff;
+
+    --ink:
+      #111111;
+
+    --paper:
+      #f4f0e8;
+
+    --orange:
+      #ff4f12;
+
+    --line:
+      #ded8cf;
+
+    --muted:
+      #65615b;
+
+    --soft:
+      #faf8f3;
+
+    color:
+      var(--ink);
+
+    background:
+      #fff;
+
+    overflow:
+      hidden;
+
   }
+
+
 
   .wrap {
-    width: min(1180px, calc(100% - 40px));
-    margin: 0 auto;
+
+    width:
+      min(
+        1180px,
+        calc(100% - 40px)
+      );
+
+    margin:
+      0 auto;
+
   }
+
+
 
   .eyebrow {
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: .13em;
-    color: var(--orange);
+
+    font-size:
+      11px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .13em;
+
+    color:
+      var(--orange);
+
   }
+
+
 
   .eyebrow-light {
-    color: #ff8154;
+
+    color:
+      #ff8154;
+
   }
+
+
+
+  /* HERO */
 
   .hero {
-    padding: 84px 0 0;
-    background: var(--paper);
-    border-bottom: 1px solid var(--line);
+
+    padding:
+      84px 0 0;
+
+    background:
+      var(--paper);
+
+    border-bottom:
+      0;
+
   }
+
+
 
   .hero-grid {
-    display: grid;
-    grid-template-columns: 1.25fr .75fr;
-    gap: 72px;
-    align-items: start;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      1.25fr .75fr;
+
+    gap:
+      72px;
+
+    align-items:
+      start;
+
+    padding-bottom:
+      72px;
+
   }
+
+
 
   .hero-copy h1 {
-    margin: 17px 0 22px;
-    max-width: 800px;
-    font-size: clamp(52px, 6.5vw, 88px);
-    line-height: .92;
-    letter-spacing: -.065em;
+
+    margin:
+      17px 0 22px;
+
+    max-width:
+      800px;
+
+    font-size:
+      clamp(
+        52px,
+        6.5vw,
+        88px
+      );
+
+    line-height:
+      .92;
+
+    letter-spacing:
+      -.065em;
+
   }
+
+
 
   .hero-copy h1 span {
-    color: var(--orange);
+
+    color:
+      var(--orange);
+
   }
 
+
+
   .hero-dek {
-    max-width: 735px;
-    margin: 0;
-    color: #3f3c37;
-    font-size: 19px;
-    line-height: 1.65;
+
+    max-width:
+      735px;
+
+    margin:
+      0;
+
+    color:
+      #3f3c37;
+
+    font-size:
+      19px;
+
+    line-height:
+      1.65;
+
   }
+
+
 
   .hero-actions,
   .cta-actions,
   .human-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+
+    display:
+      flex;
+
+    flex-wrap:
+      wrap;
+
+    gap:
+      12px;
+
   }
+
+
 
   .hero-actions {
-    margin-top: 30px;
+
+    margin-top:
+      30px;
+
   }
+
+
 
   .btn {
-    min-height: 50px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 23px;
-    border-radius: 2px;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: .04em;
-    text-decoration: none;
-    box-sizing: border-box;
+
+    min-height:
+      50px;
+
+    display:
+      inline-flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      center;
+
+    padding:
+      0 23px;
+
+    border-radius:
+      2px;
+
+    font-size:
+      12px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .04em;
+
+    text-decoration:
+      none;
+
+    box-sizing:
+      border-box;
+
   }
+
+
 
   .btn-primary {
-    background: var(--ink);
-    color: #fff;
+
+    background:
+      var(--ink);
+
+    color:
+      #fff;
+
   }
+
+
 
   .btn-primary:hover {
-    background: var(--orange);
+
+    background:
+      var(--orange);
+
   }
+
+
 
   .btn-secondary {
-    border: 1px solid #aaa39a;
-    color: var(--ink);
-    background: transparent;
+
+    border:
+      1px solid #aaa39a;
+
+    color:
+      var(--ink);
+
+    background:
+      transparent;
+
   }
+
+
 
   .hero-note {
-    margin: 15px 0 0;
-    color: #76716a;
-    font-size: 12px;
-    line-height: 1.55;
+
+    margin:
+      15px 0 0;
+
+    color:
+      #76716a;
+
+    font-size:
+      12px;
+
+    line-height:
+      1.55;
+
   }
+
+
 
   .hero-card {
-    background: var(--ink);
-    color: #fff;
-    padding: 34px;
+
+    background:
+      var(--ink);
+
+    color:
+      #fff;
+
+    padding:
+      34px;
+
+    box-shadow:
+      18px 22px 0
+      rgba(
+        255,
+        79,
+        18,
+        .12
+      );
+
   }
+
+
 
   .hero-card-label {
-    color: #ff8154;
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: .12em;
+
+    color:
+      #ff8154;
+
+    font-size:
+      10px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .12em;
+
   }
+
+
 
   .hero-card-big {
-    margin-top: 22px;
-    font-size: 36px;
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -.04em;
+
+    margin-top:
+      22px;
+
+    font-size:
+      36px;
+
+    font-weight:
+      900;
+
+    line-height:
+      1.05;
+
+    letter-spacing:
+      -.04em;
+
   }
+
+
 
   .hero-card p {
-    color: #c8c4bd;
-    font-size: 14px;
-    line-height: 1.65;
+
+    color:
+      #c8c4bd;
+
+    font-size:
+      14px;
+
+    line-height:
+      1.65;
+
   }
+
+
 
   .hero-card-rule {
-    height: 1px;
-    margin: 25px 0 14px;
-    background: #343434;
+
+    height:
+      1px;
+
+    margin:
+      25px 0 14px;
+
+    background:
+      #343434;
+
   }
+
+
 
   .hero-card ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+
+    list-style:
+      none;
+
+    margin:
+      0;
+
+    padding:
+      0;
+
   }
+
+
 
   .hero-card li {
-    padding: 10px 0 10px 22px;
-    border-bottom: 1px solid #2c2c2c;
-    position: relative;
-    font-size: 12px;
-    line-height: 1.5;
+
+    padding:
+      10px 0 10px 22px;
+
+    border-bottom:
+      1px solid #2c2c2c;
+
+    position:
+      relative;
+
+    font-size:
+      12px;
+
+    line-height:
+      1.5;
+
   }
+
+
 
   .hero-card li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: var(--orange);
+
+    content:
+      "→";
+
+    position:
+      absolute;
+
+    left:
+      0;
+
+    color:
+      var(--orange);
+
   }
+
+
+
+  /* PROOF */
+
+  .proof-strip {
+
+    background:
+      #0d0d0d;
+
+    color:
+      #fff;
+
+    border-top:
+      1px solid #262626;
+
+    border-bottom:
+      1px solid #262626;
+
+  }
+
+
+
+  .proof-head {
+
+    min-height:
+      68px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      space-between;
+
+    gap:
+      30px;
+
+    border-bottom:
+      1px solid #292929;
+
+  }
+
+
+
+  .proof-head > span {
+
+    color:
+      var(--orange);
+
+    font-size:
+      10px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .15em;
+
+  }
+
+
+
+  .proof-head p {
+
+    margin:
+      0;
+
+    color:
+      #858585;
+
+    font-size:
+      11px;
+
+  }
+
+
 
   .stats {
-    margin-top: 70px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid #cfc8bf;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      repeat(
+        4,
+        1fr
+      );
+
   }
 
-  .stats > div {
-    padding: 26px 22px 30px;
-    border-left: 1px solid #cfc8bf;
+
+
+  .stat {
+
+    min-height:
+      180px;
+
+    padding:
+      34px 26px 28px;
+
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    justify-content:
+      center;
+
+    border-left:
+      1px solid #292929;
+
+    position:
+      relative;
+
   }
 
-  .stats > div:first-child {
-    border-left: 0;
-    padding-left: 0;
+
+
+  .stat:first-child {
+
+    border-left:
+      0;
+
   }
 
-  .stats strong {
-    display: block;
-    font-size: 40px;
-    line-height: 1;
-    letter-spacing: -.04em;
+
+
+  .stat-featured {
+
+    background:
+      #171717;
+
   }
 
-  .stats span {
-    display: block;
-    margin-top: 7px;
-    color: #6b665f;
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
+
+
+  .stat-featured::before {
+
+    content:
+      '';
+
+    position:
+      absolute;
+
+    left:
+      0;
+
+    right:
+      0;
+
+    top:
+      0;
+
+    height:
+      4px;
+
+    background:
+      var(--orange);
+
   }
+
+
+
+  .stat strong {
+
+    display:
+      block;
+
+    color:
+      #fff;
+
+    font-size:
+      clamp(
+        48px,
+        5vw,
+        66px
+      );
+
+    line-height:
+      .9;
+
+    letter-spacing:
+      -.055em;
+
+  }
+
+
+
+  .stat-featured strong {
+
+    color:
+      var(--orange);
+
+  }
+
+
+
+  .stat strong span {
+
+    color:
+      var(--orange);
+
+  }
+
+
+
+  .stat > div {
+
+    margin-top:
+      17px;
+
+    color:
+      #fff;
+
+    font-size:
+      10px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .06em;
+
+  }
+
+
+
+  .stat small {
+
+    display:
+      block;
+
+    margin-top:
+      7px;
+
+    color:
+      #777;
+
+    font-size:
+      9px;
+
+    line-height:
+      1.4;
+
+  }
+
+
+
+  /* SECTIONS */
 
   .section {
-    padding: 82px 0;
+
+    padding:
+      82px 0;
+
   }
+
+
 
   .section-dark {
-    background: var(--ink);
-    color: #fff;
+
+    background:
+      var(--ink);
+
+    color:
+      #fff;
+
   }
 
+
+
   .statement-grid {
-    display: grid;
-    grid-template-columns: .95fr 1.05fr;
-    gap: 80px;
-    align-items: start;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      .95fr 1.05fr;
+
+    gap:
+      80px;
+
+    align-items:
+      start;
+
   }
+
+
 
   .statement-grid h2,
   .section-head h2,
-  .experience-grid h2,
+  .experience-intro h2,
   .human-grid h2,
   .cta-grid h2 {
-    margin: 10px 0 0;
-    font-size: clamp(38px, 5vw, 58px);
-    line-height: .98;
-    letter-spacing: -.05em;
+
+    margin:
+      10px 0 0;
+
+    font-size:
+      clamp(
+        38px,
+        5vw,
+        58px
+      );
+
+    line-height:
+      .98;
+
+    letter-spacing:
+      -.05em;
+
   }
+
+
 
   .statement-copy > p {
-    margin: 0;
-    color: #c7c3bc;
-    font-size: 17px;
-    line-height: 1.7;
+
+    margin:
+      0;
+
+    color:
+      #c7c3bc;
+
+    font-size:
+      17px;
+
+    line-height:
+      1.7;
+
   }
+
+
 
   .deliverables {
-    margin-top: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+
+    margin-top:
+      30px;
+
+    display:
+      flex;
+
+    flex-wrap:
+      wrap;
+
+    gap:
+      8px;
+
   }
+
+
 
   .deliverables span {
-    padding: 9px 12px;
-    border: 1px solid #3b3b3b;
-    font-size: 11px;
-    font-weight: 800;
+
+    padding:
+      9px 12px;
+
+    border:
+      1px solid #3b3b3b;
+
+    font-size:
+      11px;
+
+    font-weight:
+      800;
+
   }
+
+
 
   .section-head {
-    max-width: 820px;
-    margin-bottom: 34px;
+
+    max-width:
+      820px;
+
+    margin-bottom:
+      34px;
+
   }
+
+
 
   .section-head p,
-  .experience-grid p,
+  .experience-copy p,
   .human-grid p,
   .cta-grid p {
-    color: var(--muted);
-    line-height: 1.7;
+
+    color:
+      var(--muted);
+
+    line-height:
+      1.7;
+
   }
+
+
+
+  /* COMPARISON */
 
   .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap:
+      16px;
+
   }
+
+
 
   .compare-card {
-    min-height: 330px;
-    padding: 32px;
-    border: 1px solid var(--line);
+
+    min-height:
+      330px;
+
+    padding:
+      32px;
+
+    border:
+      1px solid var(--line);
+
   }
+
+
 
   .compare-muted {
-    background: #f7f5f0;
+
+    background:
+      #f7f5f0;
+
   }
+
+
 
   .compare-featured {
-    background: var(--paper);
-    border-top: 5px solid var(--orange);
+
+    background:
+      var(--paper);
+
+    border-top:
+      5px solid
+      var(--orange);
+
   }
 
-  .compare-label,
-  .experience-label {
-    color: var(--orange);
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: .11em;
+
+
+  .compare-label {
+
+    color:
+      var(--orange);
+
+    font-size:
+      10px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .11em;
+
   }
+
+
 
   .compare-card h3 {
-    margin: 14px 0 24px;
-    font-size: 27px;
-    letter-spacing: -.03em;
+
+    margin:
+      14px 0 24px;
+
+    font-size:
+      27px;
+
+    letter-spacing:
+      -.03em;
+
   }
+
+
 
   .compare-card ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+
+    list-style:
+      none;
+
+    margin:
+      0;
+
+    padding:
+      0;
+
   }
+
+
 
   .compare-card li {
-    padding: 12px 0;
-    border-top: 1px solid var(--line);
-    font-size: 13px;
-    line-height: 1.55;
+
+    padding:
+      12px 0;
+
+    border-top:
+      1px solid
+      var(--line);
+
+    font-size:
+      13px;
+
+    line-height:
+      1.55;
+
   }
+
+
+
+  /* SAMPLE */
 
   .sample-section {
-    background: var(--soft);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+
+    background:
+      var(--soft);
+
+    border-top:
+      1px solid
+      var(--line);
+
+    border-bottom:
+      1px solid
+      var(--line);
+
   }
+
+
 
   .sample-shell {
-    border: 1px solid #ccc5bb;
-    background: #fff;
+
+    border:
+      1px solid #ccc5bb;
+
+    background:
+      #fff;
+
   }
 
+
+
   .sample-source {
-    padding: 26px;
-    background: var(--ink);
-    color: #fff;
+
+    padding:
+      26px;
+
+    background:
+      var(--ink);
+
+    color:
+      #fff;
+
   }
+
+
 
   .sample-source small,
   .sample-label {
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: .1em;
+
+    font-size:
+      10px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .1em;
+
   }
+
+
 
   .sample-source small {
-    color: #ff8154;
+
+    color:
+      #ff8154;
+
   }
+
+
 
   .sample-source p {
-    margin: 12px 0 0;
-    max-width: 850px;
-    font-size: 19px;
-    line-height: 1.65;
+
+    margin:
+      12px 0 0;
+
+    max-width:
+      850px;
+
+    font-size:
+      19px;
+
+    line-height:
+      1.65;
+
   }
+
+
 
   .sample-row {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 24px;
-    padding: 24px 26px;
-    border-bottom: 1px solid var(--line);
-    line-height: 1.7;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      160px 1fr;
+
+    gap:
+      24px;
+
+    padding:
+      24px 26px;
+
+    border-bottom:
+      1px solid
+      var(--line);
+
+    line-height:
+      1.7;
+
   }
+
+
 
   .sample-label {
-    color: #7d7770;
+
+    color:
+      #7d7770;
+
   }
+
+
 
   .sample-final {
-    background: #fff3ed;
-    font-weight: 800;
+
+    background:
+      #fff3ed;
+
+    font-weight:
+      800;
+
   }
 
-  .sample-final .sample-label {
-    color: var(--orange);
+
+
+  .sample-final
+  .sample-label {
+
+    color:
+      var(--orange);
+
   }
+
+
 
   .sample-reason {
-    padding: 24px 26px;
+
+    padding:
+      24px 26px;
+
   }
+
+
 
   .sample-reason strong {
-    color: var(--orange);
-    font-size: 10px;
-    letter-spacing: .1em;
+
+    color:
+      var(--orange);
+
+    font-size:
+      10px;
+
+    letter-spacing:
+      .1em;
+
   }
+
+
 
   .sample-reason p {
-    margin: 8px 0 0;
-    color: var(--muted);
-    line-height: 1.65;
-    font-size: 13px;
+
+    margin:
+      8px 0 0;
+
+    color:
+      var(--muted);
+
+    line-height:
+      1.65;
+
+    font-size:
+      13px;
+
   }
+
+
 
   .sample-disclaimer {
-    display: block;
-    margin-top: 10px;
-    color: #8a857e;
-    font-size: 10px;
+
+    display:
+      block;
+
+    margin-top:
+      10px;
+
+    color:
+      #8a857e;
+
+    font-size:
+      10px;
+
   }
+
+
+
+  /* WORKFLOW */
 
   .steps {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+
+    display:
+      grid;
+
+    grid-template-columns:
+      repeat(
+        5,
+        1fr
+      );
+
+    border-top:
+      1px solid
+      var(--line);
+
+    border-bottom:
+      1px solid
+      var(--line);
+
   }
+
+
 
   .steps article {
-    padding: 26px 20px 28px;
-    border-left: 1px solid var(--line);
+
+    padding:
+      26px 20px 28px;
+
+    border-left:
+      1px solid
+      var(--line);
+
   }
+
+
 
   .steps article:first-child {
-    border-left: 0;
-    padding-left: 0;
+
+    border-left:
+      0;
+
+    padding-left:
+      0;
+
   }
+
+
 
   .steps span {
-    color: var(--orange);
-    font-size: 11px;
-    font-weight: 900;
+
+    color:
+      var(--orange);
+
+    font-size:
+      11px;
+
+    font-weight:
+      900;
+
   }
+
+
 
   .steps strong {
-    display: block;
-    margin-top: 15px;
-    font-size: 16px;
+
+    display:
+      block;
+
+    margin-top:
+      15px;
+
+    font-size:
+      16px;
+
   }
+
+
 
   .steps p {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.6;
+
+    color:
+      var(--muted);
+
+    font-size:
+      12px;
+
+    line-height:
+      1.6;
+
   }
+
+
+
+  /* EXPERIENCE */
 
   .experience-section {
-    background: var(--paper);
+
+    padding:
+      84px 0 72px;
+
+    background:
+      var(--paper);
+
+    overflow:
+      hidden;
+
   }
 
-  .experience-grid {
-    display: grid;
-    grid-template-columns: .8fr 1.2fr;
-    gap: 70px;
-    align-items: start;
+
+
+  .experience-intro {
+
+    display:
+      grid;
+
+    grid-template-columns:
+      .95fr 1.05fr;
+
+    gap:
+      80px;
+
+    align-items:
+      end;
+
+    margin-bottom:
+      54px;
+
   }
+
+
+
+  .experience-intro h2 {
+
+    max-width:
+      620px;
+
+  }
+
+
+
+  .experience-copy {
+
+    max-width:
+      540px;
+
+  }
+
+
+
+  .experience-copy p {
+
+    margin:
+      0;
+
+    font-size:
+      15px;
+
+  }
+
+
 
   .text-link {
-    display: inline-flex;
-    margin-top: 18px;
-    color: var(--ink);
-    font-size: 12px;
-    font-weight: 900;
-    text-decoration: none;
-    border-bottom: 2px solid var(--orange);
+
+    display:
+      inline-flex;
+
+    margin-top:
+      20px;
+
+    color:
+      var(--ink);
+
+    font-size:
+      11px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .04em;
+
+    text-decoration:
+      none;
+
+    border-bottom:
+      2px solid
+      var(--orange);
+
   }
 
-  .name-grid {
-    margin-top: 14px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid #cfc8bf;
-    border-left: 1px solid #cfc8bf;
+
+
+  .marquee-section {
+
+    margin-top:
+      10px;
+
   }
 
-  .name-grid span {
-    min-height: 62px;
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    border-right: 1px solid #cfc8bf;
-    border-bottom: 1px solid #cfc8bf;
-    background: rgba(255,255,255,.35);
-    font-size: 11px;
-    font-weight: 800;
-    box-sizing: border-box;
+
+
+  .marquee-heading {
+
+    margin-top:
+      28px;
+
+    margin-bottom:
+      12px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      space-between;
+
+    gap:
+      20px;
+
   }
 
-  .agency-label {
-    margin-top: 30px;
+
+
+  .marquee-heading span {
+
+    color:
+      var(--orange);
+
+    font-size:
+      9px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .12em;
+
   }
 
-  .agency-list {
-    margin-top: 12px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
+
+
+  .marquee-heading small {
+
+    color:
+      #8b857d;
+
+    font-size:
+      8px;
+
+    letter-spacing:
+      .08em;
+
   }
 
-  .agency-list span {
-    padding: 7px 9px;
-    background: #fff;
-    border: 1px solid #d7d0c8;
-    font-size: 10px;
-    font-weight: 700;
+
+
+  .agency-heading {
+
+    margin-top:
+      30px;
+
   }
+
+
+
+  .marquee {
+
+    width:
+      100%;
+
+    overflow:
+      hidden;
+
+    position:
+      relative;
+
+    padding:
+      3px 0;
+
+    -webkit-mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        #000 6%,
+        #000 94%,
+        transparent
+      );
+
+    mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        #000 6%,
+        #000 94%,
+        transparent
+      );
+
+  }
+
+
+
+  .marquee-track {
+
+    --marquee-gap:
+      12px;
+
+    width:
+      max-content;
+
+    display:
+      flex;
+
+    gap:
+      var(--marquee-gap);
+
+    animation:
+      marquee-left
+      42s
+      linear
+      infinite;
+
+  }
+
+
+
+  .marquee-right
+  .marquee-track {
+
+    animation-name:
+      marquee-right;
+
+    animation-duration:
+      48s;
+
+  }
+
+
+
+  .marquee:hover
+  .marquee-track {
+
+    animation-play-state:
+      paused;
+
+  }
+
+
+
+  .marquee-group {
+
+    display:
+      flex;
+
+    gap:
+      var(--marquee-gap);
+
+    flex-shrink:
+      0;
+
+  }
+
+
+
+  .brand-chip {
+
+    min-width:
+      250px;
+
+    height:
+      82px;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      74px 1fr;
+
+    align-items:
+      center;
+
+    background:
+      #fff;
+
+    border:
+      1px solid #d6cfc5;
+
+    box-sizing:
+      border-box;
+
+  }
+
+
+
+  .agency-chip {
+
+    min-width:
+      220px;
+
+    height:
+      72px;
+
+  }
+
+
+
+  .brand-mark {
+
+    height:
+      100%;
+
+    display:
+      grid;
+
+    place-items:
+      center;
+
+    padding:
+      0 8px;
+
+    border-right:
+      1px solid #ded8cf;
+
+    background:
+      #111;
+
+    color:
+      #fff;
+
+    font-size:
+      12px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      -.02em;
+
+    text-align:
+      center;
+
+    box-sizing:
+      border-box;
+
+  }
+
+
+
+  .agency-mark {
+
+    background:
+      #ebe5dc;
+
+    color:
+      #111;
+
+  }
+
+
+
+  .brand-name {
+
+    padding:
+      0 17px;
+
+    font-size:
+      12px;
+
+    font-weight:
+      900;
+
+    line-height:
+      1.3;
+
+    white-space:
+      nowrap;
+
+  }
+
+
 
   .experience-note {
-    display: block;
-    margin-top: 14px;
-    color: #807a72;
-    font-size: 9px;
-    line-height: 1.5;
+
+    display:
+      block;
+
+    margin-top:
+      25px;
+
+    color:
+      #807a72;
+
+    font-size:
+      9px;
+
+    line-height:
+      1.5;
+
   }
+
+
+
+  @keyframes marquee-left {
+
+    from {
+      transform:
+        translateX(0);
+    }
+
+    to {
+      transform:
+        translateX(
+          calc(
+            -50% -
+            6px
+          )
+        );
+    }
+
+  }
+
+
+
+  @keyframes marquee-right {
+
+    from {
+      transform:
+        translateX(
+          calc(
+            -50% -
+            6px
+          )
+        );
+    }
+
+    to {
+      transform:
+        translateX(0);
+    }
+
+  }
+
+
+
+  /* HUMAN */
 
   .human-section {
-    border-bottom: 1px solid var(--line);
+
+    padding:
+      90px 0;
+
+    border-bottom:
+      1px solid
+      var(--line);
+
+    background:
+      #fff;
+
   }
+
+
 
   .human-grid {
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    gap: 35px;
-    max-width: 920px;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      310px 1fr;
+
+    gap:
+      64px;
+
+    align-items:
+      center;
+
+    max-width:
+      1040px;
+
   }
 
-  .human-mark {
-    width: 110px;
-    height: 110px;
-    display: grid;
-    place-items: center;
-    background: var(--ink);
-    color: #fff;
-    font-size: 32px;
-    font-weight: 900;
+
+
+  .human-photo-wrap {
+
+    width:
+      100%;
+
   }
+
+
+
+  .human-photo {
+
+    width:
+      100%;
+
+    aspect-ratio:
+      4 / 5;
+
+    overflow:
+      hidden;
+
+    position:
+      relative;
+
+    background:
+      #ded8cf;
+
+  }
+
+
+
+  .human-photo::after {
+
+    content:
+      '';
+
+    position:
+      absolute;
+
+    inset:
+      0;
+
+    border:
+      1px solid
+      rgba(
+        0,
+        0,
+        0,
+        .08
+      );
+
+    pointer-events:
+      none;
+
+  }
+
+
+
+  .human-photo img {
+
+    width:
+      100%;
+
+    height:
+      100%;
+
+    display:
+      block;
+
+    object-fit:
+      cover;
+
+    object-position:
+      center 54%;
+
+    transform:
+      scale(1.18);
+
+    transform-origin:
+      center 56%;
+
+  }
+
+
+
+  .photo-caption {
+
+    margin-top:
+      12px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      space-between;
+
+    gap:
+      15px;
+
+    padding-top:
+      10px;
+
+    border-top:
+      2px solid
+      var(--ink);
+
+  }
+
+
+
+  .photo-caption strong {
+
+    font-size:
+      10px;
+
+    letter-spacing:
+      .08em;
+
+  }
+
+
+
+  .photo-caption span {
+
+    color:
+      #817b73;
+
+    font-size:
+      9px;
+
+    font-weight:
+      800;
+
+    letter-spacing:
+      .08em;
+
+  }
+
+
+
+  .human-copy {
+
+    max-width:
+      700px;
+
+  }
+
+
 
   .human-grid h2 {
-    font-size: 44px;
+
+    font-size:
+      clamp(
+        48px,
+        5vw,
+        64px
+      );
+
   }
 
-  .human-grid > div > strong {
-    display: block;
-    margin-top: 8px;
-    color: var(--orange);
-    font-size: 13px;
+
+
+  .human-role {
+
+    display:
+      block;
+
+    margin-top:
+      10px;
+
+    color:
+      var(--orange);
+
+    font-size:
+      14px;
+
   }
+
+
+
+  .human-grid p {
+
+    max-width:
+      690px;
+
+    margin-top:
+      24px;
+
+    font-size:
+      15px;
+
+  }
+
+
+
+  .human-proof {
+
+    margin-top:
+      28px;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      repeat(
+        3,
+        1fr
+      );
+
+    border-top:
+      1px solid
+      var(--line);
+
+    border-bottom:
+      1px solid
+      var(--line);
+
+  }
+
+
+
+  .human-proof > div {
+
+    padding:
+      18px 18px 18px 0;
+
+    border-left:
+      1px solid
+      var(--line);
+
+  }
+
+
+
+  .human-proof > div:first-child {
+
+    border-left:
+      0;
+
+  }
+
+
+
+  .human-proof b {
+
+    display:
+      block;
+
+    color:
+      var(--ink);
+
+    font-size:
+      25px;
+
+    letter-spacing:
+      -.04em;
+
+  }
+
+
+
+  .human-proof span {
+
+    display:
+      block;
+
+    margin-top:
+      4px;
+
+    color:
+      #817b73;
+
+    font-size:
+      8px;
+
+    font-weight:
+      900;
+
+    letter-spacing:
+      .06em;
+
+  }
+
+
 
   .human-links {
-    margin-top: 18px;
+
+    margin-top:
+      22px;
+
   }
+
+
 
   .human-links a {
-    color: var(--ink);
-    font-size: 12px;
-    font-weight: 800;
+
+    color:
+      var(--ink);
+
+    font-size:
+      12px;
+
+    font-weight:
+      900;
+
   }
+
+
+
+  .human-links a:last-child {
+
+    color:
+      var(--orange);
+
+  }
+
+
+
+  /* CTA */
 
   .cta-section {
-    padding: 82px 0 38px;
-    background: var(--ink);
-    color: #fff;
+
+    padding:
+      82px 0 38px;
+
+    background:
+      var(--ink);
+
+    color:
+      #fff;
+
   }
+
+
 
   .cta-grid {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 50px;
-    align-items: end;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr auto;
+
+    gap:
+      50px;
+
+    align-items:
+      end;
+
   }
+
+
 
   .cta-grid p {
-    max-width: 700px;
-    color: #bdb9b2;
+
+    max-width:
+      700px;
+
+    color:
+      #bdb9b2;
+
   }
+
+
 
   .btn-white {
-    background: #fff;
-    color: var(--ink);
+
+    background:
+      #fff;
+
+    color:
+      var(--ink);
+
   }
+
+
 
   .btn-outline {
-    border: 1px solid #555;
-    color: #fff;
+
+    border:
+      1px solid #555;
+
+    color:
+      #fff;
+
   }
+
+
 
   .trust-row {
-    margin-top: 55px;
-    padding-top: 22px;
-    border-top: 1px solid #2d2d2d;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px 35px;
-    color: #8f8b84;
-    font-size: 10px;
+
+    margin-top:
+      55px;
+
+    padding-top:
+      22px;
+
+    border-top:
+      1px solid #2d2d2d;
+
+    display:
+      flex;
+
+    flex-wrap:
+      wrap;
+
+    gap:
+      18px 35px;
+
+    color:
+      #8f8b84;
+
+    font-size:
+      10px;
+
   }
 
-  @media (max-width: 900px) {
+
+
+  /* TABLET */
+
+  @media (
+    max-width: 900px
+  ) {
+
     .hero {
-      padding-top: 56px;
+
+      padding-top:
+        56px;
+
     }
+
 
     .hero-grid,
     .statement-grid,
-    .experience-grid,
+    .experience-intro,
     .cta-grid {
-      grid-template-columns: 1fr;
+
+      grid-template-columns:
+        1fr;
+
     }
+
 
     .hero-grid {
-      gap: 38px;
+
+      gap:
+        38px;
+
     }
+
 
     .hero-copy h1 {
-      font-size: clamp(48px, 12vw, 70px);
+
+      font-size:
+        clamp(
+          48px,
+          12vw,
+          70px
+        );
+
     }
+
 
     .stats {
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
     }
 
-    .stats > div:nth-child(3) {
-      border-left: 0;
-      padding-left: 0;
+
+    .stat:nth-child(3) {
+
+      border-left:
+        0;
+
+      border-top:
+        1px solid #292929;
+
     }
+
+
+    .stat:nth-child(4) {
+
+      border-top:
+        1px solid #292929;
+
+    }
+
 
     .compare-grid {
-      grid-template-columns: 1fr;
+
+      grid-template-columns:
+        1fr;
+
     }
 
+
     .steps {
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
     }
+
 
     .steps article:nth-child(3),
     .steps article:nth-child(5) {
-      border-left: 0;
-      padding-left: 0;
+
+      border-left:
+        0;
+
+      padding-left:
+        0;
+
     }
 
-    .name-grid {
-      grid-template-columns: 1fr 1fr;
+
+    .experience-intro {
+
+      gap:
+        24px;
+
     }
+
+
+    .human-grid {
+
+      grid-template-columns:
+        250px 1fr;
+
+      gap:
+        42px;
+
+    }
+
+
+    .brand-chip {
+
+      min-width:
+        220px;
+
+    }
+
   }
 
-  @media (max-width: 560px) {
+
+
+  /* MOBILE */
+
+  @media (
+    max-width: 560px
+  ) {
+
     .wrap {
-      width: min(100% - 28px, 1180px);
+
+      width:
+        min(
+          100% - 28px,
+          1180px
+        );
+
     }
+
 
     .hero-copy h1 {
-      font-size: 50px;
+
+      font-size:
+        50px;
+
     }
 
+
     .hero-dek {
-      font-size: 16px;
+
+      font-size:
+        16px;
+
     }
+
 
     .hero-actions .btn,
     .cta-actions .btn {
-      width: 100%;
+
+      width:
+        100%;
+
     }
 
-    .stats strong {
-      font-size: 32px;
+
+    .proof-head {
+
+      padding:
+        18px 0;
+
+      display:
+        block;
+
     }
+
+
+    .proof-head p {
+
+      margin-top:
+        6px;
+
+    }
+
+
+    .stat {
+
+      min-height:
+        145px;
+
+      padding:
+        26px 17px;
+
+    }
+
+
+    .stat strong {
+
+      font-size:
+        43px;
+
+    }
+
+
+    .stat > div {
+
+      font-size:
+        8px;
+
+    }
+
+
+    .stat small {
+
+      font-size:
+        8px;
+
+    }
+
 
     .sample-row {
-      grid-template-columns: 1fr;
-      gap: 8px;
+
+      grid-template-columns:
+        1fr;
+
+      gap:
+        8px;
+
     }
+
 
     .steps {
-      grid-template-columns: 1fr;
+
+      grid-template-columns:
+        1fr;
+
     }
+
 
     .steps article {
-      border-left: 0;
-      border-top: 1px solid var(--line);
-      padding-left: 0;
+
+      border-left:
+        0;
+
+      border-top:
+        1px solid
+        var(--line);
+
+      padding-left:
+        0;
+
     }
+
 
     .steps article:first-child {
-      border-top: 0;
+
+      border-top:
+        0;
+
     }
 
-    .name-grid {
-      grid-template-columns: 1fr;
+
+    .marquee-heading {
+
+      align-items:
+        flex-start;
+
+      flex-direction:
+        column;
+
+      gap:
+        4px;
+
     }
+
+
+    .marquee {
+
+      -webkit-mask-image:
+        linear-gradient(
+          to right,
+          transparent,
+          #000 3%,
+          #000 97%,
+          transparent
+        );
+
+      mask-image:
+        linear-gradient(
+          to right,
+          transparent,
+          #000 3%,
+          #000 97%,
+          transparent
+        );
+
+    }
+
+
+    .brand-chip {
+
+      min-width:
+        210px;
+
+      height:
+        70px;
+
+      grid-template-columns:
+        62px 1fr;
+
+    }
+
+
+    .brand-name {
+
+      padding:
+        0 13px;
+
+      font-size:
+        10px;
+
+    }
+
+
+    .brand-mark {
+
+      font-size:
+        10px;
+
+    }
+
+
+    .human-section {
+
+      padding:
+        60px 0;
+
+    }
+
 
     .human-grid {
-      grid-template-columns: 1fr;
+
+      grid-template-columns:
+        1fr;
+
+      gap:
+        34px;
+
     }
 
-    .human-mark {
-      width: 78px;
-      height: 78px;
-      font-size: 24px;
+
+    .human-photo-wrap {
+
+      max-width:
+        300px;
+
     }
+
+
+    .human-grid h2 {
+
+      font-size:
+        48px;
+
+    }
+
+
+    .human-proof {
+
+      grid-template-columns:
+        1fr 1fr 1fr;
+
+    }
+
+
+    .human-proof > div {
+
+      padding:
+        15px 8px 15px 0;
+
+    }
+
+
+    .human-proof b {
+
+      font-size:
+        20px;
+
+    }
+
+
+    .human-proof span {
+
+      font-size:
+        7px;
+
+    }
+
 
     .cta-actions {
-      width: 100%;
+
+      width:
+        100%;
+
     }
+
   }
+
+
+
+  @media (
+    prefers-reduced-motion:
+    reduce
+  ) {
+
+    .marquee-track {
+
+      animation:
+        none;
+
+    }
+
+  }
+
 </style>
