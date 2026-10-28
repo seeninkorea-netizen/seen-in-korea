@@ -1,5 +1,4 @@
 ---
-// translation page v2 deploy trigger
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const fullPortfolioUrl =
@@ -7,100 +6,6 @@ const fullPortfolioUrl =
 
 const inquiryMailto =
   'mailto:seeninkorea@gmail.com?subject=Creator%20Localization%20Inquiry';
-
-const selectedExperience = [
-  {
-    mark: 'NH',
-    name: 'NH NongHyup Bank'
-  },
-  {
-    mark: 'HYOSUNG',
-    name: 'HYOSUNG'
-  },
-  {
-    mark: 'LG',
-    name: 'LG Electronics USA'
-  },
-  {
-    mark: 'NCC',
-    name: 'National Cancer Center'
-  },
-  {
-    mark: 'WUMC',
-    name: 'Wonkwang Univ. Medical Center'
-  },
-  {
-    mark: 'SJ',
-    name: 'Sejong University'
-  },
-  {
-    mark: 'BERNAMA',
-    name: 'BERNAMA TV'
-  },
-  {
-    mark: 'KP',
-    name: 'The Korea Post Media'
-  },
-  {
-    mark: 'EPOCH',
-    name: 'The Epoch Times'
-  },
-  {
-    mark: 'VC',
-    name: 'VISTACOMICS'
-  },
-  {
-    mark: 'JANDI',
-    name: 'Jandisoft'
-  },
-  {
-    mark: 'JAKGADA',
-    name: 'Jakgadabang'
-  }
-];
-
-const agencyExperience = [
-  {
-    mark: 'DT',
-    name: 'DayTranslations'
-  },
-  {
-    mark: 'D&T',
-    name: 'D&T Translations'
-  },
-  {
-    mark: 'GTE',
-    name: 'GTE Localize'
-  },
-  {
-    mark: 'TAIKA',
-    name: 'Taika Translations'
-  },
-  {
-    mark: 'TR',
-    name: 'Transparent'
-  },
-  {
-    mark: '1STOP',
-    name: '1-Stop Asia'
-  },
-  {
-    mark: 'E4',
-    name: 'E4Net'
-  },
-  {
-    mark: 'ON',
-    name: 'ONASIA'
-  },
-  {
-    mark: 'EV',
-    name: 'Evertran'
-  },
-  {
-    mark: 'VT',
-    name: 'Voithru'
-  }
-];
 ---
 
 <BaseLayout
@@ -223,7 +128,8 @@ const agencyExperience = [
       </div>
 
 
-      <!-- PROOF STRIP -->
+
+      <!-- PROVEN AT SCALE -->
       <div class="proof-strip">
 
         <div class="wrap">
@@ -262,6 +168,7 @@ const agencyExperience = [
             </div>
 
 
+
             <div class="stat">
 
               <strong>
@@ -279,6 +186,7 @@ const agencyExperience = [
             </div>
 
 
+
             <div class="stat">
 
               <strong>
@@ -294,6 +202,7 @@ const agencyExperience = [
               </small>
 
             </div>
+
 
 
             <div class="stat">
@@ -737,6 +646,7 @@ const agencyExperience = [
 
       <div class="wrap experience-intro">
 
+
         <div>
 
           <div class="eyebrow">
@@ -751,15 +661,16 @@ const agencyExperience = [
         </div>
 
 
+
         <div class="experience-copy">
 
           <p>
             Video is the focus here,
-            but the working method is supported
-            by experience across media, finance,
-            legal, medical, technical, game
-            and corporate localization.
+            but the working method is supported by
+            experience across media, finance, legal,
+            medical, technical, game and corporate localization.
           </p>
+
 
           <a
             href={fullPortfolioUrl}
@@ -772,183 +683,133 @@ const agencyExperience = [
 
         </div>
 
+
       </div>
 
 
 
-      <!-- PROJECT MARQUEE -->
-      <div class="marquee-section">
+      <!-- PROJECT EXPERIENCE -->
+      <div class="logo-row-section">
 
-        <div class="wrap marquee-heading">
+        <div class="wrap logo-row-title">
 
-          <span>
-            PROJECT EXPERIENCE
-          </span>
+          <div>
 
-          <small>
-            SELECTED PROJECTS &amp; CLIENT EXPERIENCE
-          </small>
+            <span>
+              PROJECT EXPERIENCE
+            </span>
+
+            <small>
+              SELECTED CLIENT &amp; PROJECT EXPERIENCE
+            </small>
+
+          </div>
 
         </div>
 
 
-        <div class="marquee marquee-left">
+
+        <div class="logo-marquee">
+
+          <div class="logo-marquee-track logo-left">
 
 
-          <div class="marquee-track">
+            <div class="logo-strip">
 
-
-            <div class="marquee-group">
-
-              {
-                selectedExperience.map(
-                  item => (
-
-                    <div class="brand-chip">
-
-                      <div class="brand-mark">
-                        {item.mark}
-                      </div>
-
-                      <div class="brand-name">
-                        {item.name}
-                      </div>
-
-                    </div>
-
-                  )
-                )
-              }
+              <img
+                src="/images/translation-project-logos.png"
+                alt="Selected translation and localization project experience"
+              />
 
             </div>
 
 
 
             <div
-              class="marquee-group"
+              class="logo-strip"
               aria-hidden="true"
             >
 
-              {
-                selectedExperience.map(
-                  item => (
-
-                    <div class="brand-chip">
-
-                      <div class="brand-mark">
-                        {item.mark}
-                      </div>
-
-                      <div class="brand-name">
-                        {item.name}
-                      </div>
-
-                    </div>
-
-                  )
-                )
-              }
+              <img
+                src="/images/translation-project-logos.png"
+                alt=""
+              />
 
             </div>
 
 
           </div>
 
+        </div>
+
+      </div>
+
+
+
+      <!-- AGENCY COLLABORATIONS -->
+      <div class="logo-row-section agency-row">
+
+        <div class="wrap logo-row-title">
+
+          <div>
+
+            <span>
+              AGENCY COLLABORATIONS
+            </span>
+
+            <small>
+              TRANSLATION &amp; LOCALIZATION PARTNERS
+            </small>
+
+          </div>
 
         </div>
 
 
 
-        <!-- AGENCY MARQUEE -->
-        <div class="wrap marquee-heading agency-heading">
+        <div class="logo-marquee">
 
-          <span>
-            AGENCY COLLABORATIONS
-          </span>
-
-          <small>
-            TRANSLATION &amp; LOCALIZATION PARTNERS
-          </small>
-
-        </div>
+          <div class="logo-marquee-track logo-right">
 
 
-        <div class="marquee marquee-right">
+            <div class="logo-strip agency-strip">
 
-
-          <div class="marquee-track">
-
-
-            <div class="marquee-group">
-
-              {
-                agencyExperience.map(
-                  item => (
-
-                    <div class="brand-chip agency-chip">
-
-                      <div class="brand-mark agency-mark">
-                        {item.mark}
-                      </div>
-
-                      <div class="brand-name">
-                        {item.name}
-                      </div>
-
-                    </div>
-
-                  )
-                )
-              }
+              <img
+                src="/images/translation-agency-logos.png"
+                alt="Translation and localization agency collaborations"
+              />
 
             </div>
 
 
 
             <div
-              class="marquee-group"
+              class="logo-strip agency-strip"
               aria-hidden="true"
             >
 
-              {
-                agencyExperience.map(
-                  item => (
-
-                    <div class="brand-chip agency-chip">
-
-                      <div class="brand-mark agency-mark">
-                        {item.mark}
-                      </div>
-
-                      <div class="brand-name">
-                        {item.name}
-                      </div>
-
-                    </div>
-
-                  )
-                )
-              }
+              <img
+                src="/images/translation-agency-logos.png"
+                alt=""
+              />
 
             </div>
 
 
           </div>
 
-
         </div>
 
+      </div>
 
 
-        <div class="wrap">
 
-          <small class="experience-note">
-            Names indicate project or collaboration experience
-            and do not imply endorsement or an ongoing partnership.
-          </small>
+      <div class="wrap">
 
-        </div>
-
+        <small class="experience-note">
+          Names indicate project or collaboration experience
+          and do not imply endorsement or an ongoing partnership.
+        </small>
 
       </div>
 
@@ -963,15 +824,18 @@ const agencyExperience = [
       <div class="wrap human-grid">
 
 
-        <div class="human-photo-wrap">
+        <div class="human-photo-column">
 
-          <div class="human-photo">
+          <div class="human-photo-frame">
 
             <img
-              src="/images/dokyun-kim-profile.jpg"
+              src="/images/dokyun-kim-profile-studio.png"
               alt="Dokyun Kim, Lead Translator and Localization Specialist"
               loading="lazy"
             />
+
+            <div class="photo-corner photo-corner-top"></div>
+            <div class="photo-corner photo-corner-bottom"></div>
 
           </div>
 
@@ -994,6 +858,7 @@ const agencyExperience = [
 
         <div class="human-copy">
 
+
           <div class="eyebrow">
             WHO IS BEHIND THE WORK
           </div>
@@ -1009,14 +874,15 @@ const agencyExperience = [
           </strong>
 
 
-          <p>
+          <p class="human-intro">
             8+ years across Korean ↔ English translation,
             creator video localization and linguistic QA.
-            Experience includes 1M+ cumulative words and
-            work across 50+ YouTube creators,
+            Experience includes 1M+ cumulative words
+            and work across 50+ YouTube creators,
             with 10 channels currently supported
             on an ongoing basis.
           </p>
+
 
 
           <div class="human-proof">
@@ -1025,27 +891,29 @@ const agencyExperience = [
             <div>
 
               <b>
-                1M+
+                1M<span>+</span>
               </b>
 
-              <span>
+              <small>
                 CUMULATIVE WORDS
-              </span>
+              </small>
 
             </div>
+
 
 
             <div>
 
               <b>
-                50+
+                50<span>+</span>
               </b>
 
-              <span>
+              <small>
                 YOUTUBE CREATORS
-              </span>
+              </small>
 
             </div>
+
 
 
             <div>
@@ -1054,9 +922,9 @@ const agencyExperience = [
                 10
               </b>
 
-              <span>
+              <small>
                 ACTIVE CHANNELS
-              </span>
+              </small>
 
             </div>
 
@@ -1067,9 +935,12 @@ const agencyExperience = [
 
           <div class="human-links">
 
-            <a href="mailto:seeninkorea@gmail.com">
+            <a
+              href="mailto:seeninkorea@gmail.com"
+            >
               seeninkorea@gmail.com
             </a>
+
 
             <a
               href={fullPortfolioUrl}
@@ -1109,8 +980,8 @@ const agencyExperience = [
 
           <p>
             Send the URL, target language and preferred deadline.
-            We’ll review the actual scope and reply
-            with a tailored quote.
+            We’ll review the actual scope
+            and reply with a tailored quote.
           </p>
 
         </div>
@@ -1244,10 +1115,7 @@ const agencyExperience = [
 
 
   .eyebrow-light {
-
-    color:
-      #ff8154;
-
+    color: #ff8154;
   }
 
 
@@ -1261,9 +1129,6 @@ const agencyExperience = [
 
     background:
       var(--paper);
-
-    border-bottom:
-      0;
 
   }
 
@@ -1316,10 +1181,7 @@ const agencyExperience = [
 
 
   .hero-copy h1 span {
-
-    color:
-      var(--orange);
-
+    color: var(--orange);
   }
 
 
@@ -1363,10 +1225,7 @@ const agencyExperience = [
 
 
   .hero-actions {
-
-    margin-top:
-      30px;
-
+    margin-top: 30px;
   }
 
 
@@ -1406,6 +1265,9 @@ const agencyExperience = [
     box-sizing:
       border-box;
 
+    transition:
+      all .18s ease;
+
   }
 
 
@@ -1427,6 +1289,9 @@ const agencyExperience = [
     background:
       var(--orange);
 
+    transform:
+      translateY(-2px);
+
   }
 
 
@@ -1441,6 +1306,15 @@ const agencyExperience = [
 
     background:
       transparent;
+
+  }
+
+
+
+  .btn-secondary:hover {
+
+    border-color:
+      var(--ink);
 
   }
 
@@ -1622,10 +1496,7 @@ const agencyExperience = [
       #fff;
 
     border-top:
-      1px solid #262626;
-
-    border-bottom:
-      1px solid #262626;
+      1px solid #252525;
 
   }
 
@@ -1731,10 +1602,7 @@ const agencyExperience = [
 
 
   .stat:first-child {
-
-    border-left:
-      0;
-
+    border-left: 0;
   }
 
 
@@ -1756,13 +1624,13 @@ const agencyExperience = [
     position:
       absolute;
 
+    top:
+      0;
+
     left:
       0;
 
     right:
-      0;
-
-    top:
       0;
 
     height:
@@ -1776,9 +1644,6 @@ const agencyExperience = [
 
 
   .stat strong {
-
-    display:
-      block;
 
     color:
       #fff;
@@ -1801,19 +1666,13 @@ const agencyExperience = [
 
 
   .stat-featured strong {
-
-    color:
-      var(--orange);
-
+    color: var(--orange);
   }
 
 
 
   .stat strong span {
-
-    color:
-      var(--orange);
-
+    color: var(--orange);
   }
 
 
@@ -1853,20 +1712,14 @@ const agencyExperience = [
     font-size:
       9px;
 
-    line-height:
-      1.4;
-
   }
 
 
 
-  /* SECTIONS */
+  /* BASIC SECTIONS */
 
   .section {
-
-    padding:
-      82px 0;
-
+    padding: 82px 0;
   }
 
 
@@ -1893,9 +1746,6 @@ const agencyExperience = [
 
     gap:
       80px;
-
-    align-items:
-      start;
 
   }
 
@@ -2034,17 +1884,15 @@ const agencyExperience = [
       32px;
 
     border:
-      1px solid var(--line);
+      1px solid
+      var(--line);
 
   }
 
 
 
   .compare-muted {
-
-    background:
-      #f7f5f0;
-
+    background: #f7f5f0;
   }
 
 
@@ -2192,10 +2040,7 @@ const agencyExperience = [
 
 
   .sample-source small {
-
-    color:
-      #ff8154;
-
+    color: #ff8154;
   }
 
 
@@ -2244,10 +2089,7 @@ const agencyExperience = [
 
 
   .sample-label {
-
-    color:
-      #7d7770;
-
+    color: #7d7770;
   }
 
 
@@ -2264,21 +2106,14 @@ const agencyExperience = [
 
 
 
-  .sample-final
-  .sample-label {
-
-    color:
-      var(--orange);
-
+  .sample-final .sample-label {
+    color: var(--orange);
   }
 
 
 
   .sample-reason {
-
-    padding:
-      24px 26px;
-
+    padding: 24px 26px;
   }
 
 
@@ -2434,7 +2269,7 @@ const agencyExperience = [
   .experience-section {
 
     padding:
-      84px 0 72px;
+      88px 0 70px;
 
     background:
       var(--paper);
@@ -2461,16 +2296,7 @@ const agencyExperience = [
       end;
 
     margin-bottom:
-      54px;
-
-  }
-
-
-
-  .experience-intro h2 {
-
-    max-width:
-      620px;
+      58px;
 
   }
 
@@ -2528,22 +2354,31 @@ const agencyExperience = [
 
 
 
-  .marquee-section {
+  .logo-row-section {
 
     margin-top:
-      10px;
+      32px;
 
   }
 
 
 
-  .marquee-heading {
+  .agency-row {
+    margin-top: 38px;
+  }
 
-    margin-top:
-      28px;
+
+
+  .logo-row-title {
 
     margin-bottom:
-      12px;
+      13px;
+
+  }
+
+
+
+  .logo-row-title > div {
 
     display:
       flex;
@@ -2561,7 +2396,7 @@ const agencyExperience = [
 
 
 
-  .marquee-heading span {
+  .logo-row-title span {
 
     color:
       var(--orange);
@@ -2579,13 +2414,16 @@ const agencyExperience = [
 
 
 
-  .marquee-heading small {
+  .logo-row-title small {
 
     color:
       #8b857d;
 
     font-size:
       8px;
+
+    font-weight:
+      800;
 
     letter-spacing:
       .08em;
@@ -2594,16 +2432,7 @@ const agencyExperience = [
 
 
 
-  .agency-heading {
-
-    margin-top:
-      30px;
-
-  }
-
-
-
-  .marquee {
+  .logo-marquee {
 
     width:
       100%;
@@ -2611,11 +2440,11 @@ const agencyExperience = [
     overflow:
       hidden;
 
+    padding:
+      14px 0;
+
     position:
       relative;
-
-    padding:
-      3px 0;
 
     -webkit-mask-image:
       linear-gradient(
@@ -2639,10 +2468,10 @@ const agencyExperience = [
 
 
 
-  .marquee-track {
+  .logo-marquee-track {
 
-    --marquee-gap:
-      12px;
+    --logo-gap:
+      46px;
 
     width:
       max-content;
@@ -2650,11 +2479,74 @@ const agencyExperience = [
     display:
       flex;
 
+    align-items:
+      center;
+
     gap:
-      var(--marquee-gap);
+      var(--logo-gap);
+
+    will-change:
+      transform;
+
+  }
+
+
+
+  .logo-strip {
+
+    width:
+      1150px;
+
+    flex:
+      0 0 1150px;
+
+  }
+
+
+
+  .agency-strip {
+
+    width:
+      1080px;
+
+    flex-basis:
+      1080px;
+
+  }
+
+
+
+  .logo-strip img {
+
+    width:
+      100%;
+
+    height:
+      auto;
+
+    display:
+      block;
+
+  }
+
+
+
+  .logo-left {
 
     animation:
-      marquee-left
+      logo-scroll-left
+      36s
+      linear
+      infinite;
+
+  }
+
+
+
+  .logo-right {
+
+    animation:
+      logo-scroll-right
       42s
       linear
       infinite;
@@ -2663,21 +2555,8 @@ const agencyExperience = [
 
 
 
-  .marquee-right
-  .marquee-track {
-
-    animation-name:
-      marquee-right;
-
-    animation-duration:
-      48s;
-
-  }
-
-
-
-  .marquee:hover
-  .marquee-track {
+  .logo-marquee:hover
+  .logo-marquee-track {
 
     animation-play-state:
       paused;
@@ -2686,133 +2565,51 @@ const agencyExperience = [
 
 
 
-  .marquee-group {
+  @keyframes logo-scroll-left {
 
-    display:
-      flex;
+    from {
 
-    gap:
-      var(--marquee-gap);
+      transform:
+        translateX(0);
 
-    flex-shrink:
-      0;
+    }
 
-  }
+    to {
 
+      transform:
+        translateX(
+          calc(
+            -50% -
+            23px
+          )
+        );
 
-
-  .brand-chip {
-
-    min-width:
-      250px;
-
-    height:
-      82px;
-
-    display:
-      grid;
-
-    grid-template-columns:
-      74px 1fr;
-
-    align-items:
-      center;
-
-    background:
-      #fff;
-
-    border:
-      1px solid #d6cfc5;
-
-    box-sizing:
-      border-box;
+    }
 
   }
 
 
 
-  .agency-chip {
+  @keyframes logo-scroll-right {
 
-    min-width:
-      220px;
+    from {
 
-    height:
-      72px;
+      transform:
+        translateX(
+          calc(
+            -50% -
+            23px
+          )
+        );
 
-  }
+    }
 
+    to {
 
+      transform:
+        translateX(0);
 
-  .brand-mark {
-
-    height:
-      100%;
-
-    display:
-      grid;
-
-    place-items:
-      center;
-
-    padding:
-      0 8px;
-
-    border-right:
-      1px solid #ded8cf;
-
-    background:
-      #111;
-
-    color:
-      #fff;
-
-    font-size:
-      12px;
-
-    font-weight:
-      900;
-
-    letter-spacing:
-      -.02em;
-
-    text-align:
-      center;
-
-    box-sizing:
-      border-box;
-
-  }
-
-
-
-  .agency-mark {
-
-    background:
-      #ebe5dc;
-
-    color:
-      #111;
-
-  }
-
-
-
-  .brand-name {
-
-    padding:
-      0 17px;
-
-    font-size:
-      12px;
-
-    font-weight:
-      900;
-
-    line-height:
-      1.3;
-
-    white-space:
-      nowrap;
+    }
 
   }
 
@@ -2824,7 +2621,7 @@ const agencyExperience = [
       block;
 
     margin-top:
-      25px;
+      26px;
 
     color:
       #807a72;
@@ -2839,61 +2636,19 @@ const agencyExperience = [
 
 
 
-  @keyframes marquee-left {
-
-    from {
-      transform:
-        translateX(0);
-    }
-
-    to {
-      transform:
-        translateX(
-          calc(
-            -50% -
-            6px
-          )
-        );
-    }
-
-  }
-
-
-
-  @keyframes marquee-right {
-
-    from {
-      transform:
-        translateX(
-          calc(
-            -50% -
-            6px
-          )
-        );
-    }
-
-    to {
-      transform:
-        translateX(0);
-    }
-
-  }
-
-
-
   /* HUMAN */
 
   .human-section {
 
     padding:
-      90px 0;
+      96px 0;
+
+    background:
+      #fff;
 
     border-bottom:
       1px solid
       var(--line);
-
-    background:
-      #fff;
 
   }
 
@@ -2905,31 +2660,34 @@ const agencyExperience = [
       grid;
 
     grid-template-columns:
-      310px 1fr;
+      370px 1fr;
 
     gap:
-      64px;
+      78px;
 
     align-items:
       center;
 
     max-width:
-      1040px;
+      1080px;
 
   }
 
 
 
-  .human-photo-wrap {
+  .human-photo-column {
 
-    width:
-      100%;
+    position:
+      relative;
 
   }
 
 
 
-  .human-photo {
+  .human-photo-frame {
+
+    position:
+      relative;
 
     width:
       100%;
@@ -2940,44 +2698,18 @@ const agencyExperience = [
     overflow:
       hidden;
 
-    position:
-      relative;
-
     background:
-      #ded8cf;
+      #e6e0d7;
+
+    box-shadow:
+      20px 22px 0
+      var(--paper);
 
   }
 
 
 
-  .human-photo::after {
-
-    content:
-      '';
-
-    position:
-      absolute;
-
-    inset:
-      0;
-
-    border:
-      1px solid
-      rgba(
-        0,
-        0,
-        0,
-        .08
-      );
-
-    pointer-events:
-      none;
-
-  }
-
-
-
-  .human-photo img {
+  .human-photo-frame img {
 
     width:
       100%;
@@ -2992,13 +2724,95 @@ const agencyExperience = [
       cover;
 
     object-position:
-      center 54%;
+      center;
 
-    transform:
-      scale(1.18);
+  }
 
-    transform-origin:
-      center 56%;
+
+
+  .human-photo-frame::after {
+
+    content:
+      '';
+
+    position:
+      absolute;
+
+    inset:
+      0;
+
+    border:
+      1px solid
+      rgba(
+        17,
+        17,
+        17,
+        .09
+      );
+
+    pointer-events:
+      none;
+
+  }
+
+
+
+  .photo-corner {
+
+    position:
+      absolute;
+
+    width:
+      44px;
+
+    height:
+      44px;
+
+    z-index:
+      2;
+
+    pointer-events:
+      none;
+
+  }
+
+
+
+  .photo-corner-top {
+
+    top:
+      14px;
+
+    left:
+      14px;
+
+    border-top:
+      3px solid
+      var(--orange);
+
+    border-left:
+      3px solid
+      var(--orange);
+
+  }
+
+
+
+  .photo-corner-bottom {
+
+    right:
+      14px;
+
+    bottom:
+      14px;
+
+    border-right:
+      3px solid
+      var(--orange);
+
+    border-bottom:
+      3px solid
+      var(--orange);
 
   }
 
@@ -3007,22 +2821,19 @@ const agencyExperience = [
   .photo-caption {
 
     margin-top:
+      19px;
+
+    padding-top:
       12px;
 
     display:
       flex;
 
-    align-items:
-      center;
-
     justify-content:
       space-between;
 
-    gap:
-      15px;
-
-    padding-top:
-      10px;
+    align-items:
+      center;
 
     border-top:
       2px solid
@@ -3037,8 +2848,11 @@ const agencyExperience = [
     font-size:
       10px;
 
+    font-weight:
+      900;
+
     letter-spacing:
-      .08em;
+      .1em;
 
   }
 
@@ -3047,7 +2861,7 @@ const agencyExperience = [
   .photo-caption span {
 
     color:
-      #817b73;
+      #857f77;
 
     font-size:
       9px;
@@ -3065,7 +2879,7 @@ const agencyExperience = [
   .human-copy {
 
     max-width:
-      700px;
+      690px;
 
   }
 
@@ -3077,7 +2891,7 @@ const agencyExperience = [
       clamp(
         48px,
         5vw,
-        64px
+        67px
       );
 
   }
@@ -3090,7 +2904,7 @@ const agencyExperience = [
       block;
 
     margin-top:
-      10px;
+      11px;
 
     color:
       var(--orange);
@@ -3102,16 +2916,16 @@ const agencyExperience = [
 
 
 
-  .human-grid p {
-
-    max-width:
-      690px;
+  .human-intro {
 
     margin-top:
-      24px;
+      27px;
 
     font-size:
-      15px;
+      16px;
+
+    line-height:
+      1.75 !important;
 
   }
 
@@ -3120,7 +2934,7 @@ const agencyExperience = [
   .human-proof {
 
     margin-top:
-      28px;
+      30px;
 
     display:
       grid;
@@ -3146,7 +2960,7 @@ const agencyExperience = [
   .human-proof > div {
 
     padding:
-      18px 18px 18px 0;
+      20px 17px 19px;
 
     border-left:
       1px solid
@@ -3161,6 +2975,9 @@ const agencyExperience = [
     border-left:
       0;
 
+    padding-left:
+      0;
+
   }
 
 
@@ -3170,26 +2987,32 @@ const agencyExperience = [
     display:
       block;
 
-    color:
-      var(--ink);
-
     font-size:
-      25px;
+      28px;
+
+    line-height:
+      1;
 
     letter-spacing:
-      -.04em;
+      -.045em;
 
   }
 
 
 
-  .human-proof span {
+  .human-proof b span {
+    color: var(--orange);
+  }
+
+
+
+  .human-proof small {
 
     display:
       block;
 
     margin-top:
-      4px;
+      7px;
 
     color:
       #817b73;
@@ -3210,7 +3033,7 @@ const agencyExperience = [
   .human-links {
 
     margin-top:
-      22px;
+      24px;
 
   }
 
@@ -3348,10 +3171,7 @@ const agencyExperience = [
   ) {
 
     .hero {
-
-      padding-top:
-        56px;
-
+      padding-top: 56px;
     }
 
 
@@ -3367,10 +3187,7 @@ const agencyExperience = [
 
 
     .hero-grid {
-
-      gap:
-        38px;
-
+      gap: 38px;
     }
 
 
@@ -3414,18 +3231,12 @@ const agencyExperience = [
 
 
     .compare-grid {
-
-      grid-template-columns:
-        1fr;
-
+      grid-template-columns: 1fr;
     }
 
 
     .steps {
-
-      grid-template-columns:
-        1fr 1fr;
-
+      grid-template-columns: 1fr 1fr;
     }
 
 
@@ -3444,7 +3255,7 @@ const agencyExperience = [
     .experience-intro {
 
       gap:
-        24px;
+        25px;
 
     }
 
@@ -3452,18 +3263,32 @@ const agencyExperience = [
     .human-grid {
 
       grid-template-columns:
-        250px 1fr;
+        300px 1fr;
 
       gap:
-        42px;
+        48px;
 
     }
 
 
-    .brand-chip {
+    .logo-strip {
 
-      min-width:
-        220px;
+      width:
+        980px;
+
+      flex-basis:
+        980px;
+
+    }
+
+
+    .agency-strip {
+
+      width:
+        920px;
+
+      flex-basis:
+        920px;
 
     }
 
@@ -3489,18 +3314,12 @@ const agencyExperience = [
 
 
     .hero-copy h1 {
-
-      font-size:
-        50px;
-
+      font-size: 50px;
     }
 
 
     .hero-dek {
-
-      font-size:
-        16px;
-
+      font-size: 16px;
     }
 
 
@@ -3515,11 +3334,14 @@ const agencyExperience = [
 
     .proof-head {
 
-      padding:
-        18px 0;
-
       display:
         block;
+
+      min-height:
+        0;
+
+      padding:
+        18px 0;
 
     }
 
@@ -3527,7 +3349,7 @@ const agencyExperience = [
     .proof-head p {
 
       margin-top:
-        6px;
+        7px;
 
     }
 
@@ -3544,26 +3366,12 @@ const agencyExperience = [
 
 
     .stat strong {
-
-      font-size:
-        43px;
-
+      font-size: 43px;
     }
 
 
     .stat > div {
-
-      font-size:
-        8px;
-
-    }
-
-
-    .stat small {
-
-      font-size:
-        8px;
-
+      font-size: 8px;
     }
 
 
@@ -3602,14 +3410,11 @@ const agencyExperience = [
 
 
     .steps article:first-child {
-
-      border-top:
-        0;
-
+      border-top: 0;
     }
 
 
-    .marquee-heading {
+    .logo-row-title > div {
 
       align-items:
         flex-start;
@@ -3618,19 +3423,19 @@ const agencyExperience = [
         column;
 
       gap:
-        4px;
+        5px;
 
     }
 
 
-    .marquee {
+    .logo-marquee {
 
       -webkit-mask-image:
         linear-gradient(
           to right,
           transparent,
-          #000 3%,
-          #000 97%,
+          #000 2%,
+          #000 98%,
           transparent
         );
 
@@ -3638,43 +3443,32 @@ const agencyExperience = [
         linear-gradient(
           to right,
           transparent,
-          #000 3%,
-          #000 97%,
+          #000 2%,
+          #000 98%,
           transparent
         );
 
     }
 
 
-    .brand-chip {
+    .logo-strip {
 
-      min-width:
-        210px;
+      width:
+        800px;
 
-      height:
-        70px;
-
-      grid-template-columns:
-        62px 1fr;
+      flex-basis:
+        800px;
 
     }
 
 
-    .brand-name {
+    .agency-strip {
 
-      padding:
-        0 13px;
+      width:
+        760px;
 
-      font-size:
-        10px;
-
-    }
-
-
-    .brand-mark {
-
-      font-size:
-        10px;
+      flex-basis:
+        760px;
 
     }
 
@@ -3682,7 +3476,7 @@ const agencyExperience = [
     .human-section {
 
       padding:
-        60px 0;
+        64px 0;
 
     }
 
@@ -3693,15 +3487,27 @@ const agencyExperience = [
         1fr;
 
       gap:
-        34px;
+        47px;
 
     }
 
 
-    .human-photo-wrap {
+    .human-photo-column {
 
-      max-width:
-        300px;
+      width:
+        min(
+          88%,
+          330px
+        );
+
+    }
+
+
+    .human-photo-frame {
+
+      box-shadow:
+        13px 15px 0
+        var(--paper);
 
     }
 
@@ -3709,7 +3515,7 @@ const agencyExperience = [
     .human-grid h2 {
 
       font-size:
-        48px;
+        49px;
 
     }
 
@@ -3717,7 +3523,10 @@ const agencyExperience = [
     .human-proof {
 
       grid-template-columns:
-        1fr 1fr 1fr;
+        repeat(
+          3,
+          1fr
+        );
 
     }
 
@@ -3725,20 +3534,25 @@ const agencyExperience = [
     .human-proof > div {
 
       padding:
-        15px 8px 15px 0;
+        16px 7px;
 
+    }
+
+
+    .human-proof > div:first-child {
+      padding-left: 0;
     }
 
 
     .human-proof b {
 
       font-size:
-        20px;
+        21px;
 
     }
 
 
-    .human-proof span {
+    .human-proof small {
 
       font-size:
         7px;
@@ -3747,10 +3561,7 @@ const agencyExperience = [
 
 
     .cta-actions {
-
-      width:
-        100%;
-
+      width: 100%;
     }
 
   }
@@ -3762,7 +3573,7 @@ const agencyExperience = [
     reduce
   ) {
 
-    .marquee-track {
+    .logo-marquee-track {
 
       animation:
         none;
