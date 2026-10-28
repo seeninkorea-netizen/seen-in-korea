@@ -9,7 +9,7 @@ const dataset = import.meta.env.PUBLIC_SANITY_DATASET || 'production';
 
 const allowedCategories = new Set([
   'Trending', 'Seen On', 'Real Korea',
-  'Shop Korea', 'Living', 'Korea Help'
+  'Shop Korea', 'Living', 'Korea Help', 'Economy'
 ]);
 
 const allowedRights = new Set([
