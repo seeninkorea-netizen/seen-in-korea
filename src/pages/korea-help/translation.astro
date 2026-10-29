@@ -1,5 +1,4 @@
 ---
-// translation final single-row deploy
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const fullPortfolioUrl =
@@ -120,6 +119,51 @@ const inquiryMailto =
               <small>Korean ↔ English</small>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT EXPERIENCE — TOP TRUST STRIP -->
+    <section class="project-trust-strip">
+      <div class="wrap project-trust-head">
+        <div>
+          <strong>SELECTED PROJECT EXPERIENCE</strong>
+          <span>
+            CLIENTS &amp; PROJECTS ACROSS MEDIA, FINANCE, LEGAL, MEDICAL,
+            TECH &amp; MORE
+          </span>
+        </div>
+
+        <a
+          href={fullPortfolioUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="portfolio-mini-link"
+        >
+          → FULL PORTFOLIO
+        </a>
+      </div>
+
+      <div class="logo-marquee project-marquee">
+        <div class="logo-marquee-track project-track">
+
+          <div class="logo-strip project-strip">
+            <img
+              src="/images/translation-project-logos-single-row.png"
+              alt="Selected translation and localization project experience"
+            />
+          </div>
+
+          <div
+            class="logo-strip project-strip"
+            aria-hidden="true"
+          >
+            <img
+              src="/images/translation-project-logos-single-row.png"
+              alt=""
+            />
+          </div>
+
         </div>
       </div>
     </section>
@@ -319,25 +363,25 @@ const inquiryMailto =
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- BROADER EXPERIENCE -->
     <section class="section experience-section">
       <div class="wrap experience-intro">
         <div>
           <div class="eyebrow">
-            SELECTED EXPERIENCE
+            BROADER EXPERIENCE
           </div>
 
           <h2>
-            Creator work backed by
-            broader localization experience.
+            Built on years of localization work.
           </h2>
         </div>
 
         <div class="experience-copy">
           <p>
-            Video is the focus here, but the working method is supported by
-            experience across media, finance, legal, medical, technical,
-            game and corporate localization.
+            Creator video is the focus here, supported by broader experience
+            across media, finance, legal, medical, technical, game and
+            corporate localization — including work delivered through
+            specialist translation and localization agencies.
           </p>
 
           <a
@@ -351,41 +395,8 @@ const inquiryMailto =
         </div>
       </div>
 
-      <!-- PROJECT EXPERIENCE -->
-      <div class="logo-row-section">
-        <div class="wrap logo-row-title">
-          <div>
-            <span>PROJECT EXPERIENCE</span>
-            <small>SELECTED CLIENT &amp; PROJECT EXPERIENCE</small>
-          </div>
-        </div>
-
-        <div class="logo-marquee">
-          <div class="logo-marquee-track project-track">
-
-            <div class="logo-strip project-strip">
-              <img
-                src="/images/translation-project-logos-single-row.png"
-                alt="Selected translation and localization project experience"
-              />
-            </div>
-
-            <div
-              class="logo-strip project-strip"
-              aria-hidden="true"
-            >
-              <img
-                src="/images/translation-project-logos-single-row.png"
-                alt=""
-              />
-            </div>
-
-          </div>
-        </div>
-      </div>
-
       <!-- AGENCY COLLABORATIONS -->
-      <div class="logo-row-section agency-row">
+      <div class="agency-block">
         <div class="wrap logo-row-title">
           <div>
             <span>AGENCY COLLABORATIONS</span>
@@ -393,7 +404,7 @@ const inquiryMailto =
           </div>
         </div>
 
-        <div class="logo-marquee">
+        <div class="logo-marquee agency-marquee">
           <div class="logo-marquee-track agency-track">
 
             <div class="logo-strip agency-strip">
@@ -722,7 +733,7 @@ const inquiryMailto =
     color: var(--orange);
   }
 
-  /* PROOF */
+  /* PROVEN AT SCALE */
 
   .proof-strip {
     background: #0d0d0d;
@@ -813,6 +824,156 @@ const inquiryMailto =
     margin-top: 7px;
     color: #777;
     font-size: 9px;
+  }
+
+  /* TOP PROJECT LOGO STRIP */
+
+  .project-trust-strip {
+    padding: 32px 0 27px;
+    background: var(--paper);
+    border-bottom: 1px solid #d8d0c5;
+    overflow: hidden;
+  }
+
+  .project-trust-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .project-trust-head > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .project-trust-head strong {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .11em;
+  }
+
+  .project-trust-head span {
+    color: #6c665e;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .08em;
+  }
+
+  .portfolio-mini-link {
+    color: var(--ink);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    text-decoration: none;
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 5px;
+    white-space: nowrap;
+  }
+
+  /* SHARED LOGO MARQUEE */
+
+  .logo-marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    -webkit-mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        #000 4%,
+        #000 96%,
+        transparent
+      );
+
+    mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        #000 4%,
+        #000 96%,
+        transparent
+      );
+  }
+
+  .project-marquee {
+    margin-top: 17px;
+    padding: 11px 0 7px;
+  }
+
+  .agency-marquee {
+    margin-top: 8px;
+    padding: 13px 0 15px;
+  }
+
+  .logo-marquee-track {
+    --logo-gap: 85px;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: var(--logo-gap);
+    will-change: transform;
+  }
+
+  .logo-strip {
+    flex-shrink: 0;
+  }
+
+  .project-strip {
+    width: 1550px;
+  }
+
+  .agency-strip {
+    width: 1580px;
+  }
+
+  .logo-strip img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .project-track {
+    animation:
+      project-logo-scroll
+      48s
+      linear
+      infinite;
+  }
+
+  .agency-track {
+    animation:
+      agency-logo-scroll
+      52s
+      linear
+      infinite;
+  }
+
+  .logo-marquee:hover .logo-marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes project-logo-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-50% - 42.5px));
+    }
+  }
+
+  @keyframes agency-logo-scroll {
+    from {
+      transform: translateX(calc(-50% - 42.5px));
+    }
+
+    to {
+      transform: translateX(0);
+    }
   }
 
   /* BASIC SECTIONS */
@@ -1046,7 +1207,7 @@ const inquiryMailto =
     line-height: 1.6;
   }
 
-  /* EXPERIENCE */
+  /* LOWER EXPERIENCE */
 
   .experience-section {
     padding: 88px 0 72px;
@@ -1059,7 +1220,7 @@ const inquiryMailto =
     grid-template-columns: .95fr 1.05fr;
     gap: 80px;
     align-items: end;
-    margin-bottom: 46px;
+    margin-bottom: 40px;
   }
 
   .experience-copy {
@@ -1082,16 +1243,12 @@ const inquiryMailto =
     border-bottom: 2px solid var(--orange);
   }
 
-  .logo-row-section {
-    margin-top: 26px;
-  }
-
-  .agency-row {
-    margin-top: 30px;
+  .agency-block {
+    margin-top: 22px;
   }
 
   .logo-row-title {
-    margin-bottom: 7px;
+    margin-bottom: 4px;
   }
 
   .logo-row-title > div {
@@ -1115,114 +1272,9 @@ const inquiryMailto =
     letter-spacing: .08em;
   }
 
-  .logo-marquee {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    padding: 14px 0 16px;
-
-    -webkit-mask-image:
-      linear-gradient(
-        to right,
-        transparent,
-        #000 4%,
-        #000 96%,
-        transparent
-      );
-
-    mask-image:
-      linear-gradient(
-        to right,
-        transparent,
-        #000 4%,
-        #000 96%,
-        transparent
-      );
-  }
-
-  .logo-marquee-track {
-    --logo-gap: 85px;
-
-    width: max-content;
-    display: flex;
-    align-items: center;
-    gap: var(--logo-gap);
-    will-change: transform;
-  }
-
-  .logo-strip {
-    flex-shrink: 0;
-  }
-
-  .project-strip {
-    width: 1550px;
-  }
-
-  .agency-strip {
-    width: 1580px;
-  }
-
-  .logo-strip img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .project-track {
-    animation:
-      project-logo-scroll
-      48s
-      linear
-      infinite;
-  }
-
-  .agency-track {
-    animation:
-      agency-logo-scroll
-      52s
-      linear
-      infinite;
-  }
-
-  .logo-marquee:hover .logo-marquee-track {
-    animation-play-state: paused;
-  }
-
-  @keyframes project-logo-scroll {
-    from {
-      transform: translateX(0);
-    }
-
-    to {
-      transform:
-        translateX(
-          calc(
-            -50% -
-            42.5px
-          )
-        );
-    }
-  }
-
-  @keyframes agency-logo-scroll {
-    from {
-      transform:
-        translateX(
-          calc(
-            -50% -
-            42.5px
-          )
-        );
-    }
-
-    to {
-      transform: translateX(0);
-    }
-  }
-
   .experience-note {
     display: block;
-    margin-top: 17px;
+    margin-top: 15px;
     color: #807a72;
     font-size: 9px;
     line-height: 1.5;
@@ -1466,6 +1518,18 @@ const inquiryMailto =
       border-top: 1px solid #292929;
     }
 
+    .project-trust-head {
+      align-items: flex-start;
+    }
+
+    .project-strip {
+      width: 1400px;
+    }
+
+    .agency-strip {
+      width: 1425px;
+    }
+
     .compare-grid {
       grid-template-columns: 1fr;
     }
@@ -1482,14 +1546,6 @@ const inquiryMailto =
 
     .experience-intro {
       gap: 25px;
-    }
-
-    .project-strip {
-      width: 1400px;
-    }
-
-    .agency-strip {
-      width: 1425px;
     }
 
     .human-grid {
@@ -1541,6 +1597,40 @@ const inquiryMailto =
       font-size: 8px;
     }
 
+    .project-trust-strip {
+      padding: 25px 0 20px;
+    }
+
+    .project-trust-head {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .project-trust-head span {
+      line-height: 1.5;
+    }
+
+    .project-marquee {
+      margin-top: 12px;
+    }
+
+    .project-strip {
+      width: 1180px;
+    }
+
+    .agency-strip {
+      width: 1200px;
+    }
+
+    .project-track {
+      animation-duration: 43s;
+    }
+
+    .agency-track {
+      animation-duration: 47s;
+    }
+
     .sample-row {
       grid-template-columns: 1fr;
       gap: 8px;
@@ -1572,8 +1662,6 @@ const inquiryMailto =
     }
 
     .logo-marquee {
-      padding: 12px 0;
-
       -webkit-mask-image:
         linear-gradient(
           to right,
@@ -1591,22 +1679,6 @@ const inquiryMailto =
           #000 98%,
           transparent
         );
-    }
-
-    .project-strip {
-      width: 1180px;
-    }
-
-    .agency-strip {
-      width: 1200px;
-    }
-
-    .project-track {
-      animation-duration: 43s;
-    }
-
-    .agency-track {
-      animation-duration: 47s;
     }
 
     .human-section {
