@@ -1,3 +1,4 @@
+
 ---
 import '../styles/global.css';
 import { getSiteSettings } from '../lib/content';
@@ -33,16 +34,13 @@ const currentPath =
 
 <!doctype html>
 <html lang="en">
-
   <head>
-
     <meta charset="UTF-8" />
 
     <meta
       name="viewport"
       content="width=device-width"
     />
-
 
     <!-- Google Analytics -->
     <script
@@ -51,31 +49,24 @@ const currentPath =
       src="https://www.googletagmanager.com/gtag/js?id=G-R7SFTSFLXE"
     ></script>
 
-
     <script is:inline>
-
       window.dataLayer =
         window.dataLayer || [];
-
 
       function gtag() {
         dataLayer.push(arguments);
       }
-
 
       gtag(
         'js',
         new Date()
       );
 
-
       gtag(
         'config',
         'G-R7SFTSFLXE'
       );
-
     </script>
-
 
     <!-- Google AdSense -->
     <script
@@ -85,36 +76,30 @@ const currentPath =
       crossorigin="anonymous"
     ></script>
 
-
     <link
       rel="icon"
       type="image/svg+xml"
       href="/favicon.svg"
     />
 
-
     <title>
       {title}
     </title>
-
 
     <meta
       name="description"
       content={description}
     />
 
-
     <meta
       name="robots"
       content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
     />
 
-
     <link
       rel="canonical"
       href={currentUrl}
     />
-
 
     <!-- Open Graph -->
     <meta
@@ -122,30 +107,25 @@ const currentPath =
       content={title}
     />
 
-
     <meta
       property="og:description"
       content={description}
     />
-
 
     <meta
       property="og:type"
       content={ogType}
     />
 
-
     <meta
       property="og:url"
       content={currentUrl}
     />
 
-
     <meta
       property="og:site_name"
       content="SEEN IN KOREA"
     />
-
 
     {
       image && (
@@ -156,7 +136,6 @@ const currentPath =
       )
     }
 
-
     {
       image && (
         <meta
@@ -166,45 +145,35 @@ const currentPath =
       )
     }
 
-
     {
       ogType === 'article' &&
       publishedTime && (
-
         <meta
           property="article:published_time"
           content={publishedTime}
         />
-
       )
     }
-
 
     {
       ogType === 'article' &&
       modifiedTime && (
-
         <meta
           property="article:modified_time"
           content={modifiedTime}
         />
-
       )
     }
-
 
     {
       ogType === 'article' &&
       author && (
-
         <meta
           property="article:author"
           content={author}
         />
-
       )
     }
-
 
     <meta
       name="twitter:card"
@@ -215,46 +184,32 @@ const currentPath =
       }
     />
 
-
     <meta
       name="twitter:title"
       content={title}
     />
-
 
     <meta
       name="twitter:description"
       content={description}
     />
 
-
     {
       image && (
-
         <meta
           name="twitter:image"
           content={image}
         />
-
       )
     }
 
-
     <slot name="head" />
-
   </head>
 
-
-
   <body>
-
-
     <header class="site-header">
-
-
       <!-- DESKTOP -->
       <div class="wrap nav desktop-header-row">
-
 
         <a
           class="brand"
@@ -266,13 +221,10 @@ const currentPath =
           </span>
         </a>
 
-
-
         <nav
           class="desktop-nav"
           aria-label="Main navigation"
         >
-
 
           <a
             href="/category/trending"
@@ -286,7 +238,6 @@ const currentPath =
             TRENDING
           </a>
 
-
           <a
             href="/seen-on"
             class:list={{
@@ -298,7 +249,6 @@ const currentPath =
           >
             SEEN ON
           </a>
-
 
           <a
             href="/real-korea"
@@ -312,6 +262,18 @@ const currentPath =
             REAL KOREA
           </a>
 
+          <!-- EXPERIENCES -->
+          <a
+            href="/experiences"
+            class:list={{
+              active:
+                currentPath.startsWith(
+                  '/experiences'
+                )
+            }}
+          >
+            EXPERIENCES
+          </a>
 
           <a
             href="/economy"
@@ -324,7 +286,6 @@ const currentPath =
           >
             ECONOMY
           </a>
-
 
           <a
             href="/learn-korean"
@@ -338,7 +299,6 @@ const currentPath =
             LEARN KOREAN
           </a>
 
-
           <a
             href="/korea-help/translation"
             class:list={{
@@ -351,20 +311,12 @@ const currentPath =
             TRANSLATION
           </a>
 
-
         </nav>
-
-
       </div>
-
-
 
       <!-- MOBILE -->
       <div class="mobile-header">
-
-
         <div class="mobile-header-main">
-
 
           <button
             class="mobile-menu-btn"
@@ -373,44 +325,32 @@ const currentPath =
             aria-controls="mobile-menu"
             aria-expanded="false"
           >
-
             <span></span>
             <span></span>
             <span></span>
-
           </button>
-
-
 
           <a
             class="brand mobile-brand"
             href="/"
           >
-
             SEEN IN
             <span>
               KOREA
             </span>
-
           </a>
-
-
 
           <div
             class="mobile-header-spacer"
             aria-hidden="true"
           ></div>
 
-
         </div>
-
-
 
         <nav
           class="mobile-category-nav"
           aria-label="Main sections"
         >
-
 
           <a
             href="/"
@@ -421,7 +361,6 @@ const currentPath =
           >
             TOP
           </a>
-
 
           <a
             href="/category/trending"
@@ -435,7 +374,6 @@ const currentPath =
             TRENDING
           </a>
 
-
           <a
             href="/seen-on"
             class:list={{
@@ -447,7 +385,6 @@ const currentPath =
           >
             SEEN ON
           </a>
-
 
           <a
             href="/real-korea"
@@ -461,6 +398,18 @@ const currentPath =
             REAL KOREA
           </a>
 
+          <!-- EXPERIENCES -->
+          <a
+            href="/experiences"
+            class:list={{
+              active:
+                currentPath.startsWith(
+                  '/experiences'
+                )
+            }}
+          >
+            EXPERIENCES
+          </a>
 
           <a
             href="/economy"
@@ -474,7 +423,6 @@ const currentPath =
             ECONOMY
           </a>
 
-
           <a
             href="/learn-korean"
             class:list={{
@@ -486,7 +434,6 @@ const currentPath =
           >
             LEARN
           </a>
-
 
           <a
             href="/korea-help/translation"
@@ -500,24 +447,15 @@ const currentPath =
             TRANSLATION
           </a>
 
-
         </nav>
-
-
       </div>
-
-
     </header>
-
-
 
     <!-- MOBILE OVERLAY -->
     <div
       class="mobile-menu-overlay"
       data-mobile-menu-close
     ></div>
-
-
 
     <!-- MOBILE DRAWER -->
     <aside
@@ -526,23 +464,17 @@ const currentPath =
       aria-hidden="true"
     >
 
-
       <div class="mobile-menu-top">
-
 
         <a
           class="brand"
           href="/"
         >
-
           SEEN IN
           <span>
             KOREA
           </span>
-
         </a>
-
-
 
         <button
           class="mobile-menu-close"
@@ -553,14 +485,10 @@ const currentPath =
           ×
         </button>
 
-
       </div>
-
-
 
       <!-- STORIES -->
       <nav class="mobile-menu-links">
-
 
         <a
           class="mobile-menu-primary"
@@ -569,154 +497,116 @@ const currentPath =
           TOP STORIES
         </a>
 
-
         <a href="/category/trending">
           TRENDING
         </a>
-
 
         <a href="/seen-on">
           SEEN ON
         </a>
 
-
         <a href="/real-korea">
           REAL KOREA
         </a>
 
+        <a href="/experiences">
+          EXPERIENCES
+        </a>
 
         <a href="/economy">
           ECONOMY
         </a>
 
-
         <a href="/articles">
           ALL STORIES
         </a>
 
-
       </nav>
-
-
 
       <div class="mobile-menu-divider"></div>
 
-
-
       <!-- LANGUAGE & SERVICES -->
       <div class="mobile-menu-service">
-
 
         <div class="mobile-menu-service-title">
           LANGUAGE &amp; SERVICES
         </div>
 
-
         <a href="/learn-korean">
           Learn Korean
         </a>
-
 
         <a href="/korea-help/translation">
           Translation
         </a>
 
-
       </div>
-
-
 
       <div class="mobile-menu-divider"></div>
 
-
-
       <!-- SHOP -->
       <div class="mobile-menu-service">
-
 
         <div class="mobile-menu-service-title">
           SHOP
         </div>
 
-
         <a href="/shop-korea">
           Shop Korea
         </a>
 
-
       </div>
-
-
 
       <div class="mobile-menu-divider"></div>
 
-
-
       <!-- SECONDARY -->
       <nav class="mobile-menu-secondary">
-
 
         <a href="/about">
           ABOUT
         </a>
 
-
         <a href="/editorial-standards">
           EDITORIAL STANDARDS
         </a>
-
 
         <a href="/how-we-verify">
           HOW WE VERIFY
         </a>
 
-
         <a href="/contact">
           CONTACT
         </a>
 
-
       </nav>
-
-
     </aside>
-
-
 
     <slot />
 
-
-
     <footer>
-
-
       <div class="wrap footer-grid">
 
-
         <div>
-
-
           <div class="footer-brand">
             SEEN IN KOREA
           </div>
 
-
           <div class="footer-copy">
             KOREA, VERIFIED.
           </div>
-
-
         </div>
 
-
-
         <div>
-
-
           <div class="footer-copy">
 
             <a href="/economy">
               Economy
+            </a>
+
+            ·
+
+            <a href="/experiences">
+              Experiences
             </a>
 
             ·
@@ -732,7 +622,6 @@ const currentPath =
             </a>
 
           </div>
-
 
           <div class="footer-copy">
 
@@ -760,193 +649,134 @@ const currentPath =
 
           </div>
 
-
-
           {
             footerCopy && (
-
               <div class="footer-copy">
                 {footerCopy}
               </div>
-
             )
           }
 
-
         </div>
-
-
       </div>
-
-
     </footer>
 
-
-
     <script is:inline>
-
-
       const menuButton =
         document.querySelector(
           '.mobile-menu-btn'
         );
-
 
       const menuDrawer =
         document.querySelector(
           '.mobile-menu-drawer'
         );
 
-
       const menuOverlay =
         document.querySelector(
           '.mobile-menu-overlay'
         );
-
 
       const closeButtons =
         document.querySelectorAll(
           '[data-mobile-menu-close]'
         );
 
-
-
       function openMobileMenu() {
-
-
         menuDrawer?.classList.add(
           'is-open'
         );
-
 
         menuOverlay?.classList.add(
           'is-open'
         );
 
-
         document.body.classList.add(
           'mobile-menu-open'
         );
-
 
         menuButton?.setAttribute(
           'aria-expanded',
           'true'
         );
 
-
         menuDrawer?.setAttribute(
           'aria-hidden',
           'false'
         );
-
-
       }
 
-
-
       function closeMobileMenu() {
-
-
         menuDrawer?.classList.remove(
           'is-open'
         );
-
 
         menuOverlay?.classList.remove(
           'is-open'
         );
 
-
         document.body.classList.remove(
           'mobile-menu-open'
         );
-
 
         menuButton?.setAttribute(
           'aria-expanded',
           'false'
         );
 
-
         menuDrawer?.setAttribute(
           'aria-hidden',
           'true'
         );
-
-
       }
-
-
 
       menuButton?.addEventListener(
         'click',
         openMobileMenu
       );
 
-
-
       closeButtons.forEach(
         button => {
-
           button.addEventListener(
             'click',
             closeMobileMenu
           );
-
         }
       );
-
-
 
       menuDrawer
         ?.querySelectorAll('a')
         .forEach(
           link => {
-
             link.addEventListener(
               'click',
               closeMobileMenu
             );
-
           }
         );
-
-
 
       document.addEventListener(
         'keydown',
         event => {
-
           if (
             event.key === 'Escape'
           ) {
-
             closeMobileMenu();
-
           }
-
         }
       );
-
-
     </script>
-
-
 
     <!-- ACTIVE DESKTOP NAV -->
     <style is:global>
-
       .desktop-nav a.active {
         color:
           var(--accent);
       }
 
-
       @media (
         min-width: 851px
       ) {
-
         .desktop-nav {
           align-items:
             center;
@@ -955,7 +785,6 @@ const currentPath =
             18px;
         }
 
-
         .desktop-nav a {
           position:
             relative;
@@ -963,7 +792,6 @@ const currentPath =
           white-space:
             nowrap;
         }
-
 
         .desktop-nav a.active::after {
           content:
@@ -987,12 +815,7 @@ const currentPath =
           background:
             var(--accent);
         }
-
       }
-
     </style>
-
-
   </body>
-
 </html>
