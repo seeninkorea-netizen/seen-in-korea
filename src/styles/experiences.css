@@ -1,0 +1,76 @@
+/* Seen in Korea / Experiences — scoped landing-page styles */
+.exp-page { --exp-ink:#151515; --exp-paper:#fffdf9; --exp-orange:#ff4d00; --exp-line:#d2ccc2; color:var(--exp-ink); }
+.exp-page .exp-hero { background:#171715; color:#fffaf1; padding:76px 0 68px; border-bottom:1px solid #3f3b35; }
+.exp-page .exp-hero-inner { max-width:970px; }
+.exp-page .exp-kicker { color:#ff864f; font-size:12px; font-weight:900; letter-spacing:.16em; text-transform:uppercase; }
+.exp-page .exp-hero h1 { font-size:clamp(48px,8vw,92px); line-height:.97; margin:18px 0 23px; letter-spacing:-.07em; }
+.exp-page .exp-hero p { font-size:clamp(17px,2.1vw,22px); color:#d6d0c6; max-width:730px; line-height:1.45; }
+.exp-page .exp-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+.exp-page .exp-btn { display:inline-flex; justify-content:center; align-items:center; min-height:48px; padding:13px 19px; border:1px solid var(--exp-ink); background:var(--exp-ink); color:#fff; text-decoration:none; font:800 13px/1.2 Arial,Helvetica,sans-serif; cursor:pointer; }
+.exp-page .exp-btn:hover, .exp-page .exp-btn:focus-visible { outline:2px solid var(--exp-orange); outline-offset:3px; }
+.exp-page .exp-btn-accent { color:#171715; background:var(--exp-orange); border-color:var(--exp-orange); }
+.exp-page .exp-btn-light { background:transparent; border-color:#a19b92; color:#fff; }
+.exp-page .exp-subtitle { color:#59554f; max-width:750px; margin:10px 0 26px; }
+.exp-page .exp-headline { font-size:clamp(30px,4vw,45px); line-height:1.06; letter-spacing:-.045em; margin:0; }
+.exp-page .exp-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.exp-page .exp-grid-two { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.exp-page .exp-card { border:1px solid var(--exp-line); background:var(--exp-paper); padding:27px; }
+.exp-page .exp-card h3 { font-size:23px; letter-spacing:-.04em; line-height:1.15; margin:0 0 12px; }
+.exp-page .exp-card p { font-size:14px; color:#5c5953; margin:0; line-height:1.65; }
+.exp-page .exp-card .exp-step { display:block; font-size:12px; letter-spacing:.1em; color:var(--exp-orange); font-weight:900; margin-bottom:20px; }
+.exp-page .exp-panel { background:#e8e1d6; border:1px solid var(--exp-line); padding:30px; }
+.exp-page .exp-panel h2 { margin:0 0 12px; font-size:29px; letter-spacing:-.04em; }
+.exp-page .exp-panel p { max-width:800px; color:#4e4a43; margin:0 0 10px; }
+.exp-page .exp-note { color:#625f59; font-size:13px; line-height:1.6; }
+.exp-page .exp-note a, .exp-page .exp-link { color:#b43900; text-decoration:underline; text-underline-offset:2px; }
+.exp-page .exp-empty { border:1px dashed #a9a297; padding:32px; background:#fffaf3; }
+.exp-page .exp-empty h2 { font-size:28px; margin:0 0 10px; }
+.exp-page .exp-empty p { margin:0 0 20px; color:#59554f; }
+.exp-page .exp-form-layout { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(260px,.75fr); gap:26px; align-items:start; }
+.exp-page .exp-form { border:1px solid var(--exp-line); background:var(--exp-paper); padding:30px; }
+.exp-page .exp-form h2 { font-size:29px; margin:0 0 8px; letter-spacing:-.04em; }
+.exp-page .exp-form p { color:#59554f; font-size:14px; }
+.exp-page .exp-fields { display:grid; gap:17px; margin:25px 0; }
+.exp-page .exp-field { display:flex; flex-direction:column; gap:7px; }
+.exp-page .exp-field label, .exp-page .exp-field .exp-label { font-weight:700; font-size:13px; }
+.exp-page .exp-field input, .exp-page .exp-field select, .exp-page .exp-field textarea { width:100%; border:1px solid #ada69c; border-radius:0; background:#fff; color:#222; padding:13px; font:15px Arial,Helvetica,sans-serif; }
+.exp-page .exp-field textarea { min-height:100px; resize:vertical; }
+.exp-page .exp-field input:focus-visible, .exp-page .exp-field select:focus-visible, .exp-page .exp-field textarea:focus-visible { outline:2px solid var(--exp-orange); outline-offset:2px; }
+.exp-page .exp-check { display:flex; align-items:flex-start; gap:10px; font-size:13px; margin:14px 0; line-height:1.5; }
+.exp-page .exp-check input { margin-top:3px; width:17px; height:17px; flex-shrink:0; }
+.exp-page .exp-small { margin-top:14px; font-size:12px; line-height:1.6; color:#5e5b55; }
+.exp-page .exp-aside { border-left:3px solid var(--exp-orange); padding-left:18px; }
+.exp-page .exp-aside h3 { font-size:20px; line-height:1.2; margin:0 0 12px; }
+.exp-page .exp-aside p, .exp-page .exp-aside li { font-size:14px; line-height:1.7; color:#55514b; }
+.exp-page .exp-aside ul { padding-left:20px; }
+.exp-page .exp-footer-cta { background:#1c1c19; color:#fff; padding:40px; }
+.exp-page .exp-footer-cta p { color:#d1cbc3; }
+.exp-page .exp-hero .exp-note { color:#d0cbc4; }
+@media(max-width:850px) { .exp-page .exp-grid,.exp-page .exp-grid-two,.exp-page .exp-form-layout { grid-template-columns:1fr; } .exp-page .exp-hero { padding:54px 0; } .exp-page .exp-card,.exp-page .exp-form { padding:22px; } .exp-page .exp-footer-cta { padding:26px; } }
+/* MVP submissions and campaign UI */
+.exp-page .exp-hp {position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
+.exp-page .exp-form-result {min-height:24px;font-size:14px;font-weight:700;}
+.exp-page .exp-success {color:#116443;}
+.exp-page .exp-error {color:#a3211b;}
+.exp-page .exp-btn:disabled {opacity:.55;cursor:wait;}
+.exp-page .exp-campaign-offer {margin:14px 0 !important;}
+.exp-page .exp-campaign-detail {display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr);gap:28px;}
+.exp-page .exp-detail-list {padding-left:24px;line-height:1.7;}
+@media(max-width:850px){.exp-page .exp-campaign-detail{grid-template-columns:1fr;}}
+.exp-admin-toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px;}
+.exp-admin-toolbar input{padding:12px;min-width:280px;flex:1;border:1px solid var(--exp-line);font-size:14px;}
+.exp-admin-stats{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 24px;}
+.exp-admin-stats span{background:var(--exp-paper);border:1px solid var(--exp-line);padding:12px 16px;font-weight:800;}
+.exp-admin-card{background:var(--exp-paper);border:1px solid var(--exp-line);padding:22px;margin:20px 0;overflow-wrap:anywhere;}
+.exp-admin-card h4{margin:25px 0 12px;}
+.exp-admin-card p{font-size:14px;}
+.exp-admin-card a{text-decoration:underline;text-decoration-color:var(--exp-orange);}
+.exp-admin-head{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--exp-line);padding-bottom:12px;}
+.exp-admin-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0;}
+.exp-admin-fields label{font-size:12px;font-weight:700;display:grid;gap:6px;}
+.exp-admin-fields input,.exp-admin-fields textarea{width:100%;min-width:0;padding:10px;font:14px Arial;border:1px solid #aaa;}
+.exp-admin-fields textarea{min-height:75px;resize:vertical;}
+.exp-admin-buttons{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.exp-admin-application{border-top:1px solid var(--exp-line);padding:12px 0;font-size:13px;line-height:1.7;}
+.exp-admin-delete{border:0;background:transparent;text-decoration:underline;cursor:pointer;color:#a3211b;padding:4px 0;}
+@media(max-width:850px){.exp-admin-fields{grid-template-columns:1fr;}}

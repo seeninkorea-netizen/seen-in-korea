@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/experiences.css';
+import { database, publicCampaigns } from '../../lib/experiences';
+export const prerender = false;
+const db = database();
+const campaigns = db ? await publicCampaigns(db).catch(() => []) : [];
+---
+<BaseLayout
+  title="Experiences in Korea — SEEN IN KOREA"
+  description="Discover upcoming creator experiences in Korea. Join our creator community or partner with SEEN IN KOREA as a local business."
+>
+  <main class="exp-page">
+    <section class="exp-hero">
+      <div class="wrap exp-hero-inner">
+        <div class="exp-kicker">SEEN IN KOREA / EXPERIENCES</div>
+        <h1>Experience Korea.<br />Share your story.</h1>
+        <p>Explore local dining, beauty and cultural experiences. We connect eligible international creators with Korean businesses to share transparent, first-hand stories.</p>
+        <div class="exp-actions">
+          <a class="exp-btn exp-btn-accent" href="/creators/join">Join as a creator</a>
+          <a class="exp-btn exp-btn-light" href="/business/creator-campaigns">For Korean businesses / 한국 매장</a>
+        </div>
+        <p class="exp-note">Only approved partner campaigns appear here. Availability varies; applying does not guarantee selection.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="exp-kicker">WHAT'S COMING</div>
+        <h2 class="exp-headline">Local experiences, told by real people.</h2>
+        <p class="exp-subtitle">These are example categories, not currently available offers.</p>
+        <div class="exp-grid">
+          <article class="exp-card"><span class="exp-step">01 / DINING</span><h3>Food &amp; cafés</h3><p>Explore Korean food through local restaurants, cafés and specialty menus.</p></article>
+          <article class="exp-card"><span class="exp-step">02 / BEAUTY</span><h3>Beauty &amp; products</h3><p>Discover selected Korean products and non-medical beauty experiences.</p></article>
+          <article class="exp-card"><span class="exp-step">03 / CULTURE</span><h3>Places &amp; activities</h3><p>Experience activities and neighbourhoods beyond the usual recommendations.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="exp-kicker">APPROVED CAMPAIGNS</div>
+        <h2 class="exp-headline">Available experiences</h2>
+        <p class="exp-subtitle">Every listed campaign has been reviewed by our team. An application is not a confirmed booking.</p>
+        {campaigns.length ? (
+          <div class="exp-grid">
+            {campaigns.map(c => <article class="exp-card" key={c.id}>
+              <span class="exp-step">{c.category} · {c.location_en}</span>
+              <h3>{c.title_en}</h3><p>{c.description_en}</p>
+              <p class="exp-campaign-offer"><strong>Complimentary experience:</strong> {c.offer_en}</p>
+              <p class="exp-small">{Math.max(0, c.slots - c.selected_count)} of {c.slots} spaces unselected</p>
+              <a class="exp-btn exp-btn-accent" href={`/experiences/${encodeURIComponent(c.id)}`}>{c.slots > c.selected_count ? 'View & apply' : 'View details'}</a>
+            </article>)}
+          </div>
+        ) : (
+          <div class="exp-empty" aria-live="polite"><h2>No campaigns open just yet.</h2>
+            <p>We're confirming partner venues. Introduce your social channels to hear about future opportunities.</p>
+            <a class="exp-btn" href="/creators/join">Introduce your creator profile</a>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="exp-kicker">HOW IT WORKS</div>
+        <h2 class="exp-headline">Simple process. Clear expectations.</h2>
+        <p class="exp-subtitle">Participation is subject to eligibility checks and a campaign-specific agreement.</p>
+        <div class="exp-grid">
+          <article class="exp-card"><span class="exp-step">01</span><h3>Share your profile</h3><p>Send us your social channels, primary audience and where you can visit in Korea.</p></article>
+          <article class="exp-card"><span class="exp-step">02</span><h3>Apply for an experience</h3><p>Review the value of the offered experience, publishing requirements, location and dates before agreeing.</p></article>
+          <article class="exp-card"><span class="exp-step">03</span><h3>Visit &amp; create</h3><p>Enjoy the experience, share your honest views and clearly disclose the complimentary benefit in sponsored content.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="exp-panel">
+          <h2>Our content standards</h2>
+          <p>We never require a positive review, a particular star rating or a Google Maps review in exchange for a complimentary experience. Creator campaign obligations apply only to agreed, clearly disclosed sponsored content on supported social channels.</p>
+          <p class="exp-note">We verify campaign eligibility before arranging participation. Receiving a complimentary benefit can carry additional eligibility requirements depending on your status in Korea. <a href="/editorial-standards">Editorial reporting remains independent of commercial experiences.</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
