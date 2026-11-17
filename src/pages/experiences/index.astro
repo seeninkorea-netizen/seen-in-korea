@@ -5,83 +5,72 @@ import { database, publicCampaigns } from '../../lib/experiences';
 export const prerender = false;
 const db = database();
 const campaigns = db ? await publicCampaigns(db).catch(() => []) : [];
+const spots = (c: typeof campaigns[number]) => Math.max(0, c.slots - c.selected_count);
+const categoryOf = (s: string) => /카페|음식점|dining|cafe|restaurant|food/i.test(s) ? 'dining' : /뷰티|제품|beauty|product|shop/i.test(s) ? 'beauty' : /숙박|호텔|stay|hotel/i.test(s) ? 'stays' : 'activities';
+const categoryLabels: Record<string, string> = { dining:'Food & cafés', beauty:'Beauty & products', stays:'Stays', activities:'Activities' };
+const categoryLabel = (k: string) => categoryLabels[k] || 'Activities';
 ---
-<BaseLayout
-  title="Experiences in Korea — SEEN IN KOREA"
-  description="Discover upcoming creator experiences in Korea. Join our creator community or partner with SEEN IN KOREA as a local business."
->
-  <main class="exp-page">
-    <section class="exp-hero">
-      <div class="wrap exp-hero-inner">
-        <div class="exp-kicker">SEEN IN KOREA / EXPERIENCES</div>
-        <h1>Experience Korea.<br />Share your story.</h1>
-        <p>Explore local dining, beauty and cultural experiences. We connect eligible international creators with Korean businesses to share transparent, first-hand stories.</p>
-        <div class="exp-actions">
-          <a class="exp-btn exp-btn-accent" href="/creators/join">Join as a creator</a>
-          <a class="exp-btn exp-btn-light" href="/business/creator-campaigns">For Korean businesses / 한국 매장</a>
+<BaseLayout title="Creator Experiences in Korea — SEEN IN KOREA" description="Find complimentary Korea experiences with clear benefits and transparent sponsored social content requirements.">
+  <main class="exp-page exp-simple">
+    <section class="exp-simple-hero">
+      <div class="wrap exp-simple-hero-inner">
+        <div>
+          <p class="exp-simple-eyebrow">SEEN IN KOREA · CREATOR EXPERIENCES</p>
+          <h1>Explore Korea.<br /><span>Share what you love.</span></h1>
+          <p>Browse selected local experiences for Instagram, TikTok and YouTube creators.</p>
         </div>
-        <p class="exp-note">Only approved partner campaigns appear here. Availability varies; applying does not guarantee selection.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <div class="exp-kicker">WHAT'S COMING</div>
-        <h2 class="exp-headline">Local experiences, told by real people.</h2>
-        <p class="exp-subtitle">These are example categories, not currently available offers.</p>
-        <div class="exp-grid">
-          <article class="exp-card"><span class="exp-step">01 / DINING</span><h3>Food &amp; cafés</h3><p>Explore Korean food through local restaurants, cafés and specialty menus.</p></article>
-          <article class="exp-card"><span class="exp-step">02 / BEAUTY</span><h3>Beauty &amp; products</h3><p>Discover selected Korean products and non-medical beauty experiences.</p></article>
-          <article class="exp-card"><span class="exp-step">03 / CULTURE</span><h3>Places &amp; activities</h3><p>Experience activities and neighbourhoods beyond the usual recommendations.</p></article>
+        <div class="exp-simple-hero-actions">
+          <a class="exp-btn exp-btn-accent" href="#campaigns">Explore campaigns</a>
+          <a class="exp-simple-text-link" href="/creators/join">Join as a creator →</a>
         </div>
       </div>
     </section>
-
-    <section>
+    <section class="exp-simple-main" id="campaigns">
       <div class="wrap">
-        <div class="exp-kicker">APPROVED CAMPAIGNS</div>
-        <h2 class="exp-headline">Available experiences</h2>
-        <p class="exp-subtitle">Every listed campaign has been reviewed by our team. An application is not a confirmed booking.</p>
+        <div class="exp-simple-section-title">
+          <div><p class="exp-simple-eyebrow">FIND YOUR NEXT EXPERIENCE</p><h2>Available campaigns <span>({campaigns.length})</span></h2></div>
+          <a class="exp-simple-text-link" href="/business/creator-campaigns">For Korean businesses · 매장 등록 →</a>
+        </div>
         {campaigns.length ? (
-          <div class="exp-grid">
-            {campaigns.map(c => <article class="exp-card" key={c.id}>
-              <span class="exp-step">{c.category} · {c.location_en}</span>
-              <h3>{c.title_en}</h3><p>{c.description_en}</p>
-              <p class="exp-campaign-offer"><strong>Complimentary experience:</strong> {c.offer_en}</p>
-              <p class="exp-small">{Math.max(0, c.slots - c.selected_count)} of {c.slots} spaces unselected</p>
-              <a class="exp-btn exp-btn-accent" href={`/experiences/${encodeURIComponent(c.id)}`}>{c.slots > c.selected_count ? 'View & apply' : 'View details'}</a>
-            </article>)}
-          </div>
+          <>
+            <div class="exp-simple-filters" aria-label="Filter campaigns by category">
+              <button class="exp-simple-chip is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+              <button class="exp-simple-chip" type="button" data-filter="dining" aria-pressed="false">Food & cafés</button>
+              <button class="exp-simple-chip" type="button" data-filter="beauty" aria-pressed="false">Beauty</button>
+              <button class="exp-simple-chip" type="button" data-filter="stays" aria-pressed="false">Stays</button>
+              <button class="exp-simple-chip" type="button" data-filter="activities" aria-pressed="false">Activities</button>
+            </div>
+            <div class="exp-simple-campaign-grid">
+              {campaigns.map(c => <article class="exp-simple-campaign-card" data-category={categoryOf(c.category)}>
+                <div class="exp-simple-card-top"><span class="exp-simple-category">{categoryLabel(categoryOf(c.category))}</span><span class:list={{ 'exp-simple-space': true, 'is-full': spots(c) === 0 }}>{spots(c) > 0 ? `${spots(c)} spots left` : 'Fully selected'}</span></div>
+                <div class="exp-simple-card-content">
+                  <p class="exp-simple-location">{c.location_en}</p>
+                  <h3>{c.title_en}</h3>
+                  <p class="exp-simple-card-description">{c.description_en}</p>
+                  <div class="exp-simple-benefit"><span>COMPLIMENTARY BENEFIT</span><strong>{c.offer_en}</strong></div>
+                </div>
+                <a class="exp-simple-card-action" href={`/experiences/${encodeURIComponent(c.id)}`}>{spots(c) > 0 ? 'View & apply' : 'View details'} <span aria-hidden="true">→</span></a>
+              </article>)}
+            </div>
+            <p id="exp-filter-empty" class="exp-simple-none" hidden>No campaigns in this category at the moment.</p>
+          </>
         ) : (
-          <div class="exp-empty" aria-live="polite"><h2>No campaigns open just yet.</h2>
-            <p>We're confirming partner venues. Introduce your social channels to hear about future opportunities.</p>
-            <a class="exp-btn" href="/creators/join">Introduce your creator profile</a>
-          </div>
+          <div class="exp-simple-empty"><h3>New experiences are on their way.</h3><p>We're confirming venues and creator opportunities. Register your profile to hear about future campaigns.</p><a class="exp-btn exp-btn-accent" href="/creators/join">Join the creator list</a></div>
         )}
+        <p class="exp-simple-disclaimer">Campaigns are reviewed before publication. Applying does not guarantee selection. Complimentary experiences require clear sponsorship disclosure and are never exchanged for Google Maps reviews.</p>
       </div>
     </section>
-
-    <section>
-      <div class="wrap">
-        <div class="exp-kicker">HOW IT WORKS</div>
-        <h2 class="exp-headline">Simple process. Clear expectations.</h2>
-        <p class="exp-subtitle">Participation is subject to eligibility checks and a campaign-specific agreement.</p>
-        <div class="exp-grid">
-          <article class="exp-card"><span class="exp-step">01</span><h3>Share your profile</h3><p>Send us your social channels, primary audience and where you can visit in Korea.</p></article>
-          <article class="exp-card"><span class="exp-step">02</span><h3>Apply for an experience</h3><p>Review the value of the offered experience, publishing requirements, location and dates before agreeing.</p></article>
-          <article class="exp-card"><span class="exp-step">03</span><h3>Visit &amp; create</h3><p>Enjoy the experience, share your honest views and clearly disclose the complimentary benefit in sponsored content.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <div class="exp-panel">
-          <h2>Our content standards</h2>
-          <p>We never require a positive review, a particular star rating or a Google Maps review in exchange for a complimentary experience. Creator campaign obligations apply only to agreed, clearly disclosed sponsored content on supported social channels.</p>
-          <p class="exp-note">We verify campaign eligibility before arranging participation. Receiving a complimentary benefit can carry additional eligibility requirements depending on your status in Korea. <a href="/editorial-standards">Editorial reporting remains independent of commercial experiences.</a></p>
-        </div>
-      </div>
-    </section>
+    <section class="exp-simple-how"><div class="wrap"><h2>How it works</h2><div class="exp-simple-steps"><div><b>01</b><strong>Choose</strong><span>Find an experience you like.</span></div><div><b>02</b><strong>Apply</strong><span>Share your social profile.</span></div><div><b>03</b><strong>Get selected</strong><span>We review and confirm details.</span></div><div><b>04</b><strong>Experience & share</strong><span>Post your honest, disclosed content.</span></div></div></div></section>
   </main>
+  <script>
+    document.querySelectorAll<HTMLButtonElement>('.exp-simple-filters [data-filter]').forEach(button => {
+      button.addEventListener('click', () => {
+        const value = button.dataset.filter;
+        document.querySelectorAll<HTMLButtonElement>('.exp-simple-filters [data-filter]').forEach(b => {const yes=b===button;b.classList.toggle('is-active',yes);b.setAttribute('aria-pressed',String(yes));});
+        let visible=0;
+        document.querySelectorAll<HTMLElement>('.exp-simple-campaign-card[data-category]').forEach(card=>{const yes=value==='all'||card.dataset.category===value;card.hidden=!yes;if(yes)visible++;});
+        const empty=document.querySelector<HTMLElement>('#exp-filter-empty');if(empty) empty.hidden=visible!==0;
+      });
+    });
+  </script>
 </BaseLayout>

@@ -9,43 +9,52 @@ const campaign = db && /^[0-9a-f-]{36}$/i.test(campaignId) ? await publicCampaig
 if (!campaign) Astro.response.status = 404;
 ---
 <BaseLayout title={campaign ? `${campaign.title_en} — SEEN IN KOREA` : 'Experience not available — SEEN IN KOREA'} description={campaign?.description_en || 'Campaign is unavailable.'}>
-  <main class="exp-page">
+  <main class="exp-page exp-simple">
     {campaign ? (
       <>
-        <section class="exp-hero"><div class="wrap exp-hero-inner"><div class="exp-kicker">APPROVED CREATOR EXPERIENCE</div>
-          <h1>{campaign.title_en}</h1><p>{campaign.description_en}</p>
-          <p class="exp-note">Location: {campaign.location_en} · {campaign.category}</p>
+        <section class="exp-simple-detail-top"><div class="wrap">
+          <a class="exp-simple-back" href="/experiences">← All experiences</a>
+          <div class="exp-simple-detail-heading"><div><p class="exp-simple-eyebrow">CREATOR EXPERIENCE · {campaign.category}</p><h1>{campaign.title_en}</h1><p>{campaign.location_en}</p></div>
+            <div class="exp-simple-status">{Math.max(0,campaign.slots-campaign.selected_count)} of {campaign.slots} places available</div>
+          </div>
         </div></section>
-        <section><div class="wrap exp-campaign-detail"><div>
-          <h2 class="exp-headline">Campaign details</h2>
-          <ul class="exp-detail-list"><li><strong>Business:</strong> {campaign.business_name}</li>
-            <li><strong>Location:</strong> {campaign.location_en}</li>
-            <li><strong>Complimentary benefit:</strong> {campaign.offer_en}</li>
-            <li><strong>Agreed content:</strong> {campaign.deliverables_en}</li>
-            <li><strong>Spaces:</strong> {Math.max(0,campaign.slots-campaign.selected_count)} currently unselected</li></ul>
-          <p>No positive opinion, Google Maps review or star rating is requested. Clearly disclose the complimentary benefit on sponsored social posts.</p>
-          <a class="exp-link" href="/experiences">← Browse all experiences</a>
-        </div><div class="exp-form">
-          <h2>Apply to participate</h2><p>Submit your details. We'll manually review your social profile. Selection is not automatic and does not confirm a reservation.</p>
-          {campaign.selected_count >= campaign.slots ? (<p class="exp-note"><strong>All available creator spots are taken. New applications are closed for now.</strong></p>) : (<form data-experience-endpoint="/api/experiences/apply">
-            <input type="hidden" name="campaignId" value={campaign.id}/>
-            <div class="exp-hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off" /></label></div>
-            <div class="exp-fields">
-              <div class="exp-field"><label for="apply-name">Creator name / handle *</label><input id="apply-name" name="name" maxlength="100" required /></div>
-              <div class="exp-field"><label for="apply-email">Contact email *</label><input id="apply-email" name="email" type="email" maxlength="180" required /></div>
-              <div class="exp-field"><label for="apply-social">Instagram, TikTok or YouTube URL *</label><input id="apply-social" name="social" type="url" maxlength="300" required placeholder="https://www.instagram.com/…"/></div>
-              <div class="exp-field"><label for="apply-message">Why are you interested? (optional)</label><textarea id="apply-message" name="message" maxlength="500"></textarea></div>
-            </div>
-            <label class="exp-check"><input type="checkbox" name="adult" required />I am at least 18 years old. *</label>
-            <label class="exp-check"><input type="checkbox" name="eligibility" required />I understand that lawful eligibility to participate, including any applicable immigration restrictions, must be confirmed. *</label>
-            <label class="exp-check"><input type="checkbox" name="disclosure" required />I will disclose sponsored benefits and understand Google Maps reviews are not campaign deliverables. *</label>
-            <label class="exp-check"><input type="checkbox" name="consent" required />I consent to private storage and use of these details for campaign screening and contact, under the <a class="exp-link" href="/experiences/privacy">data-use notice</a>. *</label>
-            <button class="exp-btn exp-btn-accent" type="submit">Submit application</button>
-            <p data-result class="exp-form-result" role="status" aria-live="polite"></p>
-          </form>)}
-        </div></div></section>
+        <section class="exp-simple-detail-body"><div class="wrap exp-simple-detail-grid">
+          <div class="exp-simple-detail-content">
+            <div class="exp-simple-benefit-large"><span>WHAT YOU RECEIVE</span><h2>{campaign.offer_en}</h2><p>Complimentary experience · Subject to selection and final scheduling</p></div>
+            <div class="exp-simple-info-block"><h2>About this experience</h2><p>{campaign.description_en}</p></div>
+            <div class="exp-simple-info-block"><h2>What you'll share</h2><p>{campaign.deliverables_en}</p></div>
+            <div class="exp-simple-facts"><div><span>PARTNER</span><strong>{campaign.business_name}</strong></div><div><span>LOCATION</span><strong>{campaign.location_en}</strong></div></div>
+            <details class="exp-simple-rules"><summary>Participation & disclosure rules</summary><p>Applicants must be 18 or older and eligible to accept this complimentary experience under applicable rules, including immigration requirements. Clearly disclose any sponsored benefit. Positive ratings and Google Maps reviews are not required or rewarded. Application does not guarantee selection or a reservation.</p></details>
+          </div>
+          <div class="exp-simple-apply-area"><div class="exp-form exp-simple-apply-form" id="apply">
+            {campaign.selected_count >= campaign.slots ? (
+              <><h2>Applications closed</h2><p>All creator places have been selected for now.</p><a class="exp-btn exp-btn-accent" href="/experiences">Explore other experiences</a></>
+            ) : (
+              <><p class="exp-simple-eyebrow">CREATOR APPLICATION</p><h2>Apply for this experience</h2><p>Share your profile. Our team will review it manually.</p>
+              <form data-experience-endpoint="/api/experiences/apply">
+                <input type="hidden" name="campaignId" value={campaign.id}/>
+                <div class="exp-hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off" /></label></div>
+                <div class="exp-fields">
+                  <div class="exp-field"><label for="apply-name">Creator name / handle *</label><input id="apply-name" name="name" maxlength="100" autocomplete="nickname" placeholder="Your name or handle" required /></div>
+                  <div class="exp-field"><label for="apply-email">Contact email *</label><input id="apply-email" name="email" type="email" maxlength="180" autocomplete="email" placeholder="you@example.com" required /></div>
+                  <div class="exp-field"><label for="apply-social">Instagram, TikTok or YouTube link *</label><input id="apply-social" name="social" type="url" maxlength="300" placeholder="https://www.instagram.com/yourprofile" required /></div>
+                </div>
+                <details class="exp-simple-optional"><summary>Add a short message (optional)</summary><div class="exp-field"><label for="apply-message">Why would you like to join?</label><textarea id="apply-message" name="message" maxlength="500" placeholder="Tell us a little about your content"></textarea></div></details>
+                <div class="exp-simple-consent"><p>Before applying</p>
+                  <label class="exp-check"><input type="checkbox" name="adult" required /><span>I am at least 18 years old.</span></label>
+                  <label class="exp-check"><input type="checkbox" name="eligibility" required /><span>I understand participation depends on my lawful eligibility, including any visa restrictions.</span></label>
+                  <label class="exp-check"><input type="checkbox" name="disclosure" required /><span>I will disclose any sponsored benefits; Google Maps reviews are not required.</span></label>
+                  <label class="exp-check"><input type="checkbox" name="consent" required /><span>I agree to the <a class="exp-link" href="/experiences/privacy">data-use notice</a> for application review and contact.</span></label>
+                </div>
+                <button class="exp-btn exp-btn-accent exp-simple-submit" type="submit">Submit application →</button>
+                <p data-result class="exp-form-result" role="status" aria-live="polite"></p>
+                <p class="exp-simple-form-note">Submitting an application does not confirm a visit.</p>
+              </form></>
+            )}
+          </div></div>
+        </div></section>
       </>
-    ) : <section><div class="wrap exp-empty"><h1>This campaign is not available.</h1><p>It may be pending, paused or closed.</p><a class="exp-btn" href="/experiences">Browse experiences</a></div></section>}
+    ) : <section class="exp-simple-main"><div class="wrap exp-empty"><h1>This campaign is not available.</h1><p>It may be pending, paused or closed.</p><a class="exp-btn" href="/experiences">Browse experiences</a></div></section>}
   </main>
   <script>import '../../scripts/experience-submit';</script>
 </BaseLayout>
