@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Application submitted — SEEN IN KOREA"
+  description="Next steps after submitting an application for a Seen in Korea creator experience."
+>
+  <meta slot="head" name="robots" content="noindex,nofollow" />
+  <main class="sik-confirm-wrap" lang="en">
+    <section class="sik-confirm-card" aria-labelledby="confirm-title">
+      <div id="sik-confirm-loading" role="status">Checking your recent submission…</div>
+
+      <div id="sik-confirm-received" hidden>
+        <div class="sik-confirm-check" aria-hidden="true">✓</div>
+        <div class="sik-confirm-kicker">SEEN IN KOREA · CREATOR EXPERIENCES</div>
+        <h1 id="confirm-title">Application submitted!</h1>
+        <p class="sik-confirm-lede">Your application was received. Your place is <strong>not yet confirmed</strong>.</p>
+        <p id="sik-confirm-campaign" class="sik-confirm-campaign" hidden></p>
+
+        <div class="sik-confirm-steps" aria-label="Application progress">
+          <div class="sik-confirm-step"><span class="sik-confirm-step-icon sik-confirm-done">✓</span><div><strong>Application received</strong><small>Submitted successfully</small></div></div>
+          <div class="sik-confirm-step"><span class="sik-confirm-step-icon">2</span><div><strong>Awaiting selection</strong><small>Our team will manually review your creator profile</small></div></div>
+          <div class="sik-confirm-step"><span class="sik-confirm-step-icon">3</span><div><strong>Visit details, if selected</strong><small>Arrangements are confirmed separately</small></div></div>
+        </div>
+
+        <p class="sik-confirm-note">There is no automatic selection email or online application-status dashboard yet. If selected, our team will need to contact you using the email you entered. Do not visit a venue until details are confirmed.</p>
+        <div class="sik-confirm-actions">
+          <a href="/experiences" class="sik-confirm-button">Explore more experiences <span aria-hidden="true">→</span></a>
+          <a id="sik-confirm-return" href="/experiences" class="sik-confirm-secondary">Back to campaign</a>
+        </div>
+      </div>
+
+      <div id="sik-confirm-missing" hidden>
+        <div class="sik-confirm-kicker">SEEN IN KOREA · CREATOR EXPERIENCES</div>
+        <h1>Application status</h1>
+        <p class="sik-confirm-lede">We can't verify a recent submission in this browser tab.</p>
+        <p class="sik-confirm-note">If you submitted an application in another browser or device, this page cannot retrieve it. Please check the message shown at submission or contact our team. Avoid resubmitting repeatedly.</p>
+        <a href="/experiences" class="sik-confirm-button">Browse experiences <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+  <script>
+    // This marker only controls the on-screen confirmation state. It is NOT a source
+    // of authority for selection, admission, or a permanent application record.
+    const loading = document.getElementById('sik-confirm-loading');
+    const received = document.getElementById('sik-confirm-received');
+    const missing = document.getElementById('sik-confirm-missing');
+    let recent: { submittedAt?: number; campaignTitle?: string; campaignUrl?: string } | null = null;
+    try {
+      const raw = sessionStorage.getItem('sik_exp_last_application');
+      if (raw) recent = JSON.parse(raw);
+    } catch { /* Browser may block session storage. */ }
+    const confirmed = Boolean(recent && Number.isFinite(recent.submittedAt)
+      && Date.now() - Number(recent.submittedAt) >= 0
+      && Date.now() - Number(recent.submittedAt) < 24 * 60 * 60 * 1000);
+    if (loading) loading.hidden = true;
+    if (confirmed && recent) {
+      if (received) received.hidden = false;
+      const campaign = document.getElementById('sik-confirm-campaign');
+      if (campaign && recent.campaignTitle) {
+        campaign.textContent = `Experience: ${recent.campaignTitle}`;
+        campaign.hidden = false;
+      }
+      const back = document.getElementById('sik-confirm-return') as HTMLAnchorElement | null;
+      if (back && recent.campaignUrl?.startsWith('/experiences/')) back.href = recent.campaignUrl;
+    } else if (missing) {
+      missing.hidden = false;
+    }
+  </script>
+  <style>
+    .sik-confirm-wrap{background:#f6f3ee;min-height:calc(100vh - 220px);padding:70px 20px 90px;color:#151515}
+    .sik-confirm-card{width:min(100%,680px);margin:0 auto;background:#fff;border:1px solid #e2dcd3;border-radius:16px;padding:clamp(26px,5vw,54px);box-shadow:0 12px 35px rgba(20,20,20,.045)}
+    .sik-confirm-check{width:56px;height:56px;border-radius:50%;background:#e5f5e9;color:#188343;display:grid;place-items:center;font-size:30px;font-weight:900;margin-bottom:22px}
+    .sik-confirm-kicker{font-size:11px;font-weight:850;letter-spacing:.12em;color:#d94618;margin-bottom:12px}
+    .sik-confirm-card h1{font-size:clamp(31px,5vw,45px);letter-spacing:-.045em;line-height:1.13;margin:0 0 14px}
+    .sik-confirm-lede{font-size:17px;line-height:1.6;color:#43403c;margin:0 0 20px}
+    .sik-confirm-campaign{border:1px solid #e8e0d5;border-radius:9px;background:#fff9f3;padding:14px 18px;font-weight:700;margin:0 0 24px}
+    .sik-confirm-steps{border:1px solid #e4dfd9;border-radius:12px;padding:8px 20px;margin:24px 0}
+    .sik-confirm-step{display:flex;align-items:flex-start;gap:15px;padding:17px 0}
+    .sik-confirm-step+.sik-confirm-step{border-top:1px solid #eee9e4}
+    .sik-confirm-step-icon{display:grid;place-items:center;width:33px;height:33px;flex-shrink:0;border-radius:50%;background:#efedea;color:#69645e;font-size:14px;font-weight:800}
+    .sik-confirm-done{background:#e3f5e9;color:#168044}
+    .sik-confirm-step strong,.sik-confirm-step small{display:block}
+    .sik-confirm-step strong{font-size:15px;margin-top:1px}
+    .sik-confirm-step small{font-size:13px;line-height:1.6;color:#716b65;margin-top:3px}
+    .sik-confirm-note{color:#66605a;font-size:13px;line-height:1.75;margin:18px 0 27px}
+    .sik-confirm-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .sik-confirm-button,.sik-confirm-secondary{min-height:45px;padding:13px 19px;border-radius:9px;text-decoration:none;font-size:14px;font-weight:750;display:inline-flex;align-items:center;justify-content:center;gap:9px}
+    .sik-confirm-button{background:#ff541f;color:#1c1715}
+    .sik-confirm-secondary{border:1px solid #d8d0c6;color:#29231f}
+    .sik-confirm-button:hover,.sik-confirm-secondary:hover{outline:2px solid #fa581e;outline-offset:2px}
+    @media(max-width:560px){.sik-confirm-wrap{padding:28px 12px 60px}.sik-confirm-card{padding:25px 18px}.sik-confirm-actions{flex-direction:column;align-items:stretch}.sik-confirm-actions a{width:100%}}
+  </style>
+</BaseLayout>
