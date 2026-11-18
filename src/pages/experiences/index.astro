@@ -15,7 +15,6 @@ const categoryOf = (value: string) => {
   if (/숙박|호텔|stay|hotel/i.test(value)) return 'stays';
   return 'activities';
 };
-
 const categoryNames: Record<string, string> = {
   dining: 'Food & cafés',
   beauty: 'Beauty',
@@ -23,8 +22,7 @@ const categoryNames: Record<string, string> = {
   activities: 'Activities',
 };
 
-// These are illustrative category photos, NOT photos of listed venues.
-// Actual venue images will require a separate DB/API field.
+// Fallback images are illustrative, not images of the participating venues.
 const categoryPhotos: Record<string, { src: string; credit: string }> = {
   dining: {
     src: 'https://images.unsplash.com/photo-1773064990672-dfbe02865943?auto=format&fit=crop&w=960&q=78',
@@ -42,6 +40,17 @@ const categoryPhotos: Record<string, { src: string; credit: string }> = {
     src: 'https://images.unsplash.com/photo-1691071097372-133c238ac6aa?auto=format&fit=crop&w=960&q=78',
     credit: 'https://unsplash.com/photos/a-car-parked-on-the-side-of-a-street-r4IuuGjTeQo',
   },
+};
+
+// Restrict external images to HTTPS URLs, and do not present them as verified photos.
+const safeCampaignImage = (value: string | null | undefined): string => {
+  if (!value || value.length > 1000) return '';
+  try {
+    const url = new URL(value.trim());
+    return url.protocol === 'https:' && !url.username && !url.password ? url.href : '';
+  } catch {
+    return '';
+  }
 };
 ---
 
@@ -87,33 +96,34 @@ const categoryPhotos: Record<string, { src: string; credit: string }> = {
             <div class="sik-exp-grid">
               {campaigns.map((campaign) => {
                 const category = categoryOf(campaign.category);
-                const photo = categoryPhotos[category];
+                const examplePhoto = categoryPhotos[category];
+                const venuePhoto = safeCampaignImage(campaign.image_url);
                 const placesLeft = Math.max(0, campaign.slots - campaign.selected_count);
+                const campaignLink = `/experiences/${encodeURIComponent(campaign.id)}`;
 
                 return (
                   <article class="sik-exp-card" data-category={category}>
                     <div class="sik-exp-photo">
                       <img
-                        src={photo.src}
-                        alt={`Illustrative ${categoryNames[category]} photo, not a photo of ${campaign.business_name}`}
+                        src={venuePhoto || examplePhoto.src}
+                        data-fallback-src={examplePhoto.src}
+                        alt={venuePhoto
+                          ? `Image provided for ${campaign.business_name}`
+                          : `Illustrative ${categoryNames[category]} photo, not a photo of ${campaign.business_name}`}
                         width="960"
                         height="600"
                         loading="lazy"
                         decoding="async"
                       />
-                      <span class="sik-exp-photo-note">Illustrative photo</span>
+                      <span class="sik-exp-photo-note" hidden={!!venuePhoto}>Illustrative photo</span>
                       <span class:list={{ 'sik-exp-capacity': true, 'is-full': placesLeft === 0 }}>
-                        {placesLeft ? `${placesLeft} places left` : 'Fully selected'}
+                        {placesLeft > 0 ? `${placesLeft} places left` : 'Fully selected'}
                       </span>
                     </div>
 
                     <div class="sik-exp-card-body">
                       <p class="sik-exp-category">{categoryNames[category]}</p>
-                      <h3>
-                        <a href={`/experiences/${encodeURIComponent(campaign.id)}`}>
-                          {campaign.title_en}
-                        </a>
-                      </h3>
+                      <h3><a href={campaignLink}>{campaign.title_en}</a></h3>
                       <p class="sik-exp-location">{campaign.location_en}</p>
                       <div class="sik-exp-offer">
                         <span>WHAT YOU GET</span>
@@ -122,10 +132,18 @@ const categoryPhotos: Record<string, { src: string; credit: string }> = {
                     </div>
 
                     <div class="sik-exp-card-footer">
-                      <a class="sik-exp-card-cta" href={`/experiences/${encodeURIComponent(campaign.id)}`}>
-                        {placesLeft ? 'View & apply' : 'View details'} <span aria-hidden="true">→</span>
+                      <a class="sik-exp-card-cta" href={campaignLink}>
+                        {placesLeft > 0 ? 'View & apply' : 'View details'} <span aria-hidden="true">→</span>
                       </a>
-                      <a class="sik-exp-photo-credit" href={photo.credit} target="_blank" rel="noopener noreferrer" aria-label="Photo source on Unsplash">Photo source</a>
+                      <a
+                        class="sik-exp-photo-credit"
+                        data-photo-credit
+                        href={examplePhoto.credit}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Illustrative photo source on Unsplash"
+                        hidden={!!venuePhoto}
+                      >Photo source</a>
                     </div>
                   </article>
                 );
@@ -142,8 +160,10 @@ const categoryPhotos: Record<string, { src: string; credit: string }> = {
         )}
 
         <p class="sik-exp-disclaimer">
-          Photos are category examples, not images of the listed venues. Applications are reviewed manually;
-          selection is not guaranteed. Complimentary benefits must be disclosed. Google Maps reviews are not required.
+          Images supplied for individual campaigns have not been independently verified.
+          Images marked illustrative are category examples, not photos of the listed venues.
+          Applications are reviewed manually; selection is not guaranteed.
+          Complimentary benefits must be disclosed. Google Maps reviews are not required.
         </p>
       </div>
     </section>
@@ -183,6 +203,20 @@ const categoryPhotos: Record<string, { src: string; credit: string }> = {
         if (emptyMessage) emptyMessage.hidden = visible > 0;
       });
     });
+
+    // Broken partner image URLs fall back to an explicitly labelled example photo.
+    document.querySelectorAll<HTMLImageElement>('.sik-exp-photo img[data-fallback-src]')
+      .forEach((image) => image.addEventListener('error', () => {
+        const fallback = image.dataset.fallbackSrc;
+        if (!fallback || image.src === fallback) return;
+        image.src = fallback;
+        const card = image.closest<HTMLElement>('.sik-exp-card');
+        const label = card?.querySelector<HTMLElement>('.sik-exp-photo-note');
+        const credit = card?.querySelector<HTMLElement>('[data-photo-credit]');
+        if (label) label.hidden = false;
+        if (credit) credit.hidden = false;
+        image.alt = 'Illustrative category photo, not a photo of the listed venue';
+      }));
   </script>
 
   <style>
@@ -209,7 +243,7 @@ const categoryPhotos: Record<string, { src: string; credit: string }> = {
     .sik-exp-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
     .sik-exp-card {background:white;border:1px solid #e9e5df;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-width:0;box-shadow:0 3px 18px rgba(0,0,0,.025);transition:transform .18s,box-shadow .18s}
     .sik-exp-card:hover {transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.065)}
-    .sik-exp-card[hidden],.sik-exp-no-results[hidden] {display:none!important}
+    .sik-exp-card[hidden],.sik-exp-no-results[hidden],.sik-exp-photo-note[hidden],.sik-exp-photo-credit[hidden] {display:none!important}
     .sik-exp-photo {position:relative;aspect-ratio:1.55;background:#e6d5c8;overflow:hidden}
     .sik-exp-photo img {display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s}
     .sik-exp-card:hover .sik-exp-photo img {transform:scale(1.025)}
@@ -242,94 +276,27 @@ const categoryPhotos: Record<string, { src: string; credit: string }> = {
     .sik-exp-step-grid p {font-size:12px;color:#78726b;margin:0;line-height:1.5}
     @media(max-width:960px) {.sik-exp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sik-exp-intro-layout{align-items:start}}
     @media(max-width:650px) {
-      .sik-exp-intro{padding:30px 0}.sik-exp-intro-layout{display:block}.sik-exp-intro-actions{justify-content:flex-start;margin-top:19px}
-      .sik-exp-list{padding:30px 0 45px}.sik-exp-heading{align-items:start;display:block}.sik-exp-business-link{display:inline-block;margin-top:13px}
-      .sik-exp-grid{grid-template-columns:1fr;gap:15px}.sik-exp-photo{aspect-ratio:1.7}
+      .sik-exp-intro-layout{display:block}
+      .sik-exp-intro{padding:22px 0}
+      .sik-exp-intro h1{font-size:clamp(32px,8.5vw,36px);line-height:1.08;margin-bottom:9px}
+      .sik-exp-lede{font-size:13px;line-height:1.45}
+      .sik-exp-intro-actions{justify-content:flex-start;margin-top:12px}
+      .sik-exp-intro-actions .sik-exp-primary{display:none}
+      .sik-exp-list{padding:22px 0 36px}
+      .sik-exp-heading{align-items:start;display:block;margin-bottom:12px}
+      .sik-exp-heading h2{font-size:27px}
+      .sik-exp-business-link{display:inline-block;margin-top:9px;font-size:12px}
+      .sik-exp-grid{grid-template-columns:1fr;gap:15px}
+      .sik-exp-photo{aspect-ratio:2/1}
+      .sik-exp-filters{gap:6px;padding-bottom:12px}
+      .sik-exp-filter{padding:8px 12px;min-height:42px;font-size:12px}
+      .sik-exp-filters:has(+ .sik-exp-grid > .sik-exp-card:only-child){display:none}
+      .sik-exp-card-body{padding:15px 16px 12px}
+      .sik-exp-card h3{font-size:20px}
+      .sik-exp-card-footer{padding:10px 12px}
+      .sik-exp-card-cta{min-height:44px}
       .sik-exp-step-grid{grid-template-columns:repeat(2,1fr);row-gap:18px}
     }
     @media(prefers-reduced-motion:reduce) {.sik-exp-card,.sik-exp-photo img{transition:none}.sik-exp-card:hover,.sik-exp-card:hover img{transform:none}}
-
-/* Mobile experience listing improvements */
-@media (max-width: 650px) {
-  .sik-exp-intro {
-    padding: 22px 0;
-  }
-
-  .sik-exp-intro h1 {
-    font-size: clamp(32px, 8.5vw, 36px);
-    line-height: 1.08;
-    margin-bottom: 9px;
-  }
-
-  .sik-exp-lede {
-    font-size: 13px;
-    line-height: 1.45;
-  }
-
-  .sik-exp-intro-actions {
-    margin-top: 12px;
-  }
-
-  /* Campaigns are directly below; no redundant CTA */
-  .sik-exp-intro-actions .sik-exp-primary {
-    display: none;
-  }
-
-  .sik-exp-list {
-    padding: 22px 0 36px;
-  }
-
-  .sik-exp-heading {
-    margin-bottom: 12px;
-  }
-
-  .sik-exp-heading h2 {
-    font-size: 27px;
-  }
-
-  .sik-exp-business-link {
-    margin-top: 9px;
-    font-size: 12px;
-  }
-
-  .sik-exp-filters {
-    gap: 6px;
-    padding-bottom: 12px;
-  }
-
-  .sik-exp-filter {
-    padding: 8px 12px;
-    min-height: 42px;
-    font-size: 12px;
-  }
-
-  /* No category filter needed for a single campaign */
-  .sik-exp-filters:has(
-    + .sik-exp-grid > .sik-exp-card:only-child
-  ) {
-    display: none;
-  }
-
-  .sik-exp-photo {
-    aspect-ratio: 2 / 1;
-  }
-
-  .sik-exp-card-body {
-    padding: 15px 16px 12px;
-  }
-
-  .sik-exp-card h3 {
-    font-size: 20px;
-  }
-
-  .sik-exp-card-footer {
-    padding: 10px 12px;
-  }
-
-  .sik-exp-card-cta {
-    min-height: 44px;
-  }
-}
-
-</style>
+  </style>
 </BaseLayout>
