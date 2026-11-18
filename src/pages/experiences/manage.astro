@@ -1,96 +1,619 @@
+
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import '../../styles/experiences.css';
 ---
-<BaseLayout title="Experiences administration — SEEN IN KOREA" description="Internal campaign administration" noindex={true}>
+
+<BaseLayout
+  title="Experiences administration — SEEN IN KOREA"
+  description="Internal campaign administration"
+  noindex={true}
+>
   <main class="exp-page" lang="ko">
-    <section class="exp-hero"><div class="wrap exp-hero-inner">
-      <div class="exp-kicker">INTERNAL OPERATIONS</div><h1>Campaign Control.</h1>
-      <p>매장 승인 · 영어 소개 등록 · 크리에이터 신청 · 선정 현황</p>
-      <p class="exp-note">관리자 전용. 비밀번호는 브라우저 저장소에 저장하지 않으며, 선정 결과에 대한 이메일은 별도로 보내야 합니다.</p>
-    </div></section>
-    <section><div class="wrap">
-      <div class="exp-admin-toolbar"><label for="admin-secret">관리자 키 (32자 이상 비공개 시크릿)</label>
-        <input id="admin-secret" type="password" autocomplete="off" placeholder="SIK_ADMIN_SECRET 값"/>
-        <button class="exp-btn exp-btn-accent" id="admin-load" type="button">대시보드 불러오기</button>
-        <button class="exp-btn" id="admin-forget" type="button">키 지우기</button>
+    <section class="exp-hero">
+      <div class="wrap exp-hero-inner">
+        <div class="exp-kicker">INTERNAL OPERATIONS</div>
+        <h1>Campaign Control.</h1>
+        <p>매장 승인 · 대표 이미지 · 크리에이터 신청 · 선정 현황</p>
+        <p class="exp-note">
+          관리자 전용. 비밀번호는 브라우저 저장소에 저장하지 않습니다.
+          선정 결과에 대한 이메일은 별도로 보내야 합니다.
+        </p>
       </div>
-      <p id="admin-status" role="status" aria-live="polite"></p>
-      <div id="admin-panels"></div>
-    </div></section>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="exp-admin-toolbar">
+          <label for="admin-secret">
+            관리자 키 (32자 이상 비공개 시크릿)
+          </label>
+          <input
+            id="admin-secret"
+            type="password"
+            autocomplete="off"
+            placeholder="SIK_ADMIN_SECRET 값"
+          />
+          <button
+            class="exp-btn exp-btn-accent"
+            id="admin-load"
+            type="button"
+          >
+            대시보드 불러오기
+          </button>
+          <button
+            class="exp-btn"
+            id="admin-forget"
+            type="button"
+          >
+            키 지우기
+          </button>
+        </div>
+
+        <p id="admin-status" role="status" aria-live="polite"></p>
+        <div id="admin-panels"></div>
+      </div>
+    </section>
   </main>
+
   <script>
     type R = Record<string, any>;
-    let adminKey='';
-    const keyInput=document.querySelector<HTMLInputElement>('#admin-secret')!;
-    const status=document.querySelector<HTMLElement>('#admin-status')!;
-    const panels=document.querySelector<HTMLElement>('#admin-panels')!;
-    const escape=(v:unknown)=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]||c));
-    const stamp=(v:unknown)=>v?escape(String(v).replace('T',' ').slice(0,16)):'—';
-    async function authorized(url:string,body?:R){
-      const res=await fetch(url,{method:body?'POST':'GET',headers:{'Authorization':`Bearer ${adminKey}`,...(body?{'content-type':'application/json'}:{})},body:body?JSON.stringify(body):undefined,credentials:'same-origin'});
-      const data=await res.json();if(!res.ok||!data.ok)throw new Error(data.error||'Request failed');return data;
+
+    let adminKey = '';
+
+    const keyInput =
+      document.querySelector<HTMLInputElement>('#admin-secret')!;
+
+    const status =
+      document.querySelector<HTMLElement>('#admin-status')!;
+
+    const panels =
+      document.querySelector<HTMLElement>('#admin-panels')!;
+
+    const escape = (v: unknown) =>
+      String(v ?? '').replace(
+        /[&<>"']/g,
+        c => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[c] || c)
+      );
+
+    const stamp = (v: unknown) =>
+      v ? escape(String(v).replace('T', ' ').slice(0, 16)) : '—';
+
+    async function authorized(url: string, body?: R) {
+      const res = await fetch(url, {
+        method: body ? 'POST' : 'GET',
+        headers: {
+          Authorization: `Bearer ${adminKey}`,
+          ...(body ? { 'content-type': 'application/json' } : {})
+        },
+        body: body ? JSON.stringify(body) : undefined,
+        credentials: 'same-origin'
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'Request failed');
+      }
+
+      return data;
     }
-    async function load(){
-      adminKey=keyInput.value.trim();if(!adminKey){status.textContent='관리자 키를 입력하세요.';return;}
-      status.textContent='불러오는 중…';
-      try{
-        const data=await authorized('/api/experiences/admin');
-        render(data);status.textContent='데이터 조회 완료. 자동 알림 발송 기능은 없습니다.';
-      }catch(e){panels.replaceChildren();status.textContent=(e as Error).message;}
+
+    async function load() {
+      adminKey = keyInput.value.trim();
+
+      if (!adminKey) {
+        status.textContent = '관리자 키를 입력하세요.';
+        return;
+      }
+
+      status.textContent = '불러오는 중…';
+
+      try {
+        const data = await authorized('/api/experiences/admin');
+        render(data);
+        status.textContent =
+          '데이터 조회 완료. 자동 알림 발송 기능은 없습니다.';
+      } catch (e) {
+        panels.replaceChildren();
+        status.textContent = (e as Error).message;
+      }
     }
-    function render(data:{campaigns:R[],applications:R[],creators:R[]}){
-      const cs=data.campaigns||[],as=data.applications||[],ps=data.creators||[];
-      const campaignHtml=cs.map(c=>{
-        const related=as.filter(a=>a.campaign_id===c.id);
-        return `<article class="exp-admin-card" data-campaign="${escape(c.id)}">
-          <div class="exp-admin-head"><div><strong>${escape(c.business_name)}</strong> · ${escape(c.category)} <span class="exp-step">${escape(c.status)}</span></div><small>${stamp(c.created_at)}</small></div>
-          <p><strong>매장:</strong> ${escape(c.address_ko)} · <strong>연락:</strong> <a href="mailto:${encodeURIComponent(c.business_email)}">${escape(c.business_email)}</a></p>
-          <p><strong>제공:</strong> ${escape(c.offer_ko)} · <strong>일정:</strong> ${escape(c.visit_window)} · <strong>기타:</strong> ${escape(c.notes)}</p>
-          <form data-publish="${escape(c.id)}"><div class="exp-admin-fields">
-            <label>Public title (EN)<input name="title_en" maxlength="140" value="${escape(c.title_en)}" required/></label>
-            <label>Public location (EN)<input name="location_en" maxlength="180" value="${escape(c.location_en)}" required/></label>
-            <label>Description (EN)<textarea name="description_en" maxlength="800" required>${escape(c.description_en)}</textarea></label>
-            <label>Complimentary offer (EN)<textarea name="offer_en" maxlength="450" required>${escape(c.offer_en)}</textarea></label>
-            <label>Deliverables (EN, disclose benefits)<textarea name="deliverables_en" maxlength="450" required>${escape(c.deliverables_en)}</textarea></label>
-            <label>Maximum selected creators<input type="number" min="1" max="30" name="slots" value="${Number(c.slots)||5}" required /></label>
-          </div><div class="exp-admin-buttons"><button type="submit" class="exp-btn exp-btn-accent">승인·공개 / 내용 저장</button>
-            <button class="exp-btn" type="button" data-campaign-action="pause">일시중지</button>
-            <button class="exp-btn" type="button" data-campaign-action="close">마감</button>
-            <button class="exp-btn" type="button" data-campaign-action="reject">거절</button>
-            <button class="exp-admin-delete" type="button" data-campaign-action="deleteCampaign">매장·신청 데이터 영구 삭제</button></div></form>
-          <h4>크리에이터 신청자 (${related.length}명 · 선정 ${related.filter(a=>a.status==='selected').length}/${Number(c.slots)||5})</h4>
-          ${related.length?related.map(a=>`<div class="exp-admin-application"><strong>${escape(a.creator_name)}</strong> <span>[${escape(a.status)}]</span>
-            <div><a href="mailto:${encodeURIComponent(a.email)}">${escape(a.email)}</a> · <a href="${escape(a.social_url)}" target="_blank" rel="noopener noreferrer">SNS 프로필</a></div>
-            <div>${escape(a.message)} · ${stamp(a.created_at)}</div>
-            ${a.status==='pending'?`<div class="exp-admin-buttons"><button class="exp-btn exp-btn-accent" type="button" data-app-action="select" data-app-id="${escape(a.id)}">선정</button>
-              <button class="exp-btn" type="button" data-app-action="decline" data-app-id="${escape(a.id)}">거절</button></div>`:''}
-            <button type="button" class="exp-admin-delete" data-app-action="deleteApplication" data-app-id="${escape(a.id)}">정보 삭제</button>
-          </div>`).join(''):'<p>아직 신청자가 없습니다.</p>'}
-        </article>`;
+
+    function render(data: {
+      campaigns: R[];
+      applications: R[];
+      creators: R[];
+    }) {
+      const cs = data.campaigns || [];
+      const as = data.applications || [];
+      const ps = data.creators || [];
+
+      const campaignHtml = cs.map(c => {
+        const related = as.filter(a => a.campaign_id === c.id);
+
+        // Preview only: HTTPS URLs entered by the administrator.
+        const imageUrl = String(c.image_url || '').trim();
+        const hasImage = /^https:\/\/[^/]+/i.test(imageUrl);
+
+        return `
+          <article class="exp-admin-card" data-campaign="${escape(c.id)}">
+            <div class="exp-admin-head">
+              <div>
+                <strong>${escape(c.business_name)}</strong>
+                · ${escape(c.category)}
+                <span class="exp-step">${escape(c.status)}</span>
+              </div>
+              <small>${stamp(c.created_at)}</small>
+            </div>
+
+            <p>
+              <strong>매장:</strong> ${escape(c.address_ko)}
+              · <strong>연락:</strong>
+              <a href="mailto:${encodeURIComponent(c.business_email)}">
+                ${escape(c.business_email)}
+              </a>
+            </p>
+
+            <p>
+              <strong>제공:</strong> ${escape(c.offer_ko)}
+              · <strong>일정:</strong> ${escape(c.visit_window)}
+              · <strong>기타:</strong> ${escape(c.notes)}
+            </p>
+
+            <div class="exp-admin-image-section">
+              <h3>대표 이미지</h3>
+
+              <form data-image="${escape(c.id)}">
+                <label>
+                  이미지 주소 (HTTPS)
+                  <input
+                    type="url"
+                    name="image_url"
+                    maxlength="1000"
+                    pattern="https://.*"
+                    placeholder="https://example.com/photo.jpg"
+                    value="${escape(imageUrl)}"
+                  />
+                </label>
+
+                <p class="exp-admin-image-help">
+                  실제 매장의 사용 허가된 사진 URL을 입력하세요.
+                  사진 파일 직접 업로드는 아직 지원하지 않습니다.
+                  주소를 비우고 저장하면 기존 이미지를 제거합니다.
+                </p>
+
+                <button
+                  class="exp-btn exp-btn-accent"
+                  type="submit"
+                >
+                  이미지 저장
+                </button>
+              </form>
+
+              ${
+                hasImage
+                  ? `
+                    <div class="exp-admin-image-preview">
+                      <img
+                        src="${escape(imageUrl)}"
+                        alt="캠페인 대표 이미지 미리보기"
+                        loading="lazy"
+                      />
+                      <p>현재 저장된 대표 이미지</p>
+                    </div>
+                  `
+                  : '<p class="exp-admin-image-help">등록된 대표 이미지가 없습니다.</p>'
+              }
+            </div>
+
+            <form data-publish="${escape(c.id)}">
+              <div class="exp-admin-fields">
+                <label>
+                  Public title (EN)
+                  <input
+                    name="title_en"
+                    maxlength="140"
+                    value="${escape(c.title_en)}"
+                    required
+                  />
+                </label>
+
+                <label>
+                  Public location (EN)
+                  <input
+                    name="location_en"
+                    maxlength="180"
+                    value="${escape(c.location_en)}"
+                    required
+                  />
+                </label>
+
+                <label>
+                  Description (EN)
+                  <textarea
+                    name="description_en"
+                    maxlength="800"
+                    required
+                  >${escape(c.description_en)}</textarea>
+                </label>
+
+                <label>
+                  Complimentary offer (EN)
+                  <textarea
+                    name="offer_en"
+                    maxlength="450"
+                    required
+                  >${escape(c.offer_en)}</textarea>
+                </label>
+
+                <label>
+                  Deliverables (EN, disclose benefits)
+                  <textarea
+                    name="deliverables_en"
+                    maxlength="450"
+                    required
+                  >${escape(c.deliverables_en)}</textarea>
+                </label>
+
+                <label>
+                  Maximum selected creators
+                  <input
+                    type="number"
+                    min="1"
+                    max="30"
+                    name="slots"
+                    value="${Number(c.slots) || 5}"
+                    required
+                  />
+                </label>
+              </div>
+
+              <div class="exp-admin-buttons">
+                <button
+                  type="submit"
+                  class="exp-btn exp-btn-accent"
+                >
+                  승인·공개 / 내용 저장
+                </button>
+
+                <button class="exp-btn" type="button" data-campaign-action="pause">
+                  일시중지
+                </button>
+
+                <button class="exp-btn" type="button" data-campaign-action="close">
+                  마감
+                </button>
+
+                <button class="exp-btn" type="button" data-campaign-action="reject">
+                  거절
+                </button>
+
+                <button
+                  class="exp-admin-delete"
+                  type="button"
+                  data-campaign-action="deleteCampaign"
+                >
+                  매장·신청 데이터 영구 삭제
+                </button>
+              </div>
+            </form>
+
+            <h4>
+              크리에이터 신청자
+              (${related.length}명 · 선정
+              ${related.filter(a => a.status === 'selected').length}/${Number(c.slots) || 5})
+            </h4>
+
+            ${
+              related.length
+                ? related.map(a => `
+                    <div class="exp-admin-application">
+                      <strong>${escape(a.creator_name)}</strong>
+                      <span>[${escape(a.status)}]</span>
+
+                      <div>
+                        <a href="mailto:${encodeURIComponent(a.email)}">
+                          ${escape(a.email)}
+                        </a>
+                        ·
+                        <a
+                          href="${escape(a.social_url)}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          SNS 프로필
+                        </a>
+                      </div>
+
+                      <div>
+                        ${escape(a.message)}
+                        · ${stamp(a.created_at)}
+                      </div>
+
+                      ${
+                        a.status === 'pending'
+                          ? `
+                            <div class="exp-admin-buttons">
+                              <button
+                                class="exp-btn exp-btn-accent"
+                                type="button"
+                                data-app-action="select"
+                                data-app-id="${escape(a.id)}"
+                              >
+                                선정
+                              </button>
+                              <button
+                                class="exp-btn"
+                                type="button"
+                                data-app-action="decline"
+                                data-app-id="${escape(a.id)}"
+                              >
+                                거절
+                              </button>
+                            </div>
+                          `
+                          : ''
+                      }
+
+                      <button
+                        type="button"
+                        class="exp-admin-delete"
+                        data-app-action="deleteApplication"
+                        data-app-id="${escape(a.id)}"
+                      >
+                        정보 삭제
+                      </button>
+                    </div>
+                  `).join('')
+                : '<p>아직 신청자가 없습니다.</p>'
+            }
+          </article>
+        `;
       }).join('');
-      panels.innerHTML=`<div class="exp-admin-stats"><span>매장 ${cs.length}건</span><span>공개 ${cs.filter(x=>x.status==='published').length}건</span><span>캠페인 신청 ${as.length}건</span><span>크리에이터 프로필 ${ps.length}건</span></div>
-        <h2>매장·캠페인 운영</h2>${campaignHtml||'<p>신청된 매장이 없습니다.</p>'}
-        <h2>크리에이터 풀</h2><div class="exp-admin-card">${ps.map(p=>`<div class="exp-admin-application"><strong>${escape(p.creator_name)}</strong> · ${escape(p.area)} · ${escape(p.languages)}
-          <div><a href="mailto:${encodeURIComponent(p.email)}">${escape(p.email)}</a> · <a target="_blank" rel="noopener noreferrer" href="${escape(p.social_url)}">SNS</a> · ${escape(p.followers)}</div>
-          <div>${escape(p.audience)} · ${stamp(p.created_at)}</div><button class="exp-admin-delete" type="button" data-creator-id="${escape(p.id)}">정보 삭제</button></div>`).join('')||'<p>등록된 크리에이터가 없습니다.</p>'}</div>`;
+
+      panels.innerHTML = `
+        <div class="exp-admin-stats">
+          <span>매장 ${cs.length}건</span>
+          <span>공개 ${cs.filter(x => x.status === 'published').length}건</span>
+          <span>캠페인 신청 ${as.length}건</span>
+          <span>크리에이터 프로필 ${ps.length}건</span>
+        </div>
+
+        <h2>매장·캠페인 운영</h2>
+
+        ${campaignHtml || '<p>신청된 매장이 없습니다.</p>'}
+
+        <h2>크리에이터 풀</h2>
+
+        <div class="exp-admin-card">
+          ${
+            ps.map(p => `
+              <div class="exp-admin-application">
+                <strong>${escape(p.creator_name)}</strong>
+                · ${escape(p.area)}
+                · ${escape(p.languages)}
+
+                <div>
+                  <a href="mailto:${encodeURIComponent(p.email)}">
+                    ${escape(p.email)}
+                  </a>
+                  ·
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="${escape(p.social_url)}"
+                  >
+                    SNS
+                  </a>
+                  · ${escape(p.followers)}
+                </div>
+
+                <div>
+                  ${escape(p.audience)}
+                  · ${stamp(p.created_at)}
+                </div>
+
+                <button
+                  class="exp-admin-delete"
+                  type="button"
+                  data-creator-id="${escape(p.id)}"
+                >
+                  정보 삭제
+                </button>
+              </div>
+            `).join('') || '<p>등록된 크리에이터가 없습니다.</p>'
+          }
+        </div>
+      `;
     }
-    document.querySelector('#admin-load')?.addEventListener('click',load);
-    document.querySelector('#admin-forget')?.addEventListener('click',()=>{adminKey='';keyInput.value='';panels.replaceChildren();status.textContent='관리자 키를 지웠습니다.';});
-    panels.addEventListener('submit',async e=>{
-      const f=(e.target as HTMLElement).closest<HTMLFormElement>('form[data-publish]');if(!f)return;e.preventDefault();if(!f.reportValidity())return;
-      if(!confirm('캠페인을 공개/수정하시겠습니까? 게시 내용이 즉시 외국인 페이지에 표시됩니다.'))return;
-      const d=Object.fromEntries(new FormData(f));
-      await run({action:'publish',campaignId:f.dataset.publish,...d,slots:Number(d.slots)});
+
+    document.querySelector('#admin-load')
+      ?.addEventListener('click', load);
+
+    document.querySelector('#admin-forget')
+      ?.addEventListener('click', () => {
+        adminKey = '';
+        keyInput.value = '';
+        panels.replaceChildren();
+        status.textContent = '관리자 키를 지웠습니다.';
+      });
+
+    panels.addEventListener('submit', async e => {
+      const target = e.target as HTMLElement;
+
+      // Image URL form: independent of campaign publishing.
+      const imageForm =
+        target.closest<HTMLFormElement>('form[data-image]');
+
+      if (imageForm) {
+        e.preventDefault();
+
+        if (!imageForm.reportValidity()) return;
+
+        const imageInput =
+          imageForm.querySelector<HTMLInputElement>(
+            'input[name="image_url"]'
+          );
+
+        await run({
+          action: 'updateImage',
+          campaignId: imageForm.dataset.image,
+          image_url: imageInput?.value.trim() || ''
+        });
+
+        return;
+      }
+
+      // Existing campaign approval and publishing workflow.
+      const f =
+        target.closest<HTMLFormElement>('form[data-publish]');
+
+      if (!f) return;
+
+      e.preventDefault();
+
+      if (!f.reportValidity()) return;
+
+      if (!confirm(
+        '캠페인을 공개/수정하시겠습니까? 게시 내용이 즉시 외국인 페이지에 표시됩니다.'
+      )) return;
+
+      const d = Object.fromEntries(new FormData(f));
+
+      await run({
+        action: 'publish',
+        campaignId: f.dataset.publish,
+        ...d,
+        slots: Number(d.slots)
+      });
     });
-    panels.addEventListener('click',async e=>{
-      const t=(e.target as HTMLElement).closest<HTMLButtonElement>('button');if(!t)return;
-      const ca=t.dataset.campaignAction,aa=t.dataset.appAction,ci=t.dataset.creatorId;
-      if(ca){const parent=t.closest<HTMLElement>('[data-campaign]');const prompt=ca==='deleteCampaign'?'매장 및 해당 캠페인 신청자 데이터가 영구 삭제됩니다. 계속하시겠습니까?':`캠페인 상태를 ${ca}로 변경하시겠습니까?`;if(!confirm(prompt))return;await run({action:ca,campaignId:parent?.dataset.campaign});}
-      else if(aa){if((aa==='deleteApplication'||aa==='decline')&&!confirm('이 신청을 처리하시겠습니까?'))return;await run({action:aa,applicationId:t.dataset.appId});}
-      else if(ci){if(!confirm('이 크리에이터 개인정보를 삭제하시겠습니까?'))return;await run({action:'deleteCreator',creatorId:ci});}
+
+    panels.addEventListener('click', async e => {
+      const t =
+        (e.target as HTMLElement).closest<HTMLButtonElement>('button');
+
+      if (!t) return;
+
+      const ca = t.dataset.campaignAction;
+      const aa = t.dataset.appAction;
+      const ci = t.dataset.creatorId;
+
+      if (ca) {
+        const parent =
+          t.closest<HTMLElement>('[data-campaign]');
+
+        const prompt =
+          ca === 'deleteCampaign'
+            ? '매장 및 해당 캠페인 신청자 데이터가 영구 삭제됩니다. 계속하시겠습니까?'
+            : `캠페인 상태를 ${ca}로 변경하시겠습니까?`;
+
+        if (!confirm(prompt)) return;
+
+        await run({
+          action: ca,
+          campaignId: parent?.dataset.campaign
+        });
+      } else if (aa) {
+        if (
+          (aa === 'deleteApplication' || aa === 'decline') &&
+          !confirm('이 신청을 처리하시겠습니까?')
+        ) return;
+
+        await run({
+          action: aa,
+          applicationId: t.dataset.appId
+        });
+      } else if (ci) {
+        if (!confirm(
+          '이 크리에이터 개인정보를 삭제하시겠습니까?'
+        )) return;
+
+        await run({
+          action: 'deleteCreator',
+          creatorId: ci
+        });
+      }
     });
-    async function run(body:R){status.textContent='처리 중…';try{const data=await authorized('/api/experiences/admin-actions',body);status.textContent=data.message||'처리 완료. 대상자에게 별도로 연락하세요.';await load();}
-      catch(e){status.textContent=(e as Error).message;}}
+
+    async function run(body: R) {
+      status.textContent = '처리 중…';
+
+      try {
+        const data = await authorized(
+          '/api/experiences/admin-actions',
+          body
+        );
+
+        status.textContent =
+          data.message || '처리 완료. 대상자에게 별도로 연락하세요.';
+
+        await load();
+      } catch (e) {
+        status.textContent = (e as Error).message;
+      }
+    }
   </script>
+
+  <style is:global>
+    .exp-admin-image-section {
+      border: 1px solid #e3dcd4;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 22px 0;
+      background: #fffaf5;
+    }
+
+    .exp-admin-image-section h3 {
+      font-size: 21px;
+      margin: 0 0 15px;
+    }
+
+    .exp-admin-image-section form label {
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .exp-admin-image-section input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc4ba;
+      background: #fff;
+      font-size: 14px;
+      min-width: 0;
+    }
+
+    .exp-admin-image-help {
+      font-size: 12px;
+      color: #655f57;
+      line-height: 1.6;
+    }
+
+    .exp-admin-image-preview {
+      margin-top: 18px;
+    }
+
+    .exp-admin-image-preview img {
+      display: block;
+      max-width: 360px;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: 9px;
+      border: 1px solid #e0d8cf;
+    }
+
+    .exp-admin-image-preview p {
+      font-size: 12px;
+      color: #686159;
+    }
+  </style>
 </BaseLayout>
