@@ -248,5 +248,88 @@ const categoryPhotos: Record<string, { src: string; credit: string }> = {
       .sik-exp-step-grid{grid-template-columns:repeat(2,1fr);row-gap:18px}
     }
     @media(prefers-reduced-motion:reduce) {.sik-exp-card,.sik-exp-photo img{transition:none}.sik-exp-card:hover,.sik-exp-card:hover img{transform:none}}
-  </style>
+
+/* Mobile experience listing improvements */
+@media (max-width: 650px) {
+  .sik-exp-intro {
+    padding: 22px 0;
+  }
+
+  .sik-exp-intro h1 {
+    font-size: clamp(32px, 8.5vw, 36px);
+    line-height: 1.08;
+    margin-bottom: 9px;
+  }
+
+  .sik-exp-lede {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .sik-exp-intro-actions {
+    margin-top: 12px;
+  }
+
+  /* Campaigns are directly below; no redundant CTA */
+  .sik-exp-intro-actions .sik-exp-primary {
+    display: none;
+  }
+
+  .sik-exp-list {
+    padding: 22px 0 36px;
+  }
+
+  .sik-exp-heading {
+    margin-bottom: 12px;
+  }
+
+  .sik-exp-heading h2 {
+    font-size: 27px;
+  }
+
+  .sik-exp-business-link {
+    margin-top: 9px;
+    font-size: 12px;
+  }
+
+  .sik-exp-filters {
+    gap: 6px;
+    padding-bottom: 12px;
+  }
+
+  .sik-exp-filter {
+    padding: 8px 12px;
+    min-height: 42px;
+    font-size: 12px;
+  }
+
+  /* No category filter needed for a single campaign */
+  .sik-exp-filters:has(
+    + .sik-exp-grid > .sik-exp-card:only-child
+  ) {
+    display: none;
+  }
+
+  .sik-exp-photo {
+    aspect-ratio: 2 / 1;
+  }
+
+  .sik-exp-card-body {
+    padding: 15px 16px 12px;
+  }
+
+  .sik-exp-card h3 {
+    font-size: 20px;
+  }
+
+  .sik-exp-card-footer {
+    padding: 10px 12px;
+  }
+
+  .sik-exp-card-cta {
+    min-height: 44px;
+  }
+}
+
+</style>
 </BaseLayout>
